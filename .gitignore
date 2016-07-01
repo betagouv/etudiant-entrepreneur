@@ -6,3 +6,9 @@ npm-debug.log*
 # Dependency directories
 node_modules
 jspm_packages
+
+# Tests
+coverage
+
+# Mac
+.DS_Store

@@ -2,15 +2,16 @@
 
 const http = require('http')
 const express = require('express')
+const routes = require('./routes');
 const StandardError = require('standard-error')
 const emptylogger = require('bunyan-blackhole')
 const expressBunyanLogger = require("express-bunyan-logger")
 const bodyParser = require('body-parser')
 const formatError = require('./lib/middlewares/formatError')
 
-module.exports = Server;
+module.exports = Server
 
-function Server (options) {
+function Server(options) {
   options = options || {};
   options.port = options.port || 0;
   options.logger = options.logger || emptylogger();
@@ -26,24 +27,30 @@ function Server (options) {
   app.use(expressBunyanLogger({
     name: "requests",
     logger: logger
- }))
+  }))
 
   app.use((req, res, next) => {
     req.logger = logger
     next()
   })
 
+  routes.configure(app, options)
+
   if (options.staticPath) app.use(express.static(options.staticPath))
 
   app.use((req, res, next) => {
-    next(new StandardError('no route for URL ' + req.url, {code: 404}))
+    next(new StandardError('no route for URL ' + req.url, { code: 404 }))
   })
   app.use(formatError)
+
+  this.getApp = () => app
+
   var server = http.createServer(app)
-  this.start =  (onStarted) => {
+
+  this.start = (onStarted) => {
     server.listen(app.get('port'), function (error) {
       if (error) {
-        logger.error({error: error}, 'Got error while starting server');
+        logger.error({ error: error }, 'Got error while starting server');
         return onStarted(error);
       }
       logger.info({
@@ -60,7 +67,7 @@ function Server (options) {
     }, 'Stopping server');
     server.close(function (error) {
       if (error) {
-        logger.error({error: error}, 'Got error while stopping server');
+        logger.error({ error: error }, 'Got error while stopping server');
         return onStopped(error);
       }
       logger.info({
