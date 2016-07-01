@@ -6,6 +6,7 @@ const StandardError = require('standard-error')
 const emptylogger = require('bunyan-blackhole')
 const expressBunyanLogger = require("express-bunyan-logger")
 const bodyParser = require('body-parser')
+const formatError = require('./lib/middlewares/formatError')
 
 module.exports = Server;
 
@@ -37,8 +38,8 @@ function Server (options) {
   app.use((req, res, next) => {
     next(new StandardError('no route for URL ' + req.url, {code: 404}))
   })
-
-  var server = http.createServer(app);
+  app.use(formatError)
+  var server = http.createServer(app)
   this.start =  (onStarted) => {
     server.listen(app.get('port'), function (error) {
       if (error) {

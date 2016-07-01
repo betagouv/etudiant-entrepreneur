@@ -25,6 +25,7 @@
     "express-bunyan-logger": "1.3.0",
     "http-measuring-client": "0.3.7",
     "nconf": "0.8.4",
-    "standard-error": "1.1.0"
+    "standard-error": "1.1.0",
+    "string": "3.3.1"
   }
 }
