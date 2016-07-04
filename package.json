@@ -4,7 +4,8 @@
   "description": "Faciliter l'accès au statut et à ses bénéfices",
   "scripts": {
     "start": "./bin/www",
-    "test": "./node_modules/.bin/istanbul cover --print details _mocha -- -R spec api/*/test/** --recursive"
+    "test": "./node_modules/.bin/istanbul cover --print details _mocha -- -R spec api/*/test/** --recursive",
+    "lint": "./node_modules/.bin/eslint api/ bin/"
   },
   "repository": {
     "type": "git",
@@ -31,6 +32,7 @@
     "string": "3.3.1"
   },
   "devDependencies": {
+    "eslint": "3.0.0",
     "supertest": "1.2.0"
   }
 }
