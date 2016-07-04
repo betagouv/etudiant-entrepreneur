@@ -19,7 +19,7 @@
   "dependencies": {
     "body-parser": "1.15.2",
     "bunyan": "1.8.1",
-    "bunyan-blackhole": "1.1.0",
+    "bunyan-noop": "2.0.0",
     "bunyan-format": "0.2.1",
     "express": "4.14.0",
     "express-bunyan-logger": "1.3.0",
