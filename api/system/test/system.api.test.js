@@ -2,7 +2,7 @@ const supertest = require('supertest')
 const Server = require('../../server')
 
 describe('api: system', () => {
-  let app;
+  let app
 
   before(() => {
     app = new Server().getApp()
