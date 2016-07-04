@@ -2,19 +2,19 @@
 
 const http = require('http')
 const express = require('express')
-const routes = require('./routes');
+const routes = require('./routes')
 const StandardError = require('standard-error')
 const emptylogger = require('bunyan-blackhole')
-const expressBunyanLogger = require("express-bunyan-logger")
+const expressBunyanLogger = require('express-bunyan-logger')
 const bodyParser = require('body-parser')
 const formatError = require('./lib/middlewares/formatError')
 
 module.exports = Server
 
 function Server(options) {
-  options = options || {};
-  options.port = options.port || 0;
-  options.logger = options.logger || emptylogger();
+  options = options || {}
+  options.port = options.port || 0
+  options.logger = options.logger || emptylogger()
 
   var logger = options.logger
   var app = express()
@@ -25,7 +25,7 @@ function Server(options) {
   app.use(bodyParser.json())
 
   app.use(expressBunyanLogger({
-    name: "requests",
+    name: 'requests',
     logger: logger
   }))
 
@@ -50,30 +50,30 @@ function Server(options) {
   this.start = (onStarted) => {
     server.listen(app.get('port'), function (error) {
       if (error) {
-        logger.error({ error: error }, 'Got error while starting server');
-        return onStarted(error);
+        logger.error({ error: error }, 'Got error while starting server')
+        return onStarted(error)
       }
       logger.info({
         event: 'server_started',
         port: app.get('port')
-      }, 'Server listening on port', app.get('port'));
-      onStarted();
-    });
-  };
+      }, 'Server listening on port', app.get('port'))
+      onStarted()
+    })
+  }
 
   this.stop = function (onStopped) {
     logger.info({
       event: 'server_stopping'
-    }, 'Stopping server');
+    }, 'Stopping server')
     server.close(function (error) {
       if (error) {
-        logger.error({ error: error }, 'Got error while stopping server');
-        return onStopped(error);
+        logger.error({ error: error }, 'Got error while stopping server')
+        return onStopped(error)
       }
       logger.info({
         event: 'server_stopped'
-      }, 'server stopped');
-      onStopped();
-    });
+      }, 'server stopped')
+      onStopped()
+    })
   }
 }
