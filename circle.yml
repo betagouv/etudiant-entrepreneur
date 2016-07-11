@@ -4,5 +4,5 @@ machine:
 test:
   pre:
     - npm run lint
-    post:
-        - cat ./coverage/lcov.info | ./node_modules/.bin/coveralls --verbose
+  post:
+    - cat ./coverage/lcov.info | ./node_modules/.bin/coveralls --verbose
