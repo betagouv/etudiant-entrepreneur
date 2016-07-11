@@ -33,6 +33,7 @@
   },
   "devDependencies": {
     "eslint": "3.0.0",
+    "coveralls": "2.11.9",
     "supertest": "1.2.0"
   }
 }
