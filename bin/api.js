@@ -1,6 +1,4 @@
 #!/usr/bin/env node
-// vi: ft=javascript
-
 var bunyan = require('bunyan')
 var bunyanFormat = require('bunyan-format')
 var nconf = require('nconf')
@@ -31,7 +29,7 @@ mhttp.on('stat', function (parsed, stats) {
 })
 
 var server = new Server({
-  port: nconf.get('port'),
+  port: nconf.get('apiPort'),
   logger: logger,
 })
 

@@ -3,8 +3,8 @@
   "version": "0.0.1",
   "description": "Faciliter l'accès au statut et à ses bénéfices",
   "scripts": {
-    "start": "./bin/www",
-    "test": "./node_modules/.bin/istanbul cover --print details _mocha -- -R spec api/*/test/** --recursive",
+    "start": "./bin/api.js",
+    "test": "./node_modules/.bin/istanbul cover --print details node_modules/mocha/bin/_mocha -- -R spec api/*/test/** --recursive",
     "lint": "./node_modules/.bin/eslint api/ bin/"
   },
   "repository": {
@@ -32,8 +32,9 @@
     "string": "3.3.1"
   },
   "devDependencies": {
-    "eslint": "3.0.0",
     "coveralls": "2.11.9",
+    "eslint": "3.0.0",
+    "npm-run-all": "2.3.0",
     "supertest": "1.2.0"
   }
 }

@@ -1,6 +1,6 @@
 {
-    "port": 3004,
-    "appname": "etudiant-entrepreneur",
+    "apiPort": 3004,
+    "appname": "etudiant-entrepreneur-api",
     "log": {
         "level": "debug",
         "format": "simple"
