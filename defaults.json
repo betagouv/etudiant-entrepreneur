@@ -1,8 +1,0 @@
-{
-    "port": 3004,
-    "appname": "etudiant-entrepreneur",
-    "log": {
-        "level": "debug",
-        "format": "simple"
-    }
-}
