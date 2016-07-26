@@ -2,6 +2,7 @@
   "name": "etudiant-entrepreneur",
   "version": "0.0.1",
   "description": "Faciiter l'accès au statut et à ses bénéfices",
+  "license": "AGPL-3.0",
   "scripts": {
     "prestart": "babel-node tools/startMessage.js",
     "start": "npm-run-all --parallel test:watch open:src lint:watch",
