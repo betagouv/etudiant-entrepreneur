@@ -8,14 +8,16 @@ const Header = () => {
     <Navbar inverse className="navbar-fixed-top">
       <Navbar.Header>
         <Navbar.Brand>
-          <IndexLink to="/"  className="navbar-brand">Home</IndexLink>
+          <IndexLink to="/"  className="navbar-brand">
+            <span title="home" className="glyphicon glyphicon-home"/>
+          </IndexLink>
         </Navbar.Brand>
         <Navbar.Toggle />
       </Navbar.Header>
       <Navbar.Collapse>
         <Nav>
           <LinkContainer to="/application">
-            <NavItem eventKey={1}>Apply</NavItem>
+            <NavItem eventKey={1}>Candidature</NavItem>
           </LinkContainer>
         </Nav>
       </Navbar.Collapse>
