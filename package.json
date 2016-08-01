@@ -9,7 +9,8 @@
     "open:src": "babel-node tools/srcServer.js",
     "lint": "node_modules/.bin/esw webpack.config.* src tools",
     "lint:watch": "npm run lint -- --watch",
-    "test": "istanbul cover --print details _mocha -- -R progress tools/testSetup.js \"src/**/*.test.js\" --recursive",
+    "test": "mocha tools/testSetup.js \"src/**/*.test.js\" --reporter progress",
+    "test:cover": "babel-node node_modules/isparta/bin/isparta cover --root src --report html node_modules/mocha/bin/_mocha -- --require ./tools/testSetup.js \"src/**/*.test.js\" --reporter progress",
     "test:watch": "npm run test -- --watch"
   },
   "repository": {
@@ -60,6 +61,7 @@
     "express": "4.14.0",
     "extract-text-webpack-plugin": "1.0.1",
     "file-loader": "0.9.0",
+    "isparta": "4.0.0",
     "istanbul": "0.4.4",
     "jsdom": "9.4.1",
     "mocha": "2.5.3",
