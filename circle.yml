@@ -4,5 +4,7 @@ machine:
 test:
   pre:
     - npm run lint
+  override:
+    - npm run test:cover
   post:
     - cat ./coverage/lcov.info | ./node_modules/.bin/coveralls --verbose
