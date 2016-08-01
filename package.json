@@ -11,6 +11,7 @@
     "lint:watch": "npm run lint -- --watch",
     "test": "mocha tools/testSetup.js \"src/**/*.test.js\" --reporter progress",
     "test:cover": "babel-node node_modules/isparta/bin/isparta cover --root src --report html node_modules/mocha/bin/_mocha -- --require ./tools/testSetup.js \"src/**/*.test.js\" --reporter progress",
+    "test:cover:ci": "babel-node node_modules/isparta/bin/isparta cover --root src --report lcovonly node_modules/mocha/bin/_mocha -- --require ./tools/testSetup.js \"src/**/*.test.js\" --reporter progress",
     "test:watch": "npm run test -- --watch"
   },
   "repository": {
