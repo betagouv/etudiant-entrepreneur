@@ -20,7 +20,6 @@ export default {
   target: 'web', // necessary per https://webpack.github.io/docs/testing.html#compile-and-test
   output: {
     path: `${__dirname}/dist`,
-    publicPath: '/',
     filename: '[name].[chunkhash].js'
   },
   plugins: [
@@ -52,6 +51,7 @@ export default {
         minifyURLs: true
       },
       inject: true,
+      baseHref: process.env.BASE_URL
     }),
 
     // Eliminate duplicate packages when generating bundle

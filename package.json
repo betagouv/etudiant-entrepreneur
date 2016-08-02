@@ -13,7 +13,11 @@
     "clean-dist": "npm run remove-dist && mkdir dist",
     "remove-dist": "rimraf ./dist",
     "prebuild": "npm-run-all --sequential clean-dist lint test",
-    "build": "babel-node tools/build.js && npm run open:dist",
+    "build": "babel-node tools/build.js",
+    "prebuild:gh-pages": "npm run prebuild",
+    "build:gh-pages": "BASE_URL='https://sgmap.github.io/etudiant-entrepreneur/' babel-node tools/build.js",
+    "build:open": "npm-run-all --sequential build open:dist",
+    "deploy": "npm run build:gh-pages && gh-pages -d dist",
     "test": "mocha tools/testSetup.js \"src/**/*.test.js\" --reporter progress",
     "test:cover": "babel-node node_modules/isparta/bin/isparta cover --root src --report html node_modules/mocha/bin/_mocha -- --require ./tools/testSetup.js \"src/**/*.test.js\" --reporter progress",
     "test:cover:ci": "babel-node node_modules/isparta/bin/isparta cover --root src --report lcovonly node_modules/mocha/bin/_mocha -- --require ./tools/testSetup.js \"src/**/*.test.js\" --reporter progress",
@@ -43,6 +47,7 @@
     "toastr": "2.1.2"
   },
   "devDependencies": {
+    "autoprefixer": "6.3.7",
     "babel-cli": "6.11.4",
     "babel-core": "6.11.4",
     "babel-loader": "6.2.4",
@@ -67,6 +72,7 @@
     "expect": "1.20.2",
     "extract-text-webpack-plugin": "1.0.1",
     "file-loader": "0.9.0",
+    "gh-pages": "0.11.0",
     "html-webpack-plugin": "2.22.0",
     "isparta": "4.0.0",
     "istanbul": "0.4.4",

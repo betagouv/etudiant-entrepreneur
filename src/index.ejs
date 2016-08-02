@@ -8,6 +8,9 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta charset="utf-8"/>
   <title>Etudiant entrepreneur</title>
+  <% if (htmlWebpackPlugin.options.baseHref) { %>
+  <base href="<%= htmlWebpackPlugin.options.baseHref %>" target="_blank" />
+  <% } %>
 </head>
 <body>
 <div id="app"></div>
