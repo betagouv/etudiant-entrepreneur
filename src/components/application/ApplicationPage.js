@@ -23,7 +23,6 @@ class ApplicationPage extends React.Component {
     const field = event.target.name
     let project = this.state.application.project
     project[field] = event.target.value
-    console.log(this.state.application)
     return this.setState({application: this.state.application})
   }
 
