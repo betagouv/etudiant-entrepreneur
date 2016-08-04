@@ -4,10 +4,10 @@ import { FormGroup, ControlLabel, FormControl, HelpBlock } from 'react-bootstrap
 const ProjectForm = ({project, onChange}) => {
   return (
     <form>
-      <h1>Mon Projet</h1>
+      <p>Mon Projet</p>
       <FormGroup>
         <ControlLabel>Nom de mon projet</ControlLabel>
-        <FormControl type="text" placeholder="Projet" onChange={onChange} value={project.value}/>
+        <FormControl name="name" type="text" placeholder="name" onChange={onChange} value={project.name}/>
         <HelpBlock>Le nom n'est pas obligatoire.</HelpBlock>
       </FormGroup>
     </form>
