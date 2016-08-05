@@ -10,7 +10,7 @@ class ApplicationPage extends React.Component {
     super(props, context)
     this.state = {
       application: {
-        project: { name: "TOTOTO"},
+        project: { name: ""},
         applicant: { name: ""}
       }
     }
