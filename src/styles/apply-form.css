@@ -1,0 +1,12 @@
+/* Hidden placeholder */
+select option[disabled]:first-child {
+	display: none;
+}
+
+button.prev-step {
+  margin-right: 10px;
+}
+
+textarea {
+    resize: none;
+}

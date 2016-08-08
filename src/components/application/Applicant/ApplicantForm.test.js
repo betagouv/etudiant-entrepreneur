@@ -6,7 +6,7 @@ import ApplicantForm from './ApplicantForm'
 function setup(applicant = {}) {
   const props = {
     applicant,
-    onChange: () => {}
+    onChange: () => { }
   }
 
   return shallow(<ApplicantForm {...props} />)

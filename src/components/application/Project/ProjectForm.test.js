@@ -5,16 +5,15 @@ import ProjectForm from './ProjectForm'
 
 function setup(project = {}) {
   const props = {
-    project,
-    onChange: () => {}
+    project: Object.assign({ step: "test" }, project),
+    onChange: () => { }
   }
-
   return shallow(<ProjectForm {...props} />)
 }
 
 describe('<ProjectForm>', () => {
   it('renders form and title', () => {
-    const wrapper = setup()
+    const wrapper = setup({ step: "test" })
     expect(wrapper.find('form').length).toBe(1)
     expect(wrapper.find('p').text()).toEqual('Mon Projet')
   })

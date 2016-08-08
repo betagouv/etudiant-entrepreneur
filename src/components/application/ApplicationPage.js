@@ -4,13 +4,19 @@ import {Button} from 'react-bootstrap'
 import Multistep from '../common/MultiStep'
 import ApplicantForm from './Applicant/ApplicantForm'
 import ProjectForm from './Project/ProjectForm'
+import '../../styles/apply-form.css'
 
 class ApplicationPage extends React.Component {
   constructor(props, context) {
     super(props, context)
     this.state = {
       application: {
-        project: { name: ""},
+        project: {
+          name: "",
+          summary: "",
+          type: "0",
+          step: ""
+        },
         applicant: { name: ""}
       }
     }
