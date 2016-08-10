@@ -15,7 +15,7 @@
     "prebuild": "npm-run-all --sequential clean-dist lint test",
     "build": "babel-node tools/build.js",
     "prebuild:gh-pages": "npm run prebuild",
-    "build:gh-pages": "BASE_URL='https://sgmap.github.io/etudiant-entrepreneur/' babel-node tools/build.js",
+    "build:gh-pages": "babel-node tools/build.js",
     "build:open": "npm-run-all --sequential build open:dist",
     "deploy": "npm run build:gh-pages && gh-pages -d dist",
     "test": "mocha tools/testSetup.js \"src/**/*.test.js\" --reporter progress",
