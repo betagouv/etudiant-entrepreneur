@@ -10,3 +10,8 @@ button.prev-step {
 textarea {
     resize: none;
 }
+
+.form-group.required .control-label:after {
+   content:"*";
+   color:red;
+}

@@ -44,7 +44,8 @@
     "react-router-redux": "4.0.5",
     "redux": "3.5.2",
     "redux-thunk": "2.1.0",
-    "toastr": "2.1.2"
+    "toastr": "2.1.2",
+    "validator": "5.5.0"
   },
   "devDependencies": {
     "autoprefixer": "6.4.0",

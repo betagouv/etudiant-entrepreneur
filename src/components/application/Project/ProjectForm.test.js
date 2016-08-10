@@ -6,7 +6,8 @@ import ProjectForm from './ProjectForm'
 function setup(project = {}) {
   const props = {
     project: Object.assign({ step: "test" }, project),
-    onChange: () => { }
+    onChange: () => { },
+    errors: {}
   }
   return shallow(<ProjectForm {...props} />)
 }
