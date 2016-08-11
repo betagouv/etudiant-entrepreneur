@@ -29,3 +29,30 @@ describe('Validation.validateField', () => {
     expect(sut.validateField("testField", 'toto')).toNotExist()
   })
 })
+
+describe('Validation.validateAllFields', () => {
+  it("returns a list of error messages for fields whom predicate is not met", () => {
+    const errorMessage = "This is a test errorMessage"
+    const constraint = {
+      testField: {
+        isValid: isToto,
+        errorMessage
+      }
+    }
+    const toValidate = { testField: 'titi'}
+    const sut = new Validation(constraint)
+    expect(sut.validateAllFields(toValidate)).toEqual([errorMessage])
+  })
+  it("returns an empty array if all predicates are met", () => {
+    const errorMessage = "This is a test errorMessage"
+    const constraint = {
+      testField: {
+        isValid: isToto,
+        errorMessage
+      }
+    }
+    const toValidate = { testField: 'toto'}
+    const sut = new Validation(constraint)
+    expect(sut.validateAllFields(toValidate).length).toBe(0)
+  })
+})
