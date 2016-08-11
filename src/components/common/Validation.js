@@ -12,14 +12,14 @@ const Validation = class Validation {
   }
 
   validateAllFields(value) {
-    let errors = []
+    let errors = {}
     let error
 
     for (let field in value) {
       if (value.hasOwnProperty(field)) {
         error = this.validateField(field, value[field])
         if (error) {
-          errors.push(error)
+          errors[field] = error
         }
       }
     }

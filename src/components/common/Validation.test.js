@@ -43,11 +43,11 @@ describe('Validation.validateAllFields', () => {
         errorMessage
       }
     }
-    const toValidate = { testField: 'titi'}
+    const toValidate = { testField: 'titi' }
     const sut = new Validation(constraint)
-    expect(sut.validateAllFields(toValidate)).toEqual([errorMessage])
+    expect(sut.validateAllFields(toValidate)).toEqual({ testField: errorMessage })
   })
-  it("returns an empty array if all predicates are met", () => {
+  it("returns an empty object if all predicates are met", () => {
     const errorMessage = "This is a test errorMessage"
     const constraint = {
       testField: {
@@ -55,9 +55,9 @@ describe('Validation.validateAllFields', () => {
         errorMessage
       }
     }
-    const toValidate = { testField: 'toto'}
+    const toValidate = { testField: 'toto' }
     const sut = new Validation(constraint)
-    expect(sut.validateAllFields(toValidate).length).toBe(0)
+    expect(sut.validateAllFields(toValidate)).toEqual({})
   })
   it("returns only the error messages for fields whom validation failed", () => {
     const constraint = {
@@ -70,9 +70,9 @@ describe('Validation.validateAllFields', () => {
         errorMessage: "Second error message"
       }
     }
-    const toValidate = { testValidField: 'toto', testInvalidField: 'toto'}
+    const toValidate = { testValidField: 'toto', testInvalidField: 'toto' }
     const sut = new Validation(constraint)
-    expect(sut.validateAllFields(toValidate)).toEqual([constraint.testInvalidField.errorMessage])
+    expect(sut.validateAllFields(toValidate)).toEqual({ testInvalidField: constraint.testInvalidField.errorMessage })
   })
   it("returns all error messages for fields whom validation failed", () => {
     const constraint = {
@@ -85,11 +85,11 @@ describe('Validation.validateAllFields', () => {
         errorMessage: "Second error message"
       }
     }
-    const toValidate = { testInvalidField_1: 'tata', testInvalidField_2: 'tata'}
+    const toValidate = { testInvalidField_1: 'tata', testInvalidField_2: 'tata' }
     const sut = new Validation(constraint)
-    expect(sut.validateAllFields(toValidate)).toEqual([
-      constraint.testInvalidField_1.errorMessage,
-      constraint.testInvalidField_2.errorMessage
-    ])
+    expect(sut.validateAllFields(toValidate)).toEqual({
+      testInvalidField_1: constraint.testInvalidField_1.errorMessage,
+      testInvalidField_2: constraint.testInvalidField_2.errorMessage
+    })
   })
 })
