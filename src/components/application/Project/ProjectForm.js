@@ -3,10 +3,6 @@ import { FormGroup, ControlLabel, FormControl, HelpBlock, ButtonGroup, Radio } f
 import RadioGroup from '../../common/RadioGroup'
 import ValidatedFormControl from '../../common/ValidatedFormControl'
 
-function isUrl(value) {
-  return value
-}
-
 const ProjectForm = ({project, onChange, errors}) => {
   return (
     <form>
