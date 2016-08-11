@@ -5,6 +5,10 @@ function isToto(value) {
   return value === 'toto'
 }
 
+function isTiti(value) {
+  return value === 'titi'
+}
+
 describe('Validation.validateField', () => {
   it("returns the error message of the field'constraint if the isValid predicate is not met", () => {
     const errorMessage = "This is a test errorMessage"
@@ -54,5 +58,38 @@ describe('Validation.validateAllFields', () => {
     const toValidate = { testField: 'toto'}
     const sut = new Validation(constraint)
     expect(sut.validateAllFields(toValidate).length).toBe(0)
+  })
+  it("returns only the error messages for fields whom validation failed", () => {
+    const constraint = {
+      testValidField: {
+        isValid: isToto,
+        errorMessage: "First error message"
+      },
+      testInvalidField: {
+        isValid: isTiti,
+        errorMessage: "Second error message"
+      }
+    }
+    const toValidate = { testValidField: 'toto', testInvalidField: 'toto'}
+    const sut = new Validation(constraint)
+    expect(sut.validateAllFields(toValidate)).toEqual([constraint.testInvalidField.errorMessage])
+  })
+  it("returns all error messages for fields whom validation failed", () => {
+    const constraint = {
+      testInvalidField_1: {
+        isValid: isToto,
+        errorMessage: "First error message"
+      },
+      testInvalidField_2: {
+        isValid: isTiti,
+        errorMessage: "Second error message"
+      }
+    }
+    const toValidate = { testInvalidField_1: 'tata', testInvalidField_2: 'tata'}
+    const sut = new Validation(constraint)
+    expect(sut.validateAllFields(toValidate)).toEqual([
+      constraint.testInvalidField_1.errorMessage,
+      constraint.testInvalidField_2.errorMessage
+    ])
   })
 })
