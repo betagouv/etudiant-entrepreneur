@@ -4,7 +4,7 @@ import {shallow} from 'enzyme'
 import SaveModal from './SaveModal'
 import {Modal} from 'react-bootstrap'
 
-function setup(contact = {}) {
+function setup(contact = { link: ""}) {
   const props = {
     contact,
     errors: {},
@@ -25,7 +25,7 @@ describe('<SaveForm>', () => {
   })
   it('displays given applicant name', () => {
     const contact = 'Test'
-    const wrapper = setup({ name: contact })
+    const wrapper = setup({ name: contact, link: "" })
     expect(wrapper.find('form').length).toBe(1)
     const nameFormControl = wrapper.find('[name="name"]')
     expect(nameFormControl.length).toBe(1)
