@@ -15,3 +15,10 @@ textarea {
    content:"*";
    color:red;
 }
+
+.fixed {
+  position: sticky;
+  bottom: 0px;
+  background-color: rgb(238, 238, 238);
+  padding: 10px 0px;
+}

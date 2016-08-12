@@ -112,7 +112,7 @@ const Multistep = class MultiStep extends React.Component {
           {this.renderSteps()}
         </ol>
           {this.props.steps[this.state.compState].component}
-          <div>
+          <div className="fixed">
             <button style={this.state.showPreviousBtn ? {} : this.hidden}
               type="submit"
               className="btn btn-primary prev-step"
