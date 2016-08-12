@@ -113,6 +113,11 @@ const Multistep = class MultiStep extends React.Component {
         </ol>
           {this.props.steps[this.state.compState].component}
           <div className="fixed">
+            <button
+              type="submit"
+              className="btn btn-primary prev-step"
+              onClick={this.props.save}>Sauver</button>
+
             <button style={this.state.showPreviousBtn ? {} : this.hidden}
               type="submit"
               className="btn btn-primary prev-step"
@@ -129,7 +134,8 @@ const Multistep = class MultiStep extends React.Component {
 }
 
 Multistep.propTypes = {
-  steps: PropTypes.array.isRequired
+  steps: PropTypes.array.isRequired,
+  save: PropTypes.func.isRequired
 }
 
 export default Multistep

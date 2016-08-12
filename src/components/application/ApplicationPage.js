@@ -33,7 +33,8 @@ class ApplicationPage extends React.Component {
       contact: {
         name: "",
         firstname: "",
-        email: ""
+        email: "",
+        link: ""
       },
       team: [],
       newMember: {
@@ -87,6 +88,12 @@ class ApplicationPage extends React.Component {
     if (!this.validateSave()) {
       return
     }
+    return this.setState(
+      Object.assign(
+        this.state.contact,
+        { link: "https://etudiant-entrepreneur.beta.gouv.fr/apply/wbwadsfrazrazlkazfk"}
+      )
+    )
   }
 
   validateContactField(field, value) {
@@ -162,8 +169,7 @@ class ApplicationPage extends React.Component {
   render() {
     return (
       <div className="jumbotron">
-        <Multistep steps={this.getSteps()} />
-        <Button onClick={this.openSave}>Sauver mon formulaire</Button>
+        <Multistep steps={this.getSteps()} save={this.openSave} />
         <SaveModal
           contact={this.state.contact}
           saveForm={this.saveForm}

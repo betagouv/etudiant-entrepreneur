@@ -1,5 +1,5 @@
 import React, {PropTypes} from 'react'
-import { FormGroup, ControlLabel, FormControl, Button, Modal } from 'react-bootstrap'
+import { FormGroup, ControlLabel, FormControl, Button, Modal, HelpBlock } from 'react-bootstrap'
 import ValidatedFormControl from '../../common/ValidatedFormControl'
 
 const SaveModal = ({contact, saveForm, errors, onChange, isSaveShown, closeSave}) => {
@@ -21,6 +21,11 @@ const SaveModal = ({contact, saveForm, errors, onChange, isSaveShown, closeSave}
           <FormGroup>
             <ControlLabel>Email</ControlLabel>
             <ValidatedFormControl name="email" type="email" placeholder="" onChange={onChange} value={contact.email} error={errors.email}/>
+          </FormGroup>
+          <FormGroup>
+            <ControlLabel>Lien</ControlLabel>
+            <ValidatedFormControl name="link" type="url" placeholder="Clique 'Sauver' pour obtenir le lien" onChange={onChange} value={contact.link} disabled={contact.link.length == 0}/>
+            <HelpBlock>Lien vers ta cadidature</HelpBlock>
           </FormGroup>
           <Button bsStyle="primary" onClick={saveForm}>Sauver</Button>
         </form>
