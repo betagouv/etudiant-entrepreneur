@@ -20,7 +20,7 @@ const TeamMemberList = ({team}) => {
       </Table>
     )
   else
-    return (<p>Oups, tu n'as pas encore de membre, n'hésite pas à en ajouter !</p>)
+    return (<div>Oups, tu n'as pas encore de membre, n'hésite pas à en ajouter !</div>)
 }
 
 TeamMemberList.propTypes = {
