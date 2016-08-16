@@ -30,12 +30,10 @@ export default {
     new WebpackMd5Hash(),
 
     // Optimize the order that items are bundled. This assures the hash is deterministic.
-    new webpack.optimize.OccurenceOrderPlugin(),
+    new webpack.optimize.OccurrenceOrderPlugin(),
 
     // Tells React to build in prod mode. https://facebook.github.io/react/downloads.html
     new webpack.DefinePlugin(GLOBALS),
-
-    new webpack.optimize.CommonsChunkPlugin('vendor', 'vendor.bundle.js'),
 
     // Generate an external css file with a hash in the filename
     new ExtractTextPlugin('[name].[contenthash].css'),
@@ -62,8 +60,27 @@ export default {
     // Eliminate duplicate packages when generating bundle
     new webpack.optimize.DedupePlugin(),
 
+    new webpack.optimize.CommonsChunkPlugin({
+      name: 'vendor',
+      minChunks: Infinity,
+      filename: 'vendor.bundle.js'
+    }),
+
+    new webpack.LoaderOptionsPlugin({
+      minimize: true,
+      debug: false
+    }),
+
     // Minify JS
-    new webpack.optimize.UglifyJsPlugin()
+    new webpack.optimize.UglifyJsPlugin({
+      compress: {
+        warnings: false
+      },
+      output: {
+        comments: false
+      },
+      sourceMap: false
+    })
   ],
   module: {
     loaders: [
