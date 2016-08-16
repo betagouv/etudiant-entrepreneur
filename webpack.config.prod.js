@@ -16,7 +16,10 @@ export default {
   debug: true,
   devtool: 'source-map', // more info:https://webpack.github.io/docs/build-performance.html#sourcemaps and https://webpack.github.io/docs/configuration.html#devtool
   noInfo: true, // set to false to see a list of every file being bundled.
-  entry: './src/index',
+  entry: {
+    app: "./src/index",
+    vendor: ["babel-polyfill", "react", "react-dom", "react-router", "react-router-bootstrap", "react-bootstrap", "validator"],
+  },
   target: 'web', // necessary per https://webpack.github.io/docs/testing.html#compile-and-test
   output: {
     path: `${__dirname}/dist`,
@@ -31,6 +34,8 @@ export default {
 
     // Tells React to build in prod mode. https://facebook.github.io/react/downloads.html
     new webpack.DefinePlugin(GLOBALS),
+
+    new webpack.optimize.CommonsChunkPlugin('vendor', 'vendor.bundle.js'),
 
     // Generate an external css file with a hash in the filename
     new ExtractTextPlugin('[name].[contenthash].css'),
@@ -62,18 +67,18 @@ export default {
   ],
   module: {
     loaders: [
-      {test: /\.js$/, include: path.join(__dirname, 'src'), loaders: ['babel']},
-      {test: /\.eot(\?v=\d+.\d+.\d+)?$/, loader: 'file'},
-      {test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: "url?limit=10000&mimetype=application/font-woff"},
-      {test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/, loader: 'url?limit=10000&mimetype=application/octet-stream'},
-      {test: /\.svg(\?v=\d+\.\d+\.\d+)?$/, loader: 'url?limit=10000&mimetype=image/svg+xml'},
-      {test: /\.(jpe?g|png|gif)$/i, loaders: ['file']},
-      {test: /\.ico$/, loader: 'file?name=[name].[ext]'},
+      { test: /\.js$/, include: path.join(__dirname, 'src'), loaders: ['babel'] },
+      { test: /\.eot(\?v=\d+.\d+.\d+)?$/, loader: 'file' },
+      { test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: "url?limit=10000&mimetype=application/font-woff" },
+      { test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/, loader: 'url?limit=10000&mimetype=application/octet-stream' },
+      { test: /\.svg(\?v=\d+\.\d+\.\d+)?$/, loader: 'url?limit=10000&mimetype=image/svg+xml' },
+      { test: /\.(jpe?g|png|gif)$/i, loaders: ['file'] },
+      { test: /\.ico$/, loader: 'file?name=[name].[ext]' },
       {
         test: /(\.css|\.scss)$/,
         loader: ExtractTextPlugin.extract('css?sourceMap!postcss!sass?sourceMap')
       }
     ]
   },
-  postcss: ()=> [autoprefixer]
+  postcss: () => [autoprefixer]
 }
