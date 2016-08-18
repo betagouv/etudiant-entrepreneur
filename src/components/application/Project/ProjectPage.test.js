@@ -22,7 +22,7 @@ describe('<ProjectPage>', () => {
     })
     const blockInError = wrapper.find('.has-error')
     expect(blockInError.length).toBe(1)
-    expect(blockInError.contains(<div className="help-block">obligartoire</div>)).toBe(true)
+    expect(blockInError.contains(<div className="help-block">obligatoire</div>)).toBe(true)
   })
   it('does not set any error when leaving empty a not mandatory field', () => {
     const wrapper = setup()

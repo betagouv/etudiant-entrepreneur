@@ -7,7 +7,7 @@ function isNotEmpty(value) {
 export const projectValidationConstraints = {
   summary: {
     isValid: isNotEmpty,
-    errorMessage: "obligartoire"
+    errorMessage: "obligatoire"
   },
   type: {
     isValid: (value) => { return (value && value !== "0") },
@@ -31,14 +31,14 @@ export const projectValidationConstraints = {
   },
   activitySummary: {
     isValid: isNotEmpty,
-    errorMessage: "obligartoire"
+    errorMessage: "obligatoire"
   },
   nextStepSummary: {
     isValid: isNotEmpty,
-    errorMessage: "obligartoire"
+    errorMessage: "obligatoire"
   },
   stepSummary: {
     isValid: isNotEmpty,
-    errorMessage: "obligartoire"
+    errorMessage: "obligatoire"
   },
 }
