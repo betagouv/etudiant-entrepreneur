@@ -3,7 +3,7 @@ select option[disabled]:first-child {
 	display: none;
 }
 
-button.prev-step {
+div.fixed > button {
   margin-right: 10px;
 }
 

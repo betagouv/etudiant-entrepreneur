@@ -120,7 +120,7 @@ const Multistep = class MultiStep extends React.Component {
           <div className="fixed">
             <button
               type="submit"
-              className="btn btn-primary prev-step"
+              className="btn btn-primary save"
               onClick={this.props.save}>Sauver</button>
 
             <button style={this.state.showPreviousBtn ? {} : this.hidden}
