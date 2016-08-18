@@ -7,18 +7,18 @@ function isNotEmpty(value) {
 export const teamMemberValidationConstraints = {
   firstname: {
     isValid: isNotEmpty,
-    errorMessage: "obligartoire"
+    errorMessage: "obligatoire"
   },
   name: {
     isValid: isNotEmpty,
-    errorMessage: "obligartoire"
+    errorMessage: "obligatoire"
   },
   role: {
     isValid: isNotEmpty,
-    errorMessage: "obligartoire"
+    errorMessage: "obligatoire"
   },
   diploma: {
     isValid: isNotEmpty,
-    errorMessage: "obligartoire"
+    errorMessage: "obligatoire"
   },
 }

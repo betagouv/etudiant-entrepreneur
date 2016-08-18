@@ -5,8 +5,7 @@ import _ from 'lodash'
 import Multistep from '../common/MultiStep'
 import SaveModal from './Save/SaveModal'
 import ProjectPage from './Project/ProjectPage'
-import TeamForm from './Team/TeamForm'
-import {teamMemberValidationConstraints} from './Team/TeamMemberValidationConstraints'
+import TeamPage from './Team/TeamPage'
 import {contactValidationConstraints} from './Save/ContactValidationConstraints'
 import Validation from '../common/Validation'
 import '../../styles/apply-form.css'
@@ -35,13 +34,10 @@ class ApplicationPage extends React.Component {
     }
     this.getSteps = this.getSteps.bind(this)
     this.updateContactState = this.updateContactState.bind(this)
-    this.addTeamMember = this.addTeamMember.bind(this)
-    this.updateNewMemberState = this.updateNewMemberState.bind(this)
     this.saveForm = this.saveForm.bind(this)
     this.closeSave = this.closeSave.bind(this)
     this.openSave = this.openSave.bind(this)
 
-    this.teamMemberValidation = new Validation(teamMemberValidationConstraints)
     this.contactValidation = new Validation(contactValidationConstraints)
   }
 
@@ -87,51 +83,11 @@ class ApplicationPage extends React.Component {
     this.setState({ isSaveShown: false })
   }
 
-  updateNewMemberState(event) {
-    const field = event.target.name
-    let newMember = this.state.newMember
-    newMember[field] = event.target.value
-    this.validateNewMemberField(field, event.target.value)
-    return this.setState({ newMember })
-  }
-
-  validateNewMember() {
-    const errors = this.teamMemberValidation.validateAllFields(this.state.newMember)
-    this.setState({ errors })
-    return (_.isEmpty(errors))
-  }
-
-  validateNewMemberField(field, value) {
-    let errors = this.state.errors
-    errors[field] = this.teamMemberValidation.validateField(field, value)
-    return this.setState({ errors })
-  }
-
-  addTeamMember(event) {
-    event.preventDefault()
-
-    if (!this.validateNewMember()) {
-      return
-    }
-
-    this.setState({
-      newMember: {
-        name: "",
-        firstname: "",
-        role: "",
-        diploma: ""
-      },
-      errors: {}
-    })
-
-    return this.setState({ team: [...this.state.team, this.state.newMember] })
-  }
-
   getSteps() {
     return (
       [
         { name: 'Mon Projet', component: <ProjectPage /> },
-        { name: 'Mon Équipe', component: <TeamForm team={this.state.team} newMember={this.state.newMember} addMember={this.addTeamMember} onChange={this.updateNewMemberState} errors={this.state.errors} /> },
+        { name: 'Mon Équipe', component: <TeamPage /> },
       ]
     )
   }
