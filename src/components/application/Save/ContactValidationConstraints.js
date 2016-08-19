@@ -7,11 +7,11 @@ function isNotEmpty(value) {
 export const contactValidationConstraints = {
   firstname: {
     isValid: isNotEmpty,
-    errorMessage: "obligartoire"
+    errorMessage: "obligatoire"
   },
   name: {
     isValid: isNotEmpty,
-    errorMessage: "obligartoire"
+    errorMessage: "obligatoire"
   },
   email: {
     isValid: validator.isEmail,
