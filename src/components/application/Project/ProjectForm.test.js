@@ -26,4 +26,13 @@ describe('<ProjectForm>', () => {
     expect(nameFormControl.length).toBe(1)
     expect(nameFormControl.props().value).toEqual(projectName)
   })
+  it('displays other sector input when sector is set to "other"', () => {
+    const wrapper = setup({ sector: '99' })
+    expect(wrapper.find('[name="otherSector"]').length).toBe(1)
+    expect(wrapper.find('.hidden [name="otherSector"]').length).toBe(0)
+  })
+  it('hides other sector by default', () => {
+    const wrapper = setup()
+    expect(wrapper.find('.hidden [name="otherSector"]').length).toBe(1)
+  })
 })

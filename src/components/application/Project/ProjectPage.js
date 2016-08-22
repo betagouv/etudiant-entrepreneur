@@ -19,8 +19,11 @@ class ProjectPage extends React.Component {
         siret: "",
         activitySummary: "",
         stepSummary: "",
-        nextStepSummary: ""
+        nextStepSummary: "",
+        sector: "0",
+        otherSector: ""
       }, props.project),
+      isOtherSectorShown: false,
       errors: {}
     }
     this.updateProjectState = this.updateProjectState.bind(this)

@@ -2,6 +2,7 @@ import React, {PropTypes} from 'react'
 import { FormGroup, ControlLabel, FormControl, HelpBlock, ButtonGroup, Radio } from 'react-bootstrap'
 import RadioGroup from '../../common/RadioGroup'
 import ValidatedFormControl from '../../common/ValidatedFormControl'
+import {isOtherSectorRequired} from './ProjectValidationConstraints'
 
 const ProjectForm = ({project, onChange, errors}) => {
   return (
@@ -17,7 +18,7 @@ const ProjectForm = ({project, onChange, errors}) => {
         <HelpBlock>Non confidentiel, ne doit pas comporter d'élements sensibles.</HelpBlock>
       </FormGroup>
       <FormGroup className="required">
-        <ControlLabel>Type de project</ControlLabel>
+        <ControlLabel>Type de projet</ControlLabel>
         <ValidatedFormControl name="type" componentClass="select" onChange={onChange} value={project.type} error={errors.type}>
           <option value="0" disabled>Sélectionner</option>
           <option value="1">Auto-entrepreneuriat ou microactivité</option>
@@ -57,6 +58,39 @@ const ProjectForm = ({project, onChange, errors}) => {
       <FormGroup className="required">
         <ControlLabel>Quelle est ou sera mon activité ? Ma proposition de valeur ?</ControlLabel>
         <ValidatedFormControl name="activitySummary" rows="5" componentClass="textarea" placeholder="activité - proposition de valeur" onChange={onChange} value={project.activitySummary} error={errors.activitySummary}/>
+      </FormGroup>
+      <FormGroup className="required">
+        <ControlLabel>Quelle est ou sera mon secteur d'activité ?</ControlLabel>
+        <ValidatedFormControl name="sector" componentClass="select" onChange={onChange} value={project.sector} error={errors.sector}>
+          <option value="0" disabled>Sélectionner</option>
+          <option value="1">agriculture/écologie/envrionnement/biotechnologie/énergie renouvelable</option>
+          <option value="2">alimentaire</option>
+          <option value="3">animalerie</option>
+          <option value="4">art/culture/audiovisuel/musique/photographie</option>
+          <option value="5">automobile</option>
+          <option value="6">bâtiment/construction/design</option>
+          <option value="7">communication/évènement/publicité/information/marketing</option>
+          <option value="8">électronique</option>
+          <option value="9">études/conseil/recrutement</option>
+          <option value="10">finance</option>
+          <option value="11">immmobilier</option>
+          <option value="12">informatique</option>
+          <option value="13">jeu vidéo/jeux</option>
+          <option value="14">mode</option>
+          <option value="15">nouvelles technologies</option>
+          <option value="16">santé/bien-être/médical</option>
+          <option value="17">sécurité/justice</option>
+          <option value="18">sport/loisirs</option>
+          <option value="19">tourisme/restauration/hôtellerie</option>
+          <option value="20">traduction</option>
+          <option value="21">transport/logistique</option>
+          <option value="22">vente</option>
+          <option value="99">autre</option>
+        </ValidatedFormControl>
+      </FormGroup>
+      <FormGroup className={(isOtherSectorRequired(project.sector)) ? 'required' : 'required hidden'}>
+        <ControlLabel>Autre secteur</ControlLabel>
+        <ValidatedFormControl name="otherSector" type="text" placeholder="autre secteur" onChange={onChange} value={project.otherSector} error={errors.otherSector}/>
       </FormGroup>
       <FormGroup className="required">
         <ControlLabel>Où en suis-je dans mon projet ?</ControlLabel>
