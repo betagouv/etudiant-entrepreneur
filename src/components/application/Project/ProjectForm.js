@@ -100,6 +100,32 @@ const ProjectForm = ({project, onChange, errors}) => {
         <ControlLabel>Quelles sont les prochaines étapes de mon projet ?</ControlLabel>
         <ValidatedFormControl name="nextStepSummary" rows="5" componentClass="textarea" placeholder="prochaines étapes" onChange={onChange} value={project.nextStepSummary} error={errors.nextStepSummary}/>
       </FormGroup>
+      <FormGroup className="required">
+        <ControlLabel>Mon projet correspond-t-il à une application mobile ou web ?</ControlLabel>
+        <RadioGroup name="isMobileWebApp" onChange={onChange} selectedValue={project.isMobileWebApp}>
+          <Radio value="true">oui</Radio>
+          <Radio value="false">non</Radio>
+        </RadioGroup>
+      </FormGroup>
+      <FormGroup className="required">
+        <ControlLabel>Mon projet correspond-t-il à un service à la personne ?</ControlLabel>
+        <RadioGroup name="isPeopleCare" onChange={onChange} selectedValue={project.isPeopleCare}>
+          <Radio value="true">oui</Radio>
+          <Radio value="false">non</Radio>
+        </RadioGroup>
+      </FormGroup>
+      <FormGroup className="required">
+        <ControlLabel>Mon projet rentre-t-il dans le champs de l'économie sociale et solidaire ?</ControlLabel>
+        <RadioGroup name="isSocial" onChange={onChange} selectedValue={project.isSocial}>
+          <Radio value="true">oui</Radio>
+          <Radio value="false">non</Radio>
+        </RadioGroup>
+        <HelpBlock><a href="http://www.economie.gouv.fr/cedef/economie-sociale-et-solidaire" target="_blank">Qu'est-ce que l'économie sociale et solidaire ?</a></HelpBlock>
+      </FormGroup>
+      <FormGroup className="required">
+        <ControlLabel>Quelle ma motivation pour lancer cette activité ?</ControlLabel>
+        <ValidatedFormControl name="motiviation" rows="5" componentClass="textarea" placeholder="motivation" onChange={onChange} value={project.motiviation} error={errors.motiviation}/>
+      </FormGroup>
     </form>
   )
 }

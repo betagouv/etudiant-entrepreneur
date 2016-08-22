@@ -5,7 +5,12 @@ import ProjectForm from './ProjectForm'
 
 function setup(project = {}) {
   const props = {
-    project: Object.assign({ step: "test" }, project),
+    project: Object.assign({
+      step: "test",
+      isMobileWebApp: "test",
+      isPeopleCare: "test",
+      isSocial: "test"
+    }, project),
     onChange: () => { },
     errors: {}
   }
