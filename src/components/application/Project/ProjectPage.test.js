@@ -1,11 +1,12 @@
 import expect from 'expect'
 import React from 'react'
 import {mount} from 'enzyme'
-import ProjectPage from './ProjectPage'
+import {ProjectPage} from './ProjectPage'
 
 function setup(project = {}) {
   const props = {
-    project
+    project,
+    actions: { saveProject: () => { } }
   }
   return mount(<ProjectPage {...props} />)
 }

@@ -1,9 +1,12 @@
 import React, {PropTypes} from 'react'
 import ProjectForm from './ProjectForm'
+import {connect} from 'react-redux'
+import {bindActionCreators} from 'redux'
+import * as projectActions from '../../../actions/projectActions'
 import {projectValidationConstraints} from './ProjectValidationConstraints'
 import Validation from '../../common/Validation'
 
-class ProjectPage extends React.Component {
+export class ProjectPage extends React.Component {
   constructor(props, context) {
     super(props, context)
     this.state = {
@@ -38,6 +41,7 @@ class ProjectPage extends React.Component {
     let project = this.state.project
     project[field] = event.target.value
     this.validateProjectField(field, event.target.value)
+    this.props.actions.saveProject(project)
     return this.setState({ project })
   }
 
@@ -57,7 +61,20 @@ class ProjectPage extends React.Component {
 }
 
 ProjectPage.propTypes = {
-  project: PropTypes.object,
+  project: PropTypes.object.isRequired,
+  actions: PropTypes.object.isRequired
 }
 
-export default ProjectPage
+function mapStateToProps(state, ownProps) {
+  return {
+    project: state.project
+  }
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    actions: bindActionCreators(projectActions, dispatch)
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ProjectPage)
