@@ -1,15 +1,41 @@
 import delay from './delay'
 
-const application = {
-  id: 'awpzoazryxlwaptduzkgclsh'
+let initApplication = {
+  id: 'awpzoazryxlwaptduzkgclsh',
+  project: {
+    name: "",
+    summary: "",
+    type: "0",
+    step: "",
+    site: "",
+    blog: "",
+    facebook: "",
+    twitter: "",
+    siret: "",
+    activitySummary: "",
+    stepSummary: "",
+    nextStepSummary: "",
+    sector: "0",
+    otherSector: "",
+    motiviation: ""
+  }
 }
 
 class mockApplicationApi {
   static getApplication(id) {
     return new Promise((resolve, reject) => {
       setTimeout(() => {
-        resolve(Object.assign({}, application))
+        resolve(Object.assign({}, initApplication))
       })
+    })
+  }
+
+  static saveApplication(application) {
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        initApplication = application
+        resolve(Object.assign({}, application))
+      }, delay)
     })
   }
 }
