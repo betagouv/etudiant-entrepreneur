@@ -25,9 +25,6 @@ export class ProjectPage extends React.Component {
         nextStepSummary: "",
         sector: "0",
         otherSector: "",
-        isMobileWebApp: "",
-        isPeopleCare: "",
-        isSocial: "",
         motiviation: ""
       }, props.project),
       errors: {}

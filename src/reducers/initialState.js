@@ -15,9 +15,6 @@ export default {
     nextStepSummary: "",
     sector: "0",
     otherSector: "",
-    isMobileWebApp: "",
-    isPeopleCare: "",
-    isSocial: "",
     motiviation: ""
   },
   team: {},
