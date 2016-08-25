@@ -22,6 +22,7 @@ export default {
     name: '',
     firstname: '',
     email: '',
-    phone: ''
+    phone: '',
+    situation: ''
   }
 }

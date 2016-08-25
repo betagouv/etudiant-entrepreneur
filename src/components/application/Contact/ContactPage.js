@@ -15,7 +15,8 @@ class ContactPage extends React.Component {
         name: '',
         firstname: '',
         email: '',
-        phone: ''
+        phone: '',
+        situation: ''
       }, props.contact),
       errors: {},
     }
