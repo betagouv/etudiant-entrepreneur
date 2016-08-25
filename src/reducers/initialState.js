@@ -24,5 +24,9 @@ export default {
     email: '',
     phone: '',
     situation: ''
+  },
+  pepite: {
+    region: 0,
+    establishment: 0
   }
 }

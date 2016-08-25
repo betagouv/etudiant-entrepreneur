@@ -6,7 +6,7 @@ const SaveForm = ({link, saveForm, errors, onChange}) => {
   return (
     <form>
       <FormGroup>
-        <ControlLabel>Lien vers ta cadidature</ControlLabel>
+        <ControlLabel>Lien vers ta candidature</ControlLabel>
         <ValidatedFormControl name="link" type="url" placeholder="Sauvegarde pour obtenir le lien" onChange={onChange} value={link} disabled={link.length == 0}/>
         <HelpBlock>lien pour modifier ta candidature</HelpBlock>
       </FormGroup>

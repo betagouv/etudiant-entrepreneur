@@ -94,7 +94,7 @@ const ProjectForm = ({project, onChange, errors}) => {
       </FormGroup>
       <FormGroup className="required">
         <ControlLabel>Où en suis-je dans mon projet ?</ControlLabel>
-        <ValidatedFormControl name="stepSummary" rows="5" componentClass="textarea" placeholder="avanacement" onChange={onChange} value={project.stepSummary} error={errors.stepSummary}/>
+        <ValidatedFormControl name="stepSummary" rows="5" componentClass="textarea" placeholder="avancement" onChange={onChange} value={project.stepSummary} error={errors.stepSummary}/>
       </FormGroup>
       <FormGroup className="required">
         <ControlLabel>Quelles sont les prochaines étapes de mon projet ?</ControlLabel>

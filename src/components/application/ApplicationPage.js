@@ -4,6 +4,7 @@ import SavePage from './Save/SavePage'
 import ProjectPage from './Project/ProjectPage'
 import TeamPage from './Team/TeamPage'
 import ContactPage from './Contact/ContactPage'
+import PepitePage from './Pepite/PepitePage'
 import { Modal } from 'react-bootstrap'
 import '../../styles/apply-form.css'
 
@@ -34,7 +35,8 @@ class ApplicationPage extends React.Component {
       [
         { name: 'Mes Informations', component: <ContactPage /> },
         { name: 'Mon Équipe', component: <TeamPage /> },
-        { name: 'Mon Projet', component: <ProjectPage /> }
+        { name: 'Mon Projet', component: <ProjectPage /> },
+        { name: 'Mon PEPITE', component: <PepitePage /> }
       ]
     )
   }
