@@ -96,6 +96,13 @@ const Multistep = class MultiStep extends React.Component {
     }
   }
 
+  getStepName(stepIndex) {
+    if (stepIndex >= 0 && stepIndex < this.props.steps.length) {
+      return this.props.steps[stepIndex].name
+    }
+    return ''
+  }
+
   getClassName(className, i) {
     return className + "-" + this.state.navState.styles[i]
   }
@@ -113,26 +120,30 @@ const Multistep = class MultiStep extends React.Component {
 
     return (
       <div className="container" onKeyDown={this.handleKeyDown}>
-        <ol className="progtrckr">
-          {this.renderSteps()}
-        </ol>
-          {this.props.steps[this.state.compState].component}
-          <div className="fixed">
+        <div className="row">
+          <div>
+            <ol className="progtrckr">
+              {this.renderSteps()}
+            </ol>
+          </div>
+          <div className="pull-right">
             <button
               type="submit"
               className="btn btn-primary save"
-              onClick={this.props.save}>Sauver</button>
-
-            <button style={this.state.showPreviousBtn ? {} : this.hidden}
-              type="submit"
-              className="btn btn-primary prev-step"
-              onClick={this.previous}>Précédent</button>
-
-            <button style={this.state.showNextBtn ? {} : this.hidden}
-              type="submit"
-              className="btn btn-primary"
-              onClick={this.next}>Suivant</button>
+              onClick={this.props.save}>Sauvegarder</button>
           </div>
+        </div>
+        {this.props.steps[this.state.compState].component}
+        <div className="fixed clearfix">
+          <button style={this.state.showPreviousBtn ? {} : this.hidden}
+            type="submit"
+            className="btn btn-info prev-step"
+            onClick={this.previous}><span className="glyphicon glyphicon-menu-left"></span>{this.getStepName(this.state.compState - 1)}</button>
+          <button style={this.state.showNextBtn ? {} : this.hidden}
+            type="submit"
+            className="btn btn-info next-step"
+            onClick={this.next}>{this.getStepName(this.state.compState + 1)}<span className="glyphicon glyphicon-menu-right"></span></button>
+        </div>
       </div>
     )
   }
