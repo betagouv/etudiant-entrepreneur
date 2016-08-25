@@ -3,6 +3,7 @@ import delay from './delay'
 let initApplication = {
   id: 'awpzoazryxlwaptduzkgclsh',
   project: {
+    id: 10,
     name: "",
     summary: "",
     type: "0",
@@ -17,7 +18,8 @@ let initApplication = {
     nextStepSummary: "",
     sector: "0",
     otherSector: "",
-    motiviation: ""
+    motiviation: "",
+    team: []
   }
 }
 

@@ -1,14 +1,17 @@
 import React, {PropTypes} from 'react'
 import _ from 'lodash'
+import {connect} from 'react-redux'
+import {bindActionCreators} from 'redux'
+import * as projectActions from '../../../actions/projectActions'
 import TeamForm from './TeamForm'
 import Validation from '../../common/Validation'
 import {teamMemberValidationConstraints} from './TeamMemberValidationConstraints'
 
-class TeamPage extends React.Component {
+export class TeamPage extends React.Component {
   constructor(props, context) {
     super(props, context)
     this.state = {
-      team: [],
+      team: props.team,
       newMember: Object.assign({
         name: '',
         firstname: '',
@@ -51,6 +54,8 @@ class TeamPage extends React.Component {
       return
     }
 
+    this.props.actions.saveMember(this.state.newMember)
+
     this.setState({
       newMember: {
         name: '',
@@ -76,8 +81,21 @@ class TeamPage extends React.Component {
 }
 
 TeamPage.propTypes = {
-  team: PropTypes.array,
+  team: PropTypes.array.isRequired,
+  actions: PropTypes.object.isRequired,
   newMember: PropTypes.object
 }
 
-export default TeamPage
+function mapStateToProps(state, ownProps) {
+  return {
+    team: state.project.team
+  }
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    actions: bindActionCreators(projectActions, dispatch)
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(TeamPage)

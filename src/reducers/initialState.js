@@ -15,8 +15,8 @@ export default {
     nextStepSummary: '',
     sector: '0',
     otherSector: '',
-    motiviation: ''
+    motiviation: '',
+    team: []
   },
-  team: {},
   contact: {}
 }

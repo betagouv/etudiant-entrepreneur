@@ -1,23 +1,28 @@
 import expect from 'expect'
 import React from 'react'
 import {mount} from 'enzyme'
-import TeamPage from './TeamPage'
+import {TeamPage} from './TeamPage'
 
 const addMembersInputSelector = 'button.add-members'
 
-function setup(newMember = {}) {
+function initialSetup(newMember = {}) {
   const props = {
-    newMember
+    newMember,
+    team: [],
+    actions: { saveMember: () => {}}
   }
-  const mountedPage = mount(<TeamPage {...props} />)
+  return mount(<TeamPage {...props} />)
+}
 
+function setup(newMember = {}) {
+  const mountedPage = initialSetup(newMember)
   mountedPage.find(addMembersInputSelector).simulate('click')
   return mountedPage
 }
 
 describe('<TeamPage>', () => {
   it('displays a button to Add a member', () => {
-    const wrapper = mount(<TeamPage newMember={{}}/>)
+    const wrapper = initialSetup()
     const addMemberButton = wrapper.find(addMembersInputSelector)
     expect(addMemberButton.length).toBe(1)
   })
