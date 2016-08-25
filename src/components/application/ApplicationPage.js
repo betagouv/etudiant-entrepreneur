@@ -3,6 +3,7 @@ import Multistep from '../common/MultiStep'
 import SavePage from './Save/SavePage'
 import ProjectPage from './Project/ProjectPage'
 import TeamPage from './Team/TeamPage'
+import ContactPage from './Contact/ContactPage'
 import { Modal } from 'react-bootstrap'
 import '../../styles/apply-form.css'
 
@@ -31,6 +32,7 @@ class ApplicationPage extends React.Component {
   getSteps() {
     return (
       [
+        { name: 'Mes Informations', component: <ContactPage /> },
         { name: 'Mon Équipe', component: <TeamPage /> },
         { name: 'Mon Projet', component: <ProjectPage /> }
       ]

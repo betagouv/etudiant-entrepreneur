@@ -18,5 +18,10 @@ export default {
     motiviation: '',
     team: []
   },
-  contact: {}
+  contact: {
+    name: '',
+    firstname: '',
+    email: '',
+    phone: ''
+  }
 }

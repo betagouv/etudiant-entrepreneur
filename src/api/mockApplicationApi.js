@@ -20,6 +20,12 @@ let initApplication = {
     otherSector: "",
     motiviation: "",
     team: []
+  },
+  contact: {
+    name: '',
+    firstname: '',
+    email: '',
+    phone: ''
   }
 }
 
