@@ -31,8 +31,8 @@ class ApplicationPage extends React.Component {
   getSteps() {
     return (
       [
-        { name: 'Mon Projet', component: <ProjectPage /> },
         { name: 'Mon Équipe', component: <TeamPage /> },
+        { name: 'Mon Projet', component: <ProjectPage /> }
       ]
     )
   }
