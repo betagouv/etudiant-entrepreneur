@@ -7,6 +7,7 @@ import TeamMemberAddForm from './TeamMemberAddForm'
 const TeamForm = (props) => {
   return (
     <form>
+      <p>Mon Équipe</p>
       <TeamMemberList team={props.team}/>
       <TeamMemberAddForm {...props} />
     </form>
