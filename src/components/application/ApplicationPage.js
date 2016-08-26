@@ -6,6 +6,7 @@ import TeamPage from './Team/TeamPage'
 import ContactPage from './Contact/ContactPage'
 import PepitePage from './Pepite/PepitePage'
 import SendPage from './Send/SendPage'
+import StudyPage from './Study/StudyPage'
 import { Modal } from 'react-bootstrap'
 import '../../styles/apply-form.css'
 
@@ -38,6 +39,7 @@ class ApplicationPage extends React.Component {
         { name: 'Mon Équipe', component: <TeamPage /> },
         { name: 'Mon Projet', component: <ProjectPage /> },
         { name: 'Mon PEPITE', component: <PepitePage /> },
+        { name: 'Mon Parcours', component: <StudyPage /> },
         { name: 'Envoi', component: <SendPage /> },
       ]
     )
