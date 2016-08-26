@@ -26,7 +26,7 @@ const ContactForm = ({contact, errors, onChange}) => {
       <FormGroup className="required">
         <ControlLabel>En septembre 2016 :</ControlLabel>
         <RadioGroup name="situation" onChange={onChange} selectedValue={contact.situation}>
-          <Radio value="graduate">J'ai aurai fini ou arrêté mes études</Radio>
+          <Radio value="graduate">J'aurai fini ou arrêté mes études</Radio>
           <Radio value="student">Je serai étudiant·e</Radio>
         </RadioGroup>
         <HelpBlock>Ne pas prendre en compte l'inscription au diplôme étudiant·e entrepreneur·e (D2E)</HelpBlock>
