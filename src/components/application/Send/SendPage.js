@@ -8,7 +8,7 @@ class SendPage extends React.Component {
   render() {
     return (
       <form>
-        <p>Mon Projet</p>
+        <p>Envoi</p>
         <div>Ici, je valide bientôt ma candidature avant envoi</div>
       </form>
     )
