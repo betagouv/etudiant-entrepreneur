@@ -11,8 +11,8 @@ const TeamMemberList = ({team}) => {
             <tr>
               <th>Prénom</th>
               <th>Nom</th>
-              <th>rôle dans le projet</th>
-              <th>diplôme</th>
+              <th>Rôle</th>
+              <th>Email</th>
             </tr>
           </thead>
           <tbody>

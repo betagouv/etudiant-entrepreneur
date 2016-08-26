@@ -16,7 +16,8 @@ export class TeamPage extends React.Component {
         name: '',
         firstname: '',
         role: '',
-        diploma: ''
+        diploma: '',
+        email: ''
       },
         props.newMember
       ),
@@ -54,19 +55,22 @@ export class TeamPage extends React.Component {
       return
     }
 
-    this.props.actions.saveMember(this.state.newMember)
+    const team = [...this.state.team, this.state.newMember]
+
+    this.props.actions.saveTeam(team)
 
     this.setState({
       newMember: {
         name: '',
         firstname: '',
         role: '',
-        diploma: ''
+        diploma: '',
+        email: ''
       },
       errors: {}
     })
 
-    return this.setState({ team: [...this.state.team, this.state.newMember] })
+    return this.setState({ team })
   }
 
   render() {

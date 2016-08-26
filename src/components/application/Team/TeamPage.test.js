@@ -9,7 +9,7 @@ function initialSetup(newMember = {}) {
   const props = {
     newMember,
     team: [],
-    actions: { saveMember: () => {}}
+    actions: { saveTeam: () => {}}
   }
   return mount(<TeamPage {...props} />)
 }
@@ -50,7 +50,7 @@ describe('<TeamPage>', () => {
       const addMemberButton = wrapper.find('div.panel button')
       addMemberButton.simulate('click')
       const blockInError = wrapper.find('.has-error')
-      expect(blockInError.length).toBe(4)
+      expect(blockInError.length).toBe(5)
       expect(blockInError.contains(<div className="help-block">obligatoire</div>)).toBe(true)
     })
     it('allows to add a new team member', () => {
@@ -58,7 +58,8 @@ describe('<TeamPage>', () => {
         name: 'testName',
         firstname: 'testFirstname',
         role: 'testRole',
-        diploma: 'testDiploma'
+        diploma: 'testDiploma',
+        email: 'testmail@test.com'
       }
       const wrapper = setup(newMember)
       const addMemberButton = wrapper.find('div.panel button')
@@ -69,7 +70,7 @@ describe('<TeamPage>', () => {
             <td>{newMember.firstname}</td>
             <td>{newMember.name}</td>
             <td>{newMember.role}</td>
-            <td>{newMember.diploma}</td>
+            <td>{newMember.email}</td>
           </tr>
         )
       ).toBe(true)

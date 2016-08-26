@@ -6,7 +6,7 @@ const TeamMemberRow = ({member}) => {
       <td>{member.firstname}</td>
       <td>{member.name}</td>
       <td>{member.role}</td>
-      <td>{member.diploma}</td>
+      <td>{member.email}</td>
     </tr>
   )
 }

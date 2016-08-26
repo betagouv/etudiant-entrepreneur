@@ -21,4 +21,8 @@ export const teamMemberValidationConstraints = {
     isValid: isNotEmpty,
     errorMessage: "obligatoire"
   },
+  email: {
+    isValid: validator.isEmail,
+    errorMessage: "l'adresse email doit être valide"
+  },
 }
