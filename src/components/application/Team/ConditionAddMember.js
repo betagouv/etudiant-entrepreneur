@@ -19,7 +19,7 @@ const conditionAddMember = ComposedComponent => {
         return (<ComposedComponent {...this.props}/>)
       }
       else {
-        return (<Button bsStyle="primary" className="add-members" onClick={this.addMember}><span className="glyphicon glyphicon-plus"></span> Ajouter des membres à mon projet</Button>)
+        return (<Button bsStyle="primary" className="add-members" onClick={this.addMember}><span className="glyphicon glyphicon-plus"></span> J'ajoute des membres à mon projet</Button>)
       }
     }
   }

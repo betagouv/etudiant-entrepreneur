@@ -8,6 +8,7 @@ const TeamForm = (props) => {
   return (
     <form>
       <p>Mon Équipe</p>
+      <Panel>Ajoute ici les personnes qui travaillent avec toi sur ce projet.</Panel>
       <TeamMemberList team={props.team}/>
       <TeamMemberAddForm {...props} />
     </form>
