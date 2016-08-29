@@ -3,7 +3,6 @@ import PepiteForm from './PepiteForm'
 import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
 import * as pepiteActions from '../../../actions/pepiteActions'
-import _ from 'lodash'
 
 class PepitePage extends React.Component {
   constructor(props, context) {

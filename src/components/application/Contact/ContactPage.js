@@ -5,7 +5,7 @@ import {bindActionCreators} from 'redux'
 import * as contactActions from '../../../actions/contactActions'
 import {contactValidationConstraints} from './ContactValidationConstraints'
 import Validation from '../../common/Validation'
-import _ from 'lodash'
+import {isEmptyObject} from '../../common/validationHelper.js'
 
 class ContactPage extends React.Component {
   constructor(props, context) {
@@ -42,7 +42,7 @@ class ContactPage extends React.Component {
   validateSave() {
     const errors = this.contactValidation.validateAllFields(this.state.contact)
     this.setState({ errors })
-    return (_.isEmpty(errors))
+    return (isEmptyObject(errors))
   }
 
   render() {

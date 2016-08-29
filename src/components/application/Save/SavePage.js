@@ -1,7 +1,6 @@
 import React, {PropTypes} from 'react'
 import SaveForm from './SaveForm'
 import Validation from '../../common/Validation'
-import _ from 'lodash'
 
 class SavePage extends React.Component {
   constructor(props, context) {

@@ -1,11 +1,11 @@
 import React, {PropTypes} from 'react'
-import _ from 'lodash'
 import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
 import * as projectActions from '../../../actions/projectActions'
 import TeamForm from './TeamForm'
 import Validation from '../../common/Validation'
 import {teamMemberValidationConstraints} from './TeamMemberValidationConstraints'
+import {isEmptyObject} from '../../common/validationHelper.js'
 
 export class TeamPage extends React.Component {
   constructor(props, context) {
@@ -39,7 +39,7 @@ export class TeamPage extends React.Component {
   validateNewMember() {
     const errors = this.teamMemberValidation.validateAllFields(this.state.newMember)
     this.setState({ errors })
-    return (_.isEmpty(errors))
+    return (isEmptyObject(errors))
   }
 
   validateNewMemberField(field, value) {
