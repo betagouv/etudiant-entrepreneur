@@ -38,7 +38,7 @@ export class ProjectPage extends React.Component {
     let project = this.state.project
     project[field] = event.target.value
     this.validateProjectField(field, event.target.value)
-    this.props.actions.saveProject(project)
+    this.props.actions.updateProject(project)
     return this.setState({ project })
   }
 

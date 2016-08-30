@@ -21,7 +21,7 @@ class PepitePage extends React.Component {
     if (field == 'region') {
       pepite.establishment = 0
     }
-    this.props.actions.savePepite(pepite)
+    this.props.actions.updatePepite(pepite)
     return this.setState({ pepite })
   }
   render() {

@@ -29,7 +29,7 @@ class ContactPage extends React.Component {
     let contact = this.state.contact
     contact[field] = event.target.value
     this.validateContactField(field, event.target.value)
-    this.props.actions.saveContact(contact)
+    this.props.actions.updateContact(contact)
     return this.setState({ contact })
   }
 

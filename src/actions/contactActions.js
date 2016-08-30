@@ -1,6 +1,10 @@
 import * as types from './actionTypes'
 
-export function saveContact(contact) {
+export function loadContactSuccess(contact) {
+  return { type: types.LOAD_CONTACT_SUCCESS, contact }
+}
+
+export function updateContact(contact) {
   return { type: types.UPDATE_CONTACT, contact }
 }
 

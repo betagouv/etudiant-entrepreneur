@@ -6,7 +6,7 @@ import {ProjectPage} from './ProjectPage'
 function setup(project = {}) {
   const props = {
     project,
-    actions: { saveProject: () => { } }
+    actions: { updateProject: () => { } }
   }
   return mount(<ProjectPage {...props} />)
 }

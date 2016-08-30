@@ -1,12 +1,16 @@
 import * as types from './actionTypes'
 
-export function saveProject(project) {
+export function loadProjectSuccess(project) {
+  return { type: types.LOAD_PROJECT_SUCCESS, project }
+}
+
+export function updateProject(project) {
   return { type: types.UPDATE_PROJECT, project }
 }
 
-export function saveTeam(team) {
+export function updateTeam(team) {
   return (dispatch, getState) => {
     const {project} = getState()
-    return dispatch(saveProject(Object.assign({project}, {team})))
+    return dispatch(updateProject(Object.assign({project}, {team})))
   }
 }

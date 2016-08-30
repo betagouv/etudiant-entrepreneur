@@ -9,7 +9,7 @@ function initialSetup(newMember = {}) {
   const props = {
     newMember,
     team: [],
-    actions: { saveTeam: () => {}}
+    actions: { updateTeam: () => {}}
   }
   return mount(<TeamPage {...props} />)
 }

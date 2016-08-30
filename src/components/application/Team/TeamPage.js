@@ -57,7 +57,7 @@ export class TeamPage extends React.Component {
 
     const team = [...this.state.team, this.state.newMember]
 
-    this.props.actions.saveTeam(team)
+    this.props.actions.updateTeam(team)
 
     this.setState({
       newMember: {
