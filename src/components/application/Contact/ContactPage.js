@@ -7,7 +7,7 @@ import {contactValidationConstraints} from './ContactValidationConstraints'
 import Validation from '../../common/Validation'
 import {isEmptyObject} from '../../common/validationHelper.js'
 
-class ContactPage extends React.Component {
+export class ContactPage extends React.Component {
   constructor(props, context) {
     super(props, context)
     this.state = {
