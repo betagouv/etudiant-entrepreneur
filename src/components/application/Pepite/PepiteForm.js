@@ -13,12 +13,18 @@ function getAllValidPepites(regionId, establishmentId) {
     return ([getPepiteFromEstablishment(establishmentId)])
   }
   if (regionId >= 0) {
-    return (regions[regionId].establishments.map(getPepiteFromEstablishment))
+    return deleteDuplicate((regions[regionId].establishments.map(getPepiteFromEstablishment)))
   }
   return []
 }
 
-const ContactForm = ({pepite, errors, onChange}) => {
+function deleteDuplicate(array) {
+  return array.filter(function(item, pos) {
+    return array.indexOf(item) == pos
+  })
+}
+
+const PepiteForm = ({pepite, errors, onChange}) => {
   return (
     <form>
       <p>Mon PEPITE</p>
@@ -46,7 +52,7 @@ const ContactForm = ({pepite, errors, onChange}) => {
           return(
             <FormGroup className="required">
               <ControlLabel>Mon PEPITE</ControlLabel>
-              <ValidatedFormControl name="establishment" componentClass="select" onChange={onChange} value={pepite.establishment} error={errors.region}>
+              <ValidatedFormControl name="pepite" componentClass="select" onChange={onChange} value={pepite.pepite} error={errors.pepite}>
                 <option value="0" disabled>Sélectionner</option>
                 {getAllValidPepites(pepite.region - 1, pepite.establishment - 1).map((pepite, index) => { return (<option key={index + 1} value={index + 1}>PEPITE {pepite}</option>) }) }
               </ValidatedFormControl>
@@ -57,10 +63,10 @@ const ContactForm = ({pepite, errors, onChange}) => {
   )
 }
 
-ContactForm.propTypes = {
+PepiteForm.propTypes = {
   pepite: PropTypes.object.isRequired,
   onChange: PropTypes.func.isRequired,
   errors: PropTypes.object
 }
 
-export default ContactForm
+export default PepiteForm
