@@ -19,8 +19,8 @@
     "build:open": "npm-run-all --sequential build open:dist",
     "deploy": "npm run build:gh-pages && gh-pages -d dist",
     "test": "mocha tools/testSetup.js \"src/**/*.test.js\" --reporter progress",
-    "test:cover": "babel-node node_modules/isparta/bin/isparta cover --root src --report html node_modules/mocha/bin/_mocha -- --require ./tools/testSetup.js \"src/**/*.test.js\" --reporter progress",
-    "test:cover:ci": "babel-node node_modules/isparta/bin/isparta cover --root src --report lcovonly node_modules/mocha/bin/_mocha -- --require ./tools/testSetup.js \"src/**/*.test.js\" --reporter progress",
+    "test:cover": "istanbul cover --report html node_modules/mocha/bin/_mocha -- --require tools/testSetup.js --bail --recursive \"src/**/*.test.js\" --reporter progress",
+    "test:cover:ci": "istanbul cover --report lcovonly node_modules/mocha/bin/_mocha -- --require tools/testSetup.js \"src/**/*.test.js\" --reporter progress",
     "test:watch": "npm run test -- --watch"
   },
   "repository": {
@@ -79,7 +79,7 @@
     "gh-pages": "0.11.0",
     "html-webpack-plugin": "2.22.0",
     "isparta": "4.0.0",
-    "istanbul": "0.4.4",
+    "istanbul": "1.1.0-alpha.1",
     "jsdom": "9.4.1",
     "mocha": "3.0.2",
     "nock": "8.0.0",
