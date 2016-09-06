@@ -1,6 +1,8 @@
 machine:
   node:
     version: 6.2.0
+  services:
+    - docker
 
 dependencies:
   cache_directories:
