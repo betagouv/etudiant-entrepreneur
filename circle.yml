@@ -1,8 +1,20 @@
 machine:
   node:
     version: 6.2.0
+
+dependencies:
+  cache_directories:
+    - "~/docker"
+
+  override:
+    - if [[ -e ~/docker/image_node.tar ]]; then docker load -i ~/docker/image_node.tar; fi
+    - docker pull node:6
+    - mkdir -p ~/docker; docker save node:6 > ~/docker/image_node.tar
+    - npm install
+
 test:
   pre:
     - npm run lint
+
   post:
     - cd server && cat ./coverage/lcov.info | ./node_modules/.bin/coveralls --verbose
