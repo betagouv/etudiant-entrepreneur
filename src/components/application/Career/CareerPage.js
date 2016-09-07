@@ -1,6 +1,6 @@
 import React, {PropTypes} from 'react'
 
-class StudyPage extends React.Component {
+class CareerPage extends React.Component {
   constructor(props, context) {
     super(props, context)
   }
@@ -15,4 +15,4 @@ class StudyPage extends React.Component {
   }
 }
 
-export default StudyPage
+export default CareerPage
