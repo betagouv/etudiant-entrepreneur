@@ -29,5 +29,6 @@ export default {
     region: 0,
     establishment: 0
   },
-  career: {}
+  career: {},
+  profile: {}
 }
