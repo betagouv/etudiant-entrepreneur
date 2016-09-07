@@ -28,5 +28,6 @@ export default {
   pepite: {
     region: 0,
     establishment: 0
-  }
+  },
+  career: {}
 }
