@@ -1,5 +1,5 @@
 import React, {PropTypes} from 'react'
-import { FormGroup, ControlLabel, FormControl, HelpBlock, ButtonGroup, Radio } from 'react-bootstrap'
+import { FormGroup, ControlLabel, FormControl, HelpBlock, ButtonGroup, Radio, Panel } from 'react-bootstrap'
 import RadioGroup from '../../common/RadioGroup'
 import ValidatedFormControl from '../../common/ValidatedFormControl'
 import {isOtherSectorRequired} from './ProjectValidationConstraints'
@@ -35,21 +35,13 @@ const ProjectForm = ({project, onChange, errors}) => {
           <Radio value="created">Création, reprise ou transmission réalisée</Radio>
         </RadioGroup>
       </FormGroup>
-      <FormGroup>
-        <ControlLabel>Site internet de mon projet</ControlLabel>
-        <ValidatedFormControl name="site" type="url" placeholder="site" onChange={onChange} value={project.site} error={errors.site}/>
+      <FormGroup className="required">
+        <ControlLabel>Où en suis-je dans mon projet ?</ControlLabel>
+        <ValidatedFormControl name="stepSummary" rows="5" componentClass="textarea" placeholder="avancement" onChange={onChange} value={project.stepSummary} error={errors.stepSummary}/>
       </FormGroup>
-      <FormGroup>
-        <ControlLabel>Blog de mon projet</ControlLabel>
-        <ValidatedFormControl name="blog" type="url" placeholder="blog" onChange={onChange} value={project.blog} error={errors.blog}/>
-      </FormGroup>
-      <FormGroup>
-        <ControlLabel>Compte facebook de mon projet</ControlLabel>
-        <ValidatedFormControl name="facebook" type="url" placeholder="facebook" onChange={onChange} value={project.facebook} error={errors.facebook}/>
-      </FormGroup>
-      <FormGroup>
-        <ControlLabel>twitter de mon projet</ControlLabel>
-        <ValidatedFormControl name="twitter" type="url" placeholder="twitter" onChange={onChange} value={project.twitter} error={errors.twitter}/>
+      <FormGroup className="required">
+        <ControlLabel>Quelles sont les prochaines étapes de mon projet ?</ControlLabel>
+        <ValidatedFormControl name="nextStepSummary" rows="5" componentClass="textarea" placeholder="prochaines étapes" onChange={onChange} value={project.nextStepSummary} error={errors.nextStepSummary}/>
       </FormGroup>
       <FormGroup>
         <ControlLabel>numéro SIRET</ControlLabel>
@@ -93,17 +85,27 @@ const ProjectForm = ({project, onChange, errors}) => {
         <ValidatedFormControl name="otherSector" type="text" placeholder="autre secteur" onChange={onChange} value={project.otherSector} error={errors.otherSector}/>
       </FormGroup>
       <FormGroup className="required">
-        <ControlLabel>Où en suis-je dans mon projet ?</ControlLabel>
-        <ValidatedFormControl name="stepSummary" rows="5" componentClass="textarea" placeholder="avancement" onChange={onChange} value={project.stepSummary} error={errors.stepSummary}/>
-      </FormGroup>
-      <FormGroup className="required">
-        <ControlLabel>Quelles sont les prochaines étapes de mon projet ?</ControlLabel>
-        <ValidatedFormControl name="nextStepSummary" rows="5" componentClass="textarea" placeholder="prochaines étapes" onChange={onChange} value={project.nextStepSummary} error={errors.nextStepSummary}/>
-      </FormGroup>
-      <FormGroup className="required">
         <ControlLabel>Quelle ma motivation pour lancer cette activité ?</ControlLabel>
         <ValidatedFormControl name="motiviation" rows="5" componentClass="textarea" placeholder="motivation" onChange={onChange} value={project.motiviation} error={errors.motiviation}/>
       </FormGroup>
+      <Panel header="Réseaux sociaux">
+        <FormGroup>
+          <ControlLabel>Site internet de mon projet</ControlLabel>
+          <ValidatedFormControl name="site" type="url" placeholder="site" onChange={onChange} value={project.site} error={errors.site}/>
+        </FormGroup>
+        <FormGroup>
+          <ControlLabel>Blog de mon projet</ControlLabel>
+          <ValidatedFormControl name="blog" type="url" placeholder="blog" onChange={onChange} value={project.blog} error={errors.blog}/>
+        </FormGroup>
+        <FormGroup>
+          <ControlLabel>Compte facebook de mon projet</ControlLabel>
+          <ValidatedFormControl name="facebook" type="url" placeholder="facebook" onChange={onChange} value={project.facebook} error={errors.facebook}/>
+        </FormGroup>
+        <FormGroup>
+          <ControlLabel>twitter de mon projet</ControlLabel>
+          <ValidatedFormControl name="twitter" type="url" placeholder="twitter" onChange={onChange} value={project.twitter} error={errors.twitter}/>
+        </FormGroup>
+      </Panel>
     </form>
   )
 }
