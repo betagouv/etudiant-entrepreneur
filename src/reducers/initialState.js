@@ -31,7 +31,18 @@ export default {
     region: 0,
     establishment: 0
   },
-  career: {},
+  career: {
+    bac: {
+      isOriginal: '',
+      type: '',
+      country: '',
+      year: '',
+      stream: '',
+      establishment: '',
+      city: ''
+    }
+
+  },
   profile: {
     gender: '',
     situation: '',

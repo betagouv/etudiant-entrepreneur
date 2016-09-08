@@ -9,9 +9,10 @@ class CareerPage extends React.Component {
     super(props, context)
     this.state = {
       career: Object.assign({}, props.career),
-      errors: {},
+      errors: { bac: {} },
     }
     this.updateCareerState = this.updateCareerState.bind(this)
+    this.updateBacState = this.updateBacState.bind(this)
   }
 
   updateCareerState(event) {
@@ -21,11 +22,21 @@ class CareerPage extends React.Component {
     this.props.actions.updateCareer(career)
     return this.setState({ career })
   }
+
+  updateBacState(event) {
+    const field = event.target.name
+    let career = this.state.career
+    career.bac = Object.assign({} , career.bac, { [field]: event.target.value })
+    this.props.actions.updateCareer(career)
+    return this.setState({ career })
+  }
+
   render() {
     return (
       <CareerForm
         career={this.state.career}
         onChange={this.updateCareerState}
+        onBacChange={this.updateBacState}
         errors={this.state.errors}/>
     )
   }
