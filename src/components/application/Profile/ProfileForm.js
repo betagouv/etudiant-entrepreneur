@@ -15,7 +15,7 @@ const ProfileForm = ({profile, contact, errors, onChange, onDateChange}) => {
           <Radio value="female">Femme</Radio>
         </RadioGroup>
       </FormGroup>
-      <FormGroup className="required" className={(contact.situation == 'student') ? 'required' : 'required hidden'}>
+      <FormGroup className={(contact.situation == 'student') ? 'required' : 'required hidden'}>
         <ControlLabel>Étudiant en 2016 :</ControlLabel>
         <RadioGroup name="situation" onChange={onChange} selectedValue={profile.situation}>
           <Radio value="graduate">Je fini mes études avant décembre 2016</Radio>
