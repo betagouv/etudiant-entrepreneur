@@ -64,6 +64,33 @@ const ProfileForm = ({profile, contact, errors, onChange, onDateChange}) => {
           <ValidatedFormControl name="country" type="text" placeholder="Pays" onChange={onChange} value={profile.country} error={errors.country}/>
         </FormGroup>
       </Panel>
+      <Panel header="Mon activité">
+        <FormGroup className="required">
+          <ControlLabel>J'occupe actuellement une activité professionnelle à temps complet ou partiel</ControlLabel>
+          <RadioGroup name="hasActivity" onChange={onChange} selectedValue={profile.hasActivity}>
+            <Radio value="true">oui</Radio>
+            <Radio value="false">non</Radio>
+          </RadioGroup>
+        </FormGroup>
+        <FormGroup className={(profile.hasActivity == 'true') ? '' : 'hidden'}>
+          <ControlLabel>Activité</ControlLabel>
+          <ValidatedFormControl name="activity" type="text" placeholder="nature de l'activité (informatique, droit...)" onChange={onChange} value={profile.activity} error={errors.activity}/>
+        </FormGroup>
+        <FormGroup className="required">
+          <ControlLabel>Je suis à la recherche d'un emploi</ControlLabel>
+          <RadioGroup name="isUnemployed" onChange={onChange} selectedValue={profile.isUnemployed}>
+            <Radio value="true">oui</Radio>
+            <Radio value="false">non</Radio>
+          </RadioGroup>
+        </FormGroup>
+        <FormGroup className="required">
+          <ControlLabel>Je suis autoentrepreneur·e</ControlLabel>
+          <RadioGroup name="isFreelance" onChange={onChange} selectedValue={profile.isFreelance}>
+            <Radio value="true">oui</Radio>
+            <Radio value="false">non</Radio>
+          </RadioGroup>
+        </FormGroup>
+      </Panel>
       <Panel header="Mes réseaux sociaux">
         <FormGroup>
           <ControlLabel>mon twitter</ControlLabel>
