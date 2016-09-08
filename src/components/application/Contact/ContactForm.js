@@ -1,5 +1,5 @@
 import React, {PropTypes} from 'react'
-import { FormGroup, ControlLabel, FormControl, Radio, HelpBlock } from 'react-bootstrap'
+import { FormGroup, ControlLabel, FormControl, Radio, HelpBlock, Panel } from 'react-bootstrap'
 import RadioGroup from '../../common/RadioGroup'
 import ValidatedFormControl from '../../common/ValidatedFormControl'
 
@@ -29,8 +29,10 @@ const ContactForm = ({contact, errors, onChange}) => {
           <Radio value="graduate">J'aurai fini ou arrêté mes études</Radio>
           <Radio value="student">Je serai étudiant·e</Radio>
         </RadioGroup>
-        <HelpBlock>Ne pas prendre en compte l'inscription au diplôme étudiant·e entrepreneur·e (D2E)</HelpBlock>
       </FormGroup>
+      <Panel className={(contact.situation == 'graduate') ? 'required' : 'required hidden'}>
+        <div>Diplômé·e en 2016, si tu obtiens le statut étudiant·e-entrepreneur·e, tu devras t'inscrire  au <a target="_blank" href="http://www.pepite-france.fr/diplome-detablissement-etudiant-entrepreneur/">diplôme d’établissement étudiant-entrepreneur (D2E)</a> via ton Pepite.</div>
+      </Panel>
     </form>
   )
 }
