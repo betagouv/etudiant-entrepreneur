@@ -1,6 +1,6 @@
 import React, {PropTypes} from 'react'
 import { FormGroup, ControlLabel, FormControl, Radio, HelpBlock, Panel } from 'react-bootstrap'
-import DatePicker from 'react-bootstrap-date-picker'
+import Datetime from 'react-datetime'
 import RadioGroup from '../../common/RadioGroup'
 import ValidatedFormControl from '../../common/ValidatedFormControl'
 
@@ -24,7 +24,7 @@ const ProfileForm = ({profile, contact, errors, onChange, onDateChange}) => {
       </FormGroup>
       <FormGroup className="required">
         <ControlLabel>Date de naissance</ControlLabel>
-        <DatePicker value={profile.birthDate} showYearDropdown onChange={onDateChange} dateFormatCalendar="MMMM" />
+        <Datetime value={profile.birthDate} locale="fr-fr" timeFormat={false} inputProps={{onChange: () => {}}} onChange={onDateChange}/>
       </FormGroup>
       <FormGroup className="required">
         <ControlLabel>Lieu de naissance</ControlLabel>
