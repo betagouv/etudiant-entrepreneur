@@ -9,7 +9,9 @@ function setup(project = {}) {
       step: "test",
       isMobileWebApp: "test",
       isPeopleCare: "test",
-      isSocial: "test"
+      isSocial: "test",
+      type: "test",
+      status: "test"
     }, project),
     onChange: () => { },
     errors: {}
@@ -19,7 +21,7 @@ function setup(project = {}) {
 
 describe('<ProjectForm>', () => {
   it('renders form and title', () => {
-    const wrapper = setup({ step: "test" })
+    const wrapper = setup({ step: "test", type: "test", status: "test" })
     expect(wrapper.find('form').length).toBe(1)
     expect(wrapper.find('p').text()).toEqual('Mon Projet')
   })

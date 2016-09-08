@@ -7,7 +7,21 @@ const ProfileForm = ({profile, errors, onChange}) => {
   return (
     <form>
       <p>Mon Profil</p>
-      <div>Ici, je fournis bientôt les informations basiques sur mon identité.</div>
+      <FormGroup className="required">
+        <ControlLabel>Genre</ControlLabel>
+        <RadioGroup name="gender" onChange={onChange} selectedValue={profile.gender}>
+          <Radio value="male">Homme</Radio>
+          <Radio value="female">Femme</Radio>
+        </RadioGroup>
+      </FormGroup>
+      <FormGroup className="required">
+        <ControlLabel>Étudiant en 2016 :</ControlLabel>
+        <RadioGroup name="situation" onChange={onChange} selectedValue={profile.situation}>
+          <Radio value="graduate">Je fini mes études avant décembre 2016</Radio>
+          <Radio value="student">Je serai étudiant·e toute l'année universitaire 2016-2017</Radio>
+        </RadioGroup>
+        <HelpBlock>Affichée que si étudiant en 2016</HelpBlock>
+      </FormGroup>
     </form>
   )
 }

@@ -51,7 +51,9 @@ describe('Application Actions', () => {
           { type: types.LOAD_APPLICATION_SUCCESS, application },
           { type: types.LOAD_PROJECT_SUCCESS, project: application.project },
           { type: types.LOAD_CONTACT_SUCCESS, contact: application.contact },
-          { type: types.LOAD_PEPITE_SUCCESS, pepite: application.pepite }
+          { type: types.LOAD_PEPITE_SUCCESS, pepite: application.pepite },
+          { type: types.LOAD_PROFILE_SUCCESS, pepite: application.profile },
+          { type: types.LOAD_CAREER_SUCCESS, pepite: application.career },
         ]
         const store = mockStore({ application: {} })
         store.dispatch(applicationActions.loadApplication(application.applicationId)).then(() => {

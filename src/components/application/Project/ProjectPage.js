@@ -13,9 +13,10 @@ export class ProjectPage extends React.Component {
       project: Object.assign({
         name: "",
         summary: "",
-        type: "0",
+        type: "",
         step: "",
         site: "",
+        status: "",
         blog: "",
         facebook: "",
         twitter: "",

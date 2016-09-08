@@ -16,7 +16,9 @@ export default {
     sector: '0',
     otherSector: '',
     motiviation: '',
-    team: []
+    team: [],
+    teamType: '',
+    status: ''
   },
   contact: {
     name: '',
@@ -30,5 +32,8 @@ export default {
     establishment: 0
   },
   career: {},
-  profile: {}
+  profile: {
+    gender: '',
+    situation: ''
+  }
 }

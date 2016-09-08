@@ -14,18 +14,24 @@ const ProjectForm = ({project, onChange, errors}) => {
       </FormGroup>
       <FormGroup className="required">
         <ControlLabel>Résumé de mon projet</ControlLabel>
-        <ValidatedFormControl name="summary" rows="5" componentClass="textarea" placeholder="résumé" onChange={onChange} value={project.summary} error={errors.summary}/>
-        <HelpBlock>Non confidentiel, ne doit pas comporter d'élements sensibles.</HelpBlock>
+        <ValidatedFormControl name="summary" rows="5" componentClass="textarea" placeholder="Non confidentiel, ne doit pas comporter d'élements sensibles" onChange={onChange} value={project.summary} error={errors.summary}/>
       </FormGroup>
       <FormGroup className="required">
         <ControlLabel>Type de projet</ControlLabel>
-        <ValidatedFormControl name="type" componentClass="select" onChange={onChange} value={project.type} error={errors.type}>
-          <option value="0" disabled>Sélectionner</option>
-          <option value="1">Auto-entrepreneuriat ou microactivité</option>
-          <option value="2">Création d'entreprise</option>
-          <option value="3">Reprise d'entreprise</option>
-          <option value="4">Création ou transmission d'une autre forme d'activité (association et autre)</option>
-        </ValidatedFormControl>
+        <RadioGroup name="type" onChange={onChange} selectedValue={project.type}>
+          <Radio value="creation">Création d'activité</Radio>
+          <Radio value="retake">Reprise</Radio>
+          <Radio value="transfer">Transmission d'entreprie familiale</Radio>
+        </RadioGroup>
+      </FormGroup>
+      <FormGroup className="required">
+        <ControlLabel>Statut de l'activité</ControlLabel>
+        <RadioGroup name="status" onChange={onChange} selectedValue={project.status}>
+          <Radio value="micro">Microactivité, auto-entrepreneuriat</Radio>
+          <Radio value="company">Société</Radio>
+          <Radio value="asso">Association</Radio>
+          <Radio value="coop">Coopérative (SCOP, SCIC...)</Radio>
+        </RadioGroup>
       </FormGroup>
       <FormGroup className="required">
         <ControlLabel>Etape du projet</ControlLabel>
