@@ -34,6 +34,23 @@ export default {
   career: {},
   profile: {
     gender: '',
-    situation: ''
+    situation: '',
+    nationality: '',
+    hasActivity: '',
+    activity: '',
+    isUnemployed: '',
+    isFreelance: '',
+    birthDate: '',
+    birthPlace: '',
+    otherNationality: '',
+    ine: '',
+    address: '',
+    cp: '',
+    city: '',
+    country: '',
+    twitter: '',
+    facebook: '',
+    linkedin: '',
+    viadeo: '',
   }
 }
