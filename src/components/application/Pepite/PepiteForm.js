@@ -1,5 +1,5 @@
 import React, {PropTypes} from 'react'
-import { FormGroup, ControlLabel, FormControl, Radio, HelpBlock } from 'react-bootstrap'
+import { FormGroup, ControlLabel, FormControl, Radio, HelpBlock, Panel } from 'react-bootstrap'
 import RadioGroup from '../../common/RadioGroup'
 import ValidatedFormControl from '../../common/ValidatedFormControl'
 import {regions, pepites, establishments} from './pepiteEstablishmentMap'
@@ -24,10 +24,21 @@ function deleteDuplicate(array) {
   })
 }
 
-const PepiteForm = ({pepite, errors, onChange}) => {
+const PepiteForm = ({pepite, contact, errors, onChange}) => {
   return (
     <form>
       <p>Mon PEPITE</p>
+      <Panel>
+        <div>Seuls les candidats aux PEPITE suivants peuvent candidater dans cette version:</div>
+        <ul>
+          <li>PEPITE ETENA</li>
+          <li>PEPITE 3EF</li>
+          <li>PEPITE HESAM</li>
+          <li>PEPITE BRETAGNE</li>
+          <li>PEPITE PICARDIE</li>
+        </ul>
+        <div>La solution sera déployée pour l'ensemble des PEPITE prochainement.</div>
+      </Panel>
       <FormGroup className="required">
         <ControlLabel>Ma région</ControlLabel>
         <ValidatedFormControl name="region" componentClass="select" onChange={onChange} value={pepite.region} error={errors.region}>
@@ -38,7 +49,7 @@ const PepiteForm = ({pepite, errors, onChange}) => {
       {(() => {
         if (pepite.region != 0) {
           return(
-            <FormGroup className="required">
+            <FormGroup className={(contact.situation == 'graduate') ? 'hidden' : ''}>
               <ControlLabel>Mon établissement pour l'année 2016</ControlLabel>
               <ValidatedFormControl name="establishment" componentClass="select" onChange={onChange} value={pepite.establishment} error={errors.region}>
                 <option value="0" disabled>Sélectionner</option>
@@ -65,6 +76,7 @@ const PepiteForm = ({pepite, errors, onChange}) => {
 
 PepiteForm.propTypes = {
   pepite: PropTypes.object.isRequired,
+  contact: PropTypes.object.isRequired,
   onChange: PropTypes.func.isRequired,
   errors: PropTypes.object
 }

@@ -9,6 +9,7 @@ class PepitePage extends React.Component {
     super(props, context)
     this.state = {
       pepite: Object.assign({}, props.pepite),
+      contact: Object.assign({}, props.contact),
       errors: {},
     }
     this.updatePepiteState = this.updatePepiteState.bind(this)
@@ -28,6 +29,7 @@ class PepitePage extends React.Component {
     return (
       <PepiteForm
         pepite={this.state.pepite}
+        contact={this.state.contact}
         onChange={this.updatePepiteState}
         errors={this.state.errors}/>
     )
@@ -36,7 +38,8 @@ class PepitePage extends React.Component {
 
 function mapStateToProps(state, ownProps) {
   return {
-    pepite: state.pepite
+    pepite: state.pepite,
+    contact: state.contact,
   }
 }
 
