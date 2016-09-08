@@ -20,7 +20,7 @@ const ProjectForm = ({project, onChange, errors}) => {
         <ControlLabel>Type de projet</ControlLabel>
         <RadioGroup name="type" onChange={onChange} selectedValue={project.type}>
           <Radio value="creation">Création d'activité</Radio>
-          <Radio value="retake">Reprise</Radio>
+          <Radio value="retake">Reprise d'activité</Radio>
           <Radio value="transfer">Transmission d'entreprie familiale</Radio>
         </RadioGroup>
       </FormGroup>
@@ -28,9 +28,9 @@ const ProjectForm = ({project, onChange, errors}) => {
         <ControlLabel>Statut de l'activité</ControlLabel>
         <RadioGroup name="status" onChange={onChange} selectedValue={project.status}>
           <Radio value="micro">Microactivité, auto-entrepreneuriat</Radio>
-          <Radio value="company">Société</Radio>
+          <Radio value="company">Société (SAS, SARL...)</Radio>
           <Radio value="asso">Association</Radio>
-          <Radio value="coop">Coopérative (SCOP, SCIC...)</Radio>
+          <Radio value="coop">Coopérative, SCOP, SCIC...</Radio>
         </RadioGroup>
       </FormGroup>
       <FormGroup className="required">
