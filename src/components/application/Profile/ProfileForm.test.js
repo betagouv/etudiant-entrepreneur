@@ -3,9 +3,10 @@ import React from 'react'
 import {shallow} from 'enzyme'
 import ProfileForm from './ProfileForm'
 
-function setup(profile = { gender: '', situation: ''}) {
+function setup(profile = { gender: '', situation: ''}, contact = { situation: '' }) {
   const props = {
     profile: Object.assign({}, profile),
+    contact: Object.assign({}, contact),
     onChange: () => { },
     errors: {}
   }
