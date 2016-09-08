@@ -17,7 +17,7 @@ export const teamMemberValidationConstraints = {
     isValid: isNotEmpty,
     errorMessage: "obligatoire"
   },
-  diploma: {
+  situation: {
     isValid: isNotEmpty,
     errorMessage: "obligatoire"
   },

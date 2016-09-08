@@ -5,11 +5,15 @@ import {TeamPage} from './TeamPage'
 
 const addMembersInputSelector = 'button.add-members'
 
-function initialSetup(newMember = {}) {
+function initialSetup(newMember = { situation: '' }) {
   const props = {
+    project: { teamType: 'collective' },
     newMember,
     team: [],
-    actions: { updateTeam: () => {}}
+    actions: {
+      updateTeam: () => {},
+      updateProject: () => {}
+    }
   }
   return mount(<TeamPage {...props} />)
 }
@@ -29,7 +33,7 @@ describe('<TeamPage>', () => {
   describe('When add member has been clicked', () => {
     it('sets error when leaving empty a required field', () => {
       const wrapper = setup()
-      const requiredInput = wrapper.find('.required input').first()
+      const requiredInput = wrapper.find('.required input[name="firstname"]').first()
       requiredInput.simulate('change', {
         target: {
           name: 'firstname',
@@ -50,7 +54,7 @@ describe('<TeamPage>', () => {
       const addMemberButton = wrapper.find('div.panel button')
       addMemberButton.simulate('click')
       const blockInError = wrapper.find('.has-error')
-      expect(blockInError.length).toBe(5)
+      expect(blockInError.length).toBe(wrapper.find('.required').length - 1)
       expect(blockInError.contains(<div className="help-block">obligatoire</div>)).toBe(true)
     })
     it('allows to add a new team member', () => {
@@ -58,7 +62,7 @@ describe('<TeamPage>', () => {
         name: 'testName',
         firstname: 'testFirstname',
         role: 'testRole',
-        diploma: 'testDiploma',
+        situation: 'testSituation',
         email: 'testmail@test.com'
       }
       const wrapper = setup(newMember)

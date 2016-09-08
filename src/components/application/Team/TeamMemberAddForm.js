@@ -1,5 +1,6 @@
 import React, {PropTypes} from 'react'
-import { FormGroup, ControlLabel, FormControl, HelpBlock, Panel, Button } from 'react-bootstrap'
+import { FormGroup, ControlLabel, FormControl, HelpBlock, Panel, Button, Radio } from 'react-bootstrap'
+import RadioGroup from '../../common/RadioGroup'
 import ValidatedFormControl from '../../common/ValidatedFormControl'
 import TeamMemberList from './TeamMemberList'
 import conditionAddMember from './ConditionAddMember'
@@ -20,8 +21,20 @@ const TeamMemberAddForm = ({team, newMember, addMember, onChange, errors}) => {
         <ValidatedFormControl name="role" type="text" placeholder="rôle" onChange={onChange} value={newMember.role}   error={errors.role}/>
       </FormGroup>
       <FormGroup className="required">
-        <ControlLabel>Diplôme</ControlLabel>
-        <ValidatedFormControl name="diploma" type="text" placeholder="diplôme" onChange={onChange} value={newMember.diploma}   error={errors.diploma}/>
+        <ControlLabel>Situation actuelle :</ControlLabel>
+        <RadioGroup name="situation" onChange={onChange} selectedValue={newMember.situation} error={errors.situation}>
+          <Radio value="student">Étudiant·e</Radio>
+          <Radio value="unemployed">Demandeur d'emploi</Radio>
+          <Radio value="worker">Travail salarié ou indépendant</Radio>
+        </RadioGroup>
+      </FormGroup>
+      <FormGroup className={(newMember.situation == 'student') ? '' : ' hidden'}>
+        <ControlLabel>Cursus suivi</ControlLabel>
+        <ValidatedFormControl name="skill" type="text" placeholder="diplôme, discipline" onChange={onChange} value={newMember.skill}   error={errors.skill}/>
+      </FormGroup>
+      <FormGroup className={(newMember.situation == 'worker') || (newMember.situation == 'unemployed') ? '' : ' hidden'}>
+        <ControlLabel>Domaine de compétence</ControlLabel>
+        <ValidatedFormControl name="skill" type="text" placeholder="ex: informatique, droit..." onChange={onChange} value={newMember.skill}   error={errors.skill}/>
       </FormGroup>
       <FormGroup className="required">
         <ControlLabel>Email</ControlLabel>

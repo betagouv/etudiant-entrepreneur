@@ -11,13 +11,15 @@ export class TeamPage extends React.Component {
   constructor(props, context) {
     super(props, context)
     this.state = {
+      project: Object.assign({}, props.project),
       team: props.team,
       newMember: Object.assign({
         name: '',
         firstname: '',
         role: '',
         diploma: '',
-        email: ''
+        email: '',
+        situation: ''
       },
         props.newMember
       ),
@@ -25,6 +27,7 @@ export class TeamPage extends React.Component {
     }
     this.addTeamMember = this.addTeamMember.bind(this)
     this.updateNewMemberState = this.updateNewMemberState.bind(this)
+    this.updateProjectState = this.updateProjectState.bind(this)
     this.teamMemberValidation = new Validation(teamMemberValidationConstraints)
   }
 
@@ -35,6 +38,15 @@ export class TeamPage extends React.Component {
     this.validateNewMemberField(field, event.target.value)
     return this.setState({ newMember })
   }
+
+  updateProjectState(event) {
+    const field = event.target.name
+    let project = this.state.project
+    project[field] = event.target.value
+    this.props.actions.updateProject(project)
+    return this.setState({ project })
+  }
+
 
   validateNewMember() {
     const errors = this.teamMemberValidation.validateAllFields(this.state.newMember)
@@ -65,7 +77,8 @@ export class TeamPage extends React.Component {
         firstname: '',
         role: '',
         diploma: '',
-        email: ''
+        email: '',
+        situation: ''
       },
       errors: {}
     })
@@ -76,9 +89,11 @@ export class TeamPage extends React.Component {
   render() {
     return (
       <TeamForm team={this.state.team}
+        project={this.state.project}
         newMember={this.state.newMember}
         addMember={this.addTeamMember}
         onChange={this.updateNewMemberState}
+        projectOnChange={this.updateProjectState}
         errors={this.state.errors} />
     )
   }
@@ -86,13 +101,15 @@ export class TeamPage extends React.Component {
 
 TeamPage.propTypes = {
   team: PropTypes.array.isRequired,
+  project: PropTypes.object.isRequired,
   actions: PropTypes.object.isRequired,
   newMember: PropTypes.object
 }
 
 function mapStateToProps(state, ownProps) {
   return {
-    team: state.project.team
+    team: state.project.team,
+    project: state.project
   }
 }
 
