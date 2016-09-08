@@ -51,6 +51,7 @@ function mapDispatchToProps(dispatch) {
 
 PepitePage.propTypes = {
   pepite: PropTypes.object.isRequired,
+  contact: PropTypes.object.isRequired,
   actions: PropTypes.object.isRequired
 }
 
