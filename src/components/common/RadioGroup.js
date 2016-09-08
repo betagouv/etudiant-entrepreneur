@@ -13,7 +13,12 @@ const RadioGroup = class RadioGroup extends React.Component {
   }
 
   render() {
-    return (<div>{this.attachPropToChildren(this.props.name, this.props.onChange, this.props.selectedValue)}</div>)
+    return (
+      <div className={this.props.error ? 'has-error' : ''}>
+        {this.attachPropToChildren(this.props.name, this.props.onChange, this.props.selectedValue)}
+        <div className="help-block">{this.props.error}</div>
+      </div>
+      )
   }
 }
 
@@ -21,7 +26,8 @@ RadioGroup.propTypes = {
   name: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
   children: PropTypes.node.isRequired,
-  selectedValue: PropTypes.string.isRequired
+  selectedValue: PropTypes.string.isRequired,
+  error: PropTypes.string
 }
 
 export default RadioGroup

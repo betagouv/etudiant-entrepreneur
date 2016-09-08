@@ -32,7 +32,9 @@ describe('<RadioGroup>', () => {
     const nbChildren = 3
     const wrapper = setup(getChildren(nbChildren), "", onChangeSpy)
     wrapper.children().forEach((child) =>
-      child.props().onChange()
+      (typeof child.props().onChange === 'function') ?
+        child.props().onChange() :
+        () => {}
     )
     expect(onChangeSpy.calls.length).toBe(3)
   })
