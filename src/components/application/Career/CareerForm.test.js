@@ -3,12 +3,12 @@ import React from 'react'
 import {shallow} from 'enzyme'
 import CareerForm from './CareerForm'
 
-function setup(career = { bac: {} }) {
+function setup(career = { bac: {}, diploma: {}, tutor: {} }) {
   const props = {
     career: Object.assign({}, career),
     onChange: () => { },
     onBacChange: () => { },
-    errors: { bac: {} }
+    errors: { bac: {}, diploma: {}, tutor: {} }
   }
   return shallow(<CareerForm {...props} />)
 }

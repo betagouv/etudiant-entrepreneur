@@ -9,16 +9,25 @@ class CareerPage extends React.Component {
     super(props, context)
     this.state = {
       career: Object.assign({}, props.career),
-      errors: { bac: {} },
+      errors: { bac: {}, diploma: {}, tutor: {} },
     }
-    this.updateCareerState = this.updateCareerState.bind(this)
+    this.updateTutorState = this.updateTutorState.bind(this)
     this.updateBacState = this.updateBacState.bind(this)
+    this.updateDiplomaState = this.updateDiplomaState.bind(this)
   }
 
   updateCareerState(event) {
     const field = event.target.name
     let career = this.state.career
     career[field] = event.target.value
+    this.props.actions.updateCareer(career)
+    return this.setState({ career })
+  }
+
+  updateTutorState(event) {
+    const field = event.target.name
+    let career = this.state.career
+    career.tutor = Object.assign({} , career.tutor, { [field]: event.target.value })
     this.props.actions.updateCareer(career)
     return this.setState({ career })
   }
@@ -31,11 +40,20 @@ class CareerPage extends React.Component {
     return this.setState({ career })
   }
 
+  updateDiplomaState(event) {
+    const field = event.target.name
+    let career = this.state.career
+    career.diploma = Object.assign({} , career.diploma, { [field]: event.target.value })
+    this.props.actions.updateCareer(career)
+    return this.setState({ career })
+  }
+
   render() {
     return (
       <CareerForm
         career={this.state.career}
-        onChange={this.updateCareerState}
+        onTutorChange={this.updateTutorState}
+        onDiplomaChange={this.updateDiplomaState}
         onBacChange={this.updateBacState}
         errors={this.state.errors}/>
     )

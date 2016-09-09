@@ -40,8 +40,19 @@ export default {
       stream: '',
       establishment: '',
       city: ''
+    },
+    diploma: {
+      year: '',
+      type: '',
+      name: '',
+      sector: '',
+      establishment: '',
+      city: '',
+    },
+    tutor: {
+      name: '',
+      email: ''
     }
-
   },
   profile: {
     gender: '',
