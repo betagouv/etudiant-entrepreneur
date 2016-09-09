@@ -46,6 +46,10 @@ const ProfileForm = ({profile, contact, errors, onChange, onDateChange}) => {
         <ValidatedFormControl name="ine" type="text" placeholder="11 caractères" onChange={onChange} value={profile.ine} error={errors.ine}/>
         <HelpBlock>identifiant ou numéro national étudiant unique présent sur ma carte d’étudiant·e ou mes relevés de notes.</HelpBlock>
       </FormGroup>
+      <FormGroup className="required">
+        <ControlLabel>Motivation à candidater au Statut étudiant-entrepneur</ControlLabel>
+        <ValidatedFormControl name="motivation" rows="5" componentClass="textarea" placeholder="vos motivations" onChange={onChange} value={profile.motivation} error={errors.motivation}/>
+      </FormGroup>
       <Panel header="Mes coordonnées">
         <FormGroup className="required">
           <ControlLabel>Adresse postale</ControlLabel>
@@ -89,6 +93,13 @@ const ProfileForm = ({profile, contact, errors, onChange, onDateChange}) => {
         <FormGroup className="required">
           <ControlLabel>Je suis autoentrepreneur·e</ControlLabel>
           <RadioGroup name="isFreelance" onChange={onChange} selectedValue={profile.isFreelance}>
+            <Radio value="true">oui</Radio>
+            <Radio value="false">non</Radio>
+          </RadioGroup>
+        </FormGroup>
+        <FormGroup className="required">
+          <ControlLabel>Je poursui une formation en alternance</ControlLabel>
+          <RadioGroup name="isPartTime" onChange={onChange} selectedValue={profile.isPartTime}>
             <Radio value="true">oui</Radio>
             <Radio value="false">non</Radio>
           </RadioGroup>

@@ -58,6 +58,8 @@ export default {
     gender: '',
     situation: '',
     nationality: '',
+    motivation: '',
+    isPartTime: '',
     hasActivity: '',
     activity: '',
     isUnemployed: '',
