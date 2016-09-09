@@ -29,7 +29,7 @@ const PepiteForm = ({pepite, contact, errors, onChange}) => {
     <form>
       <p>Mon PEPITE</p>
       <Panel>
-        <div>Seuls les candidats aux PEPITE suivants peuvent candidater dans cette version:</div>
+        <div>Ce service n'est disponible qu'aux candidats des PEPITE participant à l'expérimentation:</div>
         <ul>
           <li>PEPITE ETENA</li>
           <li>PEPITE 3EF</li>
@@ -38,7 +38,6 @@ const PepiteForm = ({pepite, contact, errors, onChange}) => {
           <li>PEPITE BRETAGNE</li>
           <li>PEPITE PICARDIE</li>
         </ul>
-        <div>La solution sera déployée pour l'ensemble des PEPITE prochainement.</div>
       </Panel>
       <FormGroup className="required">
         <ControlLabel>Ma région</ControlLabel>
