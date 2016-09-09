@@ -1,18 +1,8 @@
 export const regions = [
-  { name: 'Alsace - Champagne-Ardenne - Lorraine', establishments: [0, 1] },
-  { name: 'Aquitaine - Limousin - Poitou-Charentes', establishments: [] },
-  { name: 'Auvergne - Rhône-Alpes', establishments: [] },
-  { name: 'Bourgogne - Franche-Comté', establishments: [] },
-  { name: 'Bretagne', establishments: [2] },
-  { name: 'Centre - Val de Loire', establishments: [] },
-  { name: 'Corse', establishments: [] },
-  { name: 'Île de France', establishments: [3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23] },
-  { name: 'Languedoc - Roussillon - Midi-Pyrénées', establishments: [] },
-  { name: 'Nord-Pas-de-Calais - Picardie', establishments: [24, 25] },
-  { name: 'Normandie', establishments: [] },
-  { name: 'Pays de la Loire', establishments: [] },
-  { name: 'Provence-Alpes-Côte d\'Azur', establishments: [] },
-  { name: 'Départements et régions d\'outre-mer', establishments: [] }
+  { name: 'Alsace - Champagne-Ardenne - Lorraine', establishments: [0] },
+  { name: 'Bretagne', establishments: [1] },
+  { name: 'Île de France', establishments: [2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33] },
+  { name: 'Nord-Pas-de-Calais - Picardie', establishments: [34] }
 ]
 
 
@@ -38,7 +28,7 @@ export const pepites = [
   'Languedoc-Roussillon',
   'ECRIN',
   'Lille Nord de France',
-  'Picard',
+  'Picardie',
   'Vallée de Seine',
   'CRÉER',
   'Aix-Marseille PACA-OUEST',
@@ -47,13 +37,23 @@ export const pepites = [
   'P2ER'
 ]
 export const establishments = [
-  { name: 'établissements de l\'académie de Strasgbourg', pepite: 1 },
-  { name: 'établissements de l\'académie de Reins', pepite: 2 },
+  { name: 'établissements de l\'académie de Strasgbourg', pepite: 0 },
   { name: 'établissements de l\'académie de Rennes', pepite: 8 },
   { name: 'Arts et Métiers ParisTech', pepite: 13 },
   { name: 'ESCP Europe', pepite: 13 },
-  { name: 'Université Paris 13', pepite: 11 },
-  { name: 'ENS de Paris', pepite: 17 },
+  { name: 'Centre de Formation des Journalistes', pepite: 13 },
+  { name: 'Centre Michel Serres', pepite: 13 },
+  { name: 'CNAM', pepite: 13 },
+  { name: 'École du Louvre', pepite: 13 },
+  { name: 'ENA', pepite: 13 },
+  { name: 'ENSAPLV', pepite: 13 },
+  { name: 'ENSCI', pepite: 13 },
+  { name: 'ESCP Europe', pepite: 13 },
+  { name: 'IFM', pepite: 13 },
+  { name: 'INHA', pepite: 13 },
+  { name: 'Institut national du patrimoine', pepite: 13 },
+  { name: 'Université Paris 1', pepite: 13 },
+  { name: 'INED', pepite: 13 },
   { name: 'Université Paris 8', pepite: 14 },
   { name: 'Université Paris 10', pepite: 14 },
   { name: 'IIM', pepite: 14 },
@@ -72,5 +72,5 @@ export const establishments = [
   { name: 'École de l\'architecture de la ville et des territoires à Marne-la-Vallée', pepite: 12 },
   { name: 'École spéciale des travaux publics, du bâtiment et de l\'industrie', pepite: 12 },
   { name: 'établissements de l\'académie d\'Amiens', pepite: 21 },
-  { name: 'établissements de l’académie de Lille', pepite: 20 }
+
 ]

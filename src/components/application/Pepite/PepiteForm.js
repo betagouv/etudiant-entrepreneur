@@ -34,6 +34,7 @@ const PepiteForm = ({pepite, contact, errors, onChange}) => {
           <li>PEPITE ETENA</li>
           <li>PEPITE 3EF</li>
           <li>PEPITE HESAM</li>
+          <li>PEPITE PON</li>
           <li>PEPITE BRETAGNE</li>
           <li>PEPITE PICARDIE</li>
         </ul>
