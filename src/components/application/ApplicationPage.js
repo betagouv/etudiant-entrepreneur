@@ -10,7 +10,6 @@ import CareerPage from './Career/CareerPage'
 import ProfilePage from './Profile/ProfilePage'
 import { Modal } from 'react-bootstrap'
 import '../../styles/apply-form.css'
-import '../../styles/react-datetime.css'
 
 
 class ApplicationPage extends React.Component {
