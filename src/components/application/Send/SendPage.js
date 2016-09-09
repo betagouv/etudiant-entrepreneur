@@ -9,7 +9,7 @@ class SendPage extends React.Component {
     return (
       <form>
         <p>Envoi</p>
-        <div>Si tu es actuellement demandeur d'emploi, pense à intégrer le D2E dans <a target="_blank" href="https://www.service-public.fr/particuliers/vosdroits/F14926">ton projet personalisé de retour à l'emploi</a> avec ton conseiller Pôle emploi.</div>
+        <div>Ici, bientôt, l'envoi</div>
       </form>
     )
   }

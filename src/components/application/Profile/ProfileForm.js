@@ -83,6 +83,9 @@ const ProfileForm = ({profile, contact, errors, onChange, onDateChange}) => {
             <Radio value="false">non</Radio>
           </RadioGroup>
         </FormGroup>
+        <Panel className={(profile.isUnemployed == 'true') ? '' : 'hidden'}>
+          <div>Si tu es actuellement demandeur d'emploi, pense à intégrer le D2E dans <a target="_blank" href="https://www.service-public.fr/particuliers/vosdroits/F14926">ton projet personalisé de retour à l'emploi</a> avec ton conseiller Pôle emploi.</div>
+        </Panel>
         <FormGroup className="required">
           <ControlLabel>Je suis autoentrepreneur·e</ControlLabel>
           <RadioGroup name="isFreelance" onChange={onChange} selectedValue={profile.isFreelance}>
