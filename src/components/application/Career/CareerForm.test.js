@@ -8,6 +8,8 @@ function setup(career = { bac: {}, diploma: {}, tutor: {} }) {
     career: Object.assign({}, career),
     onChange: () => { },
     onBacChange: () => { },
+    onTutorChange: () => { },
+    onDiplomaChange: () => { },
     errors: { bac: {}, diploma: {}, tutor: {} }
   }
   return shallow(<CareerForm {...props} />)
