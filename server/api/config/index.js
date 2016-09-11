@@ -7,8 +7,7 @@ const all = {
     options: {
       db: {
         safe: true
-      },
-      Promise: require('bluebird')
+      }
     }
   }
 }

@@ -1,6 +1,7 @@
 'use strict'
 
-var Application = require('./application.model')
+const Application = require('./application.model')
+const StandardError = require('standard-error')
 const mongoose = require('mongoose')
 
 class ApplicationController {
@@ -8,7 +9,7 @@ class ApplicationController {
     res.json('pong')
   }
 
-  getApplication(req, res) {
+  getApplication(req, res, next) {
     if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
       return res.sendStatus(404)
     }
@@ -26,9 +27,16 @@ class ApplicationController {
       })
   }
 
-  handleError(req, res, err) {
-    req.log.error(err)
-    return res.status(500).send(err)
+  createApplication(req, res, next) {
+    Application.create(req.body)
+      .then((application) => {
+        return res.status(201).json(application)
+      })
+      .catch((err) => {
+        if (err.name == 'ValidationError') {
+          return next(new StandardError('Nom, prénom et email sont obligatoires.', {code: 400}));
+        }
+      })
   }
 }
 

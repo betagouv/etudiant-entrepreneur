@@ -21,6 +21,7 @@ function Server(options) {
   options.isTest = options.isTest || false
 
   if (!options.isTest) {
+    mongoose.Promise = require('bluebird')
     // Connect to database
     mongoose.connect(config.mongo.uri, config.mongo.options)
 
@@ -41,7 +42,6 @@ function Server(options) {
   app.set('json spaces', 2)
   app.set('logger', logger)
   app.disable('x-powered-by')
-  app.use(bodyParser.json())
 
   app.use(expressBunyanLogger({
     name: 'requests',
@@ -52,6 +52,8 @@ function Server(options) {
     req.logger = logger
     next()
   })
+
+  app.use(bodyParser.json())
 
   routes.configure(app, options)
 
