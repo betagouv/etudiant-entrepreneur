@@ -1,6 +1,5 @@
 import React, {PropTypes} from 'react'
 import { FormGroup, ControlLabel, FormControl, Radio, HelpBlock, Panel } from 'react-bootstrap'
-import Datetime from 'react-datetime'
 import RadioGroup from '../../common/RadioGroup'
 import ValidatedFormControl from '../../common/ValidatedFormControl'
 import {diplomas} from './diplomas'
