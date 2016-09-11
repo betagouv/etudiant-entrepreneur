@@ -8,6 +8,9 @@ const emptylogger = require('bunyan-blackhole')
 const expressBunyanLogger = require('express-bunyan-logger')
 const bodyParser = require('body-parser')
 const formatError = require('./lib/middlewares/formatError')
+const mongoose = require('mongoose')
+
+const config = require('./config')
 
 module.exports = Server
 
@@ -15,6 +18,22 @@ function Server(options) {
   options = options || {}
   options.port = options.port || 0
   options.logger = options.logger || emptylogger()
+  options.isTest = options.isTest || false
+
+  if (!options.isTest) {
+    // Connect to database
+    mongoose.connect(config.mongo.uri, config.mongo.options)
+
+    //This callback will be triggered once the connection is successfully established to MongoDB
+    mongoose.connection.on('connected', function () {
+      console.log('Mongoose default connection open to ' + config.mongo.uri)
+    })
+
+    //This callback will be triggered after getting disconnected
+    mongoose.connection.on('disconnected', function () {
+      console.log('Mongoose disconnected from ' + config.mongo.uri)
+    })
+  }
 
   var logger = options.logger
   var app = express()

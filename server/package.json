@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/sgmap/etudiant-entrepreneur#readme",
   "dependencies": {
+    "bluebird": "3.4.6",
     "body-parser": "1.15.2",
     "bunyan": "1.8.1",
     "bunyan-blackhole": "1.1.1",
@@ -27,6 +28,7 @@
     "http-measuring-client": "0.3.7",
     "istanbul": "0.4.4",
     "mocha": "2.5.3",
+    "mongoose": "4.6.0",
     "nconf": "0.8.4",
     "standard-error": "1.1.0",
     "string": "3.3.1"

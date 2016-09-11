@@ -10,6 +10,5 @@ RUN npm install --production
 
 ADD ./defaults.json ./
 ADD ./bin ./bin
-ADD ./api ./api
 
 CMD npm start
