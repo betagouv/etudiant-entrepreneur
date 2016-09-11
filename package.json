@@ -1,0 +1,32 @@
+{
+  "name": "etudiant-entrepreneur",
+  "version": "0.0.1",
+  "description": "Faciliter l'accès au statut et à ses bénéfices",
+  "scripts": {
+    "preinstall": "npm-run-all --sequential install:back install:front",
+    "install:back": "cd server && npm install",
+    "install:front": "echo 'front install'",
+    "start": "cd server && npm run start",
+    "test": "npm-run-all --sequential test:back test:front test:docker",
+    "test:docker": "./tools/dockerTest.sh",
+    "test:back": "cd server && npm test",
+    "test:front": "echo 'front test'",
+    "lint": "npm-run-all --sequential lint:back lint:front",
+    "lint:back": "cd server && npm run lint",
+    "lint:front": "echo 'front lint'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sgmap/etudiant-entrepreneur.git"
+  },
+  "author": "Nicolas Brohée",
+  "license": "AGPL-3.0",
+  "bugs": {
+    "url": "https://github.com/sgmap/etudiant-entrepreneur/issues"
+  },
+  "homepage": "https://github.com/sgmap/etudiant-entrepreneur#readme",
+  "dependencies": {},
+  "devDependencies": {
+    "npm-run-all": "3.1.0"
+  }
+}
