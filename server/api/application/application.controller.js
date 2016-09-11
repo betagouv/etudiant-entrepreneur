@@ -9,7 +9,7 @@ class ApplicationController {
     res.json('pong')
   }
 
-  getApplication(req, res, next) {
+  getApplication(req, res) {
     if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
       return res.sendStatus(404)
     }
@@ -34,7 +34,7 @@ class ApplicationController {
       })
       .catch((err) => {
         if (err.name == 'ValidationError') {
-          return next(new StandardError('Nom, prénom et email sont obligatoires.', {code: 400}));
+          return next(new StandardError('Nom, prénom et email sont obligatoires.', {code: 400}))
         }
       })
   }
