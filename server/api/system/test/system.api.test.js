@@ -5,7 +5,7 @@ describe('api: system', () => {
   let app
 
   before(() => {
-    app = new Server({isTest : true}).getApp()
+    app = new Server({ isTest: true }).getApp()
   })
 
   describe('When requesting /api/ping', () => {

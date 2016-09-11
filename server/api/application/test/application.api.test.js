@@ -5,7 +5,7 @@ describe('api: application', () => {
   let app
 
   before(() => {
-    app = new Server({isTest : true}).getApp()
+    app = new Server({ isTest: true }).getApp()
   })
 
   describe('When requesting /api/application/ping', () => {
@@ -25,7 +25,7 @@ describe('api: application', () => {
     })
   })
 
-    describe('When requesting /api/application/ping', () => {
+  describe('When requesting /api/application/ping', () => {
     it('should return pong', (done) => {
       supertest(app)
         .get('/api/application/ping')
