@@ -21,7 +21,7 @@ const ProjectForm = ({project, onChange, errors}) => {
         <RadioGroup name="type" onChange={onChange} selectedValue={project.type}>
           <Radio value="creation">Création d'activité</Radio>
           <Radio value="retake">Reprise d'activité</Radio>
-          <Radio value="transfer">Transmission d'entreprie familiale</Radio>
+          <Radio value="transfer">Transmission d'entreprise familiale</Radio>
         </RadioGroup>
       </FormGroup>
       <FormGroup className="required">
@@ -58,7 +58,7 @@ const ProjectForm = ({project, onChange, errors}) => {
         <ValidatedFormControl name="activitySummary" rows="5" componentClass="textarea" placeholder="activité - proposition de valeur" onChange={onChange} value={project.activitySummary} error={errors.activitySummary}/>
       </FormGroup>
       <FormGroup className="required">
-        <ControlLabel>Quelle est ou sera mon secteur d'activité ?</ControlLabel>
+        <ControlLabel>Quel est ou sera mon secteur d'activité ?</ControlLabel>
         <ValidatedFormControl name="sector" componentClass="select" onChange={onChange} value={project.sector} error={errors.sector}>
           <option value="0" disabled>Sélectionner</option>
           <option value="1">agriculture/écologie/envrionnement/biotechnologie/énergie renouvelable</option>
@@ -91,7 +91,7 @@ const ProjectForm = ({project, onChange, errors}) => {
         <ValidatedFormControl name="otherSector" type="text" placeholder="autre secteur" onChange={onChange} value={project.otherSector} error={errors.otherSector}/>
       </FormGroup>
       <FormGroup className="required">
-        <ControlLabel>Quelle ma motivation pour lancer cette activité ?</ControlLabel>
+        <ControlLabel>Quelle est ma motivation pour lancer cette activité ?</ControlLabel>
         <ValidatedFormControl name="motiviation" rows="5" componentClass="textarea" placeholder="motivation" onChange={onChange} value={project.motiviation} error={errors.motiviation}/>
       </FormGroup>
       <Panel header="Réseaux sociaux">

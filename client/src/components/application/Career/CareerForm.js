@@ -14,6 +14,10 @@ const CareerForm = ({career, errors, onTutorChange, onDiplomaChange, onBacChange
           <ValidatedFormControl name="name" type="text" placeholder="nom" onChange={onTutorChange} value={career.tutor.name} error={errors.tutor.name}/>
         </FormGroup>
         <FormGroup className="required">
+          <ControlLabel>Prénom</ControlLabel>
+          <ValidatedFormControl name="firstname" type="text" placeholder="prénom" onChange={onTutorChange} value={career.tutor.firstname} error={errors.tutor.firstname}/>
+        </FormGroup>
+        <FormGroup className="required">
           <ControlLabel>Email</ControlLabel>
           <ValidatedFormControl name="email" type="email" placeholder="nom" onChange={onTutorChange} value={career.tutor.email} error={errors.tutor.email}/>
         </FormGroup>
@@ -21,7 +25,7 @@ const CareerForm = ({career, errors, onTutorChange, onDiplomaChange, onBacChange
       <Panel header="Mon baccalauréat ou son équivalence en niveau">
         <FormGroup className="required">
           <RadioGroup name="isOriginal" onChange={onBacChange} selectedValue={career.bac.isOriginal}>
-            <Radio value="true">Je suis lauréat du baccalauréat</Radio>
+            <Radio value="true">Je suis lauréat·e du baccalauréat</Radio>
             <Radio value="false">J'ai obtenu son équivalence en niveau</Radio>
           </RadioGroup>
         </FormGroup>
@@ -31,6 +35,10 @@ const CareerForm = ({career, errors, onTutorChange, onDiplomaChange, onBacChange
             <Radio value="france">en France</Radio>
             <Radio value="foreign">à l'étranger</Radio>
           </RadioGroup>
+        </FormGroup>
+        <FormGroup className={(career.bac.country == 'foreign') ? 'required' : 'required hidden'}>
+          <ControlLabel>Pays étranger, précisez</ControlLabel>
+          <ValidatedFormControl name="foreignCountry" type="text" placeholder="pays" onChange={onBacChange} value={career.bac.foreignCountry} error={errors.bac.foreignCountry}/>
         </FormGroup>
         <FormGroup className="required">
           <ControlLabel>Année d'obtention</ControlLabel>

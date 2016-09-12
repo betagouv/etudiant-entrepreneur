@@ -39,7 +39,8 @@ export default {
       year: '',
       stream: '',
       establishment: '',
-      city: ''
+      city: '',
+      foreignCountry: ''
     },
     diploma: {
       year: '',
@@ -51,6 +52,7 @@ export default {
     },
     tutor: {
       name: '',
+      firstname: '',
       email: ''
     }
   },
