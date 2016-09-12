@@ -8,6 +8,7 @@ import routes from './routes'
 import './styles/styles.css'
 import './styles/prog-tracker.css'
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css'
+import './styles/beta-ribbon.css'
 
 const store = configureStore()
 
