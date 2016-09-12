@@ -3,6 +3,7 @@ import { FormGroup, ControlLabel, FormControl, Radio, HelpBlock, Panel } from 'r
 import RadioGroup from '../../common/RadioGroup'
 import ValidatedFormControl from '../../common/ValidatedFormControl'
 import {diplomas} from './diplomas'
+import {countries} from '../../common/ressources/countries'
 
 const CareerForm = ({career, errors, onTutorChange, onDiplomaChange, onBacChange}) => {
   return (
@@ -30,15 +31,11 @@ const CareerForm = ({career, errors, onTutorChange, onDiplomaChange, onBacChange
           </RadioGroup>
         </FormGroup>
         <FormGroup className="required">
-          <ControlLabel>Lieu d'obtention</ControlLabel>
-          <RadioGroup name="country" onChange={onBacChange} selectedValue={career.bac.country}>
-            <Radio value="france">en France</Radio>
-            <Radio value="foreign">à l'étranger</Radio>
-          </RadioGroup>
-        </FormGroup>
-        <FormGroup className={(career.bac.country == 'foreign') ? 'required' : 'required hidden'}>
-          <ControlLabel>Pays étranger, précisez</ControlLabel>
-          <ValidatedFormControl name="foreignCountry" type="text" placeholder="pays" onChange={onBacChange} value={career.bac.foreignCountry} error={errors.bac.foreignCountry}/>
+          <ControlLabel>Pays d'obtention</ControlLabel>
+          <ValidatedFormControl name="country" componentClass="select" onChange={onBacChange} value={career.bac.country} error={errors.bac.country}>
+            <option value="" disabled>Sélectionner</option>
+            {Object.keys(countries).map((key, index) => { return (<option key={index + 1} value={key}>{countries[key]}</option>) }) }
+          </ValidatedFormControl>
         </FormGroup>
         <FormGroup className="required">
           <ControlLabel>Année d'obtention</ControlLabel>

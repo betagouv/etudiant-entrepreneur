@@ -40,8 +40,7 @@ export default {
       year: '',
       stream: '',
       establishment: '',
-      city: '',
-      foreignCountry: ''
+      city: ''
     },
     diploma: {
       year: '',
@@ -69,7 +68,6 @@ export default {
     isFreelance: '',
     birthDate: '',
     birthPlace: '',
-    otherNationality: '',
     ine: '',
     address: '',
     cp: '',

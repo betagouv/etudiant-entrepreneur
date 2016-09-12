@@ -4,6 +4,7 @@ import DatePicker from 'react-bootstrap-date-picker'
 import RadioGroup from '../../common/RadioGroup'
 import ValidatedFormControl from '../../common/ValidatedFormControl'
 import {calendarProps} from '../../common/calendarHelper'
+import {countries} from '../../common/ressources/countries'
 
 const ProfileForm = ({profile, contact, errors, onChange, onDateChange}) => {
   return (
@@ -32,15 +33,11 @@ const ProfileForm = ({profile, contact, errors, onChange, onDateChange}) => {
         <ValidatedFormControl name="birthPlace" type="text" placeholder="ville de naissance" onChange={onChange} value={profile.birthPlace} error={errors.birthPlace}/>
       </FormGroup>
       <FormGroup className="required">
-        <ControlLabel>Nationalité</ControlLabel>
-        <RadioGroup name="nationality" onChange={onChange} selectedValue={profile.nationality}>
-          <Radio value="fr">française</Radio>
-          <Radio value="other">étrangère</Radio>
-        </RadioGroup>
-      </FormGroup>
-      <FormGroup className={(profile.nationality == 'other') ? 'required' : 'required hidden'}>
-        <ControlLabel>Précisez</ControlLabel>
-        <ValidatedFormControl name="otherNationality" type="text" placeholder="nationalité" onChange={onChange} value={profile.otherNationality} error={errors.otherNationality}/>
+        <ControlLabel>Pays de votre nationalité</ControlLabel>
+        <ValidatedFormControl name="nationality" componentClass="select" onChange={onChange} value={profile.nationality} error={errors.nationality}>
+          <option value="" disabled>Sélectionner</option>
+          {Object.keys(countries).map((key, index) => { return (<option key={index + 1} value={key}>{countries[key]}</option>) }) }
+        </ValidatedFormControl>
       </FormGroup>
       <FormGroup>
         <ControlLabel>Identifiant national étudiant (INE)</ControlLabel>
@@ -66,7 +63,10 @@ const ProfileForm = ({profile, contact, errors, onChange, onDateChange}) => {
         </FormGroup>
         <FormGroup className="required">
           <ControlLabel>Pays</ControlLabel>
-          <ValidatedFormControl name="country" type="text" placeholder="Pays" onChange={onChange} value={profile.country} error={errors.country}/>
+          <ValidatedFormControl name="country" componentClass="select" onChange={onChange} value={profile.country} error={errors.country}>
+            <option value="" disabled>Sélectionner</option>
+            {Object.keys(countries).map((key, index) => { return (<option key={index + 1} value={key}>{countries[key]}</option>) }) }
+          </ValidatedFormControl>
         </FormGroup>
       </Panel>
       <Panel header="Mon activité">
