@@ -3,6 +3,7 @@ import { FormGroup, ControlLabel, FormControl, Radio, HelpBlock, Panel } from 'r
 import RadioGroup from '../../common/RadioGroup'
 import ValidatedFormControl from '../../common/ValidatedFormControl'
 import {regions, pepites, establishments} from './pepiteEstablishmentMap'
+import BetaTestersPanel from '../../common/BetaTestersPanel'
 
 function getPepiteFromEstablishment(establishmentId) {
   return pepites[establishments[establishmentId].pepite]
@@ -28,17 +29,7 @@ const PepiteForm = ({pepite, contact, errors, onChange}) => {
   return (
     <form>
       <p>Mon PEPITE</p>
-      <Panel>
-        <div>Ce service n'est disponible qu'aux candidats des PEPITE participant à l'expérimentation:</div>
-        <ul>
-          <li>PEPITE ETENA</li>
-          <li>PEPITE 3EF</li>
-          <li>PEPITE HESAM</li>
-          <li>PEPITE PON</li>
-          <li>PEPITE BRETAGNE</li>
-          <li>PEPITE PICARDIE</li>
-        </ul>
-      </Panel>
+      <BetaTestersPanel/>
       <FormGroup className="required">
         <ControlLabel>Ma région</ControlLabel>
         <ValidatedFormControl name="region" componentClass="select" onChange={onChange} value={pepite.region} error={errors.region}>

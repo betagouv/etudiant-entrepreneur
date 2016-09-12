@@ -2,11 +2,13 @@ import React, {PropTypes} from 'react'
 import { FormGroup, ControlLabel, FormControl, Radio, HelpBlock, Panel } from 'react-bootstrap'
 import RadioGroup from '../../common/RadioGroup'
 import ValidatedFormControl from '../../common/ValidatedFormControl'
+import BetaTestersPanel from '../../common/BetaTestersPanel'
 
 const ContactForm = ({contact, errors, onChange}) => {
   return (
     <form>
       <p>Mes Informations</p>
+      <BetaTestersPanel/>
       <FormGroup className="required">
         <ControlLabel>Prénom</ControlLabel>
         <ValidatedFormControl name="firstname" type="text" placeholder="" onChange={onChange} value={contact.firstname} error={errors.firstname}/>
