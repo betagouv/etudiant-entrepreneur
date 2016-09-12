@@ -100,6 +100,10 @@ const ProjectForm = ({project, onChange, errors}) => {
           <ValidatedFormControl name="site" type="url" placeholder="site" onChange={onChange} value={project.site} error={errors.site}/>
         </FormGroup>
         <FormGroup>
+          <ControlLabel>Linkedin de mon projet</ControlLabel>
+          <ValidatedFormControl name="linkedin" type="url" placeholder="linkedin" onChange={onChange} value={project.linkedin} error={errors.linkedin}/>
+        </FormGroup>
+        <FormGroup>
           <ControlLabel>Blog de mon projet</ControlLabel>
           <ValidatedFormControl name="blog" type="url" placeholder="blog" onChange={onChange} value={project.blog} error={errors.blog}/>
         </FormGroup>

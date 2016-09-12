@@ -6,6 +6,7 @@ export default {
     type: "0",
     step: '',
     site: '',
+    linkedin: '',
     blog: '',
     facebook: '',
     twitter: '',
