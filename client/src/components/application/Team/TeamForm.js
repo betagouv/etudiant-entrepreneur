@@ -17,7 +17,7 @@ const TeamForm = (props) => {
         </RadioGroup>
       </FormGroup>
       <div className={(props.project.teamType == 'collective') ? '' : ' hidden'}>
-        <TeamMemberList team={props.team} />
+        <TeamMemberList team={props.team} onMemberDelete={props.onMemberDelete}/>
         <TeamMemberAddForm {...props} />
       </div>
     </form>
@@ -31,6 +31,7 @@ TeamForm.propTypes = {
   addMember: PropTypes.func.isRequired,
   onChange: PropTypes.func.isRequired,
   projectOnChange: PropTypes.func.isRequired,
+  onMemberDelete: PropTypes.func.isRequired,
   errors: PropTypes.object
 }
 

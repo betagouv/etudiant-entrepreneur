@@ -19,7 +19,8 @@ export class TeamPage extends React.Component {
         role: '',
         diploma: '',
         email: '',
-        situation: ''
+        situation: '',
+        skill: ''
       },
         props.newMember
       ),
@@ -28,6 +29,7 @@ export class TeamPage extends React.Component {
     this.addTeamMember = this.addTeamMember.bind(this)
     this.updateNewMemberState = this.updateNewMemberState.bind(this)
     this.updateProjectState = this.updateProjectState.bind(this)
+    this.onMemberDelete = this.onMemberDelete.bind(this)
     this.teamMemberValidation = new Validation(teamMemberValidationConstraints)
   }
 
@@ -47,7 +49,6 @@ export class TeamPage extends React.Component {
     return this.setState({ project })
   }
 
-
   validateNewMember() {
     const errors = this.teamMemberValidation.validateAllFields(this.state.newMember)
     this.setState({ errors })
@@ -58,6 +59,26 @@ export class TeamPage extends React.Component {
     let errors = this.state.errors
     errors[field] = this.teamMemberValidation.validateField(field, value)
     return this.setState({ errors })
+  }
+
+  onMemberDelete(member) {
+    const team = [...this.state.team.filter((m) => m != member)]
+    this.props.actions.updateTeam(team)
+
+    this.setState({
+      newMember: {
+        name: '',
+        firstname: '',
+        role: '',
+        diploma: '',
+        email: '',
+        situation: '',
+        skill: ''
+      },
+      errors: {}
+    })
+
+    return this.setState({ team })
   }
 
   addTeamMember(event) {
@@ -78,7 +99,8 @@ export class TeamPage extends React.Component {
         role: '',
         diploma: '',
         email: '',
-        situation: ''
+        situation: '',
+        skill: ''
       },
       errors: {}
     })
@@ -94,6 +116,7 @@ export class TeamPage extends React.Component {
         addMember={this.addTeamMember}
         onChange={this.updateNewMemberState}
         projectOnChange={this.updateProjectState}
+        onMemberDelete={this.onMemberDelete}
         errors={this.state.errors} />
     )
   }

@@ -40,7 +40,7 @@ const TeamMemberAddForm = ({team, newMember, addMember, onChange, errors}) => {
         <ControlLabel>Email</ControlLabel>
         <ValidatedFormControl name="email" type="email" placeholder="email" onChange={onChange} value={newMember.email} error={errors.email}/>
       </FormGroup>
-      <Button bsStyle="primary" onClick={addMember}><span className="glyphicon glyphicon-plus"></span>  Ajouter {newMember.firstname} à mon projet</Button>
+      <Button bsStyle="primary" className="add-member" onClick={addMember}><span className="glyphicon glyphicon-plus"></span>  Ajouter {newMember.firstname} à mon projet</Button>
     </Panel>
   )
 }

@@ -66,16 +66,11 @@ describe('<TeamPage>', () => {
         email: 'testmail@test.com'
       }
       const wrapper = setup(newMember)
-      const addMemberButton = wrapper.find('div.panel button')
+      const addMemberButton = wrapper.find('div.panel button.add-member')
       addMemberButton.simulate('click')
       expect(
         wrapper.contains(
-          <tr>
             <td>{newMember.firstname}</td>
-            <td>{newMember.name}</td>
-            <td>{newMember.role}</td>
-            <td>{newMember.email}</td>
-          </tr>
         )
       ).toBe(true)
     })
