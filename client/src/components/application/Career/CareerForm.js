@@ -5,6 +5,13 @@ import ValidatedFormControl from '../../common/ValidatedFormControl'
 import {diplomas} from './diplomas'
 import {countries} from '../../common/ressources/countries'
 
+function getLastDiplomaHeader(situation) {
+  if (situation == 'student') {
+    return ("Ma formation en cours dans l'enseignement supérieur")
+  }
+  return ("Mon dernier diplôme")
+}
+
 const CareerForm = ({career, contact, errors, onTutorChange, onDiplomaChange, onBacChange}) => {
   return (
     <form>
@@ -50,8 +57,8 @@ const CareerForm = ({career, contact, errors, onTutorChange, onDiplomaChange, on
           </RadioGroup>
         </FormGroup>
         <FormGroup className={(career.bac.isOriginal == 'false') ? 'required' : 'required hidden'}>
-          <ControlLabel>Type d'équivalence</ControlLabel>
-          <ValidatedFormControl name="type" type="text" placeholder="type?" onChange={onBacChange} value={career.bac.type} error={errors.bac.type}/>
+          <ControlLabel>Nom de l'équivalence</ControlLabel>
+          <ValidatedFormControl name="type" type="text" placeholder="nom" onChange={onBacChange} value={career.bac.type} error={errors.bac.type}/>
         </FormGroup>
         <FormGroup  className={(career.bac.isOriginal == 'true') ? '' : 'hidden'}>
           <ControlLabel>Série</ControlLabel>
@@ -66,7 +73,7 @@ const CareerForm = ({career, contact, errors, onTutorChange, onDiplomaChange, on
           <ValidatedFormControl name="city" type="text" placeholder="ville" onChange={onBacChange} value={career.bac.city} error={errors.bac.city}/>
         </FormGroup>
       </Panel>
-      <Panel header="Mon parcours de formation dans l'enseignement supérieur">
+      <Panel header={getLastDiplomaHeader(contact.situation)}>
         <FormGroup className="required">
           <ControlLabel>Année universitaire</ControlLabel>
           <ValidatedFormControl name="year" type="text" placeholder="AAAA" onChange={onDiplomaChange} value={career.diploma.year} error={errors.diploma.year}/>
