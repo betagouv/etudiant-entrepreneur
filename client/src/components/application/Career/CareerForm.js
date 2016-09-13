@@ -5,11 +5,11 @@ import ValidatedFormControl from '../../common/ValidatedFormControl'
 import {diplomas} from './diplomas'
 import {countries} from '../../common/ressources/countries'
 
-const CareerForm = ({career, errors, onTutorChange, onDiplomaChange, onBacChange}) => {
+const CareerForm = ({career, contact, errors, onTutorChange, onDiplomaChange, onBacChange}) => {
   return (
     <form>
       <p>Mon Parcours</p>
-      <Panel header="Mon responsable pédagogique">
+      <Panel header="Mon responsable pédagogique" className={(contact.situation == 'student') ? 'required' : 'required hidden'}>
         <FormGroup className="required">
           <ControlLabel>Nom</ControlLabel>
           <ValidatedFormControl name="name" type="text" placeholder="nom" onChange={onTutorChange} value={career.tutor.name} error={errors.tutor.name}/>
@@ -108,6 +108,7 @@ const CareerForm = ({career, errors, onTutorChange, onDiplomaChange, onBacChange
 
 CareerForm.propTypes = {
   career: PropTypes.object.isRequired,
+  contact: PropTypes.object.isRequired,
   onTutorChange: PropTypes.func.isRequired,
   onDiplomaChange: PropTypes.func.isRequired,
   onBacChange: PropTypes.func.isRequired,

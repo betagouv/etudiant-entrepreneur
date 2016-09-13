@@ -9,6 +9,7 @@ class CareerPage extends React.Component {
     super(props, context)
     this.state = {
       career: Object.assign({}, props.career),
+      contact: Object.assign({}, props.contact),
       errors: { bac: {}, diploma: {}, tutor: {} },
     }
     this.updateTutorState = this.updateTutorState.bind(this)
@@ -52,6 +53,7 @@ class CareerPage extends React.Component {
     return (
       <CareerForm
         career={this.state.career}
+        contact={this.state.contact}
         onTutorChange={this.updateTutorState}
         onDiplomaChange={this.updateDiplomaState}
         onBacChange={this.updateBacState}
@@ -62,7 +64,8 @@ class CareerPage extends React.Component {
 
 function mapStateToProps(state, ownProps) {
   return {
-    career: state.career
+    career: state.career,
+    contact: state.contact
   }
 }
 
