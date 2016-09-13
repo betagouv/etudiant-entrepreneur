@@ -77,6 +77,7 @@ function mapDispatchToProps(dispatch) {
 
 CareerPage.propTypes = {
   career: PropTypes.object.isRequired,
+  contact: PropTypes.object.isRequired,
   actions: PropTypes.object.isRequired
 }
 

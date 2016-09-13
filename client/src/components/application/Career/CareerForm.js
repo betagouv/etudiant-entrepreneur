@@ -4,6 +4,7 @@ import RadioGroup from '../../common/RadioGroup'
 import ValidatedFormControl from '../../common/ValidatedFormControl'
 import {diplomas} from './diplomas'
 import {countries} from '../../common/ressources/countries'
+import {getDescYearList, getUniversityYear} from '../../common/yearHelper'
 
 function getLastDiplomaHeader(situation) {
   if (situation == 'student') {
@@ -11,6 +12,8 @@ function getLastDiplomaHeader(situation) {
   }
   return ("Mon dernier diplôme")
 }
+
+const last60YearsList = getDescYearList(new Date().getFullYear(), 70)
 
 const CareerForm = ({career, contact, errors, onTutorChange, onDiplomaChange, onBacChange}) => {
   return (
@@ -46,7 +49,10 @@ const CareerForm = ({career, contact, errors, onTutorChange, onDiplomaChange, on
         </FormGroup>
         <FormGroup className="required">
           <ControlLabel>Année d'obtention</ControlLabel>
-          <ValidatedFormControl name="year" type="text" placeholder="AAAA" onChange={onBacChange} value={career.bac.year} error={errors.bac.year}/>
+          <ValidatedFormControl name="year" componentClass="select" onChange={onBacChange} value={career.bac.year} error={errors.bac.year}>
+            <option value="" disabled>Sélectionner</option>
+            {last60YearsList.map((year, index) => { return (<option key={index + 1} value={year}>{year}</option>) }) }
+          </ValidatedFormControl>
         </FormGroup>
         <FormGroup  className={(career.bac.isOriginal == 'true') ? 'required' : 'required hidden'}>
           <ControlLabel>Type de baccalauréat</ControlLabel>
@@ -76,7 +82,10 @@ const CareerForm = ({career, contact, errors, onTutorChange, onDiplomaChange, on
       <Panel header={getLastDiplomaHeader(contact.situation)}>
         <FormGroup className="required">
           <ControlLabel>Année universitaire</ControlLabel>
-          <ValidatedFormControl name="year" type="text" placeholder="AAAA" onChange={onDiplomaChange} value={career.diploma.year} error={errors.diploma.year}/>
+          <ValidatedFormControl name="year" componentClass="select" onChange={onDiplomaChange} value={career.diploma.year} error={errors.diploma.year}>
+            <option value="" disabled>Sélectionner</option>
+            {last60YearsList.map((year, index) => { return (<option key={index + 1} value={getUniversityYear(year)}>{getUniversityYear(year)}</option>) }) }
+          </ValidatedFormControl>
         </FormGroup>
         <FormGroup className="required">
           <ControlLabel>Type de formation / diplôme</ControlLabel>
