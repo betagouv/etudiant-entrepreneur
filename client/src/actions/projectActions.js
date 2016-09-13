@@ -11,6 +11,6 @@ export function updateProject(project) {
 export function updateTeam(team) {
   return (dispatch, getState) => {
     const {project} = getState()
-    return dispatch(updateProject(Object.assign({project}, {team})))
+    return dispatch(updateProject(Object.assign({}, project, {team})))
   }
 }

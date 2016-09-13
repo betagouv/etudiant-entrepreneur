@@ -47,7 +47,7 @@ describe('Project Actions', () => {
           const expectedActions = [
             { type: types.UPDATE_PROJECT, project: Initialproject }
           ]
-          const store = mockStore({ application: {} })
+          const store = mockStore({ application: {}, project: {} })
           store.dispatch(projectActions.updateTeam(team))
           const actions = store.getActions()
           expect(actions[0].type).toEqual(types.UPDATE_PROJECT)

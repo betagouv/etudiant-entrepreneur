@@ -11,8 +11,8 @@ export class TeamPage extends React.Component {
   constructor(props, context) {
     super(props, context)
     this.state = {
-      project: Object.assign({}, props.project),
-      team: props.team,
+      project: Object.assign({ teamType: '' }, props.project),
+      team: [...props.team],
       newMember: Object.assign({
         name: '',
         firstname: '',
@@ -65,7 +65,7 @@ export class TeamPage extends React.Component {
     const team = [...this.state.team.filter((m) => m != member)]
     this.props.actions.updateTeam(team)
 
-    this.setState({
+    return this.setState({
       newMember: {
         name: '',
         firstname: '',
@@ -75,10 +75,9 @@ export class TeamPage extends React.Component {
         situation: '',
         skill: ''
       },
-      errors: {}
+      errors: {},
+      team
     })
-
-    return this.setState({ team })
   }
 
   addTeamMember(event) {
@@ -92,7 +91,7 @@ export class TeamPage extends React.Component {
 
     this.props.actions.updateTeam(team)
 
-    this.setState({
+    return this.setState({
       newMember: {
         name: '',
         firstname: '',
@@ -102,10 +101,9 @@ export class TeamPage extends React.Component {
         situation: '',
         skill: ''
       },
-      errors: {}
+      errors: {},
+      team
     })
-
-    return this.setState({ team })
   }
 
   render() {
