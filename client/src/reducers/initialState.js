@@ -54,7 +54,8 @@ export default {
       name: '',
       firstname: '',
       email: ''
-    }
+    },
+    entrepreneurship: []
   },
   profile: {
     gender: '',

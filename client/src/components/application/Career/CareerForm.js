@@ -5,6 +5,7 @@ import ValidatedFormControl from '../../common/ValidatedFormControl'
 import {diplomas} from './diplomas'
 import {countries} from '../../common/ressources/countries'
 import {getDescYearList, getUniversityYear} from '../../common/yearHelper'
+import EntrepreneurshipPanel from './EntrepreneurshipPanel'
 
 function getLastDiplomaHeader(situation) {
   if (situation == 'student') {
@@ -13,9 +14,9 @@ function getLastDiplomaHeader(situation) {
   return ("Mon dernier diplôme")
 }
 
-const last60YearsList = getDescYearList(new Date().getFullYear(), 70)
+const last70YearsList = getDescYearList(new Date().getFullYear(), 70)
 
-const CareerForm = ({career, contact, errors, onTutorChange, onDiplomaChange, onBacChange}) => {
+const CareerForm = ({career, contact, errors, onTutorChange, onDiplomaChange, onBacChange, onEntrepreneurshipChange}) => {
   return (
     <form>
       <p>Mon Parcours</p>
@@ -51,7 +52,7 @@ const CareerForm = ({career, contact, errors, onTutorChange, onDiplomaChange, on
           <ControlLabel>Année d'obtention</ControlLabel>
           <ValidatedFormControl name="year" componentClass="select" onChange={onBacChange} value={career.bac.year} error={errors.bac.year}>
             <option value="" disabled>Sélectionner</option>
-            {last60YearsList.map((year, index) => { return (<option key={index + 1} value={year}>{year}</option>) }) }
+            {last70YearsList.map((year, index) => { return (<option key={index + 1} value={year}>{year}</option>) }) }
           </ValidatedFormControl>
         </FormGroup>
         <FormGroup  className={(career.bac.isOriginal == 'true') ? 'required' : 'required hidden'}>
@@ -84,7 +85,7 @@ const CareerForm = ({career, contact, errors, onTutorChange, onDiplomaChange, on
           <ControlLabel>Année universitaire</ControlLabel>
           <ValidatedFormControl name="year" componentClass="select" onChange={onDiplomaChange} value={career.diploma.year} error={errors.diploma.year}>
             <option value="" disabled>Sélectionner</option>
-            {last60YearsList.map((year, index) => { return (<option key={index + 1} value={getUniversityYear(year)}>{getUniversityYear(year)}</option>) }) }
+            {last70YearsList.map((year, index) => { return (<option key={index + 1} value={getUniversityYear(year)}>{getUniversityYear(year)}</option>) }) }
           </ValidatedFormControl>
         </FormGroup>
         <FormGroup className="required">
@@ -118,6 +119,7 @@ const CareerForm = ({career, contact, errors, onTutorChange, onDiplomaChange, on
           <ValidatedFormControl name="city" type="text" placeholder="ville" onChange={onDiplomaChange} value={career.diploma.city} error={errors.diploma.city}/>
         </FormGroup>
       </Panel>
+      <EntrepreneurshipPanel entrepreneurship={career.entrepreneurship} onEntrepreneurshipChange={onEntrepreneurshipChange}/>
     </form>
   )
 }
@@ -128,6 +130,7 @@ CareerForm.propTypes = {
   onTutorChange: PropTypes.func.isRequired,
   onDiplomaChange: PropTypes.func.isRequired,
   onBacChange: PropTypes.func.isRequired,
+  onEntrepreneurshipChange: PropTypes.func.isRequired,
   errors: PropTypes.object,
 }
 

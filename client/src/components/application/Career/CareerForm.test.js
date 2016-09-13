@@ -3,7 +3,7 @@ import React from 'react'
 import {shallow} from 'enzyme'
 import CareerForm from './CareerForm'
 
-function setup(career = { bac: {}, diploma: {}, tutor: {} }, contact = {}) {
+function setup(career = { bac: {}, diploma: {}, tutor: {}, exp: [] }, contact = {}) {
   const props = {
     career: Object.assign({}, career),
     contact: Object.assign({}, contact),

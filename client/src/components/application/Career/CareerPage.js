@@ -15,6 +15,7 @@ class CareerPage extends React.Component {
     this.updateTutorState = this.updateTutorState.bind(this)
     this.updateBacState = this.updateBacState.bind(this)
     this.updateDiplomaState = this.updateDiplomaState.bind(this)
+    this.updateEntrepreneurship = this.updateEntrepreneurship.bind(this)
   }
 
   updateCareerState(event) {
@@ -28,7 +29,7 @@ class CareerPage extends React.Component {
   updateTutorState(event) {
     const field = event.target.name
     let career = this.state.career
-    career.tutor = Object.assign({} , career.tutor, { [field]: event.target.value })
+    career.tutor = Object.assign({}, career.tutor, { [field]: event.target.value })
     this.props.actions.updateCareer(career)
     return this.setState({ career })
   }
@@ -36,7 +37,7 @@ class CareerPage extends React.Component {
   updateBacState(event) {
     const field = event.target.name
     let career = this.state.career
-    career.bac = Object.assign({} , career.bac, { [field]: event.target.value })
+    career.bac = Object.assign({}, career.bac, { [field]: event.target.value })
     this.props.actions.updateCareer(career)
     return this.setState({ career })
   }
@@ -44,7 +45,14 @@ class CareerPage extends React.Component {
   updateDiplomaState(event) {
     const field = event.target.name
     let career = this.state.career
-    career.diploma = Object.assign({} , career.diploma, { [field]: event.target.value })
+    career.diploma = Object.assign({}, career.diploma, { [field]: event.target.value })
+    this.props.actions.updateCareer(career)
+    return this.setState({ career })
+  }
+
+  updateEntrepreneurship(entrepreneurship) {
+    let career = this.state.career
+    career.entrepreneurship = [...entrepreneurship]
     this.props.actions.updateCareer(career)
     return this.setState({ career })
   }
@@ -57,6 +65,7 @@ class CareerPage extends React.Component {
         onTutorChange={this.updateTutorState}
         onDiplomaChange={this.updateDiplomaState}
         onBacChange={this.updateBacState}
+        onEntrepreneurshipChange={this.updateEntrepreneurship}
         errors={this.state.errors}/>
     )
   }
