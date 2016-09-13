@@ -3,7 +3,6 @@ import { FormGroup, ControlLabel, FormControl, HelpBlock, Panel, Button, Radio }
 import RadioGroup from '../../common/RadioGroup'
 import ValidatedFormControl from '../../common/ValidatedFormControl'
 import TeamMemberList from './TeamMemberList'
-import conditionAddMember from './ConditionAddMember'
 
 const TeamMemberAddForm = ({team, newMember, addMember, onChange, errors}) => {
   return (
@@ -53,4 +52,4 @@ TeamMemberAddForm.propTypes = {
   errors: PropTypes.object
 }
 
-export default conditionAddMember(TeamMemberAddForm)
+export default TeamMemberAddForm

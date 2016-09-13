@@ -4,6 +4,7 @@ import ValidatedFormControl from '../../common/ValidatedFormControl'
 import RadioGroup from '../../common/RadioGroup'
 import TeamMemberList from './TeamMemberList'
 import TeamMemberAddForm from './TeamMemberAddForm'
+import ButtonWrapperComponent from '../../common/ButtonWrapperComponent'
 
 const TeamForm = (props) => {
   return (
@@ -18,7 +19,9 @@ const TeamForm = (props) => {
       </FormGroup>
       <div className={(props.project.teamType == 'collective') ? '' : ' hidden'}>
         <TeamMemberList team={props.team} onMemberDelete={props.onMemberDelete}/>
-        <TeamMemberAddForm {...props} />
+        <ButtonWrapperComponent showButtonText="J'ajoute des membres à mon projet" isChildrenShown={props.team.length != 0} glyph="plus">
+          <TeamMemberAddForm {...props}/>
+        </ButtonWrapperComponent>
       </div>
     </form>
   )

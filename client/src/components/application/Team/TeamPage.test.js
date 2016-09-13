@@ -3,7 +3,7 @@ import React from 'react'
 import {mount} from 'enzyme'
 import {TeamPage} from './TeamPage'
 
-const addMembersInputSelector = 'button.add-members'
+const addMembersInputSelector = 'button.add-member'
 
 function initialSetup(newMember = { situation: '' }) {
   const props = {
@@ -20,14 +20,14 @@ function initialSetup(newMember = { situation: '' }) {
 
 function setup(newMember = {}) {
   const mountedPage = initialSetup(newMember)
-  mountedPage.find(addMembersInputSelector).simulate('click')
+  mountedPage.find('button.show-component').simulate('click')
   return mountedPage
 }
 
 describe('<TeamPage>', () => {
-  it('displays a button to Add a member', () => {
+  it('displays a button to Add team members', () => {
     const wrapper = initialSetup()
-    const addMemberButton = wrapper.find(addMembersInputSelector)
+    const addMemberButton = wrapper.find('button.show-component')
     expect(addMemberButton.length).toBe(1)
   })
   describe('When add member has been clicked', () => {
