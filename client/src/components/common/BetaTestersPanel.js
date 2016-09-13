@@ -3,7 +3,7 @@ import {Panel} from 'react-bootstrap'
 
 const BetaTestersPanel = () => {
   return (
-    <Panel bsStyle="info">
+    <Panel header="Cadre de l'expérimentation" bsStyle="info">
       <div>Ce service n'est actuellement disponible qu'aux candidats des PEPITE participant à l'expérimentation:</div>
       <ul>
         <li>PEPITE ETENA</li>
