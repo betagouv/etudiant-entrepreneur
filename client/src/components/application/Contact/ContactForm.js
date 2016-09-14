@@ -36,10 +36,10 @@ const ContactForm = ({contact, errors, onChange}) => {
         <div>Diplômé·e en 2016, si tu obtiens le statut étudiant·e-entrepreneur·e, tu devras t'inscrire  au <a target="_blank" href="http://www.pepite-france.fr/diplome-detablissement-etudiant-entrepreneur/">diplôme d’établissement étudiant-entrepreneur (D2E)</a> via ton Pepite.</div>
       </Panel>
       <FormGroup className="required">
-        <ControlLabel>J'ai déjà postulé au statut l'année dernière</ControlLabel>
+        <ControlLabel>J'ai déjà obtenu le statut l'année dernière</ControlLabel>
         <RadioGroup name="isRenew" onChange={onChange} selectedValue={contact.isRenew}>
           <Radio value="true">oui, il s'agit d'un renouvellement</Radio>
-          <Radio value="false">non, c'est ma première candidature</Radio>
+          <Radio value="false">non</Radio>
         </RadioGroup>
       </FormGroup>
     </form>
