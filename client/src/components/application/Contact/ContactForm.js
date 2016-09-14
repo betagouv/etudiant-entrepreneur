@@ -26,7 +26,7 @@ const ContactForm = ({contact, errors, onChange}) => {
         <ValidatedFormControl name="phone" type="text" placeholder="" onChange={onChange} value={contact.phone} error={errors.phone}/>
       </FormGroup>
       <FormGroup className="required">
-        <ControlLabel>En septembre 2016 :</ControlLabel>
+        <ControlLabel>En septembre  :</ControlLabel>
         <RadioGroup name="situation" onChange={onChange} selectedValue={contact.situation}>
           <Radio value="graduate">J'aurai fini ou arrêté mes études</Radio>
           <Radio value="student">Je serai étudiant·e</Radio>
@@ -35,6 +35,13 @@ const ContactForm = ({contact, errors, onChange}) => {
       <Panel className={(contact.situation == 'graduate') ? 'required' : 'required hidden'}>
         <div>Diplômé·e en 2016, si tu obtiens le statut étudiant·e-entrepreneur·e, tu devras t'inscrire  au <a target="_blank" href="http://www.pepite-france.fr/diplome-detablissement-etudiant-entrepreneur/">diplôme d’établissement étudiant-entrepreneur (D2E)</a> via ton Pepite.</div>
       </Panel>
+      <FormGroup className="required">
+        <ControlLabel>J'ai déjà postulé au statut l'année dernière</ControlLabel>
+        <RadioGroup name="isRenew" onChange={onChange} selectedValue={contact.isRenew}>
+          <Radio value="true">oui, il s'agit d'un renouvellement</Radio>
+          <Radio value="false">non, c'est ma première candidature</Radio>
+        </RadioGroup>
+      </FormGroup>
     </form>
   )
 }

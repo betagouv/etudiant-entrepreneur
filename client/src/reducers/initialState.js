@@ -26,7 +26,8 @@ export default {
     firstname: '',
     email: '',
     phone: '',
-    situation: ''
+    situation: '',
+    isRenew: ''
   },
   pepite: {
     region: 0,
