@@ -3,6 +3,7 @@ import application from './applicationReducer'
 import project from './projectReducer'
 import contact from './contactReducer'
 import pepite from './pepiteReducer'
+import errors from './errorsReducer'
 import career from './careerReducer'
 import profile from './profileReducer'
 
@@ -12,7 +13,8 @@ const rootReducer = combineReducers({
   contact,
   pepite,
   career,
-  profile
+  profile,
+  errors
 })
 
 export default rootReducer

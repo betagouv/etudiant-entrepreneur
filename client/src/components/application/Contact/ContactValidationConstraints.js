@@ -20,5 +20,13 @@ export const contactValidationConstraints = {
   phone: {
     isValid: (phone => validator.isMobilePhone(phone, 'fr-FR')),
     errorMessage: "Tu dois avoir un numéro de téléphone valide"
+  },
+  situation: {
+    isValid: isNotEmpty,
+    errorMessage: "obligatoire"
+  },
+  isRenew: {
+    isValid: isNotEmpty,
+    errorMessage: "obligatoire"
   }
 }

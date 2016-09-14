@@ -80,5 +80,8 @@ export default {
     facebook: '',
     linkedin: '',
     viadeo: '',
+  },
+  errors: {
+    contact: {}
   }
 }

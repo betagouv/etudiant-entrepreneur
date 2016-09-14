@@ -18,10 +18,14 @@ export class ContactPage extends React.Component {
         phone: '',
         situation: ''
       }, props.contact),
-      errors: {},
+      errors: Object.assign({}, props.errors),
     }
     this.updateContactState = this.updateContactState.bind(this)
     this.contactValidation = new Validation(contactValidationConstraints)
+  }
+
+  componentWillReceiveProps(nextProps) {
+    this.setState({ errors: Object.assign({}, nextProps.errors) })
   }
 
   updateContactState(event) {
@@ -30,7 +34,6 @@ export class ContactPage extends React.Component {
     contact[field] = event.target.value
     this.validateContactField(field, event.target.value)
     this.props.actions.updateContact(contact)
-    return this.setState({ contact })
   }
 
   validateContactField(field, value) {
@@ -58,6 +61,7 @@ export class ContactPage extends React.Component {
 function mapStateToProps(state, ownProps) {
 
   return {
+    errors: state.errors.contact,
     contact: state.contact
   }
 }
@@ -70,7 +74,8 @@ function mapDispatchToProps(dispatch) {
 
 ContactPage.propTypes = {
   contact: PropTypes.object.isRequired,
-  actions: PropTypes.object.isRequired
+  actions: PropTypes.object.isRequired,
+  errors: PropTypes.object.isRequired
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(ContactPage)

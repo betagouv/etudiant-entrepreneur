@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {PropTypes} from 'react'
 import Multistep from '../common/MultiStep'
 import SavePage from './Save/SavePage'
 import ProjectPage from './Project/ProjectPage'
@@ -10,6 +10,10 @@ import CareerPage from './Career/CareerPage'
 import ProfilePage from './Profile/ProfilePage'
 import { Modal } from 'react-bootstrap'
 import '../../styles/apply-form.css'
+
+import {connect} from 'react-redux'
+import {bindActionCreators} from 'redux'
+import * as errorsActions from '../../actions/errorsActions'
 
 
 class ApplicationPage extends React.Component {
@@ -26,7 +30,9 @@ class ApplicationPage extends React.Component {
 
   openSave(event) {
     event.preventDefault()
-    this.setState({ isSaveShown: true })
+    if (this.props.actions.validateContact()) {
+      this.setState({ isSaveShown: true })
+    }
   }
 
   closeSave() {
@@ -64,4 +70,19 @@ class ApplicationPage extends React.Component {
   }
 }
 
-export default ApplicationPage
+
+function mapStateToProps(state, ownProps) {
+  return {}
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    actions: bindActionCreators(errorsActions, dispatch)
+  }
+}
+
+ApplicationPage.propTypes = {
+  actions: PropTypes.object.isRequired,
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ApplicationPage)

@@ -1,10 +1,11 @@
 import ApplicationApi from '../api/mockApplicationApi'
-import {loadContactSuccess} from './contactActions'
+import {loadContactSuccess, } from './contactActions'
 import {loadProjectSuccess} from './projectActions'
 import {loadPepiteSuccess} from './pepiteActions'
 import {loadProfileSuccess} from './profileActions'
 import {loadCareerSuccess} from './careerActions'
 import * as types from './actionTypes'
+
 
 export function loadApplicationSuccess(application) {
   return { type: types.LOAD_APPLICATION_SUCCESS, application }
