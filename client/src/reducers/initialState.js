@@ -53,7 +53,8 @@ export default {
     tutor: {
       name: '',
       firstname: '',
-      email: ''
+      email: '',
+      skill: ''
     },
     entrepreneurship: []
   },

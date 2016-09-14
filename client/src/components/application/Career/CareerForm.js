@@ -30,6 +30,10 @@ const CareerForm = ({career, contact, errors, onTutorChange, onDiplomaChange, on
           <ValidatedFormControl name="firstname" type="text" placeholder="prénom" onChange={onTutorChange} value={career.tutor.firstname} error={errors.tutor.firstname}/>
         </FormGroup>
         <FormGroup className="required">
+          <ControlLabel>Discipline</ControlLabel>
+          <ValidatedFormControl name="skill" type="text" placeholder="discipline" onChange={onTutorChange} value={career.tutor.skill} error={errors.tutor.skill}/>
+        </FormGroup>
+        <FormGroup className="required">
           <ControlLabel>Email</ControlLabel>
           <ValidatedFormControl name="email" type="email" placeholder="nom" onChange={onTutorChange} value={career.tutor.email} error={errors.tutor.email}/>
         </FormGroup>
