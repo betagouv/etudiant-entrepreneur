@@ -27,7 +27,7 @@ const ContactForm = ({contact, errors, onChange}) => {
       </FormGroup>
       <FormGroup className="required">
         <ControlLabel>En septembre  :</ControlLabel>
-        <RadioGroup name="situation" onChange={onChange} selectedValue={contact.situation}>
+        <RadioGroup name="situation" onChange={onChange} selectedValue={contact.situation} error={errors.situation}>
           <Radio value="graduate">J'aurai fini ou arrêté mes études</Radio>
           <Radio value="student">Je serai étudiant·e</Radio>
         </RadioGroup>
@@ -37,7 +37,7 @@ const ContactForm = ({contact, errors, onChange}) => {
       </Panel>
       <FormGroup className="required">
         <ControlLabel>J'ai déjà obtenu le statut l'année dernière</ControlLabel>
-        <RadioGroup name="isRenew" onChange={onChange} selectedValue={contact.isRenew}>
+        <RadioGroup name="isRenew" onChange={onChange} selectedValue={contact.isRenew} error={errors.isRenew}>
           <Radio value="true">oui, il s'agit d'un renouvellement</Radio>
           <Radio value="false">non</Radio>
         </RadioGroup>
