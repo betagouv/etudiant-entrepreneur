@@ -22,7 +22,7 @@ const ContactForm = ({contact, errors, onChange}) => {
         <ValidatedFormControl name="email" type="email" placeholder="" onChange={onChange} value={contact.email} error={errors.email}/>
       </FormGroup>
       <FormGroup className="required">
-        <ControlLabel>Téléphone</ControlLabel>
+        <ControlLabel>Téléphone mobile</ControlLabel>
         <ValidatedFormControl name="phone" type="text" placeholder="" onChange={onChange} value={contact.phone} error={errors.phone}/>
       </FormGroup>
       <FormGroup className="required">

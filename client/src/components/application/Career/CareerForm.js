@@ -7,9 +7,13 @@ import {countries} from '../../common/ressources/countries'
 import {getDescYearList, getUniversityYear} from '../../common/yearHelper'
 import EntrepreneurshipPanel from './EntrepreneurshipPanel'
 
+function getCurrentUniversityYear() {
+  return (getUniversityYear(new Date().getFullYear()))
+}
+
 function getLastDiplomaHeader(situation) {
   if (situation == 'student') {
-    return ("Ma formation en cours dans l'enseignement supérieur")
+    return ("Ma inscription dans l'enseignement supérieur sur l'année " + getCurrentUniversityYear())
   }
   return ("Mon dernier diplôme")
 }
@@ -21,6 +25,9 @@ const CareerForm = ({career, contact, errors, onTutorChange, onDiplomaChange, on
     <form>
       <p>Mon Parcours</p>
       <Panel header="Mon responsable pédagogique" className={(contact.situation == 'student') ? 'required' : 'required hidden'}>
+        <Panel>
+          <div>Enseignant·e dans la formation dans laquelle je suis inscrit·e pour l'année universitaire {getCurrentUniversityYear()}.</div>
+        </Panel>
         <FormGroup className="required">
           <ControlLabel>Nom</ControlLabel>
           <ValidatedFormControl name="name" type="text" placeholder="nom" onChange={onTutorChange} value={career.tutor.name} error={errors.tutor.name}/>
@@ -35,7 +42,7 @@ const CareerForm = ({career, contact, errors, onTutorChange, onDiplomaChange, on
         </FormGroup>
         <FormGroup className="required">
           <ControlLabel>Email</ControlLabel>
-          <ValidatedFormControl name="email" type="email" placeholder="nom" onChange={onTutorChange} value={career.tutor.email} error={errors.tutor.email}/>
+          <ValidatedFormControl name="email" type="email" placeholder="email" onChange={onTutorChange} value={career.tutor.email} error={errors.tutor.email}/>
         </FormGroup>
       </Panel>
       <Panel header="Mon baccalauréat ou son équivalence en niveau">

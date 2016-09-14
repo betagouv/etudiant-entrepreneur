@@ -25,12 +25,14 @@ const ProjectForm = ({project, onChange, errors}) => {
         </RadioGroup>
       </FormGroup>
       <FormGroup className="required">
-        <ControlLabel>Statut de l'activité</ControlLabel>
+        <ControlLabel>Statut juridique de l'activité</ControlLabel>
         <RadioGroup name="status" onChange={onChange} selectedValue={project.status}>
           <Radio value="micro">Microactivité, auto-entrepreneuriat</Radio>
           <Radio value="company">Société (SAS, SARL...)</Radio>
           <Radio value="asso">Association</Radio>
           <Radio value="coop">Coopérative, SCOP, SCIC...</Radio>
+          <Radio value="other">Autre statut juridiue</Radio>
+          <Radio value="unknown">Choix non arrêté</Radio>
         </RadioGroup>
       </FormGroup>
       <FormGroup className="required">
@@ -43,7 +45,7 @@ const ProjectForm = ({project, onChange, errors}) => {
       </FormGroup>
       <FormGroup className="required">
         <ControlLabel>Où en suis-je dans mon projet ?</ControlLabel>
-        <ValidatedFormControl name="stepSummary" rows="5" componentClass="textarea" placeholder="avancement" onChange={onChange} value={project.stepSummary} error={errors.stepSummary}/>
+        <ValidatedFormControl name="stepSummary" rows="5" componentClass="textarea" placeholder="indiquez les démarches réalisées" onChange={onChange} value={project.stepSummary} error={errors.stepSummary}/>
       </FormGroup>
       <FormGroup className="required">
         <ControlLabel>Quelles sont les prochaines étapes de mon projet ?</ControlLabel>
@@ -54,7 +56,7 @@ const ProjectForm = ({project, onChange, errors}) => {
         <ValidatedFormControl name="siret" type="text" placeholder="siret" onChange={onChange} value={project.siret} error={errors.siret}/>
       </FormGroup>
       <FormGroup className="required">
-        <ControlLabel>Quelle est ou sera mon activité ? Ma proposition de valeur ?</ControlLabel>
+        <ControlLabel>En quoi consiste mon projet ou activité entrepreneurial·e ?</ControlLabel>
         <ValidatedFormControl name="activitySummary" rows="5" componentClass="textarea" placeholder="activité - proposition de valeur" onChange={onChange} value={project.activitySummary} error={errors.activitySummary}/>
       </FormGroup>
       <FormGroup className="required">
