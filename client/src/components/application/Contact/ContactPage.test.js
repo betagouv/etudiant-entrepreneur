@@ -6,7 +6,8 @@ import {ContactPage} from './ContactPage'
 function setup(contact = {}) {
   const props = {
     contact,
-    actions: { updateContact: () => { } }
+    actions: { updateContact: () => { } },
+    errorsActions: { updateComponentErrors: () => { } }
   }
   return mount(<ContactPage {...props} />)
 }

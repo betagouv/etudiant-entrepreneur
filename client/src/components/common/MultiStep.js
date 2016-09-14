@@ -104,7 +104,8 @@ const Multistep = class MultiStep extends React.Component {
   }
 
   getClassName(className, i) {
-    return className + "-" + this.state.navState.styles[i]
+    const suffix = (this.props.steps[i].hasError) ? 'error' : this.state.navState.styles[i]
+    return className + "-" + suffix
   }
 
   renderSteps() {

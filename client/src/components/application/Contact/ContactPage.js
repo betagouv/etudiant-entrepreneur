@@ -3,6 +3,7 @@ import ContactForm from './ContactForm'
 import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
 import * as contactActions from '../../../actions/contactActions'
+import * as errorsActions from '../../../actions/errorsActions'
 import {contactValidationConstraints} from './ContactValidationConstraints'
 import Validation from '../../common/Validation'
 import {isEmptyObject} from '../../common/validationHelper.js'
@@ -39,13 +40,11 @@ export class ContactPage extends React.Component {
   validateContactField(field, value) {
     let errors = this.state.errors
     errors[field] = this.contactValidation.validateField(field, value)
+    if (errors[field] == null) {
+      delete errors[field]
+    }
+    this.props.errorsActions.updateComponentErrors('contact', errors)
     return this.setState({ errors })
-  }
-
-  validateSave() {
-    const errors = this.contactValidation.validateAllFields(this.state.contact)
-    this.setState({ errors })
-    return (isEmptyObject(errors))
   }
 
   render() {
@@ -68,13 +67,15 @@ function mapStateToProps(state, ownProps) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    actions: bindActionCreators(contactActions, dispatch)
+    actions: bindActionCreators(contactActions, dispatch),
+    errorsActions: bindActionCreators(errorsActions, dispatch)
   }
 }
 
 ContactPage.propTypes = {
   contact: PropTypes.object.isRequired,
   actions: PropTypes.object.isRequired,
+  errorsActions: PropTypes.object.isRequired,
   errors: PropTypes.object.isRequired
 }
 

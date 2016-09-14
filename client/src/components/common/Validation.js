@@ -9,6 +9,7 @@ const Validation = class Validation {
     if (field in this.constraints && !this.constraints[field].isValid(value)) {
       return this.constraints[field].errorMessage
     }
+    return null
   }
 
   validateAllFields(value) {

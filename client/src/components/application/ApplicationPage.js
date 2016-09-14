@@ -10,6 +10,7 @@ import CareerPage from './Career/CareerPage'
 import ProfilePage from './Profile/ProfilePage'
 import { Modal } from 'react-bootstrap'
 import '../../styles/apply-form.css'
+import {isEmptyObject} from '../common/validationHelper'
 
 import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
@@ -39,10 +40,14 @@ class ApplicationPage extends React.Component {
     this.setState({ isSaveShown: false })
   }
 
+  hasError(componentName) {
+    return !isEmptyObject(this.props.errors[componentName])
+  }
+
   getSteps() {
     return (
       [
-        { name: 'Mes Infos', component: <ContactPage /> },
+        { name: 'Mes Infos', component: <ContactPage />, hasError: this.hasError('contact') },
         { name: 'Mon Équipe', component: <TeamPage /> },
         { name: 'Mon Projet', component: <ProjectPage /> },
         { name: 'Mon PEPITE', component: <PepitePage /> },
@@ -72,7 +77,9 @@ class ApplicationPage extends React.Component {
 
 
 function mapStateToProps(state, ownProps) {
-  return {}
+  return {
+    errors: state.errors
+  }
 }
 
 function mapDispatchToProps(dispatch) {
@@ -83,6 +90,7 @@ function mapDispatchToProps(dispatch) {
 
 ApplicationPage.propTypes = {
   actions: PropTypes.object.isRequired,
+  errors: PropTypes.object.isRequired
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(ApplicationPage)
