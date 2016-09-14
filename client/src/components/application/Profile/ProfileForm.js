@@ -48,7 +48,7 @@ const ProfileForm = ({profile, contact, errors, onChange, onDateChange}) => {
         <ControlLabel>Motivation à candidater au statut national étudiant·e-entrepreneur·e</ControlLabel>
         <ValidatedFormControl name="motivation" rows="5" componentClass="textarea" placeholder="vos motivations" onChange={onChange} value={profile.motivation} error={errors.motivation}/>
       </FormGroup>
-      <Panel header="Mes coordonnées">
+      <Panel header="Mes coordonnées pérennes dans le temps">
         <FormGroup className="required">
           <ControlLabel>Adresse postale</ControlLabel>
           <ValidatedFormControl name="address" type="text" placeholder="Adresse" onChange={onChange} value={profile.address} error={errors.address}/>
