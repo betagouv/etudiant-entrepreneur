@@ -98,7 +98,8 @@ function mapStateToProps(state, ownProps) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    actions: bindActionCreators(errorsActions, dispatch)
+    actions: bindActionCreators(errorsActions, dispatch),
+    applicationActions: bindActionCreators(errorsActions, dispatch)
   }
 }
 

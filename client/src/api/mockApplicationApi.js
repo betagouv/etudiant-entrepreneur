@@ -1,31 +1,87 @@
 import delay from './delay'
 
 let initApplication = {
-  id: 'awpzoazryxlwaptduzkgclsh',
-  project: {
-    id: 10,
-    name: "",
-    summary: "",
-    type: "0",
-    step: "",
-    site: "",
-    blog: "",
-    facebook: "",
-    twitter: "",
-    siret: "",
-    activitySummary: "",
-    stepSummary: "",
-    nextStepSummary: "",
-    sector: "0",
-    otherSector: "",
-    motiviation: "",
-    team: []
+  "id": "awpzoazryxlwaptduzkgclsh",
+  "project": {
+    "name": "",
+    "summary": "",
+    "type": "0",
+    "step": "",
+    "site": "",
+    "linkedin": "",
+    "blog": "",
+    "facebook": "",
+    "twitter": "",
+    "siret": "",
+    "activitySummary": "",
+    "stepSummary": "",
+    "nextStepSummary": "",
+    "sector": "0",
+    "otherSector": "",
+    "motiviation": "",
+    "team": [
+
+    ],
+    "teamType": "",
+    "status": ""
   },
-  contact: {
-    name: '',
-    firstname: '',
-    email: '',
-    phone: ''
+  "contact": {
+    "name": "TestUser",
+    "firstname": "testUser",
+    "email": "test@test.com",
+    "phone": "0624234324",
+    "situation": "graduate",
+    "isRenew": "true"
+  },
+  "profile": {
+    "gender": "",
+    "situation": "",
+    "nationality": "",
+    "motivation": "",
+    "isPartTime": "",
+    "hasActivity": "",
+    "activity": "",
+    "isUnemployed": "",
+    "isFreelance": "",
+    "birthDate": "",
+    "birthPlace": "",
+    "ine": "",
+    "address": "",
+    "cp": "",
+    "city": "",
+    "country": "",
+    "twitter": "",
+    "facebook": "",
+    "linkedin": "",
+    "viadeo": ""
+  },
+  "career": {
+    "bac": {
+      "isOriginal": "",
+      "type": "",
+      "country": "",
+      "year": "",
+      "stream": "",
+      "establishment": "",
+      "city": ""
+    },
+    "diploma": {
+      "year": "",
+      "type": "",
+      "name": "",
+      "sector": "",
+      "establishment": "",
+      "city": ""
+    },
+    "tutor": {
+      "name": "",
+      "firstname": "",
+      "email": "",
+      "skill": ""
+    },
+    "entrepreneurship": [
+
+    ]
   }
 }
 
@@ -42,6 +98,7 @@ class mockApplicationApi {
     return new Promise((resolve, reject) => {
       setTimeout(() => {
         initApplication = application
+        application.id = 'awpzoazryxlwaptduzkgclsh'
         resolve(Object.assign({}, application))
       }, delay)
     })

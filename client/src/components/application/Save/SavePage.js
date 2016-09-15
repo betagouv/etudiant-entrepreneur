@@ -1,8 +1,12 @@
 import React, {PropTypes} from 'react'
 import SaveForm from './SaveForm'
 import Validation from '../../common/Validation'
+import {connect} from 'react-redux'
+import {bindActionCreators} from 'redux'
+import toastr from 'toastr'
+import * as applicationActions from '../../../actions/applicationActions'
 
-class SavePage extends React.Component {
+export class SavePage extends React.Component {
   constructor(props, context) {
     super(props, context)
     this.state = {
@@ -22,15 +26,14 @@ class SavePage extends React.Component {
 
   saveForm(event) {
     event.preventDefault()
-    if (!this.validateSave()) {
-      return
-    }
-    if (typeof this.props.onSaveSuccess == 'function') {
-      this.props.onSaveSuccess()
-    }
-    return this.setState({
-      link: 'https://etudiant-entrepreneur.beta.gouv.fr/application/wbwadsfrazrazlkazfk'
-    })
+    this.props.actions.saveApplication()
+      .then((application) => {
+        this.setState({link: 'https://etudiant-entrepreneur.beta.gouv.fr/application/wbwadsfrazrazlkazfk'})
+        toastr.success("Candidature sauvgardée " + application.id)
+      })
+      .catch((err) => {
+        toastr.error(err)
+      })
   }
 
   validateSave() {
@@ -49,8 +52,19 @@ class SavePage extends React.Component {
   }
 }
 
-SavePage.propTypes = {
-  onSaveSuccess: PropTypes.func,
+function mapStateToProps(state, ownProps) {
+  return {
+  }
 }
 
-export default SavePage
+function mapDispatchToProps(dispatch) {
+  return {
+    actions: bindActionCreators(applicationActions, dispatch),
+  }
+}
+
+SavePage.propTypes = {
+  actions: PropTypes.object.isRequired
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(SavePage)

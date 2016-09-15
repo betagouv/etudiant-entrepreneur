@@ -31,7 +31,7 @@ export class ContactPage extends React.Component {
 
   updateContactState(event) {
     const field = event.target.name
-    let contact = this.state.contact
+    const contact = this.state.contact
     contact[field] = event.target.value
     this.validateContactField(field, event.target.value)
     this.props.actions.updateContact(contact)
