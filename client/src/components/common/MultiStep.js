@@ -61,11 +61,13 @@ const Multistep = class MultiStep extends React.Component {
   }
 
   setNavState(next) {
-    this.setState({ navState: this.getNavStates(next, this.props.steps.length) })
-    if (next < this.props.steps.length) {
-      this.setState({ compState: next })
+    if (this.props.canNavigate(this.state.compState)) {
+      this.setState({ navState: this.getNavStates(next, this.props.steps.length) })
+      if (next < this.props.steps.length) {
+        this.setState({ compState: next })
+      }
+      this.checkNavState(next)
     }
-    this.checkNavState(next)
   }
 
   handleKeyDown(evt) {
@@ -152,7 +154,8 @@ const Multistep = class MultiStep extends React.Component {
 
 Multistep.propTypes = {
   steps: PropTypes.array.isRequired,
-  save: PropTypes.func.isRequired
+  save: PropTypes.func.isRequired,
+  canNavigate: PropTypes.func.isRequired
 }
 
 export default Multistep

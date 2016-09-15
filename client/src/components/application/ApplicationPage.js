@@ -26,7 +26,7 @@ class ApplicationPage extends React.Component {
     this.getSteps = this.getSteps.bind(this)
     this.closeSave = this.closeSave.bind(this)
     this.openSave = this.openSave.bind(this)
-
+    this.canNavigate = this.canNavigate.bind(this)
   }
 
   openSave(event) {
@@ -58,10 +58,17 @@ class ApplicationPage extends React.Component {
     )
   }
 
+  canNavigate(stepIndex) {
+    if (stepIndex == 0) {
+      return this.props.actions.validateContact()
+    }
+    return false
+  }
+
   render() {
     return (
       <div className="jumbotron">
-        <Multistep steps={this.getSteps()} save={this.openSave} />
+        <Multistep steps={this.getSteps()} save={this.openSave} canNavigate={this.canNavigate}/>
         <Modal show={this.state.isSaveShown} onHide={this.closeSave}>
           <Modal.Header>
             <Modal.Title>Sauvegarder mon formulaire</Modal.Title>
