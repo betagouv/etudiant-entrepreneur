@@ -67,8 +67,9 @@ class ApplicationPage extends React.Component {
       if (!isContactValid) {
         toastr.error("Avant de continuer, 'Mes Informations' doit être complet et valide")
       }
+      return isContactValid
     }
-    return false
+    return true
   }
 
   render() {
