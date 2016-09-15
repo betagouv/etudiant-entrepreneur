@@ -1,4 +1,5 @@
 import React, {PropTypes} from 'react'
+import toastr from 'toastr'
 import Multistep from '../common/MultiStep'
 import SavePage from './Save/SavePage'
 import ProjectPage from './Project/ProjectPage'
@@ -33,6 +34,8 @@ class ApplicationPage extends React.Component {
     event.preventDefault()
     if (this.props.actions.validateContact()) {
       this.setState({ isSaveShown: true })
+    } else {
+      toastr.error("Pour sauvegarder, 'Mes Informations' doit être complet et valide")
     }
   }
 
@@ -60,7 +63,10 @@ class ApplicationPage extends React.Component {
 
   canNavigate(stepIndex) {
     if (stepIndex == 0) {
-      return this.props.actions.validateContact()
+      const isContactValid = this.props.actions.validateContact()
+      if (!isContactValid) {
+        toastr.error("Avant de continuer, 'Mes Informations' doit être complet et valide")
+      }
     }
     return false
   }
