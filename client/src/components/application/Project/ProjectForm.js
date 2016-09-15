@@ -31,7 +31,7 @@ const ProjectForm = ({project, onChange, errors}) => {
           <Radio value="company">Société (SAS, SARL...)</Radio>
           <Radio value="asso">Association</Radio>
           <Radio value="coop">Coopérative, SCOP, SCIC...</Radio>
-          <Radio value="other">Autre statut juridiue</Radio>
+          <Radio value="other">Autre statut juridique</Radio>
           <Radio value="unknown">Choix non arrêté</Radio>
         </RadioGroup>
       </FormGroup>
