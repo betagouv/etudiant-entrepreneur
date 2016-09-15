@@ -32,7 +32,7 @@ export function loadApplication(id) {
 
 export function saveApplication() {
   return (dispatch, getState) => {
-    const {applicationId, project, contact, profile, career} = getState()
+    const {applicationId, project, contact, profile, pepite, career} = getState()
     return ApplicationApi.saveApplication(Object.assign({ id: applicationId, project, contact, profile, career })).then(application => {
       dispatch(updateApplicationSuccess(application))
       return application

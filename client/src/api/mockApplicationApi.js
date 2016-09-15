@@ -55,6 +55,10 @@ let initApplication = {
     "linkedin": "",
     "viadeo": ""
   },
+  pepite: {
+    region: 0,
+    establishment: 0
+  },
   "career": {
     "bac": {
       "isOriginal": "",
@@ -89,8 +93,12 @@ class mockApplicationApi {
   static getApplication(id) {
     return new Promise((resolve, reject) => {
       setTimeout(() => {
-        resolve(Object.assign({}, initApplication))
-      })
+        if (id == 'awpzoazryxlwaptduzkgclsh') {
+          resolve(Object.assign({}, initApplication))
+        } else {
+          reject('La candidature que vous cherchez n\'existe pas')
+        }
+      }, delay)
     })
   }
 

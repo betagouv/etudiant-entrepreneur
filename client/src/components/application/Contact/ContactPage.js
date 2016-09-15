@@ -27,6 +27,7 @@ export class ContactPage extends React.Component {
 
   componentWillReceiveProps(nextProps) {
     this.setState({ errors: Object.assign({}, nextProps.errors) })
+    this.setState({ contact: Object.assign({}, nextProps.contact) })
   }
 
   updateContactState(event) {

@@ -16,6 +16,7 @@ import {isEmptyObject} from '../common/validationHelper'
 import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
 import * as errorsActions from '../../actions/errorsActions'
+import * as applicationActions from '../../actions/applicationActions'
 
 
 class ApplicationPage extends React.Component {
@@ -28,6 +29,14 @@ class ApplicationPage extends React.Component {
     this.closeSave = this.closeSave.bind(this)
     this.openSave = this.openSave.bind(this)
     this.canNavigate = this.canNavigate.bind(this)
+  }
+
+  componentDidMount() {
+    if (this.props.applicationId) {
+      this.props.applicationActions.loadApplication(this.props.applicationId).catch((err) => {
+        toastr.error(err)
+      })
+    }
   }
 
   openSave(event) {
@@ -92,20 +101,23 @@ class ApplicationPage extends React.Component {
 
 function mapStateToProps(state, ownProps) {
   return {
-    errors: state.errors
+    errors: state.errors,
+    applicationId: ownProps.params.id
   }
 }
 
 function mapDispatchToProps(dispatch) {
   return {
     actions: bindActionCreators(errorsActions, dispatch),
-    applicationActions: bindActionCreators(errorsActions, dispatch)
+    applicationActions: bindActionCreators(applicationActions, dispatch)
   }
 }
 
 ApplicationPage.propTypes = {
   actions: PropTypes.object.isRequired,
-  errors: PropTypes.object.isRequired
+  applicationActions: PropTypes.object.isRequired,
+  errors: PropTypes.object.isRequired,
+  applicationId: PropTypes.string
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(ApplicationPage)
