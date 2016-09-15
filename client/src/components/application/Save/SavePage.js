@@ -24,21 +24,20 @@ export class SavePage extends React.Component {
     return this.setState({ contact })
   }
 
+  getAppliationUrl(applicationId) {
+    return window.location.href.replace(/application(\/)?/, `application/${applicationId}`)
+  }
+
   saveForm(event) {
     event.preventDefault()
     this.props.actions.saveApplication()
       .then((application) => {
-        this.setState({link: 'https://etudiant-entrepreneur.beta.gouv.fr/application/wbwadsfrazrazlkazfk'})
+        this.setState({link: this.getAppliationUrl(application.id)})
         toastr.success("Candidature sauvgardée " + application.id)
       })
       .catch((err) => {
         toastr.error(err)
       })
-  }
-
-  validateSave() {
-    //this.setState({ errors })
-    return (true)
   }
 
   render() {
