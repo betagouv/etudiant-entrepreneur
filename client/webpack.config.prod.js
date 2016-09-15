@@ -20,7 +20,8 @@ export default {
   target: 'web', // necessary per https://webpack.github.io/docs/testing.html#compile-and-test
   output: {
     path: `${__dirname}/dist`,
-    filename: '[name].[chunkhash].js'
+    filename: '[name].[chunkhash].js',
+    publicPath: '/'
   },
   plugins: [
     // Hash the files using MD5 so that their names change when the content changes.
