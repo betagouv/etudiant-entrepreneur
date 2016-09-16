@@ -16,8 +16,15 @@ class ApplicationApi {
   }
 
   static saveApplication(application) {
-    console.log(application)
     return axios.post('/application', application)
+      .then((res) => {
+        const applicationResponse = res.data
+        return (Object.assign({}, applicationResponse, { id: applicationResponse._id }))
+      })
+  }
+
+  static updateApplication(id, application) {
+    return axios.put('/application/' + id, application)
       .then((res) => {
         const applicationResponse = res.data
         return (Object.assign({}, applicationResponse, { id: applicationResponse._id }))

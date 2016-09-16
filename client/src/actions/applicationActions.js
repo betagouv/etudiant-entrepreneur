@@ -43,14 +43,15 @@ export function saveApplication() {
     const {application, project, contact, profile, pepite, career} = getState()
     if (!application.id) {
       return ApplicationApi.saveApplication(Object.assign({ project, contact, profile, career, pepite })).then(application => {
-        console.log('Saved object ' , application)
         dispatch(updateApplicationSuccess({ id: application.id }))
         return application
       })
     }
     else {
-      console.log('UPDATE ATTEMPT')
-      return Promise.resolve({id : application.id})
+      return ApplicationApi.updateApplication(application.id, Object.assign({ project, contact, profile, career, pepite })).then(application => {
+        dispatch(updateApplicationSuccess({ id: application.id }))
+        return application
+      })
     }
   }
 }

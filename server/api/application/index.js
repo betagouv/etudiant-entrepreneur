@@ -8,5 +8,6 @@ module.exports = (options) => {
   router.get('/ping', applicationController.ping)
   router.get('/:id', applicationController.getApplication)
   router.post('/', applicationController.createApplication)
+  router.put('/:id', applicationController.updateApplication)
   return router
 }

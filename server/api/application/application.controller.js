@@ -34,8 +34,26 @@ class ApplicationController {
       })
       .catch((err) => {
         if (err.name == 'ValidationError') {
-          return next(new StandardError('Mes informations doit être rempli', {code: 400}))
+          return next(new StandardError('Mes informations doit être rempli', { code: 400 }))
         }
+      })
+  }
+
+  updateApplication(req, res) {
+    if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
+      return res.sendStatus(404)
+    }
+    return Application
+      .findByIdAndUpdate(req.params.id, req.body, {new: true})
+      .then((application) => {
+        if (!application) {
+          return res.sendStatus(404)
+        }
+        return res.json(application)
+      })
+      .catch((err) => {
+        req.log.error(err)
+        return res.status(500).send(err)
       })
   }
 }
