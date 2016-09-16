@@ -25,15 +25,16 @@ export class SavePage extends React.Component {
   }
 
   getAppliationUrl(applicationId) {
-    return window.location.href.replace(/application(\/)?/, `application/${applicationId}`)
+    return window.location.href.replace(/application(\/)?.*/, `application/${applicationId}`)
   }
 
   saveForm(event) {
     event.preventDefault()
     this.props.actions.saveApplication()
       .then((application) => {
-        this.setState({link: this.getAppliationUrl(application.id)})
-        toastr.success("Candidature sauvgardée " + application.id)
+        console.log(application)
+        this.setState({link: this.getAppliationUrl(application._id)})
+        toastr.success("Candidature sauvgardée " + application._id)
       })
       .catch((err) => {
         toastr.error(err)

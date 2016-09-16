@@ -32,6 +32,7 @@
     "url": "https://github.com/sgmap/etudiant-entrepreneur/issues"
   },
   "dependencies": {
+    "axios": "0.14.0",
     "babel-polyfill": "6.13.0",
     "bootstrap": "3.3.7",
     "jquery": "3.1.0",

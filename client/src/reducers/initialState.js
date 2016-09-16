@@ -1,5 +1,7 @@
 export default {
-  applicationId: '',
+  application: {
+    id: ''
+  },
   project: {
     name: '',
     summary: '',

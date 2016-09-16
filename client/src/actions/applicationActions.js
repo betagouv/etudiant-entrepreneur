@@ -1,4 +1,4 @@
-import ApplicationApi from '../api/mockApplicationApi'
+import ApplicationApi from '../api/ApplicationApi'
 import {loadContactSuccess, } from './contactActions'
 import {loadProjectSuccess} from './projectActions'
 import {loadPepiteSuccess} from './pepiteActions'
@@ -18,12 +18,20 @@ export function updateApplicationSuccess(application) {
 export function loadApplication(id) {
   return dispatch => {
     return ApplicationApi.getApplication(id).then(application => {
-      dispatch(loadApplicationSuccess(application))
+      dispatch(loadApplicationSuccess({ id: application._id }))
       dispatch(loadContactSuccess(application.contact))
-      dispatch(loadProjectSuccess(application.project))
-      dispatch(loadPepiteSuccess(application.pepite))
-      dispatch(loadProfileSuccess(application.profile))
-      dispatch(loadCareerSuccess(application.career))
+      if (application.project) {
+        dispatch(loadProjectSuccess(application.project))
+      }
+      if (application.pepite) {
+        dispatch(loadPepiteSuccess(application.pepite))
+      }
+      if (application.pepite) {
+        dispatch(loadProfileSuccess(application.profile))
+      }
+      if (application.pepite) {
+        dispatch(loadCareerSuccess(application.career))
+      }
     }).catch(error => {
       throw (error)
     })
@@ -32,9 +40,10 @@ export function loadApplication(id) {
 
 export function saveApplication() {
   return (dispatch, getState) => {
-    const {applicationId, project, contact, profile, pepite, career} = getState()
-    return ApplicationApi.saveApplication(Object.assign({ id: applicationId, project, contact, profile, career })).then(application => {
-      dispatch(updateApplicationSuccess(application))
+    const {application, project, contact, profile, pepite, career} = getState()
+    return ApplicationApi.saveApplication(Object.assign({ project, contact, profile, career, pepite })).then(application => {
+      console.log(application)
+      dispatch(updateApplicationSuccess({ id: application._id }))
       return application
     }).catch(error => {
       throw (error)

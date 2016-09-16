@@ -34,7 +34,7 @@ class ApplicationController {
       })
       .catch((err) => {
         if (err.name == 'ValidationError') {
-          return next(new StandardError('Nom, prénom et email sont obligatoires.', {code: 400}))
+          return next(new StandardError('Mes informations doit être rempli', {code: 400}))
         }
       })
   }
