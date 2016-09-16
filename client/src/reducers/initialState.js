@@ -1,6 +1,5 @@
 export default {
   application: {
-    id: ''
   },
   project: {
     name: '',

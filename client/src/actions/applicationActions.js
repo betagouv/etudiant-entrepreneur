@@ -18,7 +18,7 @@ export function updateApplicationSuccess(application) {
 export function loadApplication(id) {
   return dispatch => {
     return ApplicationApi.getApplication(id).then(application => {
-      dispatch(loadApplicationSuccess({ id: application._id }))
+      dispatch(loadApplicationSuccess({ id: application.id }))
       dispatch(loadContactSuccess(application.contact))
       if (application.project) {
         dispatch(loadProjectSuccess(application.project))
@@ -41,12 +41,16 @@ export function loadApplication(id) {
 export function saveApplication() {
   return (dispatch, getState) => {
     const {application, project, contact, profile, pepite, career} = getState()
-    return ApplicationApi.saveApplication(Object.assign({ project, contact, profile, career, pepite })).then(application => {
-      console.log(application)
-      dispatch(updateApplicationSuccess({ id: application._id }))
-      return application
-    }).catch(error => {
-      throw (error)
-    })
+    if (!application.id) {
+      return ApplicationApi.saveApplication(Object.assign({ project, contact, profile, career, pepite })).then(application => {
+        console.log('Saved object ' , application)
+        dispatch(updateApplicationSuccess({ id: application.id }))
+        return application
+      })
+    }
+    else {
+      console.log('UPDATE ATTEMPT')
+      return Promise.resolve({id : application.id})
+    }
   }
 }
