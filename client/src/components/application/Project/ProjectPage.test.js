@@ -4,9 +4,13 @@ import {mount} from 'enzyme'
 import {ProjectPage} from './ProjectPage'
 
 function setup(project = {}) {
+  const errors = {}
+
   const props = {
     project,
-    actions: { updateProject: () => { } }
+    actions: { updateProject: () => { } },
+    errorsActions: {updateComponentErrors: (f, v) => { errors[f] = v } },
+    errors
   }
   return mount(<ProjectPage {...props} />)
 }

@@ -3,6 +3,7 @@ import ProjectForm from './ProjectForm'
 import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
 import * as projectActions from '../../../actions/projectActions'
+import * as errorsActions from '../../../actions/errorsActions'
 import {projectValidationConstraints} from './ProjectValidationConstraints'
 import Validation from '../../common/Validation'
 
@@ -28,7 +29,7 @@ export class ProjectPage extends React.Component {
         otherSector: "",
         motiviation: ""
       }, props.project),
-      errors: {}
+      errors: Object.assign({}, props.errors)
     }
     this.updateProjectState = this.updateProjectState.bind(this)
     this.projectValidation = new Validation(projectValidationConstraints)
@@ -44,9 +45,13 @@ export class ProjectPage extends React.Component {
   }
 
   validateProjectField(field, value) {
-    let errors = {}
+    const errors = Object.assign({}, this.state.errors)
     errors[field] = this.projectValidation.validateField(field, value)
-    return this.setState(Object.assign(this.state.errors, errors))
+    if (errors[field] == null) {
+      delete errors[field]
+    }
+    this.props.errorsActions.updateComponentErrors('project', errors)
+        return this.setState({ errors })
   }
 
   render() {
@@ -60,18 +65,22 @@ export class ProjectPage extends React.Component {
 
 ProjectPage.propTypes = {
   project: PropTypes.object.isRequired,
-  actions: PropTypes.object.isRequired
+  actions: PropTypes.object.isRequired,
+  errors: PropTypes.object.isRequired,
+  errorsActions: PropTypes.object.isRequired
 }
 
 function mapStateToProps(state, ownProps) {
   return {
-    project: state.project
+    project: state.project,
+    errors: state.errors.project
   }
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    actions: bindActionCreators(projectActions, dispatch)
+    actions: bindActionCreators(projectActions, dispatch),
+    errorsActions: bindActionCreators(errorsActions, dispatch),
   }
 }
 
