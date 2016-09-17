@@ -51,7 +51,7 @@ export class ProjectPage extends React.Component {
       delete errors[field]
     }
     this.props.errorsActions.updateComponentErrors('project', errors)
-        return this.setState({ errors })
+    return this.setState({ errors })
   }
 
   render() {

@@ -18,19 +18,23 @@ export const projectValidationConstraints = {
     errorMessage: "Vous devez sélectionner un type de projet"
   },
   site: {
-    isValid: validator.isURL,
+    isValid: (v) => !isNotEmpty(v) || validator.isURL(v),
+    errorMessage: "ton site doit être une url valide"
+  },
+  linkedin: {
+    isValid: (v) => !isNotEmpty(v) || validator.isURL(v),
     errorMessage: "ton site doit être une url valide"
   },
   blog: {
-    isValid: validator.isURL,
+    isValid: (v) => !isNotEmpty(v) || validator.isURL(v),
     errorMessage: "ton blog doit être une url valide"
   },
   facebook: {
-    isValid: validator.isURL,
+    isValid: (v) => !isNotEmpty(v) || validator.isURL(v),
     errorMessage: "ton facebook doit être une url valide"
   },
   twitter: {
-    isValid: validator.isURL,
+    isValid: (v) => !isNotEmpty(v) || validator.isURL(v),
     errorMessage: "ton twitter doit être une url valide"
   },
   activitySummary: {
