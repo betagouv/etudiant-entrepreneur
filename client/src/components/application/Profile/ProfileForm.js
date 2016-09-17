@@ -12,14 +12,14 @@ const ProfileForm = ({profile, contact, errors, onChange, onDateChange}) => {
       <p>Mon Profil</p>
       <FormGroup className="required">
         <ControlLabel>Genre</ControlLabel>
-        <RadioGroup name="gender" onChange={onChange} selectedValue={profile.gender}>
+        <RadioGroup name="gender" onChange={onChange} selectedValue={profile.gender} error={errors.gender}>
           <Radio value="male">Homme</Radio>
           <Radio value="female">Femme</Radio>
         </RadioGroup>
       </FormGroup>
       <FormGroup className={(contact.situation == 'student') ? 'required' : 'required hidden'}>
         <ControlLabel>Étudiant en 2016 :</ControlLabel>
-        <RadioGroup name="situation" onChange={onChange} selectedValue={profile.situation}>
+        <RadioGroup name="situation" onChange={onChange} selectedValue={profile.situation} error={errors.situation}>
           <Radio value="graduate">Je fini mes études avant décembre 2016</Radio>
           <Radio value="student">Je serai étudiant·e toute l'année universitaire 2016-2017</Radio>
         </RadioGroup>

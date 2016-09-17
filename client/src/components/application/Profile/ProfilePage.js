@@ -70,6 +70,7 @@ ProfilePage.propTypes = {
   profile: PropTypes.object.isRequired,
   contact: PropTypes.object.isRequired,
   actions: PropTypes.object.isRequired,
+  errorsActions: PropTypes.object.isRequired,
   errors: PropTypes.object.isRequired
 }
 
