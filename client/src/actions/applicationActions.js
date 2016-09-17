@@ -29,7 +29,7 @@ export function loadApplication(id) {
       if (application.pepite) {
         dispatch(loadProfileSuccess(application.profile))
       }
-      if (application.pepite) {
+      if (application.career) {
         dispatch(loadCareerSuccess(application.career))
       }
     }).catch(error => {

@@ -83,6 +83,9 @@ export default {
     viadeo: '',
   },
   errors: {
-    contact: {}
+    contact: {},
+    bac: {},
+    diploma: {},
+    profile: {}
   }
 }

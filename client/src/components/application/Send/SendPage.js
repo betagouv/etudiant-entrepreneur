@@ -1,22 +1,48 @@
 import React, {PropTypes} from 'react'
-import { Panel } from 'react-bootstrap'
+import SendForm from './SendForm'
+import {connect} from 'react-redux'
+import {bindActionCreators} from 'redux'
+import toastr from 'toastr'
+import * as applicationActions from '../../../actions/applicationActions'
+import * as errorsActions from '../../../actions/errorsActions'
 
 class SendPage extends React.Component {
   constructor(props, context) {
     super(props, context)
+    this.sendForm = this.sendForm.bind(this)
+  }
+
+  sendForm() {
+    if (this.props.errorsActions.validateApplication()) {
+      toastr.success('Envoi')
+    } else {
+      toastr.error('Tu as des erreurs dans le formulaire')
+    }
   }
 
   render() {
     return (
-      <form>
-        <p>Envoi</p>
-        <Panel header="Droit d’accès et de rectification">
-          <div>Les informations recueillies font l’objet d’un traitement informatique destiné à améliorer la qualité et la pertinence des politiques publiques en faveur de l’entrepreneuriat. Les destinataires des données sont : chacune des PEPITE (sur le périmètre les concernant) et les Ministères en charge de l’enseignement supérieur, de la recherche et de l’industrie, et la Caisse des dépôts et consignations (sur l’ensemble du périmètre).
-Conformément à la loi « informatique et libertés » du 6 janvier 1978 modifiée en 2004, je bénéficie d’un droit d’accès et de rectification aux informations qui me concernent, que je peux exercer en m’adressant au ministère de l’Éducation nationale, de l’Enseignement supérieur et de la Recherche, Direction générale de l’enseignement supérieur et de l’insertion professionnelle, département du lien formation-emploi (DGESIP A1-1), 1 rue Descartes, 75005 Paris (contact@etudiant-entrepreneur.beta.gouv.fr).</div>
-        </Panel>
-      </form>
+      <SendForm sendForm={this.sendForm}/>
     )
   }
 }
 
-export default SendPage
+function mapStateToProps(state, ownProps) {
+  return {
+  }
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    actions: bindActionCreators(applicationActions, dispatch),
+    errorsActions: bindActionCreators(errorsActions, dispatch)
+  }
+}
+
+SendPage.propTypes = {
+  actions: PropTypes.object.isRequired,
+  errorsActions: PropTypes.object.isRequired
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(SendPage)
+

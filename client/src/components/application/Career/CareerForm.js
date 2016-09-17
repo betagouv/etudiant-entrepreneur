@@ -20,7 +20,7 @@ function getLastDiplomaHeader(situation) {
 
 const last70YearsList = getDescYearList(new Date().getFullYear(), 70)
 
-const CareerForm = ({career, contact, errors, onTutorChange, onDiplomaChange, onBacChange, onEntrepreneurshipChange}) => {
+const CareerForm = ({career, contact, errors, bacErrors, diplomaErrors, onTutorChange, onDiplomaChange, onBacChange, onEntrepreneurshipChange}) => {
   return (
     <form>
       <p>Mon Parcours</p>
@@ -47,21 +47,21 @@ const CareerForm = ({career, contact, errors, onTutorChange, onDiplomaChange, on
       </Panel>
       <Panel header="Mon baccalauréat ou son équivalence en niveau">
         <FormGroup className="required">
-          <RadioGroup name="isOriginal" onChange={onBacChange} selectedValue={career.bac.isOriginal}>
+          <RadioGroup name="isOriginal" onChange={onBacChange} selectedValue={career.bac.isOriginal} error={bacErrors.isOriginal}>
             <Radio value="true">Je suis lauréat·e du baccalauréat</Radio>
             <Radio value="false">J'ai obtenu son équivalence en niveau</Radio>
           </RadioGroup>
         </FormGroup>
         <FormGroup className="required">
           <ControlLabel>Pays d'obtention</ControlLabel>
-          <ValidatedFormControl name="country" componentClass="select" onChange={onBacChange} value={career.bac.country} error={errors.bac.country}>
+          <ValidatedFormControl name="country" componentClass="select" onChange={onBacChange} value={career.bac.country} error={bacErrors.country}>
             <option value="" disabled>Sélectionner</option>
             {Object.keys(countries).map((key, index) => { return (<option key={index + 1} value={key}>{countries[key]}</option>) }) }
           </ValidatedFormControl>
         </FormGroup>
         <FormGroup className="required">
           <ControlLabel>Année d'obtention</ControlLabel>
-          <ValidatedFormControl name="year" componentClass="select" onChange={onBacChange} value={career.bac.year} error={errors.bac.year}>
+          <ValidatedFormControl name="year" componentClass="select" onChange={onBacChange} value={career.bac.year} error={bacErrors.year}>
             <option value="" disabled>Sélectionner</option>
             {last70YearsList.map((year, index) => { return (<option key={index + 1} value={year}>{year}</option>) }) }
           </ValidatedFormControl>
@@ -76,40 +76,40 @@ const CareerForm = ({career, contact, errors, onTutorChange, onDiplomaChange, on
         </FormGroup>
         <FormGroup className={(career.bac.isOriginal == 'false') ? 'required' : 'required hidden'}>
           <ControlLabel>Nom de l'équivalence</ControlLabel>
-          <ValidatedFormControl name="type" type="text" placeholder="nom" onChange={onBacChange} value={career.bac.type} error={errors.bac.type}/>
+          <ValidatedFormControl name="type" type="text" placeholder="nom" onChange={onBacChange} value={career.bac.type} error={bacErrors.type}/>
         </FormGroup>
         <FormGroup  className={(career.bac.isOriginal == 'true') ? '' : 'hidden'}>
           <ControlLabel>Série</ControlLabel>
-          <ValidatedFormControl name="stream" type="text" placeholder="S, L..." onChange={onBacChange} value={career.bac.stream} error={errors.bac.stream}/>
+          <ValidatedFormControl name="stream" type="text" placeholder="S, L..." onChange={onBacChange} value={career.bac.stream} error={bacErrors.stream}/>
         </FormGroup>
         <FormGroup className="required">
           <ControlLabel>Établissement</ControlLabel>
-          <ValidatedFormControl name="establishment" type="text" placeholder="établissement" onChange={onBacChange} value={career.bac.establishment} error={errors.bac.establishment}/>
+          <ValidatedFormControl name="establishment" type="text" placeholder="établissement" onChange={onBacChange} value={career.bac.establishment} error={bacErrors.establishment}/>
         </FormGroup>
         <FormGroup className="required">
           <ControlLabel>Ville</ControlLabel>
-          <ValidatedFormControl name="city" type="text" placeholder="ville" onChange={onBacChange} value={career.bac.city} error={errors.bac.city}/>
+          <ValidatedFormControl name="city" type="text" placeholder="ville" onChange={onBacChange} value={career.bac.city} error={bacErrors.city}/>
         </FormGroup>
       </Panel>
       <Panel header={getLastDiplomaHeader(contact.situation)}>
         <FormGroup className="required">
           <ControlLabel>Année universitaire</ControlLabel>
-          <ValidatedFormControl name="year" componentClass="select" onChange={onDiplomaChange} value={career.diploma.year} error={errors.diploma.year}>
+          <ValidatedFormControl name="year" componentClass="select" onChange={onDiplomaChange} value={career.diploma.year} error={diplomaErrors.year}>
             <option value="" disabled>Sélectionner</option>
             {last70YearsList.map((year, index) => { return (<option key={index + 1} value={getUniversityYear(year)}>{getUniversityYear(year)}</option>) }) }
           </ValidatedFormControl>
         </FormGroup>
         <FormGroup className="required">
           <ControlLabel>Type de formation / diplôme</ControlLabel>
-          <ValidatedFormControl name="type" componentClass="select" onChange={onDiplomaChange} value={career.diploma.type} error={errors.diploma.type}>
-            <option value="0" disabled>Sélectionner</option>
+          <ValidatedFormControl name="type" componentClass="select" onChange={onDiplomaChange} value={career.diploma.type} error={diplomaErrors.type}>
+            <option value="" disabled>Sélectionner</option>
             {diplomas.map((diploma, index) => { return (<option key={index + 1} value={index + 1}>{diploma}</option>) }) }
             <option value="99">Autre</option>
           </ValidatedFormControl>
         </FormGroup>
         <FormGroup className="required">
           <ControlLabel>Libellé de la formation / diplôme</ControlLabel>
-          <ValidatedFormControl name="name" type="text" placeholder="nom" onChange={onDiplomaChange} value={career.diploma.name} error={errors.diploma.name}/>
+          <ValidatedFormControl name="name" type="text" placeholder="nom" onChange={onDiplomaChange} value={career.diploma.name} error={diplomaErrors.name}/>
         </FormGroup>
         <FormGroup>
           <ControlLabel>Dominante disciplinaire</ControlLabel>
@@ -123,11 +123,11 @@ const CareerForm = ({career, contact, errors, onTutorChange, onDiplomaChange, on
         </FormGroup>
         <FormGroup className="required">
           <ControlLabel>Établissement et composante</ControlLabel>
-          <ValidatedFormControl name="establishment" type="text" placeholder="établissement" onChange={onDiplomaChange} value={career.diploma.establishment} error={errors.diploma.establishment}/>
+          <ValidatedFormControl name="establishment" type="text" placeholder="établissement" onChange={onDiplomaChange} value={career.diploma.establishment} error={diplomaErrors.establishment}/>
         </FormGroup>
         <FormGroup className="required">
           <ControlLabel>Ville de formation</ControlLabel>
-          <ValidatedFormControl name="city" type="text" placeholder="ville" onChange={onDiplomaChange} value={career.diploma.city} error={errors.diploma.city}/>
+          <ValidatedFormControl name="city" type="text" placeholder="ville" onChange={onDiplomaChange} value={career.diploma.city} error={diplomaErrors.city}/>
         </FormGroup>
       </Panel>
       <EntrepreneurshipPanel entrepreneurship={career.entrepreneurship} onEntrepreneurshipChange={onEntrepreneurshipChange}/>
@@ -143,6 +143,8 @@ CareerForm.propTypes = {
   onBacChange: PropTypes.func.isRequired,
   onEntrepreneurshipChange: PropTypes.func.isRequired,
   errors: PropTypes.object,
+  bacErrors: PropTypes.object,
+  diplomaErrors: PropTypes.object,
 }
 
 export default CareerForm

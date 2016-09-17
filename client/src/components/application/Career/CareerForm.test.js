@@ -11,7 +11,9 @@ function setup(career = { bac: {}, diploma: {}, tutor: {}, exp: [] }, contact = 
     onBacChange: () => { },
     onTutorChange: () => { },
     onDiplomaChange: () => { },
-    errors: { bac: {}, diploma: {}, tutor: {} }
+    errors: { tutor: {} },
+    bacErrors: { },
+    diplomaErrors: { }
   }
   return shallow(<CareerForm {...props} />)
 }
