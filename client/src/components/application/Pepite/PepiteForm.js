@@ -42,7 +42,7 @@ const PepiteForm = ({pepite, contact, errors, onChange}) => {
           return(
             <FormGroup className={(contact.situation == 'graduate') ? 'hidden' : ''}>
               <ControlLabel>Mon établissement pour l'année 2016</ControlLabel>
-              <ValidatedFormControl name="establishment" componentClass="select" onChange={onChange} value={pepite.establishment} error={errors.region}>
+              <ValidatedFormControl name="establishment" componentClass="select" onChange={onChange} value={pepite.establishment}>
                 <option value="0" disabled>Sélectionner</option>
                 {regions[pepite.region - 1].establishments.map((eid) => { return (<option key={eid + 1} value={eid + 1}>{establishments[eid].name}</option>) }) }
               </ValidatedFormControl>

@@ -32,7 +32,8 @@ export default {
   },
   pepite: {
     region: 0,
-    establishment: 0
+    establishment: 0,
+    pepite: 0
   },
   career: {
     bac: {
@@ -87,6 +88,7 @@ export default {
     bac: {},
     diploma: {},
     profile: {},
+    pepite: {},
     project: {}
   }
 }

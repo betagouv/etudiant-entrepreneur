@@ -3,6 +3,9 @@ import PepiteForm from './PepiteForm'
 import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
 import * as pepiteActions from '../../../actions/pepiteActions'
+import * as errorsActions from '../../../actions/errorsActions'
+import Validation from '../../common/Validation'
+import {pepiteValidationConstraints} from './PepiteValidationConstraints'
 
 class PepitePage extends React.Component {
   constructor(props, context) {
@@ -10,9 +13,10 @@ class PepitePage extends React.Component {
     this.state = {
       pepite: Object.assign({}, props.pepite),
       contact: Object.assign({}, props.contact),
-      errors: {},
+      errors: Object.assign({}, props.errors),
     }
     this.updatePepiteState = this.updatePepiteState.bind(this)
+    this.pepiteValidation = new Validation(pepiteValidationConstraints)
   }
 
   updatePepiteState(event) {
@@ -22,9 +26,21 @@ class PepitePage extends React.Component {
     if (field == 'region') {
       pepite.establishment = 0
     }
+    this.validatePepiteField(field, event.target.value)
     this.props.actions.updatePepite(pepite)
     return this.setState({ pepite })
   }
+
+  validatePepiteField(field, value) {
+    const errors = Object.assign({}, this.state.errors)
+    errors[field] = this.pepiteValidation.validateField(field, value)
+    if (errors[field] == null) {
+      delete errors[field]
+    }
+    this.props.errorsActions.updateComponentErrors('pepite', errors)
+    return this.setState({ errors })
+  }
+
   render() {
     return (
       <PepiteForm
@@ -40,19 +56,23 @@ function mapStateToProps(state, ownProps) {
   return {
     pepite: state.pepite,
     contact: state.contact,
+    errors: state.errors.pepite
   }
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    actions: bindActionCreators(pepiteActions, dispatch)
+    actions: bindActionCreators(pepiteActions, dispatch),
+    errorsActions: bindActionCreators(errorsActions, dispatch),
   }
 }
 
 PepitePage.propTypes = {
   pepite: PropTypes.object.isRequired,
   contact: PropTypes.object.isRequired,
-  actions: PropTypes.object.isRequired
+  actions: PropTypes.object.isRequired,
+  errors: PropTypes.object.isRequired,
+  errorsActions: PropTypes.object.isRequired
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(PepitePage)
