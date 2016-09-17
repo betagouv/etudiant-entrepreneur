@@ -86,6 +86,7 @@ export default {
     contact: {},
     bac: {},
     diploma: {},
-    profile: {}
+    profile: {},
+    project: {}
   }
 }
