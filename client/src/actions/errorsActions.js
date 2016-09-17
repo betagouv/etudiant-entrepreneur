@@ -47,7 +47,10 @@ export function validateDiploma() {
 
 export function validateCareer() {
   return (dispatch, getState) => {
-    return dispatch(validateBac()) && dispatch(validateDiploma())
+    let valid = true
+    valid &= dispatch(validateBac())
+    valid &= dispatch(validateDiploma())
+    return valid
   }
 }
 
