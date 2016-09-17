@@ -60,11 +60,11 @@ class ApplicationPage extends React.Component {
     return (
       [
         { name: 'Mes Infos', component: <ContactPage />, hasError: this.hasError('contact') },
-        { name: 'Mon Équipe', component: <TeamPage /> },
-        { name: 'Mon Projet', component: <ProjectPage /> },
-        { name: 'Mon PEPITE', component: <PepitePage /> },
-        { name: 'Mon Parcours', component: <CareerPage /> },
-        { name: 'Mon Profil', component: <ProfilePage /> },
+        { name: 'Mon Équipe', component: <TeamPage />, hasError: this.hasError('team') },
+        { name: 'Mon Projet', component: <ProjectPage />, hasError: this.hasError('project') },
+        { name: 'Mon PEPITE', component: <PepitePage />, hasError: this.hasError('pepite') },
+        { name: 'Mon Parcours', component: <CareerPage />, hasError: this.hasError('bac') || this.hasError('diploma') },
+        { name: 'Mon Profil', component: <ProfilePage />, hasError: this.hasError('profile') },
         { name: 'Envoi', component: <SendPage /> }
       ]
     )
