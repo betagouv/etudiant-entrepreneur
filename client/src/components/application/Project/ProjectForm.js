@@ -18,7 +18,7 @@ const ProjectForm = ({project, onChange, errors}) => {
       </FormGroup>
       <FormGroup className="required">
         <ControlLabel>Type de projet</ControlLabel>
-        <RadioGroup name="type" onChange={onChange} selectedValue={project.type}>
+        <RadioGroup name="type" onChange={onChange} selectedValue={project.type} error={errors.type}>
           <Radio value="creation">Création d'activité</Radio>
           <Radio value="retake">Reprise d'activité</Radio>
           <Radio value="transfer">Transmission d'entreprise familiale</Radio>
@@ -26,7 +26,7 @@ const ProjectForm = ({project, onChange, errors}) => {
       </FormGroup>
       <FormGroup className="required">
         <ControlLabel>Statut juridique de l'activité</ControlLabel>
-        <RadioGroup name="status" onChange={onChange} selectedValue={project.status}>
+        <RadioGroup name="status" onChange={onChange} selectedValue={project.status} error={errors.status}>
           <Radio value="micro">Microactivité, auto-entrepreneuriat</Radio>
           <Radio value="company">Société (SAS, SARL...)</Radio>
           <Radio value="asso">Association</Radio>
@@ -37,7 +37,7 @@ const ProjectForm = ({project, onChange, errors}) => {
       </FormGroup>
       <FormGroup className="required">
         <ControlLabel>Etape du projet</ControlLabel>
-        <RadioGroup name="step" onChange={onChange} selectedValue={project.step}>
+        <RadioGroup name="step" onChange={onChange} selectedValue={project.step} error={errors.step}>
           <Radio value="building">Construction</Radio>
           <Radio value="launching">Lancement</Radio>
           <Radio value="created">Création, reprise ou transmission réalisée</Radio>
@@ -62,7 +62,7 @@ const ProjectForm = ({project, onChange, errors}) => {
       <FormGroup className="required">
         <ControlLabel>Quel est ou sera mon secteur d'activité ?</ControlLabel>
         <ValidatedFormControl name="sector" componentClass="select" onChange={onChange} value={project.sector} error={errors.sector}>
-          <option value="0" disabled>Sélectionner</option>
+          <option value="" disabled>Sélectionner</option>
           <option value="1">agriculture/écologie/envrionnement/biotechnologie/énergie renouvelable</option>
           <option value="2">alimentaire</option>
           <option value="3">animalerie</option>

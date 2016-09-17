@@ -14,8 +14,24 @@ export const projectValidationConstraints = {
     errorMessage: "obligatoire"
   },
   type: {
-    isValid: (value) => { return (value && value !== "0") },
+    isValid: isNotEmpty,
     errorMessage: "Vous devez sélectionner un type de projet"
+  },
+  status: {
+    isValid: isNotEmpty,
+    errorMessage: "Vous devez sélectionner un statut juridique"
+  },
+  step: {
+    isValid: isNotEmpty,
+    errorMessage: "Vous devez sélectionner une étape"
+  },
+  motiviation: {
+    isValid: isNotEmpty,
+    errorMessage: "obligatoire"
+  },
+  sector: {
+    isValid: isNotEmpty,
+    errorMessage: "Vous devez sélectionner un secteur d'activité"
   },
   site: {
     isValid: (v) => !isNotEmpty(v) || validator.isURL(v),

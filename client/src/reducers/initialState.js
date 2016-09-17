@@ -4,7 +4,7 @@ export default {
   project: {
     name: '',
     summary: '',
-    type: "0",
+    type: '',
     step: '',
     site: '',
     linkedin: '',
@@ -15,7 +15,7 @@ export default {
     activitySummary: '',
     stepSummary: '',
     nextStepSummary: '',
-    sector: '0',
+    sector: '',
     otherSector: '',
     motiviation: '',
     team: [],
