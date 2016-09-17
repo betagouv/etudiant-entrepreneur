@@ -24,7 +24,7 @@ export class TeamPage extends React.Component {
       },
         props.newMember
       ),
-      errors: {}
+      memberErrors: {}
     }
     this.addTeamMember = this.addTeamMember.bind(this)
     this.updateNewMemberState = this.updateNewMemberState.bind(this)
@@ -50,15 +50,15 @@ export class TeamPage extends React.Component {
   }
 
   validateNewMember() {
-    const errors = this.teamMemberValidation.validateAllFields(this.state.newMember)
-    this.setState({ errors })
-    return (isEmptyObject(errors))
+    const memberErrors = this.teamMemberValidation.validateAllFields(this.state.newMember)
+    this.setState({ memberErrors })
+    return (isEmptyObject(memberErrors))
   }
 
   validateNewMemberField(field, value) {
-    let errors = this.state.errors
-    errors[field] = this.teamMemberValidation.validateField(field, value)
-    return this.setState({ errors })
+    const memberErrors = this.state.memberErrors
+    memberErrors[field] = this.teamMemberValidation.validateField(field, value)
+    return this.setState({ memberErrors })
   }
 
   onMemberDelete(member) {
@@ -75,7 +75,7 @@ export class TeamPage extends React.Component {
         situation: '',
         skill: ''
       },
-      errors: {},
+      memberErrors: {},
       team
     })
   }
@@ -101,7 +101,7 @@ export class TeamPage extends React.Component {
         situation: '',
         skill: ''
       },
-      errors: {},
+      memberErrors: {},
       team
     })
   }
@@ -115,7 +115,7 @@ export class TeamPage extends React.Component {
         onChange={this.updateNewMemberState}
         projectOnChange={this.updateProjectState}
         onMemberDelete={this.onMemberDelete}
-        errors={this.state.errors} />
+        memberErrors={this.state.memberErrors} />
     )
   }
 }

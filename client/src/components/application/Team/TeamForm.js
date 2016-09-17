@@ -35,7 +35,7 @@ TeamForm.propTypes = {
   onChange: PropTypes.func.isRequired,
   projectOnChange: PropTypes.func.isRequired,
   onMemberDelete: PropTypes.func.isRequired,
-  errors: PropTypes.object
+  memberErrors: PropTypes.object.isRequired
 }
 
 export default TeamForm
