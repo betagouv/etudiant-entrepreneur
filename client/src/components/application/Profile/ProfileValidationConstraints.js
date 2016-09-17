@@ -33,6 +33,14 @@ export const profileValidationConstraints = {
     isValid: isNotEmpty,
     errorMessage: "obligatoire"
   },
+  city: {
+    isValid: isNotEmpty,
+    errorMessage: "obligatoire"
+  },
+  country: {
+    isValid: isNotEmpty,
+    errorMessage: "obligatoire"
+  },
   hasActivity: {
     isValid: isNotEmpty,
     errorMessage: "obligatoire"

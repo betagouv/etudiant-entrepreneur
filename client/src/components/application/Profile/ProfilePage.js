@@ -24,7 +24,7 @@ class ProfilePage extends React.Component {
   }
 
   validateProfileField(field, value) {
-    const errors = this.props.errors
+    const errors = Object.assign({}, this.props.errors)
     errors[field] = this.profileValidation.validateField(field, value)
     if (errors[field] == null) {
       delete errors[field]
@@ -33,10 +33,13 @@ class ProfilePage extends React.Component {
   }
 
   updateProfileDate(date) {
-    let profile = this.state.profile
+    if (date == null) {
+      date = ''
+    }
+    let profile = Object.assign({}, this.props.profile)
     profile.birthDate = date
+    this.validateProfileField('birthDate', date)
     this.props.actions.updateProfile(profile)
-    return this.setState({ profile })
   }
 
   render() {

@@ -2,6 +2,7 @@ import React, {PropTypes} from 'react'
 import { FormGroup, ControlLabel, FormControl, Radio, HelpBlock, Panel } from 'react-bootstrap'
 import DatePicker from 'react-bootstrap-date-picker'
 import RadioGroup from '../../common/RadioGroup'
+import ValidatedComponent from '../../common/ValidatedComponent'
 import ValidatedFormControl from '../../common/ValidatedFormControl'
 import {calendarProps} from '../../common/calendarHelper'
 import {countries} from '../../common/ressources/countries'
@@ -26,7 +27,9 @@ const ProfileForm = ({profile, contact, errors, onChange, onDateChange}) => {
       </FormGroup>
       <FormGroup className="required">
         <ControlLabel>Date de naissance</ControlLabel>
-        <DatePicker value={profile.birthDate} onChange={onDateChange} {...calendarProps} />
+        <ValidatedComponent error={errors.birthDate}>
+          <DatePicker value={profile.birthDate} onChange={onDateChange} {...calendarProps} />
+        </ValidatedComponent>
       </FormGroup>
       <FormGroup className="required">
         <ControlLabel>Lieu de naissance</ControlLabel>
@@ -72,7 +75,7 @@ const ProfileForm = ({profile, contact, errors, onChange, onDateChange}) => {
       <Panel header="Mon activité">
         <FormGroup className="required">
           <ControlLabel>J'occupe actuellement une activité professionnelle à temps complet ou partiel</ControlLabel>
-          <RadioGroup name="hasActivity" onChange={onChange} selectedValue={profile.hasActivity}>
+          <RadioGroup name="hasActivity" onChange={onChange} selectedValue={profile.hasActivity} error={errors.hasActivity}>
             <Radio value="true">oui</Radio>
             <Radio value="false">non</Radio>
           </RadioGroup>
@@ -83,7 +86,7 @@ const ProfileForm = ({profile, contact, errors, onChange, onDateChange}) => {
         </FormGroup>
         <FormGroup className="required">
           <ControlLabel>Je suis à la recherche d'un emploi</ControlLabel>
-          <RadioGroup name="isUnemployed" onChange={onChange} selectedValue={profile.isUnemployed}>
+          <RadioGroup name="isUnemployed" onChange={onChange} selectedValue={profile.isUnemployed} error={errors.isUnemployed}>
             <Radio value="true">oui</Radio>
             <Radio value="false">non</Radio>
           </RadioGroup>
@@ -93,7 +96,7 @@ const ProfileForm = ({profile, contact, errors, onChange, onDateChange}) => {
         </Panel>
         <FormGroup className="required">
           <ControlLabel>Je suis autoentrepreneur·e</ControlLabel>
-          <RadioGroup name="isFreelance" onChange={onChange} selectedValue={profile.isFreelance}>
+          <RadioGroup name="isFreelance" onChange={onChange} selectedValue={profile.isFreelance} error={errors.isFreelance}>
             <Radio value="true">oui</Radio>
             <Radio value="false">non</Radio>
           </RadioGroup>
