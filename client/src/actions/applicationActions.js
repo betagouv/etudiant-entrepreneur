@@ -55,3 +55,18 @@ export function saveApplication() {
     }
   }
 }
+
+export function sendApplication() {
+  return (dispatch, getState) => {
+    const {application, project, contact, profile, pepite, career} = getState()
+    if (!application.id) {
+      throw(new Error('Il faut sauvegarder la candidature avant de pouvoir l\envoyer'))
+    }
+    else {
+      return ApplicationApi.sendApplication(application.id, Object.assign({ project, contact, profile, career, pepite })).then(application => {
+        dispatch(updateApplicationSuccess({ id: application.id }))
+        return application
+      })
+    }
+  }
+}

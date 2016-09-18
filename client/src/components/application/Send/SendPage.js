@@ -14,7 +14,23 @@ class SendPage extends React.Component {
 
   sendForm() {
     if (this.props.errorsActions.validateApplication()) {
-      toastr.success('Envoi')
+      this.props.actions.saveApplication()
+        .then(application => {
+          this.props.actions.sendApplication()
+            .then(() => {
+              toastr.succes('Candidature envoyée')
+            })
+            .catch((err) => {
+              if (err.response && err.response.data && err.response.data.reason) {
+                toastr.error(err.response.data.reason)
+              } else {
+                toastr.error(err)
+              }
+            })
+        })
+        .catch((err) => {
+          toastr.error(err)
+        })
     } else {
       toastr.error('Tu as des erreurs dans le formulaire')
     }

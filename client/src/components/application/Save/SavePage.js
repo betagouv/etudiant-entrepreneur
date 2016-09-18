@@ -33,7 +33,7 @@ export class SavePage extends React.Component {
     this.props.actions.saveApplication()
       .then((application) => {
         this.setState({link: this.getAppliationUrl(application.id)})
-        toastr.success("Candidature sauvgardée " + application.id)
+        toastr.success("Candidature sauvgardée")
       })
       .catch((err) => {
         toastr.error(err)

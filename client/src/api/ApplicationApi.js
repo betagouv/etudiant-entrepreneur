@@ -30,6 +30,15 @@ class ApplicationApi {
         return (Object.assign({}, applicationResponse, { id: applicationResponse._id }))
       })
   }
+
+  static sendApplication(id, application) {
+    return axios.put('/application/' + id + '/send', application)
+      .then((res) => {
+        const applicationResponse = res.data
+        return (Object.assign({}, applicationResponse, { id: applicationResponse._id }))
+      })
+
+  }
 }
 
 export default ApplicationApi

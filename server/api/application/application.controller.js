@@ -36,7 +36,7 @@ class ApplicationController {
           application.contact.email,
           'Sauvegarde de ta candidature au statut Étudiant entrepreneur',
           getSaveEmailBody(application),
-          () => {})
+          () => { })
         return res.status(201).json(application)
       })
       .catch((err) => {
@@ -53,12 +53,43 @@ class ApplicationController {
       return res.sendStatus(404)
     }
     return Application
-      .findByIdAndUpdate(req.params.id, req.body, {new: true})
+      .findByIdAndUpdate(req.params.id, req.body, { new: true })
       .then((application) => {
         if (!application) {
           return res.sendStatus(404)
         }
         return res.json(application)
+      })
+      .catch((err) => {
+        req.log.error(err)
+        return res.status(500).send(err)
+      })
+  }
+
+  sendApplication(req, res, next) {
+    if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
+      return res.sendStatus(404)
+    }
+    return Application
+      .findById(req.params.id).exec()
+      .then((application) => {
+        if (application.status == 'sent') {
+          return next(new StandardError('Tu à déjà soumis ta candidature', { code: 400 }))
+        }
+        req.body.status = 'sent'
+        return Application
+          .findByIdAndUpdate(req.params.id, req.body, { new: true })
+          .then((application) => {
+            if (!application) {
+              return res.sendStatus(404)
+            }
+            //send to PEPITE and confirm
+            return res.json(application)
+          })
+          .catch((err) => {
+            req.log.error(err)
+            return res.status(500).send(err)
+          })
       })
       .catch((err) => {
         req.log.error(err)

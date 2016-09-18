@@ -32,4 +32,11 @@ describe('api: application', () => {
         .expect(200, '"pong"', done)
     })
   })
+  describe('When requesting /api/application/send', () => {
+    it('should give valid id', (done) => {
+      supertest(app)
+        .put('/api/application/ddazdaz/send')
+        .expect(404, done)
+    })
+  })
 })

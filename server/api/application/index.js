@@ -9,5 +9,6 @@ module.exports = (options) => {
   router.get('/:id', applicationController.getApplication)
   router.post('/', applicationController.createApplication)
   router.put('/:id', applicationController.updateApplication)
+  router.put('/:id/send', applicationController.sendApplication)
   return router
 }
