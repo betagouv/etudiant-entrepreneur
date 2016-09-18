@@ -6,7 +6,10 @@ import {regions, pepites, establishments} from './pepiteEstablishmentMap'
 import BetaTestersPanel from '../../common/BetaTestersPanel'
 
 function getPepiteFromEstablishment(establishmentId) {
-  return pepites[establishments[establishmentId].pepite]
+  return ({
+    'id': establishments[establishmentId].pepite ,
+    'name': pepites[establishments[establishmentId].pepite]
+  })
 }
 
 function getAllValidPepites(regionId, establishmentId) {
@@ -21,7 +24,7 @@ function getAllValidPepites(regionId, establishmentId) {
 
 function deleteDuplicate(array) {
   return array.filter(function(item, pos) {
-    return array.indexOf(item) == pos
+    return array.findIndex(i => i.id == item.id) == pos
   })
 }
 
@@ -56,7 +59,7 @@ const PepiteForm = ({pepite, contact, errors, onChange}) => {
               <ControlLabel>Mon PEPITE</ControlLabel>
               <ValidatedFormControl name="pepite" componentClass="select" onChange={onChange} value={pepite.pepite} error={errors.pepite}>
                 <option value="0" disabled>Sélectionner</option>
-                {getAllValidPepites(pepite.region - 1, pepite.establishment - 1).map((pepite, index) => { return (<option key={index + 1} value={index + 1}>PEPITE {pepite}</option>) }) }
+                {getAllValidPepites(pepite.region - 1, pepite.establishment - 1).map((pepite, index) => { return (<option key={index + 1} value={pepite.id + 1}>PEPITE {pepite.name}</option>) }) }
               </ValidatedFormControl>
             </FormGroup>
             )
