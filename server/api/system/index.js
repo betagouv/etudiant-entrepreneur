@@ -6,5 +6,6 @@ var router = express.Router()
 module.exports = (options) => {
   var systemController = new Controller(options)
   router.get('/ping', systemController.ping)
+  router.get('/error', systemController.error)
   return router
 }

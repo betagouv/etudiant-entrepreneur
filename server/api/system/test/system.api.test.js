@@ -24,4 +24,12 @@ describe('api: system', () => {
         .expect(404, done)
     })
   })
+
+  describe('When requesting /api/error', () => {
+    it('should return error', (done) => {
+      supertest(app)
+        .get('/api/system/error')
+        .expect(500, done)
+    })
+  })
 })

@@ -13,3 +13,5 @@ services:
       - 3004:3004
     links:
       - mongo
+    environment:
+      - SENDGRID_API_KEY=${SENDGRID_API_KEY}
