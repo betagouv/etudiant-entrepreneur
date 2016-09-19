@@ -1,7 +1,7 @@
 export const regions = [
   { name: 'Alsace - Champagne-Ardenne - Lorraine', establishments: [0] },
   { name: 'Bretagne', establishments: [1] },
-  { name: 'Île de France', establishments: [2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33] },
+  { name: 'Île de France', establishments: [2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33, 35, 36, 37, 38, 39] },
   { name: 'Nord-Pas-de-Calais - Picardie', establishments: [34] }
 ]
 
@@ -40,11 +40,6 @@ export const establishments = [
   { name: 'établissements de l\'académie de Strasgbourg', pepite: 0 },
   { name: 'établissements de l\'académie de Rennes', pepite: 8 },
   { name: 'Arts et Métiers ParisTech', pepite: 13 },
-  { name: 'École nationale vétérinaire d\'Alfort', pepite: 13 },
-  { name: 'École nationale supérieure d\'architecture de Paris-Belleville', pepite: 13 },
-  { name: 'École des Ingénieurs de la Ville de Paris', pepite: 13 },
-  { name: 'École nationale des sciences géographiques', pepite: 13 },
-  { name: 'École nationale supérieure d\'architecture de Paris-Malaquais', pepite: 13 },
   { name: 'ESCP Europe', pepite: 13 },
   { name: 'Centre de Formation des Journalistes', pepite: 13 },
   { name: 'Centre Michel Serres', pepite: 13 },
@@ -77,5 +72,9 @@ export const establishments = [
   { name: 'École de l\'architecture de la ville et des territoires à Marne-la-Vallée', pepite: 12 },
   { name: 'École spéciale des travaux publics, du bâtiment et de l\'industrie', pepite: 12 },
   { name: 'établissements de l\'académie d\'Amiens', pepite: 21 },
-
+  { name: 'École nationale vétérinaire d\'Alfort', pepite: 12 },
+  { name: 'École nationale supérieure d\'architecture de Paris-Belleville', pepite: 12 },
+  { name: 'École des Ingénieurs de la Ville de Paris', pepite: 12 },
+  { name: 'École nationale des sciences géographiques', pepite: 12 },
+  { name: 'École nationale supérieure d\'architecture de Paris-Malaquais', pepite: 12 },
 ]
