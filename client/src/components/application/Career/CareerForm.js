@@ -13,7 +13,7 @@ function getCurrentUniversityYear() {
 
 function getLastDiplomaHeader(situation) {
   if (situation == 'student') {
-    return ("Ma inscription dans l'enseignement supérieur sur l'année " + getCurrentUniversityYear())
+    return ("Mon inscription dans l'enseignement supérieur sur l'année " + getCurrentUniversityYear())
   }
   return ("Mon dernier diplôme")
 }
@@ -68,7 +68,7 @@ const CareerForm = ({career, contact, errors, bacErrors, diplomaErrors, onTutorC
         </FormGroup>
         <FormGroup  className={(career.bac.isOriginal == 'true') ? 'required' : 'required hidden'}>
           <ControlLabel>Type de baccalauréat</ControlLabel>
-          <RadioGroup name="type" onChange={onBacChange} selectedValue={career.bac.type}>
+          <RadioGroup name="type" onChange={onBacChange} selectedValue={career.bac.type} error={bacErrors.type}>
             <Radio value="general">général</Radio>
             <Radio value="tech">technologique</Radio>
             <Radio value="pro">professionnel</Radio>

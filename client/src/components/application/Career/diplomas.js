@@ -5,7 +5,7 @@ export const diplomas = [
   'DEUG',
   'Licence professionnelle',
   'Licence (avant LMD)',
-  'Licence LDM',
+  'Licence LMD',
   'Bachelor',
   'Maîtrise',
   'Master LMD',
