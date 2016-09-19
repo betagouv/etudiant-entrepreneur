@@ -74,7 +74,7 @@ class ApplicationController {
       .findById(req.params.id).exec()
       .then((application) => {
         if (application.status == 'sent') {
-          return next(new StandardError('Tu à déjà soumis ta candidature', { code: 400 }))
+          return next(new StandardError('Tu a déjà soumis ta candidature', { code: 400 }))
         }
         req.body.status = 'sent'
         return Application
@@ -86,7 +86,7 @@ class ApplicationController {
             //notify applicant
             sendMail(
               application.contact.email,
-              'Confirmation d\'envoi de ta candidature au statut Ètudiant-entrepreneur',
+              'Confirmation d\'envoi de ta candidature au statut Étudiant-entrepreneur',
               getSendEmailBody(application),
               () => { })
             //notify pepite
@@ -119,7 +119,7 @@ function getSaveEmailBody(application) {
 
 function getSendEmailBody(application) {
   return ('<html><body><p>Bonjour,</p>' +
-    `<p>Ta candidature a bien été envoyé au PEPITE ${getPepite(application.pepite.pepite).name} qui reviendra vers toi pour les prochaines étapes.</p>` +
+    `<p>Ta candidature a bien été envoyée au PEPITE ${getPepite(application.pepite.pepite).name} qui reviendra vers toi pour les prochaines étapes.</p>` +
     '<p>Ta  candidature passera en comité d\'engagement, la date de ce comité te sera donnée par ton PEPITE.</p>' +
     '<a href="https://etudiant-entrepreneur.beta.gouv.fr/application/' + application._id + '" target="_blank">ta candidature</a>' +
     '<p>Si tu as la moindre question, n\'hésites pas à nous contacter à contact@etudiant-entrepreneur.beta.gouv.fr</p>' +
