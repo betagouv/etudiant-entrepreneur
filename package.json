@@ -27,8 +27,7 @@
     "url": "https://github.com/sgmap/etudiant-entrepreneur/issues"
   },
   "homepage": "https://github.com/sgmap/etudiant-entrepreneur#readme",
-  "dependencies": {},
-  "devDependencies": {
+  "dependencies": {
     "npm-run-all": "3.1.0"
   }
 }
