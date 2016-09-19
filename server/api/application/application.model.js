@@ -17,7 +17,8 @@ var ApplicationSchema = new Schema({
   career: {},
   pepite: {},
   profile: {},
-  status: { type: String, default: 'saved' }
+  status: { type: String, default: 'saved' },
+  sentDate: { type: Date }
 })
 
 module.exports = mongoose.model('Application', ApplicationSchema)

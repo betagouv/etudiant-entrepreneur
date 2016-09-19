@@ -77,6 +77,7 @@ class ApplicationController {
           return next(new StandardError('Tu a déjà soumis ta candidature', { code: 400 }))
         }
         req.body.status = 'sent'
+        req.body.sentDate = new Date()
         return Application
           .findByIdAndUpdate(req.params.id, req.body, { new: true })
           .then((application) => {
