@@ -145,10 +145,10 @@ function getPepiteEmailBody(application) {
 }
 
 const pepites = [
-  { id: '1', name: 'ETENA', email: 'ehsebti@unistra.fr' },
+  { id: '1', name: 'ETENA', email: 'a.latour@unistra.fr' },
   { id: '9', name: 'Bretagne', email: 'pepite-bretagne@u-bretagneloire.fr' },
   { id: '13', name: '3EF', email: 'pepite3ef@univ-paris-est.fr' },
-  { id: '14', name: 'heSam Entreprendre', email: 'coproj.pepite@hesam.eu' },
+  { id: '14', name: 'heSam Entreprendre', email: 'dossier.pepite@hesam.eu' },
   { id: '15', name: 'Paris Ouest Nord', email: 'contact@pepite-pon.fr' },
   { id: '22', name: 'Picardie', email: 'pepite.picardie@gmail.com' },
 ]
