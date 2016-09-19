@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "description": "Faciliter l'accès au statut et à ses bénéfices",
   "scripts": {
-    "preinstall": "npm-run-all --sequential install:back install:front",
+    "postinstall": "npm-run-all --sequential install:back install:front",
     "install:back": "cd server && npm install",
     "install:front": "cd client && npm install",
     "start": "npm-run-all --sequential start:back start:front",
