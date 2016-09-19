@@ -18,7 +18,7 @@ class SendPage extends React.Component {
         .then(application => {
           this.props.actions.sendApplication()
             .then(() => {
-              toastr.succes('Candidature envoyée')
+              toastr.success('Candidature envoyée')
             })
             .catch((err) => {
               if (err.response && err.response.data && err.response.data.reason) {
