@@ -41,7 +41,7 @@ class ApplicationController {
       })
       .catch((err) => {
         if (err.name == 'ValidationError') {
-          return next(new StandardError('Mes informations doit être rempli', { code: 400 }))
+          return next(new StandardError('La page \'Mes informations\' doit être correctement remplie', { code: 400 }))
         }
         req.log.error(err)
         return res.status(500).send(err)
@@ -83,7 +83,18 @@ class ApplicationController {
             if (!application) {
               return res.sendStatus(404)
             }
-            //send to PEPITE and confirm
+            //notify applicant
+            sendMail(
+              application.contact.email,
+              'Confirmation d\'envoi de ta candidature au statut Ètudiant-entrepreneur',
+              getSendEmailBody(application),
+              () => { })
+            //notify pepite
+            sendMail(
+              getPepite(application.pepite.pepite).email,
+              'Nouvelle candidature',
+              getPepiteEmailBody(application),
+              () => { })
             return res.json(application)
           })
           .catch((err) => {
@@ -104,6 +115,41 @@ function getSaveEmailBody(application) {
     '<p>Tu peux finaliser ta demande quand tu veux à cette adresse :</p>' +
     '<a href="https://etudiant-entrepreneur.beta.gouv.fr/application/' + application._id + '" target="_blank">ta candidature</a>' +
     '<p>Si tu as la moindre question, n\'hésites pas à nous contacter à contact@etudiant-entrepreneur.beta.gouv.fr</p>')
+}
+
+function getSendEmailBody(application) {
+  return ('<html><body><p>Bonjour,</p>' +
+    `<p>Ta candidature a bien été envoyé au PEPITE ${getPepite(application.pepite.pepite).name} qui reviendra vers toi pour les prochaines étapes.</p>` +
+    '<p>Ta  candidature passera en comité d\'engagement, la date de ce comité te sera donnée par ton PEPITE.</p>' +
+    '<a href="https://etudiant-entrepreneur.beta.gouv.fr/application/' + application._id + '" target="_blank">ta candidature</a>' +
+    '<p>Si tu as la moindre question, n\'hésites pas à nous contacter à contact@etudiant-entrepreneur.beta.gouv.fr</p>' +
+    '<p>Bonne aventure entreprenariale !</p>')
+}
+
+function getPepiteEmailBody(application) {
+  return ('<html><body><p>Bonjour,</p>' +
+    `<p>Vous avez reçu une nouvelle candidature de la part de ${application.contact.firstname} ${application.contact.name}.</p>` +
+    '<p>Vous retrouverez le dossier complet à l\'adresse :</p>' +
+    '<a href="https://etudiant-entrepreneur.beta.gouv.fr/application/' + application._id + '" target="_blank">candidature</a>' +
+    'Pour rappel, la candidature est éditable à ce lien.' +
+    '<p>Si tu as la moindre question, n\'hésites pas à nous contacter à contact@etudiant-entrepreneur.beta.gouv.fr</p>')
+}
+
+const pepites = [
+  { id: '1', name: 'ETENA', email: 'ehsebti@unistra.fr' },
+  { id: '9', name: 'Bretagne', email: 'pepite-bretagne@u-bretagneloire.fr' },
+  { id: '13', name: '3EF', email: 'pepite3ef@univ-paris-est.fr' },
+  { id: '14', name: 'heSam Entreprendre', email: 'coproj.pepite@hesam.eu' },
+  { id: '15', name: 'Paris Ouest Nord', email: 'contact@pepite-pon.fr' },
+  { id: '22', name: 'Picardie', email: 'pepite.picardie@gmail.com' },
+]
+
+function getPepite(id) {
+  const pepite = pepites.find(p => { return (p.id == id) })
+  if (!pepite) {
+    throw new Error(`Le PEPITE avec l\'id: ${id} n'existe pas`)
+  }
+  return pepite
 }
 
 module.exports = ApplicationController
