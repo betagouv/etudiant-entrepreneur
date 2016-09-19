@@ -16,7 +16,7 @@ module.exports = Server
 
 function Server(options) {
   options = options || {}
-  options.port = options.port || 0
+  options.port = process.env.PORT || options.port || 0
   options.logger = options.logger || emptylogger()
   options.isTest = options.isTest || false
 
