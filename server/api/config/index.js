@@ -3,7 +3,7 @@
 const all = {
   // MongoDB connection options
   mongo: {
-    uri: 'mongodb://mongo:27017/ee',
+    uri: process.env.MONGODB_URI || 'mongodb://mongo:27017/ee',
     options: {
       db: {
         safe: true
