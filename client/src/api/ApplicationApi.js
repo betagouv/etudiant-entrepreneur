@@ -2,7 +2,7 @@ import axios from 'axios'
 
 axios.defaults.baseURL = 'https://etudiant-entrepreneur.herokuapp.com/api'
 
-class ApplicationApi {
+class applicationApi {
 
   static getApplication(id) {
     return axios.get('/application/' + id)
@@ -41,4 +41,4 @@ class ApplicationApi {
   }
 }
 
-export default ApplicationApi
+export default applicationApi

@@ -1,4 +1,4 @@
-import ApplicationApi from '../api/ApplicationApi'
+import applicationApi from '../api/applicationApi'
 import {loadContactSuccess, } from './contactActions'
 import {loadProjectSuccess} from './projectActions'
 import {loadPepiteSuccess} from './pepiteActions'
@@ -17,7 +17,7 @@ export function updateApplicationSuccess(application) {
 
 export function loadApplication(id) {
   return dispatch => {
-    return ApplicationApi.getApplication(id).then(application => {
+    return applicationApi.getApplication(id).then(application => {
       dispatch(loadApplicationSuccess({ id: application.id }))
       dispatch(loadContactSuccess(application.contact))
       if (application.project) {
@@ -42,13 +42,13 @@ export function saveApplication() {
   return (dispatch, getState) => {
     const {application, project, contact, profile, pepite, career} = getState()
     if (!application.id) {
-      return ApplicationApi.saveApplication(Object.assign({ project, contact, profile, career, pepite })).then(application => {
+      return applicationApi.saveApplication(Object.assign({ project, contact, profile, career, pepite })).then(application => {
         dispatch(updateApplicationSuccess({ id: application.id }))
         return application
       })
     }
     else {
-      return ApplicationApi.updateApplication(application.id, Object.assign({ project, contact, profile, career, pepite })).then(application => {
+      return applicationApi.updateApplication(application.id, Object.assign({ project, contact, profile, career, pepite })).then(application => {
         dispatch(updateApplicationSuccess({ id: application.id }))
         return application
       })
@@ -63,7 +63,7 @@ export function sendApplication() {
       throw(new Error('Il faut sauvegarder la candidature avant de pouvoir l\envoyer'))
     }
     else {
-      return ApplicationApi.sendApplication(application.id, Object.assign({ project, contact, profile, career, pepite })).then(application => {
+      return applicationApi.sendApplication(application.id, Object.assign({ project, contact, profile, career, pepite })).then(application => {
         dispatch(updateApplicationSuccess({ id: application.id }))
         return application
       })
