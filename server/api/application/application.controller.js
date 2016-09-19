@@ -93,7 +93,7 @@ class ApplicationController {
             //notify pepite
             sendMail(
               getPepite(application.pepite.pepite).email,
-              'Nouvelle candidature',
+              `Nouvelle candidature de ${application.contact.firstname} ${application.contact.name}`,
               getPepiteEmailBody(application),
               (error, info) => { logMail(req.log, error, info )})
             return res.json(application)
