@@ -36,7 +36,7 @@ class ApplicationController {
           application.contact.email,
           'Sauvegarde de ta candidature au statut Étudiant entrepreneur',
           getSaveEmailBody(application),
-          () => { })
+          (error, info) => { logMail(req.log, error, info )})
         return res.status(201).json(application)
       })
       .catch((err) => {
@@ -89,13 +89,13 @@ class ApplicationController {
               application.contact.email,
               'Confirmation d\'envoi de ta candidature au statut Étudiant-entrepreneur',
               getSendEmailBody(application),
-              () => { })
+              (error, info) => { logMail(req.log, error, info )})
             //notify pepite
             sendMail(
               getPepite(application.pepite.pepite).email,
               'Nouvelle candidature',
               getPepiteEmailBody(application),
-              () => { })
+              (error, info) => { logMail(req.log, error, info )})
             return res.json(application)
           })
           .catch((err) => {
@@ -107,6 +107,14 @@ class ApplicationController {
         req.log.error(err)
         return res.status(500).send(err)
       })
+  }
+}
+
+function logMail(logger, error, info) {
+  if (error) {
+    logger.error('Notification error: ' + error)
+  } else {
+    logger.info('Notification sent: ', info)
   }
 }
 
