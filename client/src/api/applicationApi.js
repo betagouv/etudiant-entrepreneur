@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-axios.defaults.baseURL = 'https://etudiant-entrepreneur.herokuapp.com/api'
+axios.defaults.baseURL = API_URI
 
 class applicationApi {
 

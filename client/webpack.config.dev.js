@@ -3,6 +3,12 @@ import path from 'path'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
 import autoprefixer from 'autoprefixer'
 
+const GLOBALS = {
+  'process.env.NODE_ENV': JSON.stringify('development'), // Tells React to build in either dev or prod modes. https://facebook.github.io/react/downloads.html (See bottom)
+  __DEV__: true,
+  API_URI: JSON.stringify('http://localhost:3004/api')
+}
+
 export default {
   debug: true,
   devtool: 'cheap-module-eval-source-map', // more info:https://webpack.github.io/docs/build-performance.html#sourcemaps and https://webpack.github.io/docs/configuration.html#devtool
@@ -20,10 +26,7 @@ export default {
     publicPath: '/'
   },
   plugins: [
-    new webpack.DefinePlugin({
-      'process.env.NODE_ENV': JSON.stringify('development'), // Tells React to build in either dev or prod modes. https://facebook.github.io/react/downloads.html (See bottom)
-      __DEV__: true
-    }),
+    new webpack.DefinePlugin(GLOBALS),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoErrorsPlugin(),
     new HtmlWebpackPlugin({     // Create HTML file that includes references to bundled CSS and JS.
