@@ -11,6 +11,9 @@
 // and propType validation warnings.
 process.env.NODE_ENV = 'test'
 
+// Add global Webpack set constants
+global.API_URI = 'http://localhost:3004/api'
+
 // Disable webpack-specific features for tests since
 // Mocha doesn't know what to do with them.
 void ['.css', '.scss', '.png', '.jpg'].forEach(ext => {
