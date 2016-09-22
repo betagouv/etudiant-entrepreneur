@@ -14,8 +14,24 @@ Le site: https://etudiant-entrepreneur.beta.gouv.fr/
 
 ## Getting Started
 
-```bash
-npm install
+### Node+Docker
 
+```
+bash
+npm install
 npm start
 ```
+
+### 100% Docker
+
+```
+docker-compose up
+```
+
+Dans `client/webpack.config.dev.js` modifier:
+
+```
+API_URI: JSON.stringify('http://localhost:3004/api')
+```
+
+avec l'adresse du serveur Docker au lieu de `localhost`.
