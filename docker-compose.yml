@@ -15,3 +15,12 @@ services:
       - mongo
     environment:
       - SENDGRID_API_KEY=${SENDGRID_API_KEY}
+  front:
+    build: ./client
+    volumes:
+     - ./client:/app
+    ports:
+      - 3000:3000
+      - 3001:3001
+    links:
+      - api
