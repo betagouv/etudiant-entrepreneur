@@ -5,13 +5,22 @@ services:
     image: mongo
     ports:
       - 27017
+    networks:
+      - back
   api:
     build: ./server
     volumes:
       - ./server/api:/srv/app/api
     ports:
       - 3004:3004
-    links:
-      - mongo
+    networks:
+      - front
+      - back
     environment:
       - SENDGRID_API_KEY=${SENDGRID_API_KEY}
+
+networks:
+  front:
+    driver: bridge
+  back:
+    driver: bridge
