@@ -17,17 +17,23 @@ Le site: https://etudiant-entrepreneur.beta.gouv.fr/
 ### Node+Docker
 
 ```
-docker-compose up api
 npm install
 npm start
 ```
+Seul le backend est "contenerisé", le frontend est accessible via browsersync
+### Build Env with Nginx front
 
+```
+npm install
+npm run build
+```
+Frontend et backend sont dans des conteneurs.  
+Le frontend est build avec npm avant d'être ajouté à un conteneur Nginx.
 ### 100% Docker
 
 ```
-docker-compose up
+docker-compose -f docker-compose.yml -f docker-compose.dev.yml up --build
 ```
-
 Dans `client/webpack.config.dev.js` modifier:
 
 ```

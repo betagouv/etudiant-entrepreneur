@@ -7,7 +7,7 @@
     "install:back": "cd server && npm install",
     "install:front": "cd client && npm install",
     "start": "npm-run-all --sequential start:back start:front",
-    "start:back": "docker-compose up -d",
+    "start:back": "docker-compose up -d api",
     "start:front": "cd client && npm run start",
     "test": "npm-run-all --sequential test:back test:front test:docker",
     "test:docker": "./tools/dockerTest.sh",
@@ -15,7 +15,9 @@
     "test:front": "cd client && npm test",
     "lint": "npm-run-all --sequential lint:back lint:front",
     "lint:back": "cd server && npm run lint",
-    "lint:front": "cd client && npm run lint"
+    "lint:front": "cd client && npm run lint",
+    "prebuild" : "cd client && npm run build",
+    "build": "docker-compose -f docker-compose.yml -f docker-compose.build.yml up --build"
   },
   "repository": {
     "type": "git",

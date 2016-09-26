@@ -20,13 +20,6 @@ services:
       - SENDGRID_API_KEY=${SENDGRID_API_KEY}
     depends_on:
       - mongo
-  front:
-    build: ./client
-    volumes:
-     - ./client:/app
-    ports:
-      - 3000:3000
-      - 3001:3001
 
 networks:
   front:
