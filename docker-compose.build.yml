@@ -1,0 +1,9 @@
+version: '2'
+
+services:
+  front:
+    build:
+      context: ./client/
+      dockerfile: Dockerfile.build
+    ports:
+      - 3000:80

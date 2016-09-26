@@ -18,6 +18,8 @@ services:
       - back
     environment:
       - SENDGRID_API_KEY=${SENDGRID_API_KEY}
+    depends_on:
+      - mongo
 
 networks:
   front:
