@@ -57,10 +57,6 @@ export const projectValidationConstraints = {
     isValid: isNotEmpty,
     errorMessage: "obligatoire"
   },
-  nextStepSummary: {
-    isValid: isNotEmpty,
-    errorMessage: "obligatoire"
-  },
   stepSummary: {
     isValid: isNotEmpty,
     errorMessage: "obligatoire"
