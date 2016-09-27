@@ -8,13 +8,13 @@ const ProjectForm = ({project, onChange, errors}) => {
   return (
     <form>
       <p>Mon Projet</p>
-      <FormGroup>
-        <ControlLabel>Nom de mon projet</ControlLabel>
-        <ValidatedFormControl name="name" type="text" placeholder="projet" onChange={onChange} value={project.name} error={errors.name}/>
-      </FormGroup>
       <FormGroup className="required">
-        <ControlLabel>Résumé de mon projet</ControlLabel>
-        <ValidatedFormControl name="summary" rows="5" componentClass="textarea" placeholder="Non confidentiel, ne doit pas comporter d'élements sensibles" onChange={onChange} value={project.summary} error={errors.summary}/>
+        <ControlLabel>Etape du projet</ControlLabel>
+        <RadioGroup name="step" onChange={onChange} selectedValue={project.step} error={errors.step}>
+          <Radio value="building">Construction</Radio>
+          <Radio value="launching">Lancement</Radio>
+          <Radio value="created">Création, reprise ou transmission réalisée</Radio>
+        </RadioGroup>
       </FormGroup>
       <FormGroup className="required">
         <ControlLabel>Type de projet</ControlLabel>
@@ -23,6 +23,26 @@ const ProjectForm = ({project, onChange, errors}) => {
           <Radio value="retake">Reprise d'activité</Radio>
           <Radio value="transfer">Transmission d'entreprise familiale</Radio>
         </RadioGroup>
+      </FormGroup>
+      <FormGroup>
+        <ControlLabel>Nom de mon projet</ControlLabel>
+        <ValidatedFormControl name="name" type="text" placeholder="Est-ce que ton projet a un nom ?" onChange={onChange} value={project.name} error={errors.name}/>
+      </FormGroup>
+      <FormGroup className="required">
+        <ControlLabel>Résumé de mon projet</ControlLabel>
+        <ValidatedFormControl name="summary" rows="5" componentClass="textarea" onChange={onChange} value={project.summary} error={errors.summary}/>
+      </FormGroup>   
+    <FormGroup className="required">
+        <ControlLabel>Où en suis-je dans mon projet ?</ControlLabel>
+        <ValidatedFormControl name="stepSummary" rows="5" componentClass="textarea" placeholder="Où en es-tu et quelles sont les prochaines étapes ?" onChange={onChange} value={project.stepSummary} error={errors.stepSummary}/>
+      </FormGroup>
+      <FormGroup className="required">
+        <ControlLabel>Quelle est la valeure ajoutée de mon projet ?</ControlLabel>
+        <ValidatedFormControl name="activitySummary" rows="5" componentClass="textarea" placeholder="En quoi ton projet est-il différenciant ?" onChange={onChange} value={project.activitySummary} error={errors.activitySummary}/>
+      </FormGroup>
+      <FormGroup className="required">
+        <ControlLabel>Quelle est ma motivation pour lancer cette activité ?</ControlLabel>
+        <ValidatedFormControl name="motiviation" rows="5" componentClass="textarea" onChange={onChange} value={project.motiviation} error={errors.motiviation}/>
       </FormGroup>
       <FormGroup className="required">
         <ControlLabel>Statut juridique de l'activité</ControlLabel>
@@ -35,29 +55,9 @@ const ProjectForm = ({project, onChange, errors}) => {
           <Radio value="unknown">Choix non arrêté</Radio>
         </RadioGroup>
       </FormGroup>
-      <FormGroup className="required">
-        <ControlLabel>Etape du projet</ControlLabel>
-        <RadioGroup name="step" onChange={onChange} selectedValue={project.step} error={errors.step}>
-          <Radio value="building">Construction</Radio>
-          <Radio value="launching">Lancement</Radio>
-          <Radio value="created">Création, reprise ou transmission réalisée</Radio>
-        </RadioGroup>
-      </FormGroup>
-      <FormGroup className="required">
-        <ControlLabel>Où en suis-je dans mon projet ?</ControlLabel>
-        <ValidatedFormControl name="stepSummary" rows="5" componentClass="textarea" placeholder="indiquez les démarches réalisées" onChange={onChange} value={project.stepSummary} error={errors.stepSummary}/>
-      </FormGroup>
-      <FormGroup className="required">
-        <ControlLabel>Quelles sont les prochaines étapes de mon projet ?</ControlLabel>
-        <ValidatedFormControl name="nextStepSummary" rows="5" componentClass="textarea" placeholder="prochaines étapes" onChange={onChange} value={project.nextStepSummary} error={errors.nextStepSummary}/>
-      </FormGroup>
       <FormGroup>
         <ControlLabel>numéro SIRET</ControlLabel>
         <ValidatedFormControl name="siret" type="text" placeholder="siret" onChange={onChange} value={project.siret} error={errors.siret}/>
-      </FormGroup>
-      <FormGroup className="required">
-        <ControlLabel>En quoi consiste mon projet ou activité entrepreneurial·e ?</ControlLabel>
-        <ValidatedFormControl name="activitySummary" rows="5" componentClass="textarea" placeholder="activité - proposition de valeur" onChange={onChange} value={project.activitySummary} error={errors.activitySummary}/>
       </FormGroup>
       <FormGroup className="required">
         <ControlLabel>Quel est ou sera mon secteur d'activité ?</ControlLabel>
@@ -91,10 +91,6 @@ const ProjectForm = ({project, onChange, errors}) => {
       <FormGroup className={(isOtherSectorRequired(project.sector)) ? 'required' : 'required hidden'}>
         <ControlLabel>Autre secteur</ControlLabel>
         <ValidatedFormControl name="otherSector" type="text" placeholder="autre secteur" onChange={onChange} value={project.otherSector} error={errors.otherSector}/>
-      </FormGroup>
-      <FormGroup className="required">
-        <ControlLabel>Quelle est ma motivation pour lancer cette activité ?</ControlLabel>
-        <ValidatedFormControl name="motiviation" rows="5" componentClass="textarea" placeholder="motivation" onChange={onChange} value={project.motiviation} error={errors.motiviation}/>
       </FormGroup>
       <Panel header="Réseaux sociaux">
         <FormGroup>
