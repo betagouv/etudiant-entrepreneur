@@ -7,9 +7,12 @@ class HomePage extends React.Component {
   render() {
     return (
       <div className="jumbotron">
-        <h1>Deviens Etudiant Entrepreneur</h1>
-        <p>Tu as un projet ? Pour être aider et accompagner, rejoins la communauté.</p>
-        <Link to="application" className="btn btn-primary btn-lg">Demandez le statut</Link>  
+        <div className="header-content">
+          <h1>Deviens Etudiant Entrepreneur</h1>
+          <hr/>
+          <p className="header-sub-content">Tu as un projet ? Pour être aidé et accompagné, rejoins la communauté.</p>
+          <Link to="application" className="btn btn-primary btn-lg">Demande le statut</Link>
+        </div>
         <BetaTestersPanel/>
       </div>
     )

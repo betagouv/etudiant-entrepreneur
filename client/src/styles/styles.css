@@ -1,0 +1,15 @@
+.header-content {
+  text-align:center;
+  margin-bottom: 80px;
+  margin-top: 80px;
+}
+
+.header-content hr {
+  border-color: #337ab7;
+  border-width: 3px;
+  max-width: 50px;
+}
+
+.header-content p.header-sub-content {
+  font-size: 30px;
+}
