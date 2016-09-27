@@ -24,7 +24,6 @@ export class ProjectPage extends React.Component {
         siret: "",
         activitySummary: "",
         stepSummary: "",
-        nextStepSummary: "",
         sector: "0",
         otherSector: "",
         motiviation: ""

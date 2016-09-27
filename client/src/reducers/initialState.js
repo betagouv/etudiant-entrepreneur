@@ -14,7 +14,6 @@ export default {
     siret: '',
     activitySummary: '',
     stepSummary: '',
-    nextStepSummary: '',
     sector: '',
     otherSector: '',
     motiviation: '',
