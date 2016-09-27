@@ -31,10 +31,14 @@ const ProjectForm = ({project, onChange, errors}) => {
       <FormGroup className="required">
         <ControlLabel>Résumé de mon projet</ControlLabel>
         <ValidatedFormControl name="summary" rows="5" componentClass="textarea" onChange={onChange} value={project.summary} error={errors.summary}/>
-      </FormGroup>   
-    <FormGroup className="required">
+      </FormGroup>
+      <FormGroup className="required">
         <ControlLabel>Où en suis-je dans mon projet ?</ControlLabel>
         <ValidatedFormControl name="stepSummary" rows="5" componentClass="textarea" placeholder="Où en es-tu et quelles sont les prochaines étapes ?" onChange={onChange} value={project.stepSummary} error={errors.stepSummary}/>
+      </FormGroup>
+      <FormGroup className={project.nextStepSummary ? '' : 'hidden'}>
+        <ControlLabel>Quelles sont les prochaines étapes de mon projet ?</ControlLabel>
+        <ValidatedFormControl name="nextStepSummary" rows="5" componentClass="textarea" placeholder="prochaines étapes" onChange={onChange} value={project.nextStepSummary} error={errors.nextStepSummary}/>
       </FormGroup>
       <FormGroup className="required">
         <ControlLabel>Quelle est la valeure ajoutée de mon projet ?</ControlLabel>
