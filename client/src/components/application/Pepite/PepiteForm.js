@@ -28,6 +28,10 @@ function deleteDuplicate(array) {
   })
 }
 
+function isOverduePepite(idPepite) {
+  return idPepite == 13
+}
+
 const PepiteForm = ({pepite, contact, errors, onChange}) => {
   return (
     <form>
@@ -59,11 +63,14 @@ const PepiteForm = ({pepite, contact, errors, onChange}) => {
               <ControlLabel>Mon PEPITE</ControlLabel>
               <ValidatedFormControl name="pepite" componentClass="select" onChange={onChange} value={pepite.pepite} error={errors.pepite}>
                 <option value="0" disabled>Sélectionner</option>
-                {getAllValidPepites(pepite.region - 1, pepite.establishment - 1).map((pepite, index) => { return (<option key={index + 1} value={pepite.id + 1}>PEPITE {pepite.name}</option>) }) }
+                {getAllValidPepites(pepite.region - 1, pepite.establishment - 1).map((pepite, index) => { return (<option key={index + 1} value={pepite.id + 1} disabled={isOverduePepite(pepite.id)}>PEPITE {pepite.name}</option>) }) }
               </ValidatedFormControl>
             </FormGroup>
             )
         }})()}
+        <Panel header="Comités passés" bsStyle="warning" className={(pepite.region == '3') ? '' : 'hidden'}>
+          Les comités d'engagement du <a href="http://www.hesam.eu/blog/2016/03/17/statut-etudiant-entrepreneur/" target="_blank">PEPITE HeSam Entreprendre</a> ont déjà eu lieu, n'hésite pas à les contacter pour connaitre la date des prochains.
+        </Panel>
     </form>
   )
 }
