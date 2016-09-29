@@ -8,7 +8,7 @@ const BetaTestersPanel = () => {
       <ul>
         <li>PEPITE ETENA</li>
         <li>PEPITE 3EF</li>
-        <li>PEPITE HESAM</li>
+        <li><i>PEPITE HESAM</i> - inscriptions closes</li>
         <li>PEPITE PON</li>
         <li>PEPITE BRETAGNE</li>
         <li>PEPITE PICARDIE</li>
