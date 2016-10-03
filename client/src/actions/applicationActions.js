@@ -26,7 +26,7 @@ export function loadApplication(id) {
       if (application.pepite) {
         dispatch(loadPepiteSuccess(application.pepite))
       }
-      if (application.pepite) {
+      if (application.profile) {
         dispatch(loadProfileSuccess(application.profile))
       }
       if (application.career) {
