@@ -2,7 +2,9 @@ import React, {PropTypes} from 'react'
 import { FormGroup, ControlLabel, FormControl, HelpBlock, ButtonGroup, Radio, Panel } from 'react-bootstrap'
 import RadioGroup from '../../common/RadioGroup'
 import ValidatedFormControl from '../../common/ValidatedFormControl'
+import ValidatedComponent from '../../common/ValidatedComponent'
 import {isOtherSectorRequired} from './ProjectValidationConstraints'
+import Textarea from 'react-textarea-autosize'
 
 const ProjectForm = ({project, onChange, errors}) => {
   return (
@@ -30,23 +32,33 @@ const ProjectForm = ({project, onChange, errors}) => {
       </FormGroup>
       <FormGroup className="required">
         <ControlLabel>Résumé de mon projet</ControlLabel>
-        <ValidatedFormControl name="summary" rows="5" componentClass="textarea" onChange={onChange} value={project.summary} error={errors.summary}/>
+        <ValidatedComponent error={errors.summary}>
+          <Textarea className="form-control" name="summary" rows="5" onChange={onChange} value={project.summary}/>
+        </ValidatedComponent>
       </FormGroup>
       <FormGroup className="required">
         <ControlLabel>Où en suis-je dans mon projet ?</ControlLabel>
-        <ValidatedFormControl name="stepSummary" rows="5" componentClass="textarea" placeholder="Où en es-tu et quelles sont les prochaines étapes ?" onChange={onChange} value={project.stepSummary} error={errors.stepSummary}/>
+        <ValidatedComponent error={errors.stepSummary}>
+          <Textarea className="form-control" name="stepSummary" rows="5" placeholder="Où en es-tu et quelles sont les prochaines étapes ?" onChange={onChange} value={project.stepSummary}/>
+        </ValidatedComponent>
       </FormGroup>
       <FormGroup className={project.nextStepSummary ? '' : 'hidden'}>
         <ControlLabel>Quelles sont les prochaines étapes de mon projet ?</ControlLabel>
-        <ValidatedFormControl name="nextStepSummary" rows="5" componentClass="textarea" placeholder="prochaines étapes" onChange={onChange} value={project.nextStepSummary} error={errors.nextStepSummary}/>
+        <ValidatedComponent error={errors.nextStepSummary}>
+          <Textarea className="form-control" name="nextStepSummary" rows="5" placeholder="prochaines étapes" onChange={onChange} value={project.nextStepSummary}/>
+        </ValidatedComponent>
       </FormGroup>
       <FormGroup className="required">
         <ControlLabel>Quelle est la valeure ajoutée de mon projet ?</ControlLabel>
-        <ValidatedFormControl name="activitySummary" rows="5" componentClass="textarea" placeholder="En quoi ton projet est-il différenciant ?" onChange={onChange} value={project.activitySummary} error={errors.activitySummary}/>
+        <ValidatedComponent error={errors.activitySummary}>
+          <Textarea className="form-control" name="activitySummary" rows="5" placeholder="En quoi ton projet est-il différenciant ?" onChange={onChange} value={project.activitySummary}/>
+        </ValidatedComponent>
       </FormGroup>
       <FormGroup className="required">
         <ControlLabel>Quelle est ma motivation pour lancer cette activité ?</ControlLabel>
-        <ValidatedFormControl name="motiviation" rows="5" componentClass="textarea" onChange={onChange} value={project.motiviation} error={errors.motiviation}/>
+        <ValidatedComponent error={errors.motiviation}>
+          <Textarea className="form-control" name="motiviation" rows="5" onChange={onChange} value={project.motiviation}/>
+        </ValidatedComponent>
       </FormGroup>
       <FormGroup className="required">
         <ControlLabel>Statut juridique de l'activité</ControlLabel>

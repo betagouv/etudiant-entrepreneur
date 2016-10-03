@@ -4,6 +4,7 @@ import DatePicker from 'react-bootstrap-date-picker'
 import RadioGroup from '../../common/RadioGroup'
 import ValidatedComponent from '../../common/ValidatedComponent'
 import ValidatedFormControl from '../../common/ValidatedFormControl'
+import Textarea from 'react-textarea-autosize'
 import {calendarProps} from '../../common/calendarHelper'
 import {countries} from '../../common/ressources/countries'
 
@@ -49,7 +50,9 @@ const ProfileForm = ({profile, contact, errors, onChange, onDateChange}) => {
       </FormGroup>
       <FormGroup className="required">
         <ControlLabel>Motivations à candidater au statut national étudiant·e-entrepreneur·e</ControlLabel>
-        <ValidatedFormControl name="motivation" rows="5" componentClass="textarea" placeholder="vos motivations" onChange={onChange} value={profile.motivation} error={errors.motivation}/>
+        <ValidatedComponent error={errors.motiviation}>
+          <Textarea className="form-control" name="motiviation" rows="5" placeholder="vos motivations" onChange={onChange} value={profile.motiviation}/>
+        </ValidatedComponent>
       </FormGroup>
       <Panel header="Mes coordonnées pérennes dans le temps">
         <FormGroup className="required">
