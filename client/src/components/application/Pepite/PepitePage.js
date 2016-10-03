@@ -19,6 +19,12 @@ class PepitePage extends React.Component {
     this.pepiteValidation = new Validation(pepiteValidationConstraints)
   }
 
+  componentWillReceiveProps(nextProps) {
+    this.setState({ errors: Object.assign({}, nextProps.errors) })
+    this.setState({ contact: Object.assign({}, nextProps.contact) })
+    this.setState({ pepite: Object.assign({}, nextProps.pepite) })
+  }
+
   updatePepiteState(event) {
     const field = event.target.name
     let pepite = this.state.pepite

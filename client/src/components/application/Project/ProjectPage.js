@@ -34,6 +34,11 @@ export class ProjectPage extends React.Component {
     this.projectValidation = new Validation(projectValidationConstraints)
   }
 
+  componentWillReceiveProps(nextProps) {
+    this.setState({ errors: Object.assign({}, nextProps.errors) })
+    this.setState({ project: Object.assign({}, nextProps.project) })
+  }
+
   updateProjectState(event) {
     const field = event.target.name
     let project = this.state.project

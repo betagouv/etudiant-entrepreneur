@@ -33,6 +33,11 @@ export class TeamPage extends React.Component {
     this.teamMemberValidation = new Validation(teamMemberValidationConstraints)
   }
 
+  componentWillReceiveProps(nextProps) {
+    this.setState({ team: [...nextProps.team] })
+    this.setState({ project: Object.assign({}, nextProps.project) })
+  }
+
   updateNewMemberState(event) {
     const field = event.target.name
     let newMember = this.state.newMember

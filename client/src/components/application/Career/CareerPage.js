@@ -24,6 +24,13 @@ class CareerPage extends React.Component {
     this.diplomaValidation = new Validation(diplomaValidationConstraints)
   }
 
+  componentWillReceiveProps(nextProps) {
+    this.setState({ career: Object.assign({}, nextProps.career) })
+    this.setState({ contact: Object.assign({}, nextProps.contact) })
+    this.setState({ bacErrors: Object.assign({}, nextProps.bacErrors) })
+    this.setState({ diplomaErrors: Object.assign({}, nextProps.diplomaErrors) })
+  }
+
   updateCareerState(event) {
     const field = event.target.name
     let career = this.state.career
