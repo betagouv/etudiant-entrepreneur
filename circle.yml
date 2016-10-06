@@ -25,3 +25,10 @@ test:
 
   post:
     - cd server && cat ./coverage/lcov.info | ./node_modules/.bin/coveralls --verbose
+
+deployment:
+  publish:
+    branch: development
+    owner: sgmap
+    commands:
+      - ssh deploy@vps295137.ovh.net "cd etudiant-entrepreneur && bash -s" < './tools/devDeploy.sh'
