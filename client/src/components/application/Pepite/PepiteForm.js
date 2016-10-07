@@ -29,7 +29,7 @@ function deleteDuplicate(array) {
 }
 
 function isOverduePepite(idPepite) {
-  return idPepite == 13
+  return (idPepite == 13 || idPepite == 8)
 }
 
 const PepiteForm = ({pepite, contact, errors, onChange}) => {
@@ -70,6 +70,9 @@ const PepiteForm = ({pepite, contact, errors, onChange}) => {
         }})()}
         <Panel header="Comités passés" bsStyle="warning" className={(pepite.region == '3') ? '' : 'hidden'}>
           Les comités d'engagement du <a href="http://www.hesam.eu/blog/2016/03/17/statut-etudiant-entrepreneur/" target="_blank">PEPITE HeSam Entreprendre</a> ont déjà eu lieu, n'hésite pas à les contacter pour connaitre la date des prochains.
+        </Panel>
+        <Panel header="Comités passés" bsStyle="warning" className={(pepite.region == '2') ? '' : 'hidden'}>
+          Les comités d'engagement du <a href="https://pepite-bretagne.ueb.eu/" target="_blank">PEPITE Bretagne</a> ont déjà eu lieu, n'hésite pas à les contacter pour connaitre la date des prochains.
         </Panel>
     </form>
   )

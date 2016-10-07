@@ -10,7 +10,7 @@ const BetaTestersPanel = () => {
         <li>PEPITE 3EF</li>
         <li><i>PEPITE HESAM</i> - inscriptions closes</li>
         <li>PEPITE PON</li>
-        <li>PEPITE BRETAGNE</li>
+        <li><i>PEPITE BRETAGNE</i> - inscriptions closes</li>
         <li>PEPITE PICARDIE</li>
       </ul>
     </Panel>)
