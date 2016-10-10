@@ -48,7 +48,6 @@ export const establishments = [
   { name: 'ENA', pepite: 13 },
   { name: 'ENSAPLV', pepite: 13 },
   { name: 'ENSCI', pepite: 13 },
-  { name: 'ESCP Europe', pepite: 13 },
   { name: 'IFM', pepite: 13 },
   { name: 'INHA', pepite: 13 },
   { name: 'Institut national du patrimoine', pepite: 13 },
