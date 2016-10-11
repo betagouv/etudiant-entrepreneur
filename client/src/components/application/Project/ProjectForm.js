@@ -33,7 +33,7 @@ const ProjectForm = ({project, onChange, errors}) => {
       <FormGroup className="required">
         <ControlLabel>Résumé de mon projet</ControlLabel>
         <ValidatedComponent error={errors.summary}>
-          <Textarea className="form-control" name="summary" rows="5" onChange={onChange} value={project.summary}/>
+          <Textarea className="form-control" name="summary" rows="5" placeholder="Non confidentiel, ne doit pas comporter l'élément sensible" onChange={onChange} value={project.summary}/>
         </ValidatedComponent>
       </FormGroup>
       <FormGroup className="required">
