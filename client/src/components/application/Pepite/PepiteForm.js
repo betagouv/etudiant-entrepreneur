@@ -29,7 +29,7 @@ function deleteDuplicate(array) {
 }
 
 function isOverduePepite(idPepite) {
-  return (idPepite == 13 || idPepite == 8 || idPepite == 14)
+  return (idPepite == 13)
 }
 
 const PepiteForm = ({pepite, contact, errors, onChange}) => {
