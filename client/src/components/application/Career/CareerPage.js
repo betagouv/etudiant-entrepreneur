@@ -5,7 +5,7 @@ import {bindActionCreators} from 'redux'
 import * as careerActions from '../../../actions/careerActions'
 import * as errorsActions from '../../../actions/errorsActions'
 import Validation from '../../common/Validation'
-import {bacValidationConstraints, diplomaValidationConstraints} from './CareerValidationConstraints'
+import { bacValidationConstraints, diplomaValidationConstraints, tutorValidationConstraints } from './CareerValidationConstraints'
 
 class CareerPage extends React.Component {
   constructor(props, context) {
@@ -22,6 +22,7 @@ class CareerPage extends React.Component {
 
     this.bacValidation = new Validation(bacValidationConstraints)
     this.diplomaValidation = new Validation(diplomaValidationConstraints)
+    this.tutorValidation = new Validation(tutorValidationConstraints)
   }
 
   componentWillReceiveProps(nextProps) {
@@ -44,7 +45,19 @@ class CareerPage extends React.Component {
     let career = this.state.career
     career.tutor = Object.assign({}, career.tutor, { [field]: event.target.value })
     this.props.actions.updateCareer(career)
+    if (this.props.contact.situation == 'student') {
+      this.validateTutorField(field, event.target.value)
+    }
     return this.setState({ career })
+  }
+
+  validateTutorField(field, value) {
+    const errors = Object.assign({}, this.props.tutorErrors)
+    errors[field] = this.tutorValidation.validateField(field, value)
+    if (errors[field] == null) {
+      delete errors[field]
+    }
+    this.props.errorsActions.updateComponentErrors('tutor', errors)
   }
 
   updateBacState(event) {
@@ -99,9 +112,9 @@ class CareerPage extends React.Component {
         onDiplomaChange={this.updateDiplomaState}
         onBacChange={this.updateBacState}
         onEntrepreneurshipChange={this.updateEntrepreneurship}
-        errors={this.state.errors}
+        tutorErrors={this.props.tutorErrors}
         bacErrors={this.props.bacErrors}
-        diplomaErrors={this.props.diplomaErrors}/>
+        diplomaErrors={this.props.diplomaErrors} />
     )
   }
 }
@@ -111,7 +124,8 @@ function mapStateToProps(state, ownProps) {
     career: state.career,
     contact: state.contact,
     bacErrors: state.errors.bac,
-    diplomaErrors: state.errors.diploma
+    diplomaErrors: state.errors.diploma,
+    tutorErrors: state.errors.tutor
   }
 }
 
@@ -127,6 +141,7 @@ CareerPage.propTypes = {
   contact: PropTypes.object.isRequired,
   actions: PropTypes.object.isRequired,
   errorsActions: PropTypes.object.isRequired,
+  tutorErrors: PropTypes.object.isRequired,
   diplomaErrors: PropTypes.object.isRequired,
   bacErrors: PropTypes.object.isRequired
 }

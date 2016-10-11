@@ -53,3 +53,22 @@ export const diplomaValidationConstraints = {
     errorMessage: "obligatoire"
   }
 }
+
+export const tutorValidationConstraints = {
+  name: {
+    isValid: isNotEmpty,
+    errorMessage: "obligatoire"
+  },
+  firstname: {
+    isValid: isNotEmpty,
+    errorMessage: "obligatoire"
+  },
+  skill: {
+    isValid: isNotEmpty,
+    errorMessage: "obligatoire"
+  },
+  email: {
+    isValid: validator.isEmail,
+    errorMessage: "Tu dois renseigner une adresse email valide"
+  }
+}

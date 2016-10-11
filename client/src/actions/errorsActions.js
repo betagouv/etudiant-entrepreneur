@@ -1,6 +1,6 @@
 import * as types from './actionTypes'
 import {contactValidationConstraints} from '../components/application/Contact/ContactValidationConstraints'
-import {bacValidationConstraints, diplomaValidationConstraints} from '../components/application/Career/CareerValidationConstraints'
+import {bacValidationConstraints, diplomaValidationConstraints, tutorValidationConstraints} from '../components/application/Career/CareerValidationConstraints'
 import {profileValidationConstraints} from '../components/application/Profile/ProfileValidationConstraints'
 import {projectValidationConstraints} from '../components/application/Project/ProjectValidationConstraints'
 import {pepiteValidationConstraints} from '../components/application/Pepite/PepiteValidationConstraints'
@@ -45,11 +45,24 @@ export function validateDiploma() {
   }
 }
 
+export function validateTutor() {
+  return (dispatch, getState) => {
+    const {career} = getState()
+    const errors = new Validation(tutorValidationConstraints).validateAllFields(career.tutor)
+    dispatch(updateComponentErrors('tutor', errors))
+    return isEmptyObject(errors)
+  }
+}
+
 export function validateCareer() {
   return (dispatch, getState) => {
+    const {contact} = getState()
     let valid = true
     valid &= dispatch(validateBac())
     valid &= dispatch(validateDiploma())
+    if (contact.situation == 'student') {
+      valid &= dispatch(validateTutor())
+    }
     return valid
   }
 }

@@ -11,7 +11,7 @@ function setup(career = { bac: {}, diploma: {}, tutor: {}, exp: [] }, contact = 
     onBacChange: () => { },
     onTutorChange: () => { },
     onDiplomaChange: () => { },
-    errors: { tutor: {} },
+    tutorErrors: { },
     bacErrors: { },
     diplomaErrors: { }
   }

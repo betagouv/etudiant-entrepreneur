@@ -20,7 +20,7 @@ function getLastDiplomaHeader(situation) {
 
 const last70YearsList = getDescYearList(new Date().getFullYear(), 70)
 
-const CareerForm = ({career, contact, errors, bacErrors, diplomaErrors, onTutorChange, onDiplomaChange, onBacChange, onEntrepreneurshipChange}) => {
+const CareerForm = ({career, contact, tutorErrors, bacErrors, diplomaErrors, onTutorChange, onDiplomaChange, onBacChange, onEntrepreneurshipChange}) => {
   return (
     <form>
       <p>Mon Parcours</p>
@@ -30,19 +30,19 @@ const CareerForm = ({career, contact, errors, bacErrors, diplomaErrors, onTutorC
         </Panel>
         <FormGroup className="required">
           <ControlLabel>Nom</ControlLabel>
-          <ValidatedFormControl name="name" type="text" placeholder="nom" onChange={onTutorChange} value={career.tutor.name} error={errors.tutor.name}/>
+          <ValidatedFormControl name="name" type="text" placeholder="nom" onChange={onTutorChange} value={career.tutor.name} error={tutorErrors.name}/>
         </FormGroup>
         <FormGroup className="required">
           <ControlLabel>Prénom</ControlLabel>
-          <ValidatedFormControl name="firstname" type="text" placeholder="prénom" onChange={onTutorChange} value={career.tutor.firstname} error={errors.tutor.firstname}/>
+          <ValidatedFormControl name="firstname" type="text" placeholder="prénom" onChange={onTutorChange} value={career.tutor.firstname} error={tutorErrors.firstname}/>
         </FormGroup>
         <FormGroup className="required">
           <ControlLabel>Discipline</ControlLabel>
-          <ValidatedFormControl name="skill" type="text" placeholder="discipline" onChange={onTutorChange} value={career.tutor.skill} error={errors.tutor.skill}/>
+          <ValidatedFormControl name="skill" type="text" placeholder="discipline" onChange={onTutorChange} value={career.tutor.skill} error={tutorErrors.skill}/>
         </FormGroup>
         <FormGroup className="required">
           <ControlLabel>Email</ControlLabel>
-          <ValidatedFormControl name="email" type="email" placeholder="email" onChange={onTutorChange} value={career.tutor.email} error={errors.tutor.email}/>
+          <ValidatedFormControl name="email" type="email" placeholder="email" onChange={onTutorChange} value={career.tutor.email} error={tutorErrors.email}/>
         </FormGroup>
       </Panel>
       <Panel header="Mon baccalauréat ou son équivalence en niveau">
@@ -142,7 +142,7 @@ CareerForm.propTypes = {
   onDiplomaChange: PropTypes.func.isRequired,
   onBacChange: PropTypes.func.isRequired,
   onEntrepreneurshipChange: PropTypes.func.isRequired,
-  errors: PropTypes.object,
+  tutorErrors: PropTypes.object,
   bacErrors: PropTypes.object,
   diplomaErrors: PropTypes.object,
 }
