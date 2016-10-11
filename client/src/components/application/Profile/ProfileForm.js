@@ -106,7 +106,7 @@ const ProfileForm = ({profile, contact, errors, onChange, onDateChange}) => {
         </FormGroup>
         <FormGroup className={(contact.situation == 'student') ? 'required' : 'required hidden'}>
           <ControlLabel>Je poursuis une formation en alternance</ControlLabel>
-          <RadioGroup name="isPartTime" onChange={onChange} selectedValue={profile.isPartTime}>
+          <RadioGroup name="isPartTime" onChange={onChange} selectedValue={profile.isPartTime} error={errors.isPartTime}>
             <Radio value="true">oui</Radio>
             <Radio value="false">non</Radio>
           </RadioGroup>

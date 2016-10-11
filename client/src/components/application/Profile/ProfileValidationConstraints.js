@@ -52,5 +52,9 @@ export const profileValidationConstraints = {
   isFreelance: {
     isValid: isNotEmpty,
     errorMessage: "obligatoire"
+  },
+  isPartTime: {
+    isValid: isNotEmpty,
+    errorMessage: "obligatoire"
   }
 }
