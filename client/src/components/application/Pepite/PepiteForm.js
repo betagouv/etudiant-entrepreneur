@@ -68,6 +68,13 @@ const PepiteForm = ({pepite, contact, errors, onChange}) => {
             </FormGroup>
             )
         }})()}
+        <FormGroup className="required">
+          <ControlLabel>Je demande un accès à l'espace de coworking PEPITE (selon disponibilité)</ControlLabel>
+          <RadioGroup name="askCoworking" onChange={onChange} selectedValue={pepite.askCoworking} error={errors.askCoworking}>
+            <Radio value="true">oui</Radio>
+            <Radio value="false">non</Radio>
+          </RadioGroup>
+        </FormGroup>
         <Panel header="Comités passés" bsStyle="warning" className={(pepite.region == '3') ? '' : 'hidden'}>
           Les comités d'engagement des PEPITEs <a href="http://www.pepite3ef.fr/" target="_blank">3EF</a>, <a href="http://www.hesam.eu/blog/2016/03/17/statut-etudiant-entrepreneur/" target="_blank">HeSam Entreprendre</a> et  <a href="http://www.pepite-pon.fr/index.php" target="_blank">Paris Ouest Nord</a> ont déjà eu lieu, n'hésite pas à les contacter pour connaitre la date des prochains.
         </Panel>

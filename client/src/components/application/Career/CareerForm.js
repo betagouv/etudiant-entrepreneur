@@ -45,6 +45,29 @@ const CareerForm = ({career, contact, tutorErrors, bacErrors, diplomaErrors, onT
           <ValidatedFormControl name="email" type="email" placeholder="email" onChange={onTutorChange} value={career.tutor.email} error={tutorErrors.email}/>
         </FormGroup>
       </Panel>
+      <Panel header="Mes aménagements" className={(contact.situation == 'student') ? 'required' : 'required hidden'}>
+        <FormGroup className="required">
+          <ControlLabel>Je souhaite ne pas faire de stage dans ma formation actuelle et valider à la place le développment de mon projet</ControlLabel>
+          <RadioGroup name="replaceInternship" onChange={onTutorChange} selectedValue={career.tutor.replaceInternship} error={tutorErrors.replaceInternship}>
+            <Radio value="true">oui</Radio>
+            <Radio value="false">non</Radio>
+          </RadioGroup>
+        </FormGroup>
+        <FormGroup className="required">
+          <ControlLabel>Je demande la possibilité éventuelle de validation d’équivalence ECTS dans ma formation initiale</ControlLabel>
+          <RadioGroup name="replaceModule" onChange={onTutorChange} selectedValue={career.tutor.replaceModule} error={tutorErrors.replaceModule}>
+            <Radio value="true">oui</Radio>
+            <Radio value="false">non</Radio>
+          </RadioGroup>
+        </FormGroup>
+        <FormGroup className="required">
+          <ControlLabel>Je souhaite pouvoir bénéficier d’une année de césure dans ma formation initiale</ControlLabel>
+          <RadioGroup name="askYearOff" onChange={onTutorChange} selectedValue={career.tutor.askYearOff} error={tutorErrors.askYearOff}>
+            <Radio value="true">oui</Radio>
+            <Radio value="false">non</Radio>
+          </RadioGroup>
+        </FormGroup>
+      </Panel>
       <Panel header="Mon baccalauréat ou son équivalence en niveau">
         <FormGroup className="required">
           <RadioGroup name="isOriginal" onChange={onBacChange} selectedValue={career.bac.isOriginal} error={bacErrors.isOriginal}>

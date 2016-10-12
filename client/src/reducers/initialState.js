@@ -32,7 +32,8 @@ export default {
   pepite: {
     region: 0,
     establishment: 0,
-    pepite: 0
+    pepite: 0,
+    askCoworking: '',
   },
   career: {
     bac: {
@@ -56,7 +57,10 @@ export default {
       name: '',
       firstname: '',
       email: '',
-      skill: ''
+      skill: '',
+      replaceInternship: '',
+      replaceModule: '',
+      askYearOff: ''
     },
     entrepreneurship: []
   },
