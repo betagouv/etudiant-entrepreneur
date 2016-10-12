@@ -7,7 +7,7 @@ const BetaTestersPanel = () => {
       <div>Ce service n'est actuellement disponible qu'aux candidats des PEPITE participant à l'expérimentation:</div>
       <ul>
         <li>PEPITE ETENA</li>
-        <li>PEPITE 3EF</li>
+        <li><i>PEPITE 3EF</i> - inscriptions closes</li>
         <li><i>PEPITE HESAM</i> - inscriptions closes</li>
         <li><i>PEPITE PON</i> - inscriptions closes</li>
         <li><i>PEPITE BRETAGNE</i> - inscriptions closes</li>
