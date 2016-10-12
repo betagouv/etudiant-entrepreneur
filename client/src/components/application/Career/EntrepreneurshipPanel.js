@@ -73,7 +73,7 @@ class EntrepreneurshipPanel extends React.Component {
     return (
       <Panel header="Mes expériences entrepreneuriales">
         <EntrepreneurshipList entrepreneurship={this.state.entrepreneurship} onEntrepreneurshipDelete={this.onEntrepreneurshipDelete}/>
-        <ButtonWrapperComponent showButtonText="J'ajoute mes expériences en entreprenariat" isChildrenShown={this.state.entrepreneurship.length != 0} glyph="plus">
+        <ButtonWrapperComponent showButtonText="J'ajoute mes expériences en entrepreunariat" isChildrenShown={this.state.entrepreneurship.length != 0} glyph="plus">
           <EntrepreneurshipAddForm
           onChange={this.updateNewEntrepreneurshipState}
           newEntrepreneurship={this.state.newEntrepreneurship}
