@@ -10,7 +10,7 @@ import autoprefixer from 'autoprefixer'
 const GLOBALS = {
   'process.env.NODE_ENV': JSON.stringify('production'),
   __DEV__: false,
-  API_URI: JSON.stringify('http://localhost:3004/api')
+  API_URI: JSON.stringify('http://vps295137.ovh.net:3004/api')
 }
 
 export default {
