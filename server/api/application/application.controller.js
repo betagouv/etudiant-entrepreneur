@@ -90,6 +90,12 @@ class ApplicationController {
               'Confirmation d\'envoi de ta candidature au statut Étudiant-entrepreneur',
               getSendEmailBody(application),
               (error, info) => { logMail(req.log, error, info )})
+            //notify tutuor
+            sendMail(
+              application.career.tutor.email,
+              'Candidature d\'un de vos étudiants au statut Étudiant-entrepreneur',
+              getTutorEmailBody(application),
+              (error, info) => { logMail(req.log, error, info )})
             //notify pepite
             sendMail(
               getPepite(application.pepite.pepite).email,
