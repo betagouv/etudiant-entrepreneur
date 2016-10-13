@@ -138,7 +138,7 @@ function getSendEmailBody(application) {
   return ('<html><body><p>Bonjour,</p>' +
     `<p>Ta candidature a bien été envoyée au PEPITE ${getPepite(application.pepite.pepite).name} qui reviendra vers toi pour les prochaines étapes.</p>` +
     '<p>Ta  candidature passera en comité d\'engagement, la date de ce comité te sera donnée par ton PEPITE.</p>' +
-    '<p>Ton responsable pédagogique a été inform·é de ta candidature au statut, nous t’invitons à prendre contact avec lui.</p>' +
+    '<p>Ton responsable pédagogique a été informé·e de ta candidature au statut, nous t’invitons à prendre contact avec lui.</p>' +
     '<a href="https://etudiant-entrepreneur.beta.gouv.fr/application/' + application._id + '" target="_blank">ta candidature</a>' +
     '<p>Si tu as la moindre question, n\'hésites pas à nous contacter à contact@etudiant-entrepreneur.beta.gouv.fr</p>' +
     '<p>Bonne aventure entreprenariale !</p>')
