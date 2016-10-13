@@ -91,11 +91,13 @@ class ApplicationController {
               getSendEmailBody(application),
               (error, info) => { logMail(req.log, error, info )})
             //notify tutuor
-            sendMail(
-              application.career.tutor.email,
-              'Candidature d\'un de vos étudiants au statut Étudiant-entrepreneur',
-              getTutorEmailBody(application),
-              (error, info) => { logMail(req.log, error, info )})
+            if (application.contact.situation == 'student') {
+              sendMail(
+                application.career.tutor.email,
+                'Candidature d\'un de vos étudiants au statut Étudiant-entrepreneur',
+                getTutorEmailBody(application),
+                (error, info) => { logMail(req.log, error, info )})
+            }
             //notify pepite
             sendMail(
               getPepite(application.pepite.pepite).email,
@@ -173,11 +175,18 @@ function getTutorEmailBody(application) {
 
 const pepites = [
   { id: '1', name: 'ETENA', email: 'a.latour@unistra.fr' },
+  { id: '3', name: 'by PEEL', email: 'peel@univ-lorraine.fr' },
+  { id: '4', name: 'ECA', email: 'eca@cuea.fr' },
+  { id: '7', name: 'BeeLYS', email: 'beelys@fpul-lyon.org' },
   { id: '9', name: 'Bretagne', email: 'pepite-bretagne@u-bretagneloire.fr' },
   { id: '13', name: '3EF', email: 'pepite3ef@univ-paris-est.fr' },
   { id: '14', name: 'heSam Entreprendre', email: 'dossier.pepite@hesam.eu' },
   { id: '15', name: 'Paris Ouest Nord', email: 'contact@pepite-pon.fr' },
+  { id: '18', name: 'PSL', email: 'psl-pepite@univ-psl.fr' },
+  { id: '21', name: 'Lille Nord de France', email: 'envoi@tonpepite.com' },
   { id: '22', name: 'Picardie', email: 'pepite.picardie@gmail.com' },
+  { id: '23', name: 'Vallée de Seine', email: 'mathieu.luet@normandie-univ.fr' },
+  { id: '24', name: 'CRÉER', email: 'pepite.creer@u-bretagneloire.fr' },
 ]
 
 function getPepite(id) {
