@@ -20,6 +20,7 @@ const BetaTestersPanel = () => {
         <li><i>PEPITE PON</i> - inscriptions closes</li>
         <li><i>PEPITE BRETAGNE</i> - inscriptions closes</li>
       </ul>
+      <div>Pour t'inscrire à un autre PEPITE, télécharge le dossier de candidature au format pdf <a href="http://www.etudiant.gouv.fr/pid34459/le-statut-national-d-etudiant-e-entrepreneur-e.html" target="_blank">ici</a></div>
     </Panel>)
 }
 
