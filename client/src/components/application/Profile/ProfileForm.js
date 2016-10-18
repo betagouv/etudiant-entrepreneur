@@ -51,7 +51,7 @@ const ProfileForm = ({profile, contact, errors, onChange, onDateChange}) => {
       <FormGroup className="required">
         <ControlLabel>Motivations à candidater au statut national étudiant·e-entrepreneur·e</ControlLabel>
         <ValidatedComponent error={errors.motivation}>
-          <Textarea className="form-control" name="motivation" rows="5" placeholder="vos motivations" onChange={onChange} value={profile.motivation}/>
+          <Textarea className="form-control" name="motivation" rows={5} placeholder="vos motivations" onChange={onChange} value={profile.motivation}/>
         </ValidatedComponent>
       </FormGroup>
       <Panel header="Mes coordonnées pérennes dans le temps">

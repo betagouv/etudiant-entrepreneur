@@ -3,9 +3,14 @@ import React from 'react'
 import {mount} from 'enzyme'
 import {ContactPage} from './ContactPage'
 
-function setup(contact = {}) {
+function setup(
+  contact = {
+    situation: '',
+    isRenew: ''
+  }) {
   const props = {
     contact,
+    errors: {},
     actions: { updateContact: () => { } },
     errorsActions: { updateComponentErrors: () => { } }
   }

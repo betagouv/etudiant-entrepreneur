@@ -3,7 +3,14 @@ import React from 'react'
 import {shallow} from 'enzyme'
 import CareerForm from './CareerForm'
 
-function setup(career = { bac: {}, diploma: {}, tutor: {}, exp: [] }, contact = {}) {
+function setup(
+  career = {
+    bac: { type: '', isOriginal: '' },
+    diploma: { sector: '' },
+    tutor: { askYearOff: '', replaceModule: '', replaceInternship: '' },
+    entrepreneurship: []
+  },
+  contact = {}) {
   const props = {
     career: Object.assign({}, career),
     contact: Object.assign({}, contact),
@@ -11,6 +18,7 @@ function setup(career = { bac: {}, diploma: {}, tutor: {}, exp: [] }, contact = 
     onBacChange: () => { },
     onTutorChange: () => { },
     onDiplomaChange: () => { },
+    onEntrepreneurshipChange: () => { },
     tutorErrors: { },
     bacErrors: { },
     diplomaErrors: { }

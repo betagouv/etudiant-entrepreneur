@@ -9,7 +9,8 @@ function setup(contact = {}) {
       firstname: '',
       name: '',
       email: '',
-      situation: ''
+      situation: '',
+      isRenew: ''
     }, contact),
     onChange: () => { },
     errors: {}

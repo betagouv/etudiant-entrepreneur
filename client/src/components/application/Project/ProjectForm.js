@@ -33,31 +33,31 @@ const ProjectForm = ({project, onChange, errors}) => {
       <FormGroup className="required">
         <ControlLabel>Résumé de mon projet</ControlLabel>
         <ValidatedComponent error={errors.summary}>
-          <Textarea className="form-control" name="summary" rows="5" placeholder="Non confidentiel, ne doit pas comporter l'élément sensible" onChange={onChange} value={project.summary}/>
+          <Textarea className="form-control" name="summary" rows={5} placeholder="Non confidentiel, ne doit pas comporter l'élément sensible" onChange={onChange} value={project.summary}/>
         </ValidatedComponent>
       </FormGroup>
       <FormGroup className="required">
         <ControlLabel>Où en suis-je dans mon projet ?</ControlLabel>
         <ValidatedComponent error={errors.stepSummary}>
-          <Textarea className="form-control" name="stepSummary" rows="5" placeholder="Où en es-tu et quelles sont les prochaines étapes ?" onChange={onChange} value={project.stepSummary}/>
+          <Textarea className="form-control" name="stepSummary" rows={5} placeholder="Où en es-tu et quelles sont les prochaines étapes ?" onChange={onChange} value={project.stepSummary}/>
         </ValidatedComponent>
       </FormGroup>
       <FormGroup className={project.nextStepSummary ? '' : 'hidden'}>
         <ControlLabel>Quelles sont les prochaines étapes de mon projet ?</ControlLabel>
         <ValidatedComponent error={errors.nextStepSummary}>
-          <Textarea className="form-control" name="nextStepSummary" rows="5" placeholder="prochaines étapes" onChange={onChange} value={project.nextStepSummary}/>
+          <Textarea className="form-control" name="nextStepSummary" rows={5} placeholder="prochaines étapes" onChange={onChange} value={project.nextStepSummary}/>
         </ValidatedComponent>
       </FormGroup>
       <FormGroup className="required">
         <ControlLabel>Quelle est la valeure ajoutée de mon projet ?</ControlLabel>
         <ValidatedComponent error={errors.activitySummary}>
-          <Textarea className="form-control" name="activitySummary" rows="5" placeholder="En quoi ton projet est-il différenciant ?" onChange={onChange} value={project.activitySummary}/>
+          <Textarea className="form-control" name="activitySummary" rows={5} placeholder="En quoi ton projet est-il différenciant ?" onChange={onChange} value={project.activitySummary}/>
         </ValidatedComponent>
       </FormGroup>
       <FormGroup className="required">
         <ControlLabel>Quelle est ma motivation pour lancer cette activité ?</ControlLabel>
         <ValidatedComponent error={errors.motiviation}>
-          <Textarea className="form-control" name="motiviation" rows="5" onChange={onChange} value={project.motiviation}/>
+          <Textarea className="form-control" name="motiviation" rows={5} onChange={onChange} value={project.motiviation}/>
         </ValidatedComponent>
       </FormGroup>
       <FormGroup className="required">
