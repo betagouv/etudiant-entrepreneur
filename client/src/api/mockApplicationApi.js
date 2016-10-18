@@ -122,7 +122,7 @@ class mockApplicationApi {
     })
   }
 
-    static sendApplication(id, application) {
+  static sendApplication(id, application) {
     return new Promise((resolve, reject) => {
       setTimeout(() => {
         initApplication = application

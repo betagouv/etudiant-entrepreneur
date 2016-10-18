@@ -10,17 +10,23 @@ class SendPage extends React.Component {
   constructor(props, context) {
     super(props, context)
     this.sendForm = this.sendForm.bind(this)
+    this.state = {
+      isSending: false
+    }
   }
 
   sendForm() {
     if (this.props.errorsActions.validateApplication()) {
+      this.setState({isSending: true})
       this.props.actions.saveApplication()
         .then(application => {
           this.props.actions.sendApplication()
             .then(() => {
+              this.setState({isSending: false})
               toastr.success('Candidature envoyée')
             })
             .catch((err) => {
+              this.setState({isSending: false})
               if (err.response && err.response.data && err.response.data.reason) {
                 toastr.error(err.response.data.reason)
               } else {
@@ -32,13 +38,14 @@ class SendPage extends React.Component {
           toastr.error(err)
         })
     } else {
+      this.setState({isSending: false})
       toastr.error('Tu as des erreurs dans le formulaire')
     }
   }
 
   render() {
     return (
-      <SendForm sendForm={this.sendForm}/>
+      <SendForm sendForm={this.sendForm} isSending={this.state.isSending}/>
     )
   }
 }
