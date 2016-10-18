@@ -111,6 +111,26 @@ class mockApplicationApi {
       }, delay)
     })
   }
+
+  static updateApplication(id, application) {
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        initApplication = application
+        application.id = 'awpzoazryxlwaptduzkgclsh'
+        resolve(Object.assign({}, application))
+      }, delay)
+    })
+  }
+
+    static sendApplication(id, application) {
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        initApplication = application
+        application.id = 'awpzoazryxlwaptduzkgclsh'
+        resolve(Object.assign({}, application))
+      }, delay)
+    })
+  }
 }
 
 export default mockApplicationApi
