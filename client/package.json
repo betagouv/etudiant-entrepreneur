@@ -101,5 +101,8 @@
     "webpack-dev-middleware": "1.6.1",
     "webpack-hot-middleware": "2.12.2",
     "webpack-md5-hash": "0.0.5"
+  },
+  "engines": {
+    "node": "6.2.0"
   }
 }

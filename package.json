@@ -1,6 +1,9 @@
 {
   "name": "etudiant-entrepreneur",
   "version": "0.0.1",
+  "engines": {
+    "node": "6.2.0"
+  },
   "description": "Faciliter l'accès au statut et à ses bénéfices",
   "scripts": {
     "postinstall": "npm-run-all --sequential install:back install:front",
