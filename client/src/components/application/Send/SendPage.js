@@ -35,6 +35,7 @@ class SendPage extends React.Component {
             })
         })
         .catch((err) => {
+          this.setState({isSending: false})
           toastr.error(err)
         })
     } else {
