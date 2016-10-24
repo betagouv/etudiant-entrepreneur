@@ -63,7 +63,7 @@ const PepiteForm = ({pepite, contact, errors, onChange}) => {
               <ControlLabel>Mon PEPITE</ControlLabel>
               <ValidatedFormControl name="pepite" componentClass="select" onChange={onChange} value={pepite.pepite} error={errors.pepite}>
                 <option value="0" disabled>Sélectionner</option>
-                {getAllValidPepites(pepite.region - 1, pepite.establishment - 1).map((pepite, index) => { return (<option key={index + 1} value={pepite.id + 1} disabled={isOverduePepite(pepite.id)}>PEPITE {pepite.name}</option>) }) }
+                {getAllValidPepites(pepite.region - 1, pepite.establishment - 1).map((pepite, index) => { return (<option key={index + 1} value={pepite.id + 1}>PEPITE {pepite.name}</option>) }) }
               </ValidatedFormControl>
             </FormGroup>
             )
