@@ -17,7 +17,6 @@ Le site: https://etudiant-entrepreneur.beta.gouv.fr/
 ### Node+Docker
 
 ```
-bash
 npm install
 npm start
 ```
