@@ -10,7 +10,7 @@
     "install:back": "cd server && npm install",
     "install:front": "cd client && npm install",
     "start": "npm-run-all --sequential start:back start:front",
-    "start:back": "docker-compose up -d api",
+    "start:back": "docker-compose up --build --force-recreate -d api seed",
     "start:front": "cd client && npm run start",
     "start:build": "npm run build:front && docker-compose -f docker-compose.yml -f docker-compose.build.yml up -d --build --force-recreate",
     "test": "npm-run-all --sequential test:back test:front test:docker",

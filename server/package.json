@@ -5,7 +5,8 @@
   "scripts": {
     "start": "./bin/api.js",
     "test": "./node_modules/.bin/istanbul cover --print details node_modules/mocha/bin/_mocha -- -R spec api/*/test/** --recursive",
-    "lint": "./node_modules/.bin/eslint api/ bin/"
+    "lint": "./node_modules/.bin/eslint api/ bin/",
+    "seed": "node ./bin/seed.js"
   },
   "repository": {
     "type": "git",

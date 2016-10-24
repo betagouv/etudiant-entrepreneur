@@ -1,0 +1,12 @@
+FROM node:6
+
+RUN mkdir -p /srv/app
+
+ADD ./package.json /srv/app/
+WORKDIR /srv/app
+RUN npm install --production
+
+ADD ./defaults.json ./
+ADD ./bin ./bin
+
+CMD npm run seed

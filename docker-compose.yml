@@ -20,6 +20,16 @@ services:
       - SENDGRID_API_KEY=${SENDGRID_API_KEY}
     depends_on:
       - mongo
+  seed:
+    build:
+      context: ./server
+      dockerfile: Dockerfile-seed
+    volumes:
+      - ./server/api:/srv/app/api
+    networks:
+      - back
+    depends_on:
+      - mongo
 
 networks:
   front:
