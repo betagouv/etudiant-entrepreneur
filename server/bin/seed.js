@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+/* eslint-disable no-console */
 const mongoose = require('mongoose')
 const Pepite = require('../api/pepite/pepite.model')
 const pepites = require('../api/pepite/pepite.seed')

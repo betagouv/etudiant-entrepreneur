@@ -27,12 +27,12 @@ function Server(options) {
 
     //This callback will be triggered once the connection is successfully established to MongoDB
     mongoose.connection.on('connected', function () {
-      console.log('Mongoose default connection open to ' + config.mongo.uri)
+      console.log('Mongoose default connection open to ' + config.mongo.uri) // eslint-disable-line no-console
     })
 
     //This callback will be triggered after getting disconnected
     mongoose.connection.on('disconnected', function () {
-      console.log('Mongoose disconnected from ' + config.mongo.uri)
+      console.log('Mongoose disconnected from ' + config.mongo.uri) // eslint-disable-line no-console
     })
   }
 

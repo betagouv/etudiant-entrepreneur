@@ -1,7 +1,6 @@
 'use strict'
 
 const Pepite = require('./pepite.model')
-const StandardError = require('standard-error')
 const mongoose = require('mongoose')
 
 class PepiteController {
@@ -38,7 +37,7 @@ class PepiteController {
       })
   }
 
-  createPepite(req, res, next) {
+  createPepite(req, res) {
     Pepite.create(req.body)
       .then((pepite) => {
         return res.status(201).json(pepite)
