@@ -2,7 +2,7 @@
 /* eslint-disable no-console */
 const mongoose = require('mongoose')
 const Pepite = require('../api/pepite/pepite.model')
-const pepites = require('../api/pepite/pepite.seed')
+const pepitesData = require('../api/pepite/pepite.seed')
 
 const config = require('../api/config')
 
@@ -23,9 +23,16 @@ mongoose.connection.on('disconnected', function () {
 
 function startSeed() {
   console.log('Clear pepite collection')
-  Pepite.remove()
+  Pepite.remove(removedPepiteCallback)
+}
 
+function removedPepiteCallback() {
   console.log('Seed pepite collection')
-  Pepite.insertMany(pepites)
+  Pepite.insertMany(pepitesData, seedPepiteRelatedData)
+}
+
+function seedPepiteRelatedData(errors, pepites) {
+  console.log(pepites)
+  process.exit(0)
 }
 
