@@ -31,8 +31,7 @@ function removedPepiteCallback() {
   Pepite.insertMany(pepitesData, seedPepiteRelatedData)
 }
 
-function seedPepiteRelatedData(errors, pepites) {
-  console.log(pepites)
+function seedPepiteRelatedData() {
   process.exit(0)
 }
 
