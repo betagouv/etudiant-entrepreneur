@@ -1,0 +1,17 @@
+version: '2'
+
+services:
+  mongo-test:
+    image: mongo
+    ports:
+      - 27018:27017
+  seed-test:
+    build:
+      context: ./
+      dockerfile: Dockerfile-seed
+    volumes:
+      - ./api:/srv/app/api
+    depends_on:
+      - mongo-test
+    environment:
+      - MONGODB_URI=mongodb://mongo-test:27017/ee

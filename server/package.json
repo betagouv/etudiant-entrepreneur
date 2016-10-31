@@ -4,7 +4,9 @@
   "description": "Faciliter l'accès au statut et à ses bénéfices",
   "scripts": {
     "start": "./bin/api.js",
-    "test": "./node_modules/.bin/istanbul cover --print details node_modules/mocha/bin/_mocha -- -R spec api/*/test/** --recursive",
+    "pretest": "docker-compose -f docker-compose.test.yml up --build --force-recreate -d",
+    "test": "MONGODB_URI='mongodb://localhost:27018/ee' ./node_modules/.bin/istanbul cover --print details node_modules/mocha/bin/_mocha -- -R spec api/*/test/** --recursive",
+    "posttest": "docker-compose -f docker-compose.test.yml down",
     "lint": "./node_modules/.bin/eslint api/ bin/",
     "seed": "node ./bin/seed.js"
   },
@@ -39,6 +41,7 @@
   "devDependencies": {
     "coveralls": "2.11.9",
     "eslint": "3.0.0",
+    "expect": "1.20.2",
     "npm-run-all": "2.3.0",
     "supertest": "1.2.0"
   },

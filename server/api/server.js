@@ -20,8 +20,8 @@ function Server(options) {
   options.logger = options.logger || emptylogger()
   options.isTest = options.isTest || false
 
-  if (!options.isTest) {
-    mongoose.Promise = require('bluebird')
+  mongoose.Promise = require('bluebird')
+  if (!mongoose.connection.readyState) {
     // Connect to database
     mongoose.connect(config.mongo.uri, config.mongo.options)
 
