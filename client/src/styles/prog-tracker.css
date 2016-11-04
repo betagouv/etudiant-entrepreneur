@@ -61,7 +61,7 @@ ol.progtrckr li:before {
 ol.progtrckr li.progtrckr-todo:before {
   content: "Ο";
   color: silver;
-  background-color: white;
+  background-color: #eee;
   width: 1.2em;
   line-height: 1.4em;
 }
