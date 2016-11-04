@@ -27,6 +27,7 @@ const CareerForm = ({career, contact, tutorErrors, bacErrors, diplomaErrors, onT
       <Panel header="Mon responsable pédagogique" className={(contact.situation == 'student') ? 'required' : 'required hidden'}>
         <Panel>
           <div>Enseignant·e dans la formation dans laquelle je suis inscrit·e pour l'année universitaire {getCurrentUniversityYear()}.</div>
+          <div>Ton référent pédagogique sera informé de ta candidature.</div>
         </Panel>
         <FormGroup className="required">
           <ControlLabel>Nom</ControlLabel>
