@@ -162,7 +162,7 @@ function getTutorEmailBody(application) {
     '<br>' +
     `<p>L'étudiant·e ${application.contact.firstname} ${application.contact.name} demande le statut national étudiant·e entrepreneur·e (SNEE)</p>` +
     '<p>Nous vous informons de sa démarche en tant que référent.e pédagogique car l’obtention de ce statut a pour objet de rendre compatible études et projet d\'activités en proposant notamment des aménagements d\'emploi du temps, des crédits ECTS et la possibilité de substituer au stage le travail sur son projet.</p>' +
-    '<p>Il est dès lors important que les équipes pédagogiques puissent être informées le plus en maont possible et puissent être actrice dans ce processus.</p>' +
+    '<p>Il est dès lors important que les équipes pédagogiques puissent être informées le plus en amont possible et puissent être actrices dans ce processus.</p>' +
     '<p>Le/la candidat·e a été informé·e que vous êtiez notifié·e de sa demande et est invité·e à prendre contact avec vous.</p>' +
     '<p>Bien cordialement,<p>' +
     '<p>L\'équipe de la plateforme en ligne.<p>' +
