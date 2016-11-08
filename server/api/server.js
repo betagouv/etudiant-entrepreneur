@@ -9,6 +9,7 @@ const expressBunyanLogger = require('express-bunyan-logger')
 const bodyParser = require('body-parser')
 const formatError = require('./lib/middlewares/formatError')
 const mongoose = require('mongoose')
+var passport = require('passport')
 
 const config = require('./config')
 
@@ -42,6 +43,8 @@ function Server(options) {
   app.set('json spaces', 2)
   app.set('logger', logger)
   app.disable('x-powered-by')
+
+  app.use(passport.initialize())
 
   app.use((req, res, next) => {
     res.header('Access-Control-Allow-Origin', '*')

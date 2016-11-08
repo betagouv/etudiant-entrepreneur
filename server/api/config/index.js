@@ -12,7 +12,12 @@ const all = {
   },
   sendGrid: {
     apiKey: process.env.SENDGRID_API_KEY || 'sendgrid_api_key'
-  }
+  },
+
+  // Secret for session
+  secrets: {
+    session: process.env.SESSION_SECRET || 'ssshhhhh'
+  },
 }
 
 module.exports = all
