@@ -9,33 +9,24 @@ describe('api: auth', () => {
   })
 
   describe('When requesting /api/auth/ with user missing', () => {
-    it('should return 401', (done) => {
+    it('should return 401 given email and password are missing', (done) => {
       supertest(app)
         .post('/api/auth/')
         .expect(401, { message: 'Missing credentials'}, done)
     })
-  })
-
-  describe('When requesting /api/auth/ with invalid user and password', () => {
-    it('should return 401', (done) => {
+    it('should return 401 given email and password are invalid', (done) => {
       supertest(app)
         .post('/api/auth/')
         .send({email: 'anonymous', password: 'wrongPassword'})
         .expect(401, { 'message': 'Email ou mot de passe incorrect'}, done)
     })
-  })
-
-  describe('When requesting /api/auth/ with invalid passoword', () => {
-    it('should return 401', (done) => {
+    it('should return 401 given password is invalid', (done) => {
       supertest(app)
         .post('/api/auth/')
         .send({email: 'peel@univ-lorraine.fr', password: 'wrongPassword'})
         .expect(401, { message: 'Email ou mot de passe incorrect'}, done)
     })
-  })
-
-  describe('When requesting /api/auth/ with valid credentials', () => {
-    it('should return 401', (done) => {
+    it('should return 200 and a token given email and password are valid', (done) => {
       supertest(app)
         .post('/api/auth/')
         .send({email: 'peel@univ-lorraine.fr', password: 'test'})
