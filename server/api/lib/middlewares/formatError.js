@@ -15,5 +15,8 @@ module.exports = function (err, req, res, next) {
       return res.status(err.code).json(error)
     }
   }
+  if (err.name === 'UnauthorizedError') {
+    return res.status(401).send('The provided token is invalid')
+  }
   next(err)
 }
