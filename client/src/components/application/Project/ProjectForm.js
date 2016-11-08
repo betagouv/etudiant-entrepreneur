@@ -10,7 +10,7 @@ const ProjectForm = ({project, onChange, errors}) => {
   return (
     <form>
       <p>Mon Projet</p>
-      <FormGroup className="required">
+      <FormGroup className={project.step ? '' : 'hidden'}>
         <ControlLabel>Etape du projet</ControlLabel>
         <RadioGroup name="step" onChange={onChange} selectedValue={project.step} error={errors.step}>
           <Radio value="building">Construction</Radio>
@@ -39,7 +39,7 @@ const ProjectForm = ({project, onChange, errors}) => {
       <FormGroup className="required">
         <ControlLabel>Où en suis-je dans mon projet ?</ControlLabel>
         <ValidatedComponent error={errors.stepSummary}>
-          <Textarea className="form-control" name="stepSummary" rows={5} placeholder="Où en es-tu et quelles sont les prochaines étapes ?" onChange={onChange} value={project.stepSummary}/>
+          <Textarea className="form-control" name="stepSummary" rows={5} placeholder="Où en es-tu et quelles sont les prochaines étapes ? Le projet est-il lancé ?" onChange={onChange} value={project.stepSummary}/>
         </ValidatedComponent>
       </FormGroup>
       <FormGroup className={project.nextStepSummary ? '' : 'hidden'}>

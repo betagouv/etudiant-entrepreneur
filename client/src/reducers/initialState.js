@@ -5,7 +5,6 @@ export default {
     name: '',
     summary: '',
     type: '',
-    step: '',
     site: '',
     linkedin: '',
     blog: '',

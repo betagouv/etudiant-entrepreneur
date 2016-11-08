@@ -15,7 +15,6 @@ export class ProjectPage extends React.Component {
         name: "",
         summary: "",
         type: "",
-        step: "",
         site: "",
         status: "",
         blog: "",
