@@ -47,21 +47,21 @@ const CareerForm = ({career, contact, tutorErrors, bacErrors, diplomaErrors, onT
       </Panel>
       <Panel header="Mes aménagements" className={(contact.situation == 'student') ? 'required' : 'required hidden'}>
         <FormGroup className="required">
-          <ControlLabel>Je souhaite ne pas faire de stage dans ma formation actuelle et valider à la place le développment de mon projet</ControlLabel>
+          <ControlLabel>J'aimerais valider une période de stage obligatoire en m'investissant dans mon projet</ControlLabel>
           <RadioGroup name="replaceInternship" onChange={onTutorChange} selectedValue={career.tutor.replaceInternship} error={tutorErrors.replaceInternship}>
             <Radio value="true">oui</Radio>
             <Radio value="false">non</Radio>
           </RadioGroup>
         </FormGroup>
         <FormGroup className="required">
-          <ControlLabel>Je demande la possibilité éventuelle de validation d’équivalence ECTS dans ma formation initiale</ControlLabel>
+          <ControlLabel>J'aimerais valider des équivalence ECTS de ma formation initiale grâce à mon projet</ControlLabel>
           <RadioGroup name="replaceModule" onChange={onTutorChange} selectedValue={career.tutor.replaceModule} error={tutorErrors.replaceModule}>
             <Radio value="true">oui</Radio>
             <Radio value="false">non</Radio>
           </RadioGroup>
         </FormGroup>
         <FormGroup className="required">
-          <ControlLabel>Je souhaite pouvoir bénéficier d’une année de césure dans ma formation initiale</ControlLabel>
+          <ControlLabel>J'aimerais prendre une année de césure pour m'investir dans mon projet</ControlLabel>
           <RadioGroup name="askYearOff" onChange={onTutorChange} selectedValue={career.tutor.askYearOff} error={tutorErrors.askYearOff}>
             <Radio value="true">oui</Radio>
             <Radio value="false">non</Radio>
