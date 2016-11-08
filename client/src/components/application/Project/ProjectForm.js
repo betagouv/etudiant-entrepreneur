@@ -57,7 +57,7 @@ const ProjectForm = ({project, onChange, errors}) => {
       <FormGroup className="required">
         <ControlLabel>Quelle est ma motivation pour lancer cette activité ?</ControlLabel>
         <ValidatedComponent error={errors.motiviation}>
-          <Textarea className="form-control" name="motiviation" rows={5} onChange={onChange} value={project.motiviation}/>
+          <Textarea className="form-control" name="motiviation" rows={5} placeholder="Qu'est-ce qui te pousse vers l'entrepreneuriat et la réalisation de ton projet?" onChange={onChange} value={project.motiviation}/>
         </ValidatedComponent>
       </FormGroup>
       <FormGroup className="required">

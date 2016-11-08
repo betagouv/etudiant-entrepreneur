@@ -49,9 +49,9 @@ const ProfileForm = ({profile, contact, errors, onChange, onDateChange}) => {
         <HelpBlock>identifiant ou numéro national étudiant unique présent sur ma carte d’étudiant·e ou mes relevés de notes.</HelpBlock>
       </FormGroup>
       <FormGroup className="required">
-        <ControlLabel>Motivations à candidater au statut national étudiant·e-entrepreneur·e</ControlLabel>
+        <ControlLabel>Qu'attends-tu du statut national étudiant·e-entrepreneur·e ?</ControlLabel>
         <ValidatedComponent error={errors.motivation}>
-          <Textarea className="form-control" name="motivation" rows={5} placeholder="vos motivations" onChange={onChange} value={profile.motivation}/>
+          <Textarea className="form-control" name="motivation" rows={5} placeholder="motivations à candidater au statut national étudiant·e-entrepreneur·e" onChange={onChange} value={profile.motivation}/>
         </ValidatedComponent>
       </FormGroup>
       <Panel header="Mes coordonnées pérennes dans le temps">
