@@ -1,11 +1,11 @@
 'use strict'
 
-var express = require('express')
-var passport = require('passport')
-var auth = require('./auth.service')
-var User = require('../user/user.model')
+const express = require('express')
+const passport = require('passport')
+const router = express.Router()
 
-var router = express.Router()
+const User = require('../user/user.model')
+const Controller = require('./auth.controller')
 
 // Passport Configuration
 passport.serializeUser(function(user, done) {
@@ -18,15 +18,8 @@ passport.deserializeUser(function(user, done) {
 
 require('./passport-strategy').setup(User)
 
-router.post('/', function(req, res, next) {
-  passport.authenticate('local', function(err, user, info) {
-    var error = err || info
-    if (error) return res.status(401).json(error)
-    if (!user) return res.status(404).json({message: 'Something went wrong, please try again.'})
-
-    var token = auth.signToken(user._id, user.role)
-    res.json({token: token})
-  })(req, res, next)
-})
-
-module.exports = router
+module.exports = (options) => {
+  const authController = new Controller(options)
+  router.post('/', authController.getToken)
+  return router
+}

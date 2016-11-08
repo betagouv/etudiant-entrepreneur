@@ -9,5 +9,5 @@ exports.configure = (app, options) => {
   app.use('/api/application', application(options))
   app.use('/api/pepite', pepite(options))
   app.use('/api/user', user(options))
-  app.use('/api/auth', auth)
+  app.use('/api/auth', auth(options))
 }
