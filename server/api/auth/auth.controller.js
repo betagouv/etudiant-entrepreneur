@@ -4,6 +4,10 @@ const passport = require('passport')
 const auth = require('./auth.service')
 
 class AuthController {
+  ping(req, res) {
+    res.json('pong')
+  }
+
   getToken(req, res, next) {
     passport.authenticate('local', function (err, user, info) {
       var error = err || info
