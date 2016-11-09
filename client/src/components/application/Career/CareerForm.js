@@ -24,10 +24,10 @@ const CareerForm = ({career, contact, tutorErrors, bacErrors, diplomaErrors, onT
   return (
     <form>
       <p>Mon Parcours</p>
-      <Panel header="Mon responsable pédagogique" className={(contact.situation == 'student') ? 'required' : 'required hidden'}>
+      <Panel header="Le responsable de ma formation initiale" className={(contact.situation == 'student') ? 'required' : 'required hidden'}>
         <Panel>
           <div>Enseignant·e dans la formation dans laquelle je suis inscrit·e pour l'année universitaire {getCurrentUniversityYear()}.</div>
-          <div>Ton référent pédagogique sera informé de ta candidature.</div>
+          <div>Ton responsable pédagogique sera informé de ta candidature.</div>
         </Panel>
         <FormGroup className="required">
           <ControlLabel>Nom</ControlLabel>
