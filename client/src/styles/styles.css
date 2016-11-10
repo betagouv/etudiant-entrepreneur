@@ -13,3 +13,8 @@
 .header-content p.header-sub-content {
   font-size: 30px;
 }
+
+body {
+  /* Avoid Navbar overlaping */
+  padding-top: 50px;
+}
