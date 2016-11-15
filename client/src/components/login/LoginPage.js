@@ -2,6 +2,8 @@ import React, { PropTypes } from 'react'
 import LoginForm from './LoginForm'
 import Validation from '../common/Validation'
 import {userValidationConstraints} from './userValidationConstraints'
+import toastr from 'toastr'
+import {isEmptyObject} from '../common/validationHelper'
 
 export class LoginPage extends React.Component {
   constructor(props, context) {
@@ -28,6 +30,14 @@ export class LoginPage extends React.Component {
 
   loginUser(event) {
     event.preventDefault()
+    const errors = this.userValidation.validateAllFields(this.state.user)
+    if (!isEmptyObject(errors)) {
+      this.setState({ errors })
+      toastr.error('Tu dois renseigner un email et un mot de passe valides')
+    }
+    else {
+      //TODO perform authent
+    }
   }
 
   validateUserField(field, value) {
