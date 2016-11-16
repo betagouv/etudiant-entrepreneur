@@ -6,6 +6,7 @@ import pepite from './pepiteReducer'
 import errors from './errorsReducer'
 import career from './careerReducer'
 import profile from './profileReducer'
+import user from './userReducer'
 
 const rootReducer = combineReducers({
   application,
@@ -14,6 +15,7 @@ const rootReducer = combineReducers({
   pepite,
   career,
   profile,
+  user,
   errors
 })
 

@@ -4,6 +4,9 @@ import Validation from '../common/Validation'
 import {userValidationConstraints} from './userValidationConstraints'
 import toastr from 'toastr'
 import {isEmptyObject} from '../common/validationHelper'
+import {connect} from 'react-redux'
+import {bindActionCreators} from 'redux'
+import * as userActions from '../../actions/userActions'
 
 export class LoginPage extends React.Component {
   constructor(props, context) {
@@ -36,7 +39,13 @@ export class LoginPage extends React.Component {
       toastr.error('Tu dois renseigner un email et un mot de passe valides')
     }
     else {
-      //TODO perform authent
+      this.props.actions.loginUser(this.state.user)
+        .then((user) => {
+          toastr.success('Authentification réussie')
+        })
+        .catch((err) => {
+          toastr.error(err)
+        })
     }
   }
 
@@ -65,7 +74,18 @@ export class LoginPage extends React.Component {
   }
 }
 
-LoginPage.propTypes = {
+function mapStateToProps(state, ownProps) {
+  return {}
 }
 
-export default LoginPage
+function mapDispatchToProps(dispatch) {
+  return {
+    actions: bindActionCreators(userActions, dispatch),
+  }
+}
+
+LoginPage.propTypes = {
+  actions: PropTypes.object.isRequired
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(LoginPage)

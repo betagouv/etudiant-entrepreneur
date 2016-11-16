@@ -85,6 +85,7 @@
     "istanbul": "0.4.4",
     "jsdom": "9.4.1",
     "mocha": "3.0.2",
+    "moxios": "0.3.0",
     "nock": "8.0.0",
     "node-sass": "3.8.0",
     "npm-run-all": "2.3.0",

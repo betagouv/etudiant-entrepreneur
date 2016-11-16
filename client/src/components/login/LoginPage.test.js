@@ -5,6 +5,7 @@ import { LoginPage } from './LoginPage'
 
 function setup() {
   const props = {
+    actions: {}
   }
   return mount(<LoginPage {...props} />)
 }
