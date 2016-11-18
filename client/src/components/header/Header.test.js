@@ -18,9 +18,17 @@ describe('<Header>', () => {
     const navbar = wrapper.find('.navbar')
     expect(navbar.length).toBe(0)
   })
-  it('shows when user is logged in', () => {
-    const wrapper = setup({ isAuthenticated: true })
+  describe('When user is logged in', () => {
+    const authenticatedUser = { isAuthenticated: true, username: "authenticated user" }
+    const wrapper = setup(authenticatedUser)
     const navbar = wrapper.find('.navbar')
-    expect(navbar.length).toBe(1)
+    it('should display Header', () => {
+      expect(navbar.length).toBe(1)
+    })
+    it('should display username', () => {
+      const usernameDisplay = navbar.find('#navbar-user')
+      expect(usernameDisplay.length).toBe(1)
+      expect(usernameDisplay.text()).toBe(authenticatedUser.username)
+    })
   })
 })

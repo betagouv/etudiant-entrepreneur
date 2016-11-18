@@ -24,10 +24,8 @@ export class Header extends React.Component {
             <Navbar.Toggle />
           </Navbar.Header>
           <Navbar.Collapse>
-            <Nav>
-              <LinkContainer to="/application">
-                <NavItem eventKey={1}>Candidature</NavItem>
-              </LinkContainer>
+            <Nav pullRight>
+              <NavItem id="navbar-user">{this.props.user.username}</NavItem>
             </Nav>
           </Navbar.Collapse>
         </Navbar >
