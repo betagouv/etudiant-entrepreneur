@@ -6,7 +6,7 @@ class HomePage extends React.Component {
   componentDidMount() { }
   render() {
     return (
-      <div className="jumbotron">
+      <div className="container">
         <div className="header-content">
           <h1>Deviens Etudiant·e Entrepreneur·e</h1>
           <hr/>
