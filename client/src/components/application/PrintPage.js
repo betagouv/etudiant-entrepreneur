@@ -30,7 +30,7 @@ class ApplicationPage extends React.Component {
 
   render() {
     return (
-      <div className="jumbotron">
+      <div className="container">
         <ContactPage/>
         <TeamPage/>
         <ProjectPage/>
