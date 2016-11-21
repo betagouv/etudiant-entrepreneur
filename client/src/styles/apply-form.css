@@ -17,8 +17,6 @@ textarea {
 }
 
 .fixed {
-  position: sticky;
-  bottom: 0px;
   background-color: white;
   padding: 10px 0px;
 }
