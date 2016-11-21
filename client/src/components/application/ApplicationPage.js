@@ -83,7 +83,7 @@ class ApplicationPage extends React.Component {
 
   render() {
     return (
-      <div className="jumbotron">
+      <div>
         <Multistep steps={this.getSteps()} save={this.openSave} canNavigate={this.canNavigate}/>
         <Modal show={this.state.isSaveShown} onHide={this.closeSave}>
           <Modal.Header>
