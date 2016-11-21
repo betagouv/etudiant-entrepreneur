@@ -10,7 +10,7 @@ const SaveForm = ({link, saveForm, errors, onChange}) => {
         <ValidatedFormControl name="link" type="url" placeholder="Sauvegarde pour obtenir le lien" onChange={onChange} value={link} disabled={link.length == 0}/>
         <HelpBlock>lien pour modifier ta candidature</HelpBlock>
       </FormGroup>
-      <Button bsStyle="primary" className="save" onClick={saveForm}>Sauvegarder</Button>
+      <Button bsStyle="success" className="save" onClick={saveForm}>Sauvegarder</Button>
     </form>
   )
 }
