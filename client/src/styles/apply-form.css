@@ -19,7 +19,7 @@ textarea {
 .fixed {
   position: sticky;
   bottom: 0px;
-  background-color: rgb(238, 238, 238);
+  background-color: white;
   padding: 10px 0px;
 }
 
