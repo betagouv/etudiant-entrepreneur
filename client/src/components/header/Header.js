@@ -25,7 +25,7 @@ export class Header extends React.Component {
           </Navbar.Header>
           <Navbar.Collapse>
             <Nav pullRight>
-              <NavItem id="navbar-user">{this.props.user.username}</NavItem>
+              <NavItem id="navbar-user"><span title="home" className="glyphicon glyphicon-user" />  {this.props.user.username}</NavItem>
             </Nav>
           </Navbar.Collapse>
         </Navbar >

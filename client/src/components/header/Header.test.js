@@ -28,7 +28,7 @@ describe('<Header>', () => {
     it('should display username', () => {
       const usernameDisplay = navbar.find('#navbar-user')
       expect(usernameDisplay.length).toBe(1)
-      expect(usernameDisplay.text()).toBe(authenticatedUser.username)
+      expect(usernameDisplay.text()).toContain(authenticatedUser.username)
     })
   })
 })
