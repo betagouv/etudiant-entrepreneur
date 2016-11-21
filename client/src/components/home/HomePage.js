@@ -1,5 +1,6 @@
 import React from 'react'
 import {Link} from 'react-router'
+import Footer from '../footer/Footer.js'
 import BetaTestersPanel from '../common/BetaTestersPanel'
 
 class HomePage extends React.Component {
@@ -14,6 +15,7 @@ class HomePage extends React.Component {
           <Link to="application" className="btn btn-primary btn-lg">Demande le statut</Link>
         </div>
         <BetaTestersPanel/>
+        <Footer/>
       </div>
     )
   }

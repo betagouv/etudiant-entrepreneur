@@ -18,3 +18,9 @@ body {
   /* Avoid Navbar overlaping */
   padding-top: 50px;
 }
+
+footer li {
+    float: left;
+    margin-right: 1.5em;
+    margin-bottom: 1.5em;
+}
