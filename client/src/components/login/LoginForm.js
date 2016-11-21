@@ -13,7 +13,7 @@ const LoginForm = ({user, onLoginClick, errors, onChange}) => {
         <ControlLabel className="required">Mot de passe</ControlLabel>
         <ValidatedFormControl name="password" type="password" placeholder="Mot de passe" onChange={onChange} value={user.password} error={errors.password} />
       </FormGroup>
-      <Button bsStyle="primary" onClick={onLoginClick}>Connexion</Button>
+      <Button bsStyle="primary" type="submit" onClick={onLoginClick}>Connexion</Button>
     </form>
   )
 }
