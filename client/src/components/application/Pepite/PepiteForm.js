@@ -35,7 +35,6 @@ function isOverduePepite(idPepite) {
 const PepiteForm = ({pepite, contact, errors, onChange}) => {
   return (
     <form>
-      <p>Mon PEPITE</p>
       <BetaTestersPanel/>
       <FormGroup className="required">
         <ControlLabel>Ma région</ControlLabel>

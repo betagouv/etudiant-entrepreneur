@@ -9,7 +9,6 @@ import Textarea from 'react-textarea-autosize'
 const ProjectForm = ({project, onChange, errors}) => {
   return (
     <form>
-      <p>Mon Projet</p>
       <FormGroup className={project.step ? '' : 'hidden'}>
         <ControlLabel>Etape du projet</ControlLabel>
         <RadioGroup name="step" onChange={onChange} selectedValue={project.step} error={errors.step}>

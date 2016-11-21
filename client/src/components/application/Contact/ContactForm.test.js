@@ -19,10 +19,9 @@ function setup(contact = {}) {
 }
 
 describe('<ContactForm>', () => {
-  it('renders form and title', () => {
+  it('renders form', () => {
     const wrapper = setup({ step: "test" })
     expect(wrapper.find('form').length).toBe(1)
-    expect(wrapper.find('p').text()).toEqual('Mes Informations')
   })
   it('displays given contact firstname', () => {
     const firstname = 'Test'

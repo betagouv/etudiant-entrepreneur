@@ -11,7 +11,6 @@ import {countries} from '../../common/ressources/countries'
 const ProfileForm = ({profile, contact, errors, onChange, onDateChange}) => {
   return (
     <form>
-      <p>Mon Profil</p>
       <FormGroup className="required">
         <ControlLabel>Genre</ControlLabel>
         <RadioGroup name="gender" onChange={onChange} selectedValue={profile.gender} error={errors.gender}>

@@ -136,6 +136,9 @@ const Multistep = class MultiStep extends React.Component {
               onClick={this.props.save}>Sauvegarder</button>
           </div>
         </div>
+        <div className="page-header">
+          <h1>{this.props.steps[this.state.compState].title}</h1>
+        </div>
         {this.props.steps[this.state.compState].component}
         <div className="fixed clearfix">
           <button style={this.state.showPreviousBtn ? {} : this.hidden}

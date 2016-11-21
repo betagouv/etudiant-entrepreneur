@@ -59,13 +59,13 @@ class ApplicationPage extends React.Component {
   getSteps() {
     return (
       [
-        { name: 'Mes Infos', component: <ContactPage />, hasError: this.hasError('contact') },
-        { name: 'Mon Équipe', component: <TeamPage />, hasError: this.hasError('team') },
-        { name: 'Mon Projet', component: <ProjectPage />, hasError: this.hasError('project') },
-        { name: 'Mon PEPITE', component: <PepitePage />, hasError: this.hasError('pepite') },
-        { name: 'Mon Parcours', component: <CareerPage />, hasError: this.hasError('bac') || this.hasError('diploma') || this.hasError('tutor') },
-        { name: 'Mon Profil', component: <ProfilePage />, hasError: this.hasError('profile') },
-        { name: 'Envoi', component: <SendPage /> }
+        { name: 'Mes Infos', title: 'Mes Informations', component: <ContactPage />, hasError: this.hasError('contact') },
+        { name: 'Mon Équipe', title: 'Mon Équipe', component: <TeamPage />, hasError: this.hasError('team') },
+        { name: 'Mon Projet', title: 'Mon Projet', component: <ProjectPage />, hasError: this.hasError('project') },
+        { name: 'Mon PEPITE', title: 'Mon PEPITE', component: <PepitePage />, hasError: this.hasError('pepite') },
+        { name: 'Mon Parcours', title: 'Mon Parcours', component: <CareerPage />, hasError: this.hasError('bac') || this.hasError('diploma') || this.hasError('tutor') },
+        { name: 'Mon Profil', title: 'Mon Profil', component: <ProfilePage />, hasError: this.hasError('profile') },
+        { name: 'Envoi', title: 'Envoi', component: <SendPage /> }
       ]
     )
   }

@@ -6,7 +6,6 @@ import ValidatedFormControl from '../../common/ValidatedFormControl'
 const ContactForm = ({contact, errors, onChange}) => {
   return (
     <form>
-      <p>Mes Informations</p>
       <FormGroup className="required">
         <ControlLabel>Prénom</ControlLabel>
         <ValidatedFormControl name="firstname" type="text" placeholder="" onChange={onChange} value={contact.firstname} error={errors.firstname}/>

@@ -9,7 +9,6 @@ import ButtonWrapperComponent from '../../common/ButtonWrapperComponent'
 const TeamForm = (props) => {
   return (
     <form>
-      <p>Mon Équipe</p>
       <FormGroup className="required">
         <ControlLabel>Ton projet est-il individuel ou collectif?</ControlLabel>
         <RadioGroup name="teamType" onChange={props.projectOnChange} selectedValue={props.project.teamType}>

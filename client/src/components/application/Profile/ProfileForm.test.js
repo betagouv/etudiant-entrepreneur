@@ -27,6 +27,5 @@ describe('<ProfileForm>', () => {
   it('renders form and title', () => {
     const wrapper = setup()
     expect(wrapper.find('form').length).toBe(1)
-    expect(wrapper.find('p').text()).toEqual('Mon Profil')
   })
 })

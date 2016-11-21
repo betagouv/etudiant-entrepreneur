@@ -23,7 +23,6 @@ const last70YearsList = getDescYearList(new Date().getFullYear(), 70)
 const CareerForm = ({career, contact, tutorErrors, bacErrors, diplomaErrors, onTutorChange, onDiplomaChange, onBacChange, onEntrepreneurshipChange}) => {
   return (
     <form>
-      <p>Mon Parcours</p>
       <Panel header="Le responsable de ma formation initiale" className={(contact.situation == 'student') ? 'required' : 'required hidden'}>
         <Panel>
           <div>Enseignant·e dans la formation dans laquelle je suis inscrit·e pour l'année universitaire {getCurrentUniversityYear()}.</div>
