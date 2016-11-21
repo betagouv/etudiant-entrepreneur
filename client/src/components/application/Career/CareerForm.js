@@ -23,7 +23,7 @@ const last70YearsList = getDescYearList(new Date().getFullYear(), 70)
 const CareerForm = ({career, contact, tutorErrors, bacErrors, diplomaErrors, onTutorChange, onDiplomaChange, onBacChange, onEntrepreneurshipChange}) => {
   return (
     <form>
-      <Panel header="Le responsable de ma formation initiale" className={(contact.situation == 'student') ? 'required' : 'required hidden'}>
+      <Panel bsStyle="primary" header="Le responsable de ma formation initiale" className={(contact.situation == 'student') ? 'required' : 'required hidden'}>
         <Panel>
           <div>Enseignant·e dans la formation dans laquelle je suis inscrit·e pour l'année universitaire {getCurrentUniversityYear()}.</div>
           <div>Ton responsable pédagogique sera informé de ta candidature.</div>
@@ -45,7 +45,7 @@ const CareerForm = ({career, contact, tutorErrors, bacErrors, diplomaErrors, onT
           <ValidatedFormControl name="email" type="email" placeholder="email" onChange={onTutorChange} value={career.tutor.email} error={tutorErrors.email}/>
         </FormGroup>
       </Panel>
-      <Panel header="Mes aménagements" className={(contact.situation == 'student') ? 'required' : 'required hidden'}>
+      <Panel bsStyle="primary" header="Mes aménagements" className={(contact.situation == 'student') ? 'required' : 'required hidden'}>
         <FormGroup className="required">
           <ControlLabel>J'aimerais valider une période de stage obligatoire en m'investissant dans mon projet</ControlLabel>
           <RadioGroup name="replaceInternship" onChange={onTutorChange} selectedValue={career.tutor.replaceInternship} error={tutorErrors.replaceInternship}>
@@ -68,7 +68,7 @@ const CareerForm = ({career, contact, tutorErrors, bacErrors, diplomaErrors, onT
           </RadioGroup>
         </FormGroup>
       </Panel>
-      <Panel header="Mon baccalauréat ou son équivalence en niveau">
+      <Panel bsStyle="primary" header="Mon baccalauréat ou son équivalence en niveau">
         <FormGroup className="required">
           <RadioGroup name="isOriginal" onChange={onBacChange} selectedValue={career.bac.isOriginal} error={bacErrors.isOriginal}>
             <Radio value="true">Je suis lauréat·e du baccalauréat</Radio>
@@ -114,7 +114,7 @@ const CareerForm = ({career, contact, tutorErrors, bacErrors, diplomaErrors, onT
           <ValidatedFormControl name="city" type="text" placeholder="ville" onChange={onBacChange} value={career.bac.city} error={bacErrors.city}/>
         </FormGroup>
       </Panel>
-      <Panel header={getLastDiplomaHeader(contact.situation)}>
+      <Panel bsStyle="primary" header={getLastDiplomaHeader(contact.situation)}>
         <FormGroup className="required">
           <ControlLabel>Année universitaire</ControlLabel>
           <ValidatedFormControl name="year" componentClass="select" onChange={onDiplomaChange} value={career.diploma.year} error={diplomaErrors.year}>

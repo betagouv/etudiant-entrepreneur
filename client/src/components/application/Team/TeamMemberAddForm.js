@@ -6,7 +6,7 @@ import TeamMemberList from './TeamMemberList'
 
 const TeamMemberAddForm = ({team, newMember, addMember, onChange, memberErrors}) => {
   return (
-    <Panel header="Nouveau membre">
+    <Panel bsStyle="primary" header="Nouveau membre">
       <FormGroup className="required">
         <ControlLabel>Prénom</ControlLabel>
         <ValidatedFormControl name="firstname" type="text" placeholder="prénom" onChange={onChange} value={newMember.firstname} error=  {memberErrors.firstname}/>

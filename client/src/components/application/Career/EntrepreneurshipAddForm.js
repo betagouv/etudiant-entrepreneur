@@ -9,7 +9,7 @@ const last70YearsList = getDescYearList(new Date().getFullYear(), 70)
 
 const EntrepreneurshipAddForm = ({newEntrepreneurship, onEntrepreneurshipAdded, onChange, errors}) => {
   return (
-    <Panel header="Nouvelle expérience">
+    <Panel bsStyle="primary" header="Nouvelle expérience">
       <FormGroup className="required">
         <ControlLabel>Nom</ControlLabel>
         <ValidatedFormControl name="name" type="text" placeholder="Ex: concours, hackathon..." onChange={onChange} value={newEntrepreneurship.name} error={errors.name}/>

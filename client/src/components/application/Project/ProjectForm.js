@@ -107,7 +107,7 @@ const ProjectForm = ({project, onChange, errors}) => {
         <ControlLabel>Autre secteur</ControlLabel>
         <ValidatedFormControl name="otherSector" type="text" placeholder="autre secteur" onChange={onChange} value={project.otherSector} error={errors.otherSector}/>
       </FormGroup>
-      <Panel header="Réseaux sociaux">
+      <Panel bsStyle="info" header="Réseaux sociaux">
         <FormGroup>
           <ControlLabel>Site internet de mon projet</ControlLabel>
           <ValidatedFormControl name="site" type="url" placeholder="site" onChange={onChange} value={project.site} error={errors.site}/>

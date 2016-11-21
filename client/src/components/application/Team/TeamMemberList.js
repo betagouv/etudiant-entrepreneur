@@ -5,7 +5,7 @@ import TeamMemberRow from './TeamMemberRow'
 const TeamMemberList = ({team, onMemberDelete}) => {
   if (team.length != 0) {
     return (
-      <Panel header="Mon équipe">
+      <Panel bsStyle="info" header="Mon équipe">
         <Table>
           <thead>
             <tr>

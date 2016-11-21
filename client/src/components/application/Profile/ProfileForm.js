@@ -53,7 +53,7 @@ const ProfileForm = ({profile, contact, errors, onChange, onDateChange}) => {
           <Textarea className="form-control" name="motivation" rows={5} placeholder="motivations à candidater au statut national étudiant·e-entrepreneur·e" onChange={onChange} value={profile.motivation}/>
         </ValidatedComponent>
       </FormGroup>
-      <Panel header="Mes coordonnées pérennes dans le temps">
+      <Panel bsStyle="primary" header="Mes coordonnées pérennes dans le temps">
         <FormGroup className="required">
           <ControlLabel>Adresse postale</ControlLabel>
           <ValidatedFormControl name="address" type="text" placeholder="Adresse" onChange={onChange} value={profile.address} error={errors.address}/>
@@ -74,7 +74,7 @@ const ProfileForm = ({profile, contact, errors, onChange, onDateChange}) => {
           </ValidatedFormControl>
         </FormGroup>
       </Panel>
-      <Panel header="Mon activité">
+      <Panel bsStyle="primary" header="Mon activité">
         <FormGroup className="required">
           <ControlLabel>J'occupe actuellement une activité professionnelle à temps complet ou partiel</ControlLabel>
           <RadioGroup name="hasActivity" onChange={onChange} selectedValue={profile.hasActivity} error={errors.hasActivity}>
@@ -93,7 +93,7 @@ const ProfileForm = ({profile, contact, errors, onChange, onDateChange}) => {
             <Radio value="false">non</Radio>
           </RadioGroup>
         </FormGroup>
-        <Panel className={(profile.isUnemployed == 'true') ? '' : 'hidden'}>
+        <Panel bsStyle="info" className={(profile.isUnemployed == 'true') ? '' : 'hidden'}>
           <div>Si tu es actuellement demandeur d'emploi, pense à intégrer le D2E dans <a target="_blank" href="https://www.service-public.fr/particuliers/vosdroits/F14926">ton projet personalisé de retour à l'emploi</a> avec ton conseiller Pôle emploi.</div>
         </Panel>
         <FormGroup className="required">
@@ -111,7 +111,7 @@ const ProfileForm = ({profile, contact, errors, onChange, onDateChange}) => {
           </RadioGroup>
         </FormGroup>
       </Panel>
-      <Panel header="Mes réseaux sociaux">
+      <Panel bsStyle="info" header="Mes réseaux sociaux">
         <FormGroup>
           <ControlLabel>mon twitter</ControlLabel>
           <ValidatedFormControl name="twitter" type="url" placeholder="twitter" onChange={onChange} value={profile.twitter} error={errors.twitter}/>

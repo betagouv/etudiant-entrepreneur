@@ -71,7 +71,7 @@ class EntrepreneurshipPanel extends React.Component {
 
   render() {
     return (
-      <Panel header="Mes expériences entrepreneuriales">
+      <Panel bsStyle="info" header="Mes expériences entrepreneuriales">
         <EntrepreneurshipList entrepreneurship={this.state.entrepreneurship} onEntrepreneurshipDelete={this.onEntrepreneurshipDelete}/>
         <ButtonWrapperComponent showButtonText="J'ajoute mes expériences en entrepreunariat" isChildrenShown={this.state.entrepreneurship.length != 0} glyph="plus">
           <EntrepreneurshipAddForm
