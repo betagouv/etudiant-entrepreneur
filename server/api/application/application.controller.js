@@ -189,7 +189,7 @@ const pepites = [
   { id: '18', name: 'PSL', email: 'psl-pepite@univ-psl.fr' },
   { id: '21', name: 'Lille Nord de France', email: 'envoi@tonpepite.com' },
   { id: '22', name: 'Picardie', email: 'pepite.picardie@gmail.com' },
-  { id: '23', name: 'Vallée de Seine', email: 'mathieu.luet@normandie-univ.fr' },
+  { id: '23', name: 'Vallée de Seine', email: 'pepite-valleedeseine@normandie-univ.fr' },
   { id: '24', name: 'CRÉER', email: 'pepite.creer@u-bretagneloire.fr' },
 ]
 
