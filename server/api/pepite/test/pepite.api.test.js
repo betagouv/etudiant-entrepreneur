@@ -31,4 +31,37 @@ describe('api: pepite', () => {
         })
     })
   })
+
+  describe('When requesting /api/pepite/:id', () => {
+    describe('When the id is valid and exists', () => {
+      it('should return a specific pepite', (done) => {
+        supertest(app)
+          .get('/api/pepite/1')
+          .expect(200)
+          .end((err, res) => {
+            if (err) {
+              return done(err)
+            }
+            expect(res.body.name).toEqual('ETENA')
+            done()
+          })
+      })
+    })
+
+    describe('When the id is valid but does not exist', () => {
+      it('should return a not found error', () => {
+        supertest(app)
+          .get('/api/pepite/42')
+          .expect(404)
+      })
+    })
+
+    describe('When the id is invalid', () => {
+      it('should return a bad request', () => {
+        supertest(app)
+          .get('/api/pepite/invalid_id')
+          .expect(400)
+      })
+    })
+  })
 })

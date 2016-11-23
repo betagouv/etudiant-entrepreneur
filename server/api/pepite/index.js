@@ -7,6 +7,6 @@ module.exports = (options) => {
   var pepiteController = new Controller(options)
   router.get('/ping', pepiteController.ping)
   router.get('/', pepiteController.getAll)
-  router.get('/:id', pepiteController.getPepite)
+  router.get('/:id(\\d+)', pepiteController.getPepite)
   return router
 }

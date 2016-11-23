@@ -1,7 +1,6 @@
 'use strict'
 
 const Pepite = require('./pepite.model')
-const mongoose = require('mongoose')
 
 class PepiteController {
   ping(req, res) {
@@ -20,9 +19,6 @@ class PepiteController {
   }
 
   getPepite(req, res) {
-    if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
-      return res.sendStatus(404)
-    }
     return Pepite
       .findById(req.params.id).exec()
       .then((pepite) => {
