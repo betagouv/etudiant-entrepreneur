@@ -116,6 +116,18 @@ class ApplicationController {
         return res.status(500).send(err)
       })
   }
+
+  getPepiteApplications(req, res) {
+    return Application
+      .find({'pepite.pepite' : req.params.id}).exec()
+      .then((applications) => {
+        return res.json(applications)
+      })
+      .catch((err) => {
+        req.log.error(err)
+        return res.status(500).send(err)
+      })
+  }
 }
 
 function logMail(logger, error, info) {
