@@ -103,7 +103,7 @@ const CguPage = () => {
         </p>
         <p>
           Nous pouvons amender ces conditions d’utilisation. En cas de changement significatif, une notification s'affichera lors de l'accès au service Étudiant Entrepreneur.
-          <small><a href="https://github.com/sgmap/etudiant-entrepreneur/blob/master/client/src/components/cgu/CguPage.js" target="_blank">Tout l'historique de ces conditions</a> est librement accessible.</small>
+          <small><a href="https://github.com/sgmap/etudiant-entrepreneur/commits/master/client/src/components/cgu/CguPage.js" target="_blank">Tout l'historique de ces conditions</a> est librement accessible.</small>
         </p>
 
 
