@@ -35,7 +35,7 @@ describe('User Actions', function () {
 
     describe('loginUser', () => {
       it('should create an LOGIN_USER_SUCCESS action', () => {
-        const expectedToken = 'expectedValidToken'
+        const expectedToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiIxIiwicm9sZSI6InBlcGl0ZSJ9.VeShOaoY3NVDpnalu9-ZBlt5_6YZyy5QzDB-_dutIio'
 
         moxios.wait(() => {
           let request = moxios.requests.mostRecent()
@@ -46,6 +46,7 @@ describe('User Actions', function () {
         })
 
         const expectedUser = {
+          id : '1',
           username: 'test',
           token: expectedToken,
           isAuthenticated: true

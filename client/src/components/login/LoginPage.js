@@ -89,7 +89,7 @@ LoginPage.propTypes = {
   actions: PropTypes.object.isRequired
 }
 LoginPage.contextTypes = {
-  router: React.PropTypes.func.isRequired
+  router: React.PropTypes.object.isRequired
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(LoginPage)
