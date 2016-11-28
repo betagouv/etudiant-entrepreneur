@@ -1,9 +1,9 @@
 import applicationApi from '../api/applicationApi'
-import {loadContactSuccess, } from './contactActions'
-import {loadProjectSuccess} from './projectActions'
-import {loadPepiteSuccess} from './pepiteActions'
-import {loadProfileSuccess} from './profileActions'
-import {loadCareerSuccess} from './careerActions'
+import { loadContactSuccess, } from './contactActions'
+import { loadProjectSuccess } from './projectActions'
+import { loadPepiteSuccess } from './pepiteActions'
+import { loadProfileSuccess } from './profileActions'
+import { loadCareerSuccess } from './careerActions'
 import * as types from './actionTypes'
 
 
@@ -60,7 +60,7 @@ export function sendApplication() {
   return (dispatch, getState) => {
     const {application, project, contact, profile, pepite, career} = getState()
     if (!application.id) {
-      throw(new Error('Il faut sauvegarder la candidature avant de pouvoir l\envoyer'))
+      throw (new Error('Il faut sauvegarder la candidature avant de pouvoir l\envoyer'))
     }
     else {
       return applicationApi.sendApplication(application.id, Object.assign({ project, contact, profile, career, pepite })).then(application => {
@@ -68,5 +68,12 @@ export function sendApplication() {
         return application
       })
     }
+  }
+}
+
+export function getPepiteApplication() {
+  return (dispatch, getState) => {
+    const {user} = getState()
+    return applicationApi.getAllPepiteApplications(user.id, user.token)
   }
 }

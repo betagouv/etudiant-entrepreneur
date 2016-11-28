@@ -37,7 +37,21 @@ class applicationApi {
         const applicationResponse = res.data
         return (Object.assign({}, applicationResponse, { id: applicationResponse._id }))
       })
+  }
 
+  static getAllPepiteApplications(pepiteId, userToken) {
+    return axios.get(`/pepite/${pepiteId}/application`,
+      {
+        'headers': {
+          'Authorization': `Bearer ${userToken}`
+        }
+      })
+      .then((res) => {
+        return res.data
+      })
+      .catch((err) => {
+        throw new Error(err)
+      })
   }
 }
 
