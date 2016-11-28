@@ -1,11 +1,11 @@
 import React, { PropTypes } from 'react'
 import LoginForm from './LoginForm'
 import Validation from '../common/Validation'
-import {userValidationConstraints} from './userValidationConstraints'
+import { userValidationConstraints } from './userValidationConstraints'
 import toastr from 'toastr'
-import {isEmptyObject} from '../common/validationHelper'
-import {connect} from 'react-redux'
-import {bindActionCreators} from 'redux'
+import { isEmptyObject } from '../common/validationHelper'
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
 import * as userActions from '../../actions/userActions'
 
 export class LoginPage extends React.Component {
@@ -42,6 +42,7 @@ export class LoginPage extends React.Component {
       this.props.actions.loginUser(this.state.user)
         .then((user) => {
           toastr.success('Authentification réussie')
+          this.context.router.push('/pepite')
         })
         .catch((err) => {
           toastr.error(err)
@@ -86,6 +87,9 @@ function mapDispatchToProps(dispatch) {
 
 LoginPage.propTypes = {
   actions: PropTypes.object.isRequired
+}
+LoginPage.contextTypes = {
+  router: React.PropTypes.func.isRequired
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(LoginPage)
