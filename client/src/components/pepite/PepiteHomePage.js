@@ -35,7 +35,7 @@ export class PepiteHomePage extends React.Component {
               <th>Nom</th>
               <th>Prénom</th>
               <th>Email</th>
-              <th>Action</th>
+              <th>Candidature</th>
             </tr>
           </thead>
           <tbody>
