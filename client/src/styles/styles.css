@@ -7,16 +7,34 @@
 .header-content hr {
   border-color: #337ab7;
   border-width: 3px;
-  max-width: 50px;
+  width: 15%;
 }
 
 .header-content p.header-sub-content {
   font-size: 30px;
 }
 
-body {
-  /* Avoid Navbar overlaping */
-  padding-top: 50px;
+.vertical-align {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+html, body {
+    height: 100%;
+}
+
+#app {
+  height: 100%;
+}
+
+.fill {
+  height: 100%;
+}
+
+.home {
+  display: table;
 }
 
 footer li {
