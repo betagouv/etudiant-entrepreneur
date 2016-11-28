@@ -36,7 +36,7 @@ class ApplicationController {
           application.contact.email,
           'Sauvegarde de ta candidature au statut Étudiant entrepreneur',
           getSaveEmailBody(application),
-          (error, info) => { logMail(req.log, error, info )})
+          (error, info) => { logMail(req.log, error, info) })
         return res.status(201).json(application)
       })
       .catch((err) => {
@@ -89,21 +89,21 @@ class ApplicationController {
               application.contact.email,
               'Confirmation d\'envoi de ta candidature au statut Étudiant-entrepreneur',
               getSendEmailBody(application),
-              (error, info) => { logMail(req.log, error, info )})
+              (error, info) => { logMail(req.log, error, info) })
             //notify tutuor
             if (application.contact.situation == 'student') {
               sendMail(
                 application.career.tutor.email,
                 'Candidature d\'un de vos étudiants au statut Étudiant-entrepreneur',
                 getTutorEmailBody(application),
-                (error, info) => { logMail(req.log, error, info )})
+                (error, info) => { logMail(req.log, error, info) })
             }
             //notify pepite
             sendMail(
               getPepite(application.pepite.pepite).email,
               `Nouvelle candidature de ${application.contact.firstname} ${application.contact.name}`,
               getPepiteEmailBody(application),
-              (error, info) => { logMail(req.log, error, info )})
+              (error, info) => { logMail(req.log, error, info) })
             return res.json(application)
           })
           .catch((err) => {
@@ -119,7 +119,7 @@ class ApplicationController {
 
   getPepiteApplications(req, res) {
     return Application
-      .find({'pepite.pepite' : req.params.id}).exec()
+      .find({ 'pepite.pepite': req.params.id }).exec()
       .then((applications) => {
         return res.json(applications)
       })
@@ -190,19 +190,35 @@ function getTutorEmailBody(application) {
 }
 
 const pepites = [
-  { id: '1', name: 'ETENA', email: 'a.latour@unistra.fr' },
-  { id: '3', name: 'by PEEL', email: 'peel@univ-lorraine.fr' },
-  { id: '4', name: 'ECA', email: 'eca@cuea.fr' },
-  { id: '7', name: 'BeeLYS', email: 'beelys@fpul-lyon.org' },
-  { id: '9', name: 'Bretagne', email: 'pepite-bretagne@u-bretagneloire.fr' },
-  { id: '13', name: '3EF', email: 'pepite3ef@univ-paris-est.fr' },
-  { id: '14', name: 'heSam Entreprendre', email: 'dossier.pepite@hesam.eu' },
-  { id: '15', name: 'Paris Ouest Nord', email: 'contact@pepite-pon.fr' },
-  { id: '18', name: 'PSL', email: 'psl-pepite@univ-psl.fr' },
-  { id: '21', name: 'Lille Nord de France', email: 'envoi@tonpepite.com' },
-  { id: '22', name: 'Picardie', email: 'pepite.picardie@gmail.com' },
-  { id: '23', name: 'Vallée de Seine', email: 'pepite-valleedeseine@normandie-univ.fr' },
-  { id: '24', name: 'CRÉER', email: 'pepite.creer@u-bretagneloire.fr' },
+{ id: '1', name: 'ETENA', email: 'a.latour@unistra.fr'},
+{ id: '2', name: 'Champagne-Ardenne', email: 'pepitechampagneardenne@carinna.fr'},
+{ id: '3', name: 'by PEEL', email: 'peel@univ-lorraine.fr'},
+{ id: '4', name: 'ECA', email: 'eca@cuea.fr'},
+{ id: '5', name: 'LPC', email: 'pepitelpc@groupes.renater.fr'},
+{ id: '6', name: 'PEEA', email: 'pepite.auvergne@sigma-clermont.fr'},
+{ id: '7', name: 'BeeLYS', email: 'beelys@fpul-lyon.org'},
+{ id: '8', name: 'oZer', email: 'entrepreneuriat@univ-grenoble-alpes.fr'},
+{ id: '9', name: 'Bretagne', email: 'pepite-bretagne@u-bretagneloire.fr'},
+{ id: '10', name: 'Centre-Val de Loire', email: 'contact@pepite-centre.fr'},
+{ id: '11', name: 'Corse', email: 'pagni@univ-corse.fr'},
+{ id: '12', name: 'CréaJ IDF', email: 'gestion.pepite@univ-paris13.fr'},
+{ id: '13', name: '3EF', email: 'pepite3ef@univ-paris-est.fr'},
+{ id: '14', name: 'heSam Entreprendre', email: 'dossier.pepite@hesam.eu'},
+{ id: '15', name: 'Paris Ouest Nord', email: 'contact@pepite-pon.fr'},
+{ id: '16', name: 'Paris Centre', email: 'aurelie.mandon@sorbonne-universites.fr'},
+{ id: '17', name: 'PEIPS', email: 'pepite@universite-paris-saclay.fr'},
+{ id: '18', name: 'PSL', email: 'psl-pepite@univ-psl.fr'},
+{ id: '19', name: 'Languedoc-Roussillon', email: 'contact@pepite-lr.fr'},
+{ id: '20', name: 'ECRIN', email: 'ecrin@univ-toulouse.fr'},
+{ id: '21', name: 'Lille Nord de France', email: 'envoi@tonpepite.com'},
+{ id: '22', name: 'Picardie', email: 'pepite.picardie@gmail.com'},
+{ id: '23', name: 'Vallée de Seine', email: 'pepite-valleedeseine@normandie-univ.fr'},
+{ id: '24', name: 'CRÉER', email: 'pepite.creer@u-bretagneloire.fr'},
+{ id: '25', name: 'Aix-Marseille PACA-OUEST', email: 'suio-pepite-paca-ouest@univ-amu.fr'},
+{ id: '26', name: 'Cré@tude PACA-EST', email: 'pepitepacaest@unice.fr'},
+{ id: '27', name: 'Antilles-Guyane', email: 'pepiteag@univ-ag.fr'},
+{ id: '28', name: 'P2ER', email: 'pepite.p2er@univ-reunion.fr'},
+{ id: '29', name: 'Bourgone Franche-Comté', email: 'coordination@pepite-bfc.fr'}
 ]
 
 function getPepite(id) {
