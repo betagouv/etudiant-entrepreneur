@@ -45,7 +45,7 @@ const ProfileForm = ({profile, contact, errors, onChange, onDateChange}) => {
       <FormGroup>
         <ControlLabel>Identifiant national étudiant (INE)</ControlLabel>
         <ValidatedFormControl name="ine" type="text" placeholder="11 caractères" onChange={onChange} value={profile.ine} error={errors.ine}/>
-        <HelpBlock>identifiant ou numéro national étudiant unique présent sur ma carte d’étudiant·e ou mes relevés de notes.</HelpBlock>
+        <HelpBlock>identifiant ou numéro national étudiant unique présent sur ma carte d’étudiant·e ou mes relevés de notes.</HelpBlock>
       </FormGroup>
       <FormGroup className="required">
         <ControlLabel>Qu'attends-tu du statut national étudiant·e-entrepreneur·e ?</ControlLabel>
@@ -76,7 +76,7 @@ const ProfileForm = ({profile, contact, errors, onChange, onDateChange}) => {
       </Panel>
       <Panel bsStyle="primary" header="Mon activité">
         <FormGroup className="required">
-          <ControlLabel>J'occupe actuellement une activité professionnelle à temps complet ou partiel</ControlLabel>
+          <ControlLabel>J'occupe actuellement une activité professionnelle à temps complet ou partiel</ControlLabel>
           <RadioGroup name="hasActivity" onChange={onChange} selectedValue={profile.hasActivity} error={errors.hasActivity}>
             <Radio value="true">oui</Radio>
             <Radio value="false">non</Radio>

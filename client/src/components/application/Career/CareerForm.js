@@ -54,7 +54,7 @@ const CareerForm = ({career, contact, tutorErrors, bacErrors, diplomaErrors, onT
           </RadioGroup>
         </FormGroup>
         <FormGroup className="required">
-          <ControlLabel>J'aimerais valider des équivalence ECTS de ma formation initiale grâce à mon projet</ControlLabel>
+          <ControlLabel>J'aimerais valider des équivalence ECTS de ma formation initiale grâce à mon projet</ControlLabel>
           <RadioGroup name="replaceModule" onChange={onTutorChange} selectedValue={career.tutor.replaceModule} error={tutorErrors.replaceModule}>
             <Radio value="true">oui</Radio>
             <Radio value="false">non</Radio>
@@ -137,11 +137,11 @@ const CareerForm = ({career, contact, tutorErrors, bacErrors, diplomaErrors, onT
         <FormGroup>
           <ControlLabel>Dominante disciplinaire</ControlLabel>
           <RadioGroup name="sector" onChange={onDiplomaChange} selectedValue={career.diploma.sector}>
-            <Radio value="law">Droit, sciences politiques, sciences économiques, sciences de gestion, AES</Radio>
+            <Radio value="law">Droit, sciences politiques, sciences économiques, sciences de gestion, AES</Radio>
             <Radio value="letter">Lettres, art, langues, sciences humaines</Radio>
-            <Radio value="science">Sciences, sciences de l’ingénieur, production</Radio>
+            <Radio value="science">Sciences, sciences de l’ingénieur, production</Radio>
             <Radio value="sport">STAPS</Radio>
-            <Radio value="health">Santé, paramédical et social</Radio>
+            <Radio value="health">Santé, paramédical et social</Radio>
           </RadioGroup>
         </FormGroup>
         <FormGroup className="required">
