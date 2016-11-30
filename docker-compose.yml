@@ -18,6 +18,7 @@ services:
       - back
     environment:
       - SENDGRID_API_KEY=${SENDGRID_API_KEY}
+      - CORS_ORIGIN=${CORS_ORIGIN}
     depends_on:
       - mongo
   seed:
