@@ -18,6 +18,10 @@ const all = {
   secrets: {
     session: process.env.SESSION_SECRET || 'ssshhhhh'
   },
+
+  cors: {
+    origin: process.env.CORS_ORIGIN || 'https://etudiant-entrepreneur.beta.gouv.fr'
+  }
 }
 
 module.exports = all
