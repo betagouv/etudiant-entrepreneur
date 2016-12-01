@@ -7,8 +7,8 @@ const SaveForm = ({link, saveForm, errors, onChange}) => {
     <form>
       <FormGroup>
         <ControlLabel>Lien vers ta candidature</ControlLabel>
-        <ValidatedFormControl name="link" type="url" placeholder="Sauvegarde pour obtenir le lien" onChange={onChange} value={link} disabled={link.length == 0}/>
-        <HelpBlock>lien pour modifier ta candidature</HelpBlock>
+        <ValidatedFormControl name="link" type="url" placeholder="Clique sur sauvegarde pour obtenir un lien" onChange={onChange} value={link} disabled={link.length == 0}/>
+        <HelpBlock>Tu vas recevoir un lien vers ta candidature pour la compléter ou la modifier quand tu veux</HelpBlock>
       </FormGroup>
       <Button bsStyle="success" className="save" onClick={saveForm}>Sauvegarder</Button>
     </form>
