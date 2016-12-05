@@ -45,6 +45,94 @@ describe('api: application', () => {
     })
   })
 
+  describe('When retrieving an application', () => {
+    const savedApplication = {
+      '_id': '88e155dd6decfe105d313b63',
+      'contact': {
+        'isRenew': 'true',
+        'situation': 'student',
+        'phone': '0643423333',
+        'email': 'azza@test.com',
+        'firstname': 'zaezae',
+        'name': 'azezae'
+      }
+    }
+
+    before((done) => {
+      ApplicationModel.create(savedApplication, done)
+    })
+
+    after((done) => {
+      ApplicationModel.remove(done)
+    })
+
+    it('should return a 404 if the id is invalid', (done) => {
+      supertest(app)
+        .get('/api/application/ddazdaz')
+        .expect(404, done)
+    })
+    it('should return a 404 if the id does not exist', (done) => {
+      supertest(app)
+        .get('/api/application/0edaaf484d50ad693d5abee4')
+        .expect(404, done)
+    })
+    it('should return the matching existing application', (done) => {
+      supertest(app)
+        .get(`/api/application/${savedApplication._id}`)
+        .expect(200)
+        .end((err, res) => {
+          if (err) {
+            return done(err)
+          }
+          expect(res.body).toContain(savedApplication)
+          done()
+        })
+    })
+  })
+
+  describe('When saving an application', () => {
+    const validApplication = {
+      contact: {
+        isRenew: 'true',
+        situation: 'student',
+        phone: '0643423333',
+        email: 'azza@test.com',
+        firstname: 'zaezae',
+        name: 'azezae'
+      }
+    }
+
+    const missingMailApplication = {
+      contact: {
+        isRenew: 'true',
+        situation: 'student',
+        phone: '0643423333',
+        firstname: 'zaezae',
+        name: 'azezae'
+      }
+    }
+
+    it('should return the created application', (done) => {
+      supertest(app)
+        .post('/api/application')
+        .send(validApplication)
+        .expect(201)
+        .end((err, res) => {
+          if (err) {
+            return done(err)
+          }
+          expect(res.body).toContain(validApplication)
+          done()
+        })
+    })
+
+    it('should return a 400 if contact is missing information', (done) => {
+      supertest(app)
+        .post('/api/application', missingMailApplication)
+        .expect(400, { error: 'bad_request', reason: 'La page \'Mes informations\' doit être correctement remplie' }, done)
+    })
+  })
+
   describe('When requesting /api/pepite/:id/application', () => {
     let validToken = {}
 

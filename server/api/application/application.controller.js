@@ -40,10 +40,10 @@ class ApplicationController {
         return res.status(201).json(application)
       })
       .catch((err) => {
+        req.log.error(err)
         if (err.name == 'ValidationError') {
           return next(new StandardError('La page \'Mes informations\' doit être correctement remplie', { code: 400 }))
         }
-        req.log.error(err)
         return res.status(500).send(err)
       })
   }
