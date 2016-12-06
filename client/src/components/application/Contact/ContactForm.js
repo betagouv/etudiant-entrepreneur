@@ -35,8 +35,8 @@ const ContactForm = ({contact, errors, onChange}) => {
       <FormGroup className="required">
         <ControlLabel>J'ai déjà obtenu le statut l'année dernière</ControlLabel>
         <RadioGroup name="isRenew" onChange={onChange} selectedValue={contact.isRenew} error={errors.isRenew}>
-          <Radio value="true">oui, il s'agit d'un renouvellement</Radio>
-          <Radio value="false">non</Radio>
+          <Radio value="true">Oui, il s'agit d'un renouvellement</Radio>
+          <Radio value="false">Non</Radio>
         </RadioGroup>
       </FormGroup>
     </form>
