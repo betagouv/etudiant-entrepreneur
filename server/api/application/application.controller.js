@@ -74,7 +74,7 @@ class ApplicationController {
       .findById(req.params.id).exec()
       .then((application) => {
         if (application.status == 'sent') {
-          return next(new StandardError('Tu a déjà soumis ta candidature', { code: 400 }))
+          return next(new StandardError('Tu as déjà soumis ta candidature', { code: 400 }))
         }
         req.body.status = 'sent'
         req.body.sentDate = new Date()
