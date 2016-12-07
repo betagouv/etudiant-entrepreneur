@@ -1,6 +1,9 @@
 version: '2'
 
 services:
+  mongo:
+    ports:
+      - 27017
   front:
     build:
       context: ./client/
