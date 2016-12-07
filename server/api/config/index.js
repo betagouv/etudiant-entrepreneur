@@ -20,7 +20,7 @@ const all = {
   },
 
   cors: {
-    origin: process.env.CORS_ORIGIN || 'https://etudiant-entrepreneur.beta.gouv.fr'
+    origin: process.env.CORS_ORIGIN || '*'
   }
 }
 
