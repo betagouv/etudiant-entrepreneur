@@ -1,9 +1,11 @@
 'use strict'
 
+const crypto = require('crypto')
 var mongoose = require('mongoose')
 var Schema = mongoose.Schema
 
 var ApplicationSchema = new Schema({
+  _id: { type: Schema.Types.ObjectId, unique: true, default: function () { return this.getLinkId() } },
   date: { type: Date, default: Date.now },
   contact: {
     name: { type: String, required: true },
@@ -20,5 +22,11 @@ var ApplicationSchema = new Schema({
   status: { type: String, default: 'saved' },
   sentDate: { type: Date }
 })
+
+ApplicationSchema.methods = {
+  getLinkId: function () {
+    return crypto.randomBytes(12).toString('hex')
+  }
+}
 
 module.exports = mongoose.model('Application', ApplicationSchema)
