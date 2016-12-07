@@ -30,7 +30,7 @@ const ContactForm = ({contact, errors, onChange}) => {
         </RadioGroup>
       </FormGroup>
       <Panel bsStyle="info" className={(contact.situation == 'graduate') ? 'required' : 'required hidden'}>
-        <div>Diplômé·e en 2016, si tu obtiens le statut étudiant·e-entrepreneur·e, tu devras t'inscrire  au <a target="_blank" href="http://www.pepite-france.fr/diplome-detablissement-etudiant-entrepreneur/">diplôme d’établissement étudiant-entrepreneur (D2E)</a> via ton Pepite.</div>
+        <div>Diplômé·e en 2016, si tu obtiens le statut étudiant·e-entrepreneur·e, tu devras t'inscrire  au <a target="_blank" href="http://www.pepite-france.fr/b-diplome-etudiant-entrepreneur-2">diplôme d’établissement étudiant-entrepreneur (D2E)</a> via ton Pepite.</div>
       </Panel>
       <FormGroup className="required">
         <ControlLabel>J'ai déjà obtenu le statut l'année dernière</ControlLabel>
