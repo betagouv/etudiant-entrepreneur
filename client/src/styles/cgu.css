@@ -9,6 +9,10 @@
   margin-top: 1.5em;
 }
 
+.text.container ul {
+  margin-top: 1.5em;
+}
+
 .text.container small {
   display: block;
 }
