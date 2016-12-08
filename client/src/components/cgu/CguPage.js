@@ -22,7 +22,7 @@ const CguPage = () => {
           Ce service vous permet également de rester en lien avec des parties prenantes (tuteurs praticiens, pédagogiques et structures d’accompagnement) chargées d’appuyer l’étudiant dans son projet.
         </p>
         <p>
-          Le <a href="https://github.com/sgmap/etudiant-entrepreneur" target="_blank">code du logiciel</a> est <abbr title="Sous licence AGPL">libre</abbr>, et peut donc être vérifié et amélioré par tout·e·s.
+          Le <a href="https://github.com/sgmap/etudiant-entrepreneur" target="_blank">code du logiciel</a> est libre, sous lience AGPL, et peut donc être vérifié et amélioré par tout·e·s.
         </p>
 
 
