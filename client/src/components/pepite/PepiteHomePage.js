@@ -25,7 +25,7 @@ export class PepiteHomePage extends React.Component {
 
   render() {
     return (
-      <div className="container">
+      <div className="container back-content">
         <div className="page-header">
           <h1>Vos candidats</h1>
         </div>
