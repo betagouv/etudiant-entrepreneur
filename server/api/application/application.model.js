@@ -29,4 +29,4 @@ ApplicationSchema.methods = {
   }
 }
 
-module.exports = mongoose.model('Application', ApplicationSchema)
+module.exports = mongoose.model('Application', ApplicationSchema, 'applications')

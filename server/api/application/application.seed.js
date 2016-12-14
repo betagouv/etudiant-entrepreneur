@@ -257,6 +257,7 @@ const applications = [
       'pepite': '3',
       'askCoworking': 'true'
     },
+    '_id': '9c9d6a6b832effc406059b15',
     '__v': 0,
     'sentDate': '2016-11-24T11:12:12.329Z',
     'status': 'sent',
