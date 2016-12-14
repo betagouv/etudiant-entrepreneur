@@ -20,7 +20,7 @@ class CommitteeAnswerController {
         if (!committeeAnswer) {
           return res.sendStatus(404)
         }
-        return res.sendStatus(501)
+        return res.json(committeeAnswer)
       })
       .catch((err) => {
         req.log.error(err)

@@ -5,6 +5,8 @@ const applicationData = require('../../application/application.seed')
 
 const authHelper = require('../../lib/testUtils/authHelper')
 
+const expect = require('expect')
+
 describe('api: committeeAnswer', () => {
   let app
 
@@ -69,6 +71,32 @@ describe('api: committeeAnswer', () => {
             .send({ status: 'sent' })
             .set('Authorization', `Bearer ${validToken.token}`)
             .expect(400, { error: 'bad_request', reason: 'L\'avis du comité d\engagement l\'approbation du D2E doivent être renseignés' }, done)
+        })
+      })
+    })
+
+    describe('When an existing id is provided', () => {
+      const existingId = '9c9d6a6b832effc406059b15'
+      const committeeAnswer = {
+        opinion: 'someOpinion',
+        hasD2E: true,
+        status: 'accepted',
+      }
+
+      describe('When status in invalid', () => {
+        it('should return the updated committee answer', (done) => {
+          supertest(app)
+            .put(`/api/committeeAnswer/${existingId}`)
+            .send(committeeAnswer)
+            .set('Authorization', `Bearer ${validToken.token}`)
+            .expect(200)
+            .end((err, res) => {
+              if (err) {
+                return done(err)
+              }
+              expect(res.body).toContain(committeeAnswer)
+              return done()
+            })
         })
       })
     })
