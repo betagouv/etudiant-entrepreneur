@@ -38,6 +38,7 @@ export class PepiteHomePage extends React.Component {
               <th>Établissement</th>
               <th>Status</th>
               <th>Candidature</th>
+              <th>Comité d'engagement</th>
             </tr>
           </thead>
           <tbody>

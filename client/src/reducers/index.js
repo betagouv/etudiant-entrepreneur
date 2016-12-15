@@ -7,6 +7,7 @@ import errors from './errorsReducer'
 import career from './careerReducer'
 import profile from './profileReducer'
 import user from './userReducer'
+import committeeAnswer from './committeeAnswerReducer'
 
 const rootReducer = combineReducers({
   application,
@@ -16,7 +17,8 @@ const rootReducer = combineReducers({
   career,
   profile,
   user,
-  errors
+  errors,
+  committeeAnswer
 })
 
 export default rootReducer

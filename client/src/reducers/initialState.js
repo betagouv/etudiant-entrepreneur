@@ -1,6 +1,10 @@
 export default {
   application: {
   },
+  committeeAnswer: {
+    opinion: '',
+    status: ''
+  },
   project: {
     name: '',
     summary: '',

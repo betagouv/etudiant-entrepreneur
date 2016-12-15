@@ -4,6 +4,7 @@ import { loadProjectSuccess } from './projectActions'
 import { loadPepiteSuccess } from './pepiteActions'
 import { loadProfileSuccess } from './profileActions'
 import { loadCareerSuccess } from './careerActions'
+import { loadCommitteeAnswerSuccess, applicationToCommitteeAnswer } from './committeeAnswerActions'
 import * as types from './actionTypes'
 
 
@@ -20,6 +21,7 @@ export function loadApplication(id) {
     return applicationApi.getApplication(id).then(application => {
       dispatch(loadApplicationSuccess({ id: application.id }))
       dispatch(loadContactSuccess(application.contact))
+      dispatch(loadCommitteeAnswerSuccess(applicationToCommitteeAnswer(application)))
       if (application.project) {
         dispatch(loadProjectSuccess(application.project))
       }
