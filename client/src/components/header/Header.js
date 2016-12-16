@@ -17,7 +17,7 @@ export class Header extends React.Component {
         <Navbar inverse className="navbar-fixed-top">
           <Navbar.Header>
             <Navbar.Brand>
-              <IndexLink to="/" className="navbar-brand">
+              <IndexLink to="/pepite" className="navbar-brand">
                 <span title="home" className="glyphicon glyphicon-home" />
               </IndexLink>
             </Navbar.Brand>
