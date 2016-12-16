@@ -3,7 +3,7 @@ import toastr from 'toastr'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import * as applicationActions from '../../actions/applicationActions'
-import PepiteApplicantRow from './PepiteApplicantRow'
+import PepiteApplicantTable from './PepiteApplicantTable'
 
 export class PepiteHomePage extends React.Component {
   constructor(props, context) {
@@ -29,22 +29,7 @@ export class PepiteHomePage extends React.Component {
         <div className="page-header">
           <h1>Vos candidats</h1>
         </div>
-        <table className="table table-hover">
-          <thead>
-            <tr>
-              <th>Nom</th>
-              <th>Prénom</th>
-              <th>Email</th>
-              <th>Établissement</th>
-              <th>Status</th>
-              <th>Candidature</th>
-              <th>Comité d'engagement</th>
-            </tr>
-          </thead>
-          <tbody>
-            {this.state.applications.map((application, i) => { return (<PepiteApplicantRow key={i} application={application} />) })}
-          </tbody>
-        </table>
+        <PepiteApplicantTable applicants={this.state.applications} />
       </div>
     )
   }
