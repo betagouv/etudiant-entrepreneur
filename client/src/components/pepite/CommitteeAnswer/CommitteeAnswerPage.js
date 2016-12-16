@@ -67,6 +67,7 @@ class CommitteeAnswerPage extends React.Component {
     this.props.committeeAnswerActions.saveCommitteeAnswer(this.props.applicationId, this.state.committeeAnswer)
       .then((application) => {
         toastr.success("Avis sauvegardé")
+        this.context.router.push('/pepite')
       })
       .catch((err) => {
         toastr.error(err)
@@ -119,6 +120,10 @@ CommitteeAnswerPage.propTypes = {
   committeeAnswerActions: PropTypes.object.isRequired,
   committeeAnswer: PropTypes.object.isRequired,
   applicationId: PropTypes.string
+}
+
+CommitteeAnswerPage.contextTypes = {
+  router: React.PropTypes.object.isRequired
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(CommitteeAnswerPage)
