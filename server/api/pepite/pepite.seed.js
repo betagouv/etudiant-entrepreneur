@@ -21,7 +21,7 @@ const pepites = [
   { _id: 20, name: 'ECRIN', email: 'ecrin@univ-toulouse.fr' },
   { _id: 21, name: 'Lille Nord de France', email: 'envoi@tonpepite.com' },
   { _id: 22, name: 'Picardie', email: 'pepite.picardie@gmail.com' },
-  { _id: 23, name: 'Vallée de Seine', email: 'mathieu.luet@normandie-univ.fr' },
+  { _id: 23, name: 'Vallée de Seine', email: 'pepite-valleedeseine@normandie-univ.fr' },
   { _id: 24, name: 'CRÉER', email: 'pepite.creer@u-bretagneloire.fr' },
   { _id: 25, name: 'Aix-Marseille PACA-OUEST', email: 'suio-pepite-paca-ouest@univ-amu.fr' },
   { _id: 26, name: 'Cré@tude PACA-EST', email: 'pepitepacaest@unice.fr' },

@@ -156,7 +156,7 @@ const users = [
   {
     _id: 23,
     name: 'Vallée de Seine',
-    email: 'mathieu.luet@normandie-univ.fr',
+    email: 'pepite-valleedeseine@normandie-univ.fr',
     pepite: 23,
     password: 'test'
   },
