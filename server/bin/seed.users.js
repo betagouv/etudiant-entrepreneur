@@ -2,7 +2,7 @@
 /* eslint-disable no-console */
 const mongoose = require('mongoose')
 const User = require('../api/user/user.model')
-const pepitesData = require('../api/pepite/pepite.seed')
+const usersData = require('../api/user/user.seed')
 
 const config = require('../api/config')
 
@@ -33,9 +33,8 @@ function removeUsers() {
 
 function handleUserRemoved() {
   console.log('Seed user collection')
-  const users = pepitesData.map(p => { return (Object.assign(p, { pepite: p._id , password: 'test' })) })
 
-  User.insertMany(users, handleUserInserted).catch((err) => console.log(err))
+  User.insertMany(usersData, handleUserInserted).catch((err) => console.log(err))
 }
 
 function handleUserInserted() {
