@@ -11,8 +11,8 @@ const CommitteeAnswerForm = ({committeeAnswer, errors, onChange, saveAnswer}) =>
       <FormGroup className="required">
         <ControlLabel>Avis du comité:</ControlLabel>
         <RadioGroup name="status" onChange={onChange} selectedValue={committeeAnswer.status} error={errors.status}>
-          <Radio value="D2E">Octroi du D2E et status</Radio>
-          <Radio value="SNEE">Status seul</Radio>
+          <Radio value="D2E">Octroi du D2E et statut</Radio>
+          <Radio value="SNEE">Statut seul</Radio>
           <Radio value="refused">Avis défavorable</Radio>
         </RadioGroup>
       </FormGroup>

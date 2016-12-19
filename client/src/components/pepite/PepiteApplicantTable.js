@@ -11,7 +11,7 @@ const PepiteApplicantTable = ({applicants}) => {
           <th>Prénom</th>
           <th>Email</th>
           <th>Établissement</th>
-          <th>Status</th>
+          <th>Statut</th>
           <th>Candidature</th>
           <th>Comité d'engagement</th>
         </tr>
