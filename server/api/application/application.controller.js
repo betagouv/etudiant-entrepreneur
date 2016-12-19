@@ -206,7 +206,7 @@ const pepites = [
 { id: '13', name: '3EF', email: 'pepite3ef@univ-paris-est.fr'},
 { id: '14', name: 'heSam Entreprendre', email: 'dossier.pepite@hesam.eu'},
 { id: '15', name: 'Paris Ouest Nord', email: 'contact@pepite-pon.fr'},
-{ id: '16', name: 'Paris Centre', email: 'aurelie.mandon@sorbonne-universites.fr'},
+{ id: '16', name: 'Paris Centre', email: 'entrepreneur@sorbonne-universites.fr'},
 { id: '17', name: 'PEIPS', email: 'pepite@universite-paris-saclay.fr'},
 { id: '18', name: 'PSL', email: 'psl-pepite@univ-psl.fr'},
 { id: '19', name: 'Languedoc-Roussillon', email: 'contact@pepite-lr.fr'},
