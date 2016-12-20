@@ -34,16 +34,16 @@ export class PepiteHomePage extends React.Component {
     return (
       <div className="container back-content">
         <div className="page-header">
-          <h1>Vos candidats</h1>
+          <h1>Candidatures</h1>
         </div>
         <Tabs defaultActiveKey={1}>
-          <Tab eventKey={1} title={<div>Candidats <span className="badge">{this.state.applications.length}</span></div>}>
+          <Tab eventKey={1} title={<div>En attente <span className="badge">{this.state.applications.length}</span></div>}>
             <PepiteApplicantTable applicants={this.state.applications} />
           </Tab>
-          <Tab eventKey={2} title={<div>Acceptés <span className="badge">{this.state.accepted.length}</span></div>}>
+          <Tab eventKey={2} title={<div>Acceptées <span className="badge">{this.state.accepted.length}</span></div>}>
             <PepiteApplicantTable applicants={this.state.accepted} />
           </Tab>
-          <Tab eventKey={3} title={<div>Réfusés <span className="badge">{this.state.refused.length}</span></div>}>
+          <Tab eventKey={3} title={<div>Réfusées <span className="badge">{this.state.refused.length}</span></div>}>
             <PepiteApplicantTable applicants={this.state.refused} />
           </Tab>
         </Tabs>

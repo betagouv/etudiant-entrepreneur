@@ -12,7 +12,7 @@ const PepiteApplicantTable = ({applicants}) => {
           <th>Email</th>
           <th>Établissement</th>
           <th>Statut</th>
-          <th>Candidature</th>
+          <th>Version imprimable</th>
           <th>Comité d'engagement</th>
         </tr>
       </thead>
