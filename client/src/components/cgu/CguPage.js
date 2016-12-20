@@ -126,8 +126,31 @@ const CguPage = () => {
           Nous nous réservons le droit de bloquer, sans information préalable ni compensation financière, les usages mettant en péril l'utilisation du logiciel par d'autres usagers.
           <small>Cela nous permet d'anticiper d'éventuelles <a href="https://fr.wikipedia.org/wiki/Attaque_par_d%C3%A9ni_de_service" target="_blank">attaques par déni de service.</a></small>
         </p>
+
+
+        <h2 id="mentions-legales">Mentions légales</h2>
+
+
+        <h3>Éditeur</h3>
+
+        <p>
+          <a href="https://beta.gouv.fr">Incubateur de services numériques</a> du <a href="https://modernisation.gouv.fr">Secrétariat général pour la modernisation de l'action publique</a> (SGMAP).
+          <small>39–43 quai André-Citroën, 75015&nbsp;Paris. Téléphone&nbsp;: +33&nbsp;1&nbsp;42&nbsp;75&nbsp;80&nbsp;00.</small>
+        </p>
+        <p>
+          Directeur de la publication&nbsp;: directeur interministériel du numérique et du système d’information et de communication de l’État, adjoint à la secrétaire générale pour la modernisation de l’action publique.
+          <small>Henri Verdier</small>
+        </p>
+
+        <h3>Hébergeur</h3>
+
+        <p>
+          Le site est hébergé par la société <a href="https://www.heroku.com/">Heroku</a> Europe
+          <small>650 7th St, San Francisco, CA, 94103, United States</small>
+          <small>Téléphone&nbsp;: +44&nbsp;800&nbsp;808-5158</small>
+        </p>
       </article>
-      <Footer/>
+      <Footer />
     </div>
   )
 }
