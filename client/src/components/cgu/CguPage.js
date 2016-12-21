@@ -134,7 +134,7 @@ const CguPage = () => {
         <h3>Éditeur</h3>
 
         <p>
-          <a href="https://beta.gouv.fr">Incubateur de services numériques</a> du <a href="https://modernisation.gouv.fr">Secrétariat général pour la modernisation de l'action publique</a> (SGMAP).
+          <a href="https://beta.gouv.fr" target="_blank">Incubateur de services numériques</a> du <a href="http://www.modernisation.gouv.fr" target="_blank">Secrétariat général pour la modernisation de l'action publique</a> (SGMAP).
           <small>39–43 quai André-Citroën, 75015&nbsp;Paris. Téléphone&nbsp;: +33&nbsp;1&nbsp;42&nbsp;75&nbsp;80&nbsp;00.</small>
         </p>
         <p>
@@ -145,7 +145,7 @@ const CguPage = () => {
         <h3>Hébergeur</h3>
 
         <p>
-          Le site est hébergé par la société <a href="https://www.heroku.com/">Heroku</a> Europe
+          Le site est hébergé par la société <a href="https://www.heroku.com/" target="_blank">Heroku</a> Europe
           <small>650 7th St, San Francisco, CA, 94103, United States</small>
           <small>Téléphone&nbsp;: +44&nbsp;800&nbsp;808-5158</small>
         </p>
