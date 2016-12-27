@@ -7,8 +7,15 @@ import {countries} from '../../common/ressources/countries'
 import {getDescYearList, getUniversityYear} from '../../common/yearHelper'
 import EntrepreneurshipPanel from './EntrepreneurshipPanel'
 
+function getCurrentYear() {
+  const date = new Date()
+  const nbDaysBeforeChange = 135
+  date.setDate(date.getDate() - nbDaysBeforeChange)
+  return date.getFullYear()
+}
+
 function getCurrentUniversityYear() {
-  return (getUniversityYear(new Date().getFullYear()))
+  return (getUniversityYear(getCurrentYear()))
 }
 
 function getLastDiplomaHeader(situation) {
@@ -18,7 +25,7 @@ function getLastDiplomaHeader(situation) {
   return ("Mon dernier diplôme")
 }
 
-const last70YearsList = getDescYearList(new Date().getFullYear(), 70)
+const last70YearsList = getDescYearList(getCurrentYear(), 70)
 
 const CareerForm = ({career, contact, tutorErrors, bacErrors, diplomaErrors, onTutorChange, onDiplomaChange, onBacChange, onEntrepreneurshipChange}) => {
   return (
