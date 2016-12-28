@@ -44,8 +44,7 @@ const ProfileForm = ({profile, contact, errors, onChange, onDateChange}) => {
       </FormGroup>
       <FormGroup>
         <ControlLabel>Identifiant national étudiant (INE)</ControlLabel>
-        <ValidatedFormControl name="ine" type="text" placeholder="11 caractères" onChange={onChange} value={profile.ine} error={errors.ine}/>
-        <HelpBlock>identifiant ou numéro national étudiant unique présent sur ma carte d’étudiant·e ou mes relevés de notes.</HelpBlock>
+        <ValidatedFormControl name="ine" type="text" placeholder="identifiant unique à 11 caractères présent sur ma carte d’étudiant·e ou mes relevés de notes." onChange={onChange} value={profile.ine} error={errors.ine}/>
       </FormGroup>
       <FormGroup className="required">
         <ControlLabel>Qu'attends-tu du statut national étudiant·e-entrepreneur·e ?</ControlLabel>
