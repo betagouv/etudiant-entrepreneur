@@ -1,7 +1,8 @@
-import React, {PropTypes} from 'react'
+import React, { PropTypes } from 'react'
 import SendForm from './SendForm'
-import {connect} from 'react-redux'
-import {bindActionCreators} from 'redux'
+import EditForm from './EditForm'
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
 import toastr from 'toastr'
 import * as applicationActions from '../../../actions/applicationActions'
 import * as errorsActions from '../../../actions/errorsActions'
@@ -10,6 +11,7 @@ class SendPage extends React.Component {
   constructor(props, context) {
     super(props, context)
     this.sendForm = this.sendForm.bind(this)
+    this.editForm = this.editForm.bind(this)
     this.state = {
       isSending: false
     }
@@ -17,16 +19,16 @@ class SendPage extends React.Component {
 
   sendForm() {
     if (this.props.errorsActions.validateApplication()) {
-      this.setState({isSending: true})
+      this.setState({ isSending: true })
       this.props.actions.saveApplication()
         .then(application => {
           this.props.actions.sendApplication()
             .then(() => {
-              this.setState({isSending: false})
+              this.setState({ isSending: false })
               toastr.success('Candidature envoyée')
             })
             .catch((err) => {
-              this.setState({isSending: false})
+              this.setState({ isSending: false })
               if (err.response && err.response.data && err.response.data.reason) {
                 toastr.error(err.response.data.reason)
               } else {
@@ -35,24 +37,41 @@ class SendPage extends React.Component {
             })
         })
         .catch((err) => {
-          this.setState({isSending: false})
+          this.setState({ isSending: false })
           toastr.error(err)
         })
     } else {
-      this.setState({isSending: false})
+      this.setState({ isSending: false })
       toastr.error('Tu as des erreurs dans le formulaire')
     }
   }
 
+  editForm(event) {
+    event.preventDefault()
+    this.props.actions.saveApplication()
+      .then((application) => {
+        toastr.success("Candidature modifiée")
+      })
+      .catch((err) => {
+        toastr.error(err)
+      })
+  }
+
   render() {
     return (
-      <SendForm sendForm={this.sendForm} isSending={this.state.isSending}/>
+      <div>
+        {this.props.canBeSent ?
+          <SendForm sendForm={this.sendForm} isSending={this.state.isSending} /> :
+          <EditForm editForm={this.editForm} />
+        }
+      </div>
     )
   }
 }
 
 function mapStateToProps(state, ownProps) {
   return {
+    canBeSent: state.application.status === 'saved' || !state.application.status
   }
 }
 
@@ -65,6 +84,7 @@ function mapDispatchToProps(dispatch) {
 
 SendPage.propTypes = {
   actions: PropTypes.object.isRequired,
+  canBeSent: PropTypes.bool.isRequired,
   errorsActions: PropTypes.object.isRequired
 }
 

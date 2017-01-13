@@ -9,17 +9,28 @@ import * as types from './actionTypes'
 
 
 export function loadApplicationSuccess(application) {
-  return { type: types.LOAD_APPLICATION_SUCCESS, application }
+  return {
+    type: types.LOAD_APPLICATION_SUCCESS,
+    application: {
+      id: application.id,
+      status: application.status
+    }
+  }
 }
 
 export function updateApplicationSuccess(application) {
-  return { type: types.UPDATE_APPLICATION_SUCCESS, application }
+  return { type: types.UPDATE_APPLICATION_SUCCESS,
+    application: {
+      id: application.id,
+      status: application.status
+    }
+  }
 }
 
 export function loadApplication(id) {
   return dispatch => {
     return applicationApi.getApplication(id).then(application => {
-      dispatch(loadApplicationSuccess({ id: application.id }))
+      dispatch(loadApplicationSuccess(application))
       dispatch(loadContactSuccess(application.contact))
       dispatch(loadCommitteeAnswerSuccess(applicationToCommitteeAnswer(application)))
       if (application.project) {
@@ -45,13 +56,13 @@ export function saveApplication() {
     const {application, project, contact, profile, pepite, career} = getState()
     if (!application.id) {
       return applicationApi.saveApplication(Object.assign({ project, contact, profile, career, pepite })).then(application => {
-        dispatch(updateApplicationSuccess({ id: application.id }))
+        dispatch(updateApplicationSuccess(application))
         return application
       })
     }
     else {
       return applicationApi.updateApplication(application.id, Object.assign({ project, contact, profile, career, pepite })).then(application => {
-        dispatch(updateApplicationSuccess({ id: application.id }))
+        dispatch(updateApplicationSuccess(application))
         return application
       })
     }
@@ -66,7 +77,7 @@ export function sendApplication() {
     }
     else {
       return applicationApi.sendApplication(application.id, Object.assign({ project, contact, profile, career, pepite })).then(application => {
-        dispatch(updateApplicationSuccess({ id: application.id }))
+        dispatch(updateApplicationSuccess(application))
         return application
       })
     }
