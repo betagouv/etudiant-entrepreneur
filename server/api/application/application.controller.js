@@ -192,7 +192,7 @@ function getTutorEmailBody(application) {
 
 const pepites = [
 { id: '1', name: 'ETENA', email: 'a.latour@unistra.fr'},
-{ id: '2', name: 'Champagne-Ardenne', email: 'pepitechampagneardenne@carinna.fr'},
+{ id: '2', name: 'Champagne-Ardenne', email: 'pepite.champagne-ardenne@univ-champagne.fr'},
 { id: '3', name: 'by PEEL', email: 'peel@univ-lorraine.fr'},
 { id: '4', name: 'ECA', email: 'eca@cuea.fr'},
 { id: '5', name: 'LPC', email: 'pepitelpc@groupes.renater.fr'},

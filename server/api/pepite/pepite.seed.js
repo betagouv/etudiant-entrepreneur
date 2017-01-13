@@ -1,6 +1,6 @@
 const pepites = [
   { _id: 1, name: 'ETENA', email: 'a.latour@unistra.fr' },
-  { _id: 2, name: 'Champagne-Ardenne', email: 'pepitechampagneardenne@carinna.fr' },
+  { _id: 2, name: 'Champagne-Ardenne', email: 'pepite.champagne-ardenne@univ-champagne.fr' },
   { _id: 3, name: 'by PEEL', email: 'peel@univ-lorraine.fr' },
   { _id: 4, name: 'ECA', email: 'eca@cuea.fr' },
   { _id: 5, name: 'LPC', email: 'pepitelpc@groupes.renater.fr' },
