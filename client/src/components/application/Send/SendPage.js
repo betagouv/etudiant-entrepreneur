@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react'
 import SendForm from './SendForm'
-import EditForm from './EditForm'
+import SentFrom from './SentForm'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import toastr from 'toastr'
@@ -62,7 +62,7 @@ class SendPage extends React.Component {
       <div>
         {this.props.canBeSent ?
           <SendForm sendForm={this.sendForm} isSending={this.state.isSending} /> :
-          <EditForm editForm={this.editForm} />
+          <SentFrom editForm={this.editForm} />
         }
       </div>
     )
