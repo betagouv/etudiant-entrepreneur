@@ -104,6 +104,8 @@ class ApplicationController {
               `Nouvelle candidature de ${application.contact.firstname} ${application.contact.name}`,
               getPepiteEmailBody(application),
               (error, info) => { logMail(req.log, error, info) })
+            //notify partners
+            notifyPartners(application, req, (error, info) => { logMail(req.log, error, info) })
             return res.json(application)
           })
           .catch((err) => {
@@ -138,12 +140,33 @@ function logMail(logger, error, info) {
   }
 }
 
+function notifyPartners(application, req, done) {
+  application.project.team.forEach((teamMember) => {
+    Application.count({ 'contact.email': teamMember.email }, (err, c) => {
+      if (!c) {
+        sendMail(
+          teamMember.email,
+          'Candidature au statut Etudiant Entrepreneur',
+          getPartnerInviteEmailBody(application),
+          done)
+      }
+    })
+  })
+}
+
 function getSaveEmailBody(application) {
   return ('<html><body><p>Bonjour,</p>' +
     '<p>Tu as commencé ta candidature sur etudiant-entrepreneur.beta.gouv.fr</p>' +
     '<p>Tu peux finaliser ta demande quand tu veux à cette adresse :</p>' +
     '<a href="https://etudiant-entrepreneur.beta.gouv.fr/application/' + application._id + '" target="_blank">ta candidature</a>' +
     '<p>Si tu as la moindre question, n\'hésites pas à nous contacter à contact@etudiant-entrepreneur.beta.gouv.fr</p>')
+}
+
+function getPartnerInviteEmailBody(application) {
+  return ('<html><body><p>Bonjour,</p>' +
+    `<p>${application.contact.firstname} ${application.contact.name} a candidaté au <a target="_blank" href="http://www.enseignementsup-recherche.gouv.fr/cid79926/statut-national-etudiant-entrepreneur.html">status étudiant-entrepreneur</a> auprès du <a target="_blank" href="http://www.enseignementsup-recherche.gouv.fr/cid79223/pepite-poles-etudiants-pour-innovation-transfert-entrepreneuriat.html"><abbr title="Pôles Étudiants Pour l'Innovation, le Transfert et l'Entrepreneuriat">PEPITE</abbr></a> ${getPepite(application.pepite.pepite).name} et t'a déclaré comme associé·e</p>` +
+    '<p>Si tu n\'as pas déjà déposé ta candidature, tu peux également le faire à cette adresse: etudiant-entrepreneur.beta.gouv.fr</p>' +
+    '<p>Bonne journée.</p>')
 }
 
 function getSendEmailBody(application) {
@@ -192,35 +215,35 @@ function getTutorEmailBody(application) {
 }
 
 const pepites = [
-{ id: '1', name: 'ETENA', email: 'a.latour@unistra.fr'},
-{ id: '2', name: 'Champagne-Ardenne', email: 'pepite.champagne-ardenne@univ-champagne.fr'},
-{ id: '3', name: 'by PEEL', email: 'peel@univ-lorraine.fr'},
-{ id: '4', name: 'ECA', email: 'eca@cuea.fr'},
-{ id: '5', name: 'LPC', email: 'pepitelpc@groupes.renater.fr'},
-{ id: '6', name: 'PEEA', email: 'pepite.auvergne@sigma-clermont.fr'},
-{ id: '7', name: 'BeeLYS', email: 'beelys@fpul-lyon.org'},
-{ id: '8', name: 'oZer', email: 'entrepreneuriat@univ-grenoble-alpes.fr'},
-{ id: '9', name: 'Bretagne', email: 'pepite-bretagne@u-bretagneloire.fr'},
-{ id: '10', name: 'Centre-Val de Loire', email: 'contact@pepite-centre.fr'},
-{ id: '11', name: 'Corse', email: 'pagni@univ-corse.fr'},
-{ id: '12', name: 'CréaJ IDF', email: 'gestion.pepite@univ-paris13.fr'},
-{ id: '13', name: '3EF', email: 'pepite3ef@univ-paris-est.fr'},
-{ id: '14', name: 'heSam Entreprendre', email: 'dossier.pepite@hesam.eu'},
-{ id: '15', name: 'Paris Ouest Nord', email: 'contact@pepite-pon.fr'},
-{ id: '16', name: 'Paris Centre', email: 'entrepreneur@sorbonne-universites.fr'},
-{ id: '17', name: 'PEIPS', email: 'pepite@universite-paris-saclay.fr'},
-{ id: '18', name: 'PSL', email: 'psl-pepite@univ-psl.fr'},
-{ id: '19', name: 'Languedoc-Roussillon', email: 'contact@pepite-lr.fr'},
-{ id: '20', name: 'ECRIN', email: 'ecrin@univ-toulouse.fr'},
-{ id: '21', name: 'Lille Nord de France', email: 'envoi@tonpepite.com'},
-{ id: '22', name: 'Picardie', email: 'pepite.picardie@gmail.com'},
-{ id: '23', name: 'Vallée de Seine', email: 'pepite-valleedeseine@normandie-univ.fr'},
-{ id: '24', name: 'CRÉER', email: 'pepite.creer@u-bretagneloire.fr'},
-{ id: '25', name: 'Aix-Marseille PACA-OUEST', email: 'suio-pepite-paca-ouest@univ-amu.fr'},
-{ id: '26', name: 'Cré@tude PACA-EST', email: 'pepitepacaest@unice.fr'},
-{ id: '27', name: 'Antilles-Guyane', email: 'pepiteag@univ-ag.fr'},
-{ id: '28', name: 'P2ER', email: 'pepite.p2er@univ-reunion.fr'},
-{ id: '29', name: 'Bourgone Franche-Comté', email: 'coordination@pepite-bfc.fr'}
+  { id: '1', name: 'ETENA', email: 'a.latour@unistra.fr' },
+  { id: '2', name: 'Champagne-Ardenne', email: 'pepite.champagne-ardenne@univ-champagne.fr' },
+  { id: '3', name: 'by PEEL', email: 'peel@univ-lorraine.fr' },
+  { id: '4', name: 'ECA', email: 'eca@cuea.fr' },
+  { id: '5', name: 'LPC', email: 'pepitelpc@groupes.renater.fr' },
+  { id: '6', name: 'PEEA', email: 'pepite.auvergne@sigma-clermont.fr' },
+  { id: '7', name: 'BeeLYS', email: 'beelys@fpul-lyon.org' },
+  { id: '8', name: 'oZer', email: 'entrepreneuriat@univ-grenoble-alpes.fr' },
+  { id: '9', name: 'Bretagne', email: 'pepite-bretagne@u-bretagneloire.fr' },
+  { id: '10', name: 'Centre-Val de Loire', email: 'contact@pepite-centre.fr' },
+  { id: '11', name: 'Corse', email: 'pagni@univ-corse.fr' },
+  { id: '12', name: 'CréaJ IDF', email: 'gestion.pepite@univ-paris13.fr' },
+  { id: '13', name: '3EF', email: 'pepite3ef@univ-paris-est.fr' },
+  { id: '14', name: 'heSam Entreprendre', email: 'dossier.pepite@hesam.eu' },
+  { id: '15', name: 'Paris Ouest Nord', email: 'contact@pepite-pon.fr' },
+  { id: '16', name: 'Paris Centre', email: 'entrepreneur@sorbonne-universites.fr' },
+  { id: '17', name: 'PEIPS', email: 'pepite@universite-paris-saclay.fr' },
+  { id: '18', name: 'PSL', email: 'psl-pepite@univ-psl.fr' },
+  { id: '19', name: 'Languedoc-Roussillon', email: 'contact@pepite-lr.fr' },
+  { id: '20', name: 'ECRIN', email: 'ecrin@univ-toulouse.fr' },
+  { id: '21', name: 'Lille Nord de France', email: 'envoi@tonpepite.com' },
+  { id: '22', name: 'Picardie', email: 'pepite.picardie@gmail.com' },
+  { id: '23', name: 'Vallée de Seine', email: 'pepite-valleedeseine@normandie-univ.fr' },
+  { id: '24', name: 'CRÉER', email: 'pepite.creer@u-bretagneloire.fr' },
+  { id: '25', name: 'Aix-Marseille PACA-OUEST', email: 'suio-pepite-paca-ouest@univ-amu.fr' },
+  { id: '26', name: 'Cré@tude PACA-EST', email: 'pepitepacaest@unice.fr' },
+  { id: '27', name: 'Antilles-Guyane', email: 'pepiteag@univ-ag.fr' },
+  { id: '28', name: 'P2ER', email: 'pepite.p2er@univ-reunion.fr' },
+  { id: '29', name: 'Bourgone Franche-Comté', email: 'coordination@pepite-bfc.fr' }
 ]
 
 function getPepite(id) {
