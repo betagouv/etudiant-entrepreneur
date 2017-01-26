@@ -6,6 +6,7 @@ import ValidatedComponent from '../../common/ValidatedComponent'
 import ValidatedFormControl from '../../common/ValidatedFormControl'
 import Textarea from 'react-textarea-autosize'
 import { calendarProps } from '../../common/calendarHelper'
+import { getCurrentYear, getCurrentUniversityYear } from '../../common/yearHelper'
 import { countries } from '../../common/ressources/countries'
 
 const ProfileForm = ({profile, contact, errors, onChange, onDateChange}) => {
@@ -19,14 +20,14 @@ const ProfileForm = ({profile, contact, errors, onChange, onDateChange}) => {
         </RadioGroup>
       </FormGroup>
       <FormGroup className={(contact.situation == 'student') ? 'required' : 'required hidden'}>
-        <ControlLabel>Étudiant en 2016 :</ControlLabel>
+        <ControlLabel>Étudiant en {getCurrentYear()} :</ControlLabel>
         <RadioGroup name="situation" onChange={onChange} selectedValue={profile.situation} error={errors.situation}>
-          <Radio value="graduate">Je finis mes études avant fin décembre 2016</Radio>
-          <Radio value="student">Je serai étudiant·e toute l'année universitaire 2016-2017</Radio>
+          <Radio value="graduate">Je finis mes études avant fin décembre {getCurrentYear()}</Radio>
+          <Radio value="student">Je serai étudiant·e toute l'année universitaire {getCurrentUniversityYear()}</Radio>
         </RadioGroup>
       </FormGroup>
       <Panel bsStyle="info" className={(profile.situation == 'graduate') ? 'required' : 'required hidden'}>
-        <div>Finnissant tes études avant fin 2016, si tu obtiens le statut étudiant·e-entrepreneur·e, tu devras t'inscrire  au <a target="_blank" href="http://www.pepite-france.fr/b-diplome-etudiant-entrepreneur-2">diplôme d’établissement étudiant-entrepreneur (D2E)</a> via ton Pepite.</div>
+        <div>Finnissant tes études avant fin {getCurrentYear()}, si tu obtiens le statut étudiant·e-entrepreneur·e, tu devras t'inscrire  au <a target="_blank" href="http://www.pepite-france.fr/b-diplome-etudiant-entrepreneur-2">diplôme d’établissement étudiant-entrepreneur (D2E)</a> via ton Pepite.</div>
       </Panel>
       <FormGroup className="required">
         <ControlLabel>Date de naissance</ControlLabel>

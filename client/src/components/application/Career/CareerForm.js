@@ -4,19 +4,8 @@ import RadioGroup from '../../common/RadioGroup'
 import ValidatedFormControl from '../../common/ValidatedFormControl'
 import {diplomas} from './diplomas'
 import {countries} from '../../common/ressources/countries'
-import {getDescYearList, getUniversityYear} from '../../common/yearHelper'
+import {getDescYearList, getCurrentUniversityYear, getCurrentYear, getUniversityYear} from '../../common/yearHelper'
 import EntrepreneurshipPanel from './EntrepreneurshipPanel'
-
-function getCurrentYear() {
-  const date = new Date()
-  const nbDaysBeforeChange = 135
-  date.setDate(date.getDate() - nbDaysBeforeChange)
-  return date.getFullYear()
-}
-
-function getCurrentUniversityYear() {
-  return (getUniversityYear(getCurrentYear()))
-}
 
 function getLastDiplomaHeader(situation) {
   if (situation == 'student') {
