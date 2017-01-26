@@ -29,6 +29,13 @@ const ProfileForm = ({profile, contact, errors, onChange, onDateChange}) => {
       <Panel bsStyle="info" className={(profile.situation == 'graduate') ? 'required' : 'required hidden'}>
         <div>Finnissant tes études avant fin {getCurrentYear()}, si tu obtiens le statut étudiant·e-entrepreneur·e, tu devras t'inscrire  au <a target="_blank" href="http://www.pepite-france.fr/b-diplome-etudiant-entrepreneur-2">diplôme d’établissement étudiant-entrepreneur (D2E)</a> via ton Pepite.</div>
       </Panel>
+      <FormGroup className={(profile.situation == 'student') ? 'required' : 'required hidden'}>
+        <ControlLabel>Étudiant toute l'année {getCurrentYear()}, tu peux demander l'inscription au <a target="_blank" href="http://www.pepite-france.fr/b-diplome-etudiant-entrepreneur-2">diplôme d’établissement étudiant-entrepreneur (D2E)</a>:</ControlLabel>
+        <RadioGroup name="askD2E" onChange={onChange} selectedValue={profile.askD2E} error={errors.situation}>
+          <Radio value="true">Je souhaite m'inscrire au <abbr title="Diplôme d’Établissement Étudiant-entrepreneur">D2E</abbr> pour bénéficier d'un meilleur suivi dans mon projet</Radio>
+  <Radio value="false">Je souhaite obtenir le statut étudiant-entrepreneur seul (sans le <abbr title="Diplôme d’Établissement Étudiant-entrepreneur">D2E</abbr>)</Radio>
+        </RadioGroup>
+      </FormGroup>
       <FormGroup className="required">
         <ControlLabel>Date de naissance</ControlLabel>
         <ValidatedComponent error={errors.birthDate}>

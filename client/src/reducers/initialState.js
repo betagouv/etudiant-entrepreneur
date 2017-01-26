@@ -71,6 +71,7 @@ export default {
   profile: {
     gender: '',
     situation: '',
+    askD2E: '',
     nationality: '',
     motivation: '',
     isPartTime: '',
