@@ -18,7 +18,7 @@ const RadioGroup = class RadioGroup extends React.Component {
         {this.attachPropToChildren(this.props.name, this.props.onChange, this.props.selectedValue)}
         <div className="help-block">{this.props.error}</div>
       </div>
-      )
+    )
   }
 }
 

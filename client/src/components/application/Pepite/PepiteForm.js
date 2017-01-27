@@ -63,7 +63,7 @@ const PepiteForm = ({pepite, contact, errors, onChange}) => {
                 {getAllValidPepites(pepite.region - 1, pepite.establishment - 1).map((pepite, index) => { return (<option key={index + 1} value={pepite.id + 1}>PEPITE {pepite.name}</option>) }) }
               </ValidatedFormControl>
             </FormGroup>
-            )
+          )
         }})()}
         <FormGroup className="required">
           <ControlLabel>Je demande un accès à l'espace de coworking PEPITE (selon disponibilité)</ControlLabel>
