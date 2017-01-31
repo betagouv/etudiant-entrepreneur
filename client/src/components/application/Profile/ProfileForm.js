@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react'
 import { FormGroup, ControlLabel, FormControl, Radio, HelpBlock, Panel } from 'react-bootstrap'
-import DatePicker from 'react-bootstrap-date-picker'
+import Cleave from 'cleave.js/dist/cleave-react.min'
 import RadioGroup from '../../common/RadioGroup'
 import ValidatedComponent from '../../common/ValidatedComponent'
 import ValidatedFormControl from '../../common/ValidatedFormControl'
@@ -9,7 +9,7 @@ import { calendarProps } from '../../common/calendarHelper'
 import { getCurrentYear, getCurrentUniversityYear } from '../../common/yearHelper'
 import { countries } from '../../common/ressources/countries'
 
-const ProfileForm = ({profile, contact, errors, onChange, onDateChange}) => {
+const ProfileForm = ({profile, contact, errors, onChange, onDateChange, onDateInit}) => {
   return (
     <form>
       <FormGroup className="required">
@@ -33,13 +33,21 @@ const ProfileForm = ({profile, contact, errors, onChange, onDateChange}) => {
         <ControlLabel>Étudiant toute l'année {getCurrentYear()}, tu peux demander l'inscription au <a target="_blank" href="http://www.pepite-france.fr/b-diplome-etudiant-entrepreneur-2">diplôme d’établissement étudiant-entrepreneur (D2E)</a>:</ControlLabel>
         <RadioGroup name="askD2E" onChange={onChange} selectedValue={profile.askD2E} error={errors.situation}>
           <Radio value="true">Je souhaite m'inscrire au <abbr title="Diplôme d’Établissement Étudiant-entrepreneur">D2E</abbr> pour bénéficier d'un meilleur suivi dans mon projet</Radio>
-  <Radio value="false">Je souhaite obtenir le statut étudiant-entrepreneur seul (sans le <abbr title="Diplôme d’Établissement Étudiant-entrepreneur">D2E</abbr>)</Radio>
+          <Radio value="false">Je souhaite obtenir le statut étudiant-entrepreneur seul (sans le <abbr title="Diplôme d’Établissement Étudiant-entrepreneur">D2E</abbr>)</Radio>
         </RadioGroup>
       </FormGroup>
       <FormGroup className="required">
         <ControlLabel>Date de naissance</ControlLabel>
         <ValidatedComponent error={errors.birthDate}>
-          <DatePicker value={profile.birthDate} onChange={onDateChange} {...calendarProps} />
+          <Cleave className="form-control"
+          name="birthDate"
+          placeholder="JJ/MM/AAAA"
+          options={{
+            date: true,
+            datePattern: ['d', 'm', 'Y']
+          }}
+          onChange={onDateChange}
+          onInit={onDateInit} />
         </ValidatedComponent>
       </FormGroup>
       <FormGroup className="required">
@@ -149,6 +157,7 @@ ProfileForm.propTypes = {
   contact: PropTypes.object.isRequired,
   onChange: PropTypes.func.isRequired,
   onDateChange: PropTypes.func.isRequired,
+  onDateInit: PropTypes.func.isRequired,
   errors: PropTypes.object
 }
 

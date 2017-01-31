@@ -1,17 +1,19 @@
-import React, {PropTypes} from 'react'
+import React, { PropTypes } from 'react'
 import ProfileForm from './ProfileForm'
-import {connect} from 'react-redux'
-import {bindActionCreators} from 'redux'
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+import Moment from 'moment'
 import * as profileActions from '../../../actions/profileActions'
 import * as errorsActions from '../../../actions/errorsActions'
-import {profileValidationConstraints} from './ProfileValidationConstraints'
+import { profileValidationConstraints } from './ProfileValidationConstraints'
 import Validation from '../../common/Validation'
 
-class ProfilePage extends React.Component {
+export class ProfilePage extends React.Component {
   constructor(props, context) {
     super(props, context)
     this.updateProfileState = this.updateProfileState.bind(this)
     this.updateProfileDate = this.updateProfileDate.bind(this)
+    this.onProfileDateInit = this.onProfileDateInit.bind(this)
     this.profileValidation = new Validation(profileValidationConstraints)
   }
 
@@ -32,14 +34,19 @@ class ProfilePage extends React.Component {
     this.props.errorsActions.updateComponentErrors('profile', errors)
   }
 
-  updateProfileDate(date) {
-    if (date == null) {
-      date = ''
+  updateProfileDate(event) {
+    if (event.target.value.length === 10) {
+      const date = new Moment.utc(event.target.value, 'DD/MM/YYYY').format()
+      const profile = Object.assign({}, this.props.profile)
+      profile.birthDate = date
+      this.validateProfileField('birthDate', date)
+      this.props.actions.updateProfile(profile)
     }
-    let profile = Object.assign({}, this.props.profile)
-    profile.birthDate = date
-    this.validateProfileField('birthDate', date)
-    this.props.actions.updateProfile(profile)
+  }
+
+  onProfileDateInit(dateField) {
+    const rawBirthdate = new Moment.utc(this.props.profile.birthDate).format('DDMMYYYY')
+    dateField.setRawValue(rawBirthdate)
   }
 
   render() {
@@ -49,7 +56,8 @@ class ProfilePage extends React.Component {
         contact={this.props.contact}
         onChange={this.updateProfileState}
         errors={this.props.errors}
-        onDateChange={this.updateProfileDate}/>
+        onDateChange={this.updateProfileDate}
+        onDateInit={this.onProfileDateInit} />
     )
   }
 }

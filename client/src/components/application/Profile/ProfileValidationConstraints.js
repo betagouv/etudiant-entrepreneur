@@ -1,7 +1,13 @@
 import validator from 'validator'
+import Moment from 'moment'
 
 function isNotEmpty(value) {
   return (value && value.length && value.trim())
+}
+
+function isValidBirthDate(value) {
+  const date = new Moment(value)
+  return (date.isBefore(new Moment().subtract(11, 'years')))
 }
 
 export const profileValidationConstraints = {
@@ -10,8 +16,8 @@ export const profileValidationConstraints = {
     errorMessage: "obligatoire"
   },
   birthDate: {
-    isValid: isNotEmpty,
-    errorMessage: "obligatoire"
+    isValid: isValidBirthDate,
+    errorMessage: "Ta date de naissance doit être valide"
   },
   birthPlace: {
     isValid: isNotEmpty,
