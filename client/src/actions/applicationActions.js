@@ -90,3 +90,10 @@ export function getPepiteApplication() {
     return applicationApi.getAllPepiteApplications(user.id, user.token)
   }
 }
+
+export function getPepiteApplicationXls() {
+  return (dispatch, getState) => {
+    const {user} = getState()
+    return applicationApi.getAllPepiteApplicationsXls(user.id, user.token)
+  }
+}

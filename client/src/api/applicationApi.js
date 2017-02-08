@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { getFilename } from './requestUtils'
 // eslint-disable-next-line no-undef
 axios.defaults.baseURL = API_URI
 
@@ -61,6 +62,26 @@ class applicationApi {
       })
       .then((res) => {
         return res.data
+      })
+      .catch((err) => {
+        throw new Error(err)
+      })
+  }
+
+  static getAllPepiteApplicationsXls(pepiteId, userToken) {
+    return axios.get(`/pepite/${pepiteId}/application/xls`,
+      {
+        'headers': {
+          'Authorization': `Bearer ${userToken}`
+        }
+      })
+      .then((res) => {
+        console.log(res.data)
+        return {
+          data: res.data,
+          type: res.headers['content-type'],
+          filename: getFilename(res.headers['content-disposition'])
+        }
       })
       .catch((err) => {
         throw new Error(err)

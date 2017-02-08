@@ -3,6 +3,7 @@ import toastr from 'toastr'
 import { connect } from 'react-redux'
 import { Tabs, Tab } from 'react-bootstrap'
 import { bindActionCreators } from 'redux'
+import FileSaver from 'file-saver'
 import * as applicationActions from '../../actions/applicationActions'
 import PepiteApplicantTable from './PepiteApplicantTable'
 
@@ -14,6 +15,7 @@ export class PepiteHomePage extends React.Component {
       accepted: [],
       refused: []
     }
+    this.getPepiteApplicationXls = this.getPepiteApplicationXls.bind(this)
   }
 
   componentDidMount() {
@@ -30,12 +32,19 @@ export class PepiteHomePage extends React.Component {
       })
   }
 
+  getPepiteApplicationXls() {
+    this.props.actions.getPepiteApplicationXls().then(xlsFile => {
+      FileSaver.saveAs(new Blob([xlsFile.data], { type: xlsFile.type }), xlsFile.filename)
+    })
+  }
+
   render() {
     return (
       <div className="container back-content">
         <div className="page-header">
           <h1>Candidatures</h1>
         </div>
+        <a className="btn btn-info btn-xs" target="_blank" onClick={this.getPepiteApplicationXls}>Extraire</a>
         <Tabs defaultActiveKey={1}>
           <Tab eventKey={1} title={<div>En attente <span className="badge">{this.state.applications.length}</span></div>}>
             <PepiteApplicantTable applicants={this.state.applications} />
