@@ -130,6 +130,20 @@ class ApplicationController {
         return res.status(500).send(err)
       })
   }
+
+  getPepiteApplicationsXls(req, res) {
+    return Application
+      .find({ 'pepite.pepite': req.params.id }).exec()
+      .then(() => {
+        var filename = 'data.xls'
+        res.attachment(filename)
+        return res.end('"hello,world"\t"\tkeesun,hi"', 'UTF-8')
+      })
+      .catch((err) => {
+        req.log.error(err)
+        return res.status(500).send(err)
+      })
+  }
 }
 
 function logMail(logger, error, info) {
