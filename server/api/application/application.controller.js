@@ -136,9 +136,9 @@ class ApplicationController {
     return Application
       .find({ 'pepite.pepite': req.params.id }).exec()
       .then((applications) => {
-        var filename = 'data.xls'
+        var filename = 'data.csv'
         res.attachment(filename)
-        return res.end(json2csv({ data: applications, fields: applicationExportFields, del: '\t' }), 'UTF-8')
+        return res.end(json2csv({ data: applications, fields: applicationExportFields, del: '\t' }))
       })
       .catch((err) => {
         req.log.error(err)
