@@ -44,7 +44,7 @@ export class PepiteHomePage extends React.Component {
         <div className="page-header">
           <h1>Candidatures</h1>
         </div>
-        <a className="btn btn-info btn-xs" target="_blank" onClick={this.getPepiteApplicationXls}>Extraire</a>
+        <a className="btn btn-primary btn-small pull-right" target="_blank" onClick={this.getPepiteApplicationXls}>Extraire</a>
         <Tabs defaultActiveKey={1}>
           <Tab eventKey={1} title={<div>En attente <span className="badge">{this.state.applications.length}</span></div>}>
             <PepiteApplicantTable applicants={this.state.applications} />

@@ -4,7 +4,8 @@ const Application = require('./application.model')
 const StandardError = require('standard-error')
 const mongoose = require('mongoose')
 const sendMail = require('../components/mail/send-mail').sendMail
-
+const json2csv = require('json2csv')
+const applicationExportFields = require('./applicationExportFields')
 
 class ApplicationController {
   ping(req, res) {
@@ -134,10 +135,10 @@ class ApplicationController {
   getPepiteApplicationsXls(req, res) {
     return Application
       .find({ 'pepite.pepite': req.params.id }).exec()
-      .then(() => {
+      .then((applications) => {
         var filename = 'data.xls'
         res.attachment(filename)
-        return res.end('"hello,world"\t"\tkeesun,hi"', 'UTF-8')
+        return res.end(json2csv({ data: applications, fields: applicationExportFields, del: '\t' }), 'UTF-8')
       })
       .catch((err) => {
         req.log.error(err)
