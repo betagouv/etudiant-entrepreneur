@@ -2,8 +2,10 @@
 /* eslint-disable no-console */
 const mongoose = require('mongoose')
 const Pepite = require('../api/pepite/pepite.model')
+const Region = require('../api/region/region.model')
 const User = require('../api/user/user.model')
 const pepitesData = require('../api/pepite/pepite.seed')
+const regionData = require('../api/region/region.seed')
 
 const config = require('../api/config')
 
@@ -39,12 +41,21 @@ function handlePepiteInserted() {
 
 function handleUserRemoved() {
   console.log('Seed user collection')
-  const users = pepitesData.map(p => { return (Object.assign(p, { pepite: p._id , password: 'test' })) })
+  const users = pepitesData.map(p => { return (Object.assign(p, { pepite: p._id, password: 'test' })) })
   console.log(users)
   User.insertMany(users, handleUserInserted).catch((err) => console.log(err))
 }
 
 function handleUserInserted() {
-  process.exit(0)
+  console.log('Clear region collection')
+  Region.remove(handleRegionRemoved)
 }
 
+function handleRegionRemoved() {
+  console.log('Seed region collection')
+  Region.insertMany(regionData, handleRegionInserted)
+}
+
+function handleRegionInserted() {
+  process.exit(0)
+}
