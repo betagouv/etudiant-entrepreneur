@@ -8,5 +8,6 @@ module.exports = (options) => {
   router.get('/ping', regionController.ping)
   router.get('/', regionController.getAll)
   router.get('/:id(\\d+)', regionController.getRegion)
+  router.get('/:id(\\d+)/establishment', regionController.getEstablishments)
   return router
 }

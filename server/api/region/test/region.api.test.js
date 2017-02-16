@@ -65,4 +65,37 @@ describe('api: region', () => {
       })
     })
   })
+
+  describe('When requesting /api/region/:id/establishment', () => {
+    describe('When the id is valid and exists', () => {
+      it('should return region\'s establishment list', (done) => {
+        supertest(app)
+          .get('/api/region/1/establishment')
+          .expect(200)
+          .end((err, res) => {
+            if (err) {
+              return done(err)
+            }
+            expect(res.body.length).toEqual(3)
+            done()
+          })
+      })
+    })
+
+    describe('When the id is valid but does not exist', () => {
+      it('should return a not found error', () => {
+        supertest(app)
+          .get('/api/region/42/establishment')
+          .expect(404)
+      })
+    })
+
+    describe('When the id is invalid', () => {
+      it('should return a bad request', () => {
+        supertest(app)
+          .get('/api/region/invalid_id/establishment')
+          .expect(400)
+      })
+    })
+  })
 })
