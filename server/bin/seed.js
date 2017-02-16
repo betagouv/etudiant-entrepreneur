@@ -3,9 +3,11 @@
 const mongoose = require('mongoose')
 const Pepite = require('../api/pepite/pepite.model')
 const Region = require('../api/region/region.model')
+const Establishment = require('../api/establishment/establishment.model')
 const User = require('../api/user/user.model')
 const pepitesData = require('../api/pepite/pepite.seed')
 const regionData = require('../api/region/region.seed')
+const establishmentData = require('../api/establishment/establishment.seed')
 
 const config = require('../api/config')
 
@@ -57,5 +59,17 @@ function handleRegionRemoved() {
 }
 
 function handleRegionInserted() {
+  console.log('Clear establishment collection')
+  Establishment.remove(handleEstablishmentRemoved)
+}
+
+function handleEstablishmentRemoved() {
+  console.log('Seed establishment collection')
+  Establishment.insertMany(establishmentData, handleEstablishmentInserted)
+}
+
+function handleEstablishmentInserted(error, docs) {
+  console.log(error)
+  console.log(docs)
   process.exit(0)
 }
