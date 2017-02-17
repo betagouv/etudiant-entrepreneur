@@ -128,7 +128,7 @@ const CareerForm = ({career, contact, tutorErrors, bacErrors, diplomaErrors, onT
         </FormGroup>
         <FormGroup className="required">
           <ControlLabel>Libellé de la formation / diplôme</ControlLabel>
-          <ValidatedFormControl name="name" type="text" placeholder="nom" onChange={onDiplomaChange} value={career.diploma.name} error={diplomaErrors.name}/>
+          <ValidatedFormControl name="name" type="text" placeholder="formation" onChange={onDiplomaChange} value={career.diploma.name} error={diplomaErrors.name}/>
         </FormGroup>
         <FormGroup>
           <ControlLabel>Dominante disciplinaire</ControlLabel>
