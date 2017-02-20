@@ -58,8 +58,8 @@ const users =
     },
     {
       _id: 9,
-      name: 'P2ER',
-      email: 'pepite.p2er@univ-reunion.fr',
+      name: 'Bourgone Franche-Comté',
+      email: 'coordination@pepite-bfc.fr',
       pepite: 9,
       password: 'test'
     },
@@ -121,8 +121,8 @@ const users =
     },
     {
       _id: 18,
-      name: 'Bourgone Franche-Comté',
-      email: 'coordination@pepite-bfc.fr',
+      name: 'P2ER',
+      email: 'pepite.p2er@univ-reunion.fr',
       pepite: 18,
       password: 'test'
     },
