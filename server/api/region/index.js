@@ -9,5 +9,6 @@ module.exports = (options) => {
   router.get('/', regionController.getAll)
   router.get('/:id(\\d+)', regionController.getRegion)
   router.get('/:id(\\d+)/establishment', regionController.getEstablishments)
+  router.get('/:id(\\d+)/pepite', regionController.getPepites)
   return router
 }
