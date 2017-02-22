@@ -76,7 +76,6 @@ class applicationApi {
         }
       })
       .then((res) => {
-        console.log(res.data)
         return {
           data: res.data,
           type: res.headers['content-type'],
