@@ -2,6 +2,7 @@ import 'babel-polyfill'
 import React from 'react'
 import { render } from 'react-dom'
 import configureStore from './store/configureStore'
+import configureAxios from './api/configureAxios'
 import {Provider} from 'react-redux'
 import { Router, browserHistory } from 'react-router'
 import routes from './routes'
@@ -13,6 +14,7 @@ import './styles/beta-ribbon.css'
 import '../node_modules/toastr/build/toastr.min.css'
 
 const store = configureStore()
+configureAxios()
 
 render(
   <Provider store={store}>

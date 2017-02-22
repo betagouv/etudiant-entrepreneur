@@ -1,7 +1,5 @@
 import axios from 'axios'
 import { getFilename } from './requestUtils'
-// eslint-disable-next-line no-undef
-axios.defaults.baseURL = API_URI
 
 class applicationApi {
 
