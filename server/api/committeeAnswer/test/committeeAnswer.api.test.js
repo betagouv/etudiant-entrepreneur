@@ -1,7 +1,7 @@
 const supertest = require('supertest')
 const Server = require('../../server')
 const ApplicationModel = require('../../application/application.model')
-const applicationData = require('../../application/application.seed')
+const applicationData = require('../../application/test/application.seed')
 
 const authHelper = require('../../lib/testUtils/authHelper')
 
