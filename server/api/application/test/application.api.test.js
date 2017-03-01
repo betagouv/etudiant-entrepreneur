@@ -200,4 +200,22 @@ describe('api: application', () => {
       })
     })
   })
+
+  describe('When requesting /api/:id/application/send', () => {
+    before((done) => {
+      ApplicationModel.insertMany(applicationData, done)
+    })
+
+    after((done) => {
+      ApplicationModel.remove(done)
+    })
+
+    describe('When the application does not exist', () => {
+      it('should return a 404', (done) => {
+        supertest(app)
+          .put('/api/application/0edaaf484d50ad693d5abee4/send')
+          .expect(404, done)
+      })
+    })
+  })
 })

@@ -74,6 +74,9 @@ class ApplicationController {
     return Application
       .findById(req.params.id).exec()
       .then((application) => {
+        if (!application) {
+          return res.sendStatus(404)
+        }
         if (application.status == 'sent') {
           return next(new StandardError('Tu as déjà soumis ta candidature', { code: 400 }))
         }
@@ -82,9 +85,6 @@ class ApplicationController {
         return Application
           .findByIdAndUpdate(req.params.id, req.body, { new: true })
           .then((application) => {
-            if (!application) {
-              return res.sendStatus(404)
-            }
             //notify applicant
             sendMail(
               application.contact.email,
