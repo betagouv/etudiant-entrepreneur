@@ -1,6 +1,7 @@
 'use strict'
 
 const Application = require('./application.model')
+const Pepite = require('../pepite/pepite.model')
 const StandardError = require('standard-error')
 const mongoose = require('mongoose')
 const sendMail = require('../components/mail/send-mail').sendMail
@@ -85,29 +86,39 @@ class ApplicationController {
         return Application
           .findByIdAndUpdate(req.params.id, req.body, { new: true })
           .then((application) => {
-            //notify applicant
-            sendMail(
-              application.contact.email,
-              'Confirmation d\'envoi de ta candidature au statut Étudiant-entrepreneur',
-              getSendEmailBody(application),
-              (error, info) => { logMail(req.log, error, info) })
-            //notify tutuor
-            if (application.contact.situation == 'student') {
-              sendMail(
-                application.career.tutor.email,
-                'Candidature d\'un de vos étudiants au statut Étudiant-entrepreneur',
-                getTutorEmailBody(application),
-                (error, info) => { logMail(req.log, error, info) })
-            }
-            //notify pepite
-            sendMail(
-              getPepite(application.pepite.pepite).email,
-              `Nouvelle candidature de ${application.contact.firstname} ${application.contact.name}`,
-              getPepiteEmailBody(application),
-              (error, info) => { logMail(req.log, error, info) })
-            //notify partners
-            notifyPartners(application, req, (error, info) => { logMail(req.log, error, info) })
-            return res.json(application)
+            return Pepite.findById(application.pepite.pepite)
+              .then((pepite) => {
+                if (!pepite) {
+                  return next(new StandardError(`Le PEPITE avec l\'id: ${application.pepite.pepite} n'existe pas`, { code: 500 }))
+                }
+                //notify applicant
+                sendMail(
+                  application.contact.email,
+                  'Confirmation d\'envoi de ta candidature au statut Étudiant-entrepreneur',
+                  getSendEmailBody(application, pepite),
+                  (error, info) => { logMail(req.log, error, info) })
+                //notify tutuor
+                if (application.contact.situation == 'student') {
+                  sendMail(
+                    application.career.tutor.email,
+                    'Candidature d\'un de vos étudiants au statut Étudiant-entrepreneur',
+                    getTutorEmailBody(application, pepite),
+                    (error, info) => { logMail(req.log, error, info) })
+                }
+                //notify pepite
+                sendMail(
+                  pepite.email,
+                  `Nouvelle candidature de ${application.contact.firstname} ${application.contact.name}`,
+                  getPepiteEmailBody(application),
+                  (error, info) => { logMail(req.log, error, info) })
+                //notify partners
+                notifyPartners(application, pepite, req, (error, info) => { logMail(req.log, error, info) })
+                return res.json(application)
+              })
+              .catch((err) => {
+                req.log.error(err)
+                return res.status(500).send(err)
+              })
           })
           .catch((err) => {
             req.log.error(err)
@@ -155,14 +166,14 @@ function logMail(logger, error, info) {
   }
 }
 
-function notifyPartners(application, req, done) {
+function notifyPartners(application, pepite, req, done) {
   application.project.team.forEach((teamMember) => {
     Application.count({ 'contact.email': teamMember.email }, (err, c) => {
       if (!c) {
         sendMail(
           teamMember.email,
           'Candidature au statut Etudiant Entrepreneur',
-          getPartnerInviteEmailBody(application),
+          getPartnerInviteEmailBody(application, pepite),
           done)
       }
     })
@@ -177,24 +188,24 @@ function getSaveEmailBody(application) {
     '<p>Si tu as la moindre question, n\'hésites pas à nous contacter à contact@etudiant-entrepreneur.beta.gouv.fr</p>')
 }
 
-function getPartnerInviteEmailBody(application) {
+function getPartnerInviteEmailBody(application, pepite) {
   return ('<html><body><p>Bonjour,</p>' +
-    `<p>${application.contact.firstname} ${application.contact.name} a candidaté au <a target="_blank" href="http://www.enseignementsup-recherche.gouv.fr/cid79926/statut-national-etudiant-entrepreneur.html">status étudiant-entrepreneur</a> auprès du <a target="_blank" href="http://www.enseignementsup-recherche.gouv.fr/cid79223/pepite-poles-etudiants-pour-innovation-transfert-entrepreneuriat.html"><abbr title="Pôles Étudiants Pour l'Innovation, le Transfert et l'Entrepreneuriat">PEPITE</abbr></a> ${getPepite(application.pepite.pepite).name} et t'a déclaré comme associé·e</p>` +
+    `<p>${application.contact.firstname} ${application.contact.name} a candidaté au <a target="_blank" href="http://www.enseignementsup-recherche.gouv.fr/cid79926/statut-national-etudiant-entrepreneur.html">status étudiant-entrepreneur</a> auprès du <a target="_blank" href="http://www.enseignementsup-recherche.gouv.fr/cid79223/pepite-poles-etudiants-pour-innovation-transfert-entrepreneuriat.html"><abbr title="Pôles Étudiants Pour l'Innovation, le Transfert et l'Entrepreneuriat">PEPITE</abbr></a> ${pepite.name} et t'a déclaré comme associé·e</p>` +
     '<p>Si tu n\'as pas déjà déposé ta candidature, tu peux également le faire à cette adresse: etudiant-entrepreneur.beta.gouv.fr</p>' +
     '<p>Bonne journée.</p>')
 }
 
-function getSendEmailBody(application) {
+function getSendEmailBody(application, pepite) {
   var tutorInformed = ''
   if (application.contact.situation == 'student') {
     tutorInformed = '<p>Ton responsable pédagogique a été informé·e de ta candidature au statut, nous t’invitons à prendre contact avec lui.</p>'
   }
   return ('<html><body><p>Bonjour,</p>' +
-    `<p>Ta candidature a bien été envoyée au PEPITE ${getPepite(application.pepite.pepite).name} qui reviendra vers toi pour les prochaines étapes.</p>` +
+    `<p>Ta candidature a bien été envoyée au PEPITE ${pepite.name} qui reviendra vers toi pour les prochaines étapes.</p>` +
     '<p>Ta  candidature passera en comité d\'engagement, la date de ce comité te sera donnée par ton PEPITE.</p>' +
     tutorInformed +
     '<a href="https://etudiant-entrepreneur.beta.gouv.fr/application/' + application._id + '" target="_blank">ta candidature</a>' +
-    `<p>Ton PEPITE va prendre contact avec toi dans les prochains jours, si tu as des questions sur la suite du processus tu peux le contacter à ${getPepite(application.pepite.pepite).email}</p>` +
+    `<p>Ton PEPITE va prendre contact avec toi dans les prochains jours, si tu as des questions sur la suite du processus tu peux le contacter à ${pepite.email}</p>` +
     '<p>Si tu as des questions sur la plateforme n\'hésites pas à nous contacter à contact@etudiant-entrepreneur.beta.gouv.fr</p>' +
     '<p>Bonne aventure entreprenariale !</p>')
 }
@@ -208,14 +219,14 @@ function getPepiteEmailBody(application) {
     '<p>Si vous avez la moindre question, n\'hésitez pas à nous contacter à contact@etudiant-entrepreneur.beta.gouv.fr</p>')
 }
 
-function getTutorEmailBody(application) {
+function getTutorEmailBody(application, pepite) {
   return ('<html><body><p>Madame,Monsieur,</p>' +
     '<br>' +
-    `<p>L'étudiant·e ${application.contact.firstname} ${application.contact.name} demande le statut national étudiant·e entrepreneur·e (SNEE) auprès du PEPITE ${getPepite(application.pepite.pepite).name}</p>` +
+    `<p>L'étudiant·e ${application.contact.firstname} ${application.contact.name} demande le statut national étudiant·e entrepreneur·e (SNEE) auprès du PEPITE ${pepite.name}</p>` +
     '<p>Nous vous informons de sa démarche en tant que référent.e pédagogique car l’obtention de ce statut a pour objet de rendre compatible études et projet d\'activités en proposant notamment des aménagements d\'emploi du temps, des crédits ECTS et la possibilité de substituer au stage le travail sur son projet.</p>' +
     '<p>Il est dès lors important que les équipes pédagogiques puissent être informées le plus en amont possible et puissent être actrices dans ce processus.</p>' +
     '<p>Le/la candidat·e a été informé·e que vous êtiez notifié·e de sa demande et est invité·e à prendre contact avec vous.</p>' +
-    `<p>Son PEPITE est contactable à l\'adresse suivante: ${getPepite(application.pepite.pepite).email}</p>` +
+    `<p>Son PEPITE est contactable à l\'adresse suivante: ${pepite.email}</p>` +
     '<p>Bien cordialement,<p>' +
     '<p>L\'équipe de la plateforme en ligne.<p>' +
     '<br>' +
@@ -227,46 +238,6 @@ function getTutorEmailBody(application) {
     '<li><a href="http://www.pepite-france.fr/" target="_blank">PEPITE France</a></li></<ul>' +
     '<li><a href="http://www.enseignementsup-recherche.gouv.fr/pid32602/faq-sur-statut-etudiant-entrepreneur-d2e.html" target="_blank">FAQ</a></li></<ul>' +
     '</div>')
-}
-
-const pepites = [
-  { id: '1', name: 'ETENA', email: 'a.latour@unistra.fr' },
-  { id: '2', name: 'Champagne-Ardenne', email: 'pepite.champagne-ardenne@univ-champagne.fr' },
-  { id: '3', name: 'by PEEL', email: 'peel@univ-lorraine.fr' },
-  { id: '4', name: 'ECA', email: 'eca@cuea.fr' },
-  { id: '5', name: 'LPC', email: 'pepitelpc@groupes.renater.fr' },
-  { id: '6', name: 'PEEA', email: 'pepite.auvergne@sigma-clermont.fr' },
-  { id: '7', name: 'BeeLYS', email: 'beelys@fpul-lyon.org' },
-  { id: '8', name: 'oZer', email: 'entrepreneuriat@univ-grenoble-alpes.fr' },
-  { id: '9', name: 'Bretagne', email: 'pepite-bretagne@u-bretagneloire.fr' },
-  { id: '10', name: 'Centre-Val de Loire', email: 'contact@pepite-centre.fr' },
-  { id: '11', name: 'Corse', email: 'pagni@univ-corse.fr' },
-  { id: '12', name: 'CréaJ IDF', email: 'gestion.pepite@univ-paris13.fr' },
-  { id: '13', name: '3EF', email: 'pepite3ef@univ-paris-est.fr' },
-  { id: '14', name: 'heSam Entreprendre', email: 'dossier.pepite@hesam.eu' },
-  { id: '15', name: 'Paris Ouest Nord', email: 'contact@pepite-pon.fr' },
-  { id: '16', name: 'Paris Centre', email: 'entrepreneur@sorbonne-universites.fr' },
-  { id: '17', name: 'PEIPS', email: 'pepite@universite-paris-saclay.fr' },
-  { id: '18', name: 'PSL', email: 'psl-pepite@univ-psl.fr' },
-  { id: '19', name: 'Languedoc-Roussillon', email: 'contact@pepite-lr.fr' },
-  { id: '20', name: 'ECRIN', email: 'ecrin@univ-toulouse.fr' },
-  { id: '21', name: 'Lille Nord de France', email: 'envoi@tonpepite.com' },
-  { id: '22', name: 'Picardie', email: 'pepite.picardie@gmail.com' },
-  { id: '23', name: 'Vallée de Seine', email: 'pepite-valleedeseine@normandie-univ.fr' },
-  { id: '24', name: 'CRÉER', email: 'pepite.creer@u-bretagneloire.fr' },
-  { id: '25', name: 'Aix-Marseille PACA-OUEST', email: 'suio-pepite-paca-ouest@univ-amu.fr' },
-  { id: '26', name: 'Cré@tude PACA-EST', email: 'pepitepacaest@unice.fr' },
-  { id: '27', name: 'Antilles-Guyane', email: 'pepiteag@univ-ag.fr' },
-  { id: '28', name: 'P2ER', email: 'pepite.p2er@univ-reunion.fr' },
-  { id: '29', name: 'Bourgone Franche-Comté', email: 'coordination@pepite-bfc.fr' }
-]
-
-function getPepite(id) {
-  const pepite = pepites.find(p => { return (p.id == id) })
-  if (!pepite) {
-    throw new Error(`Le PEPITE avec l\'id: ${id} n'existe pas`)
-  }
-  return pepite
 }
 
 module.exports = ApplicationController

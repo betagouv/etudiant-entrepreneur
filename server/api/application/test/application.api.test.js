@@ -233,5 +233,20 @@ describe('api: application', () => {
           .expect(200, done)
       })
     })
+
+    describe('When the application has an invalid pepite number', () => {
+      it('should return a 500', (done) => {
+        supertest(app)
+          .put('/api/application/74cb70adcf551b6ed54460bc/send')
+          .expect(500)
+          .end((err, res) => {
+            if (err) {
+              return done(err)
+            }
+            expect(res.body).toEqual({ error: 'internal_server_error', reason: 'Le PEPITE avec l\'id: 42 n\'existe pas' })
+            return done()
+          })
+      })
+    })
   })
 })
