@@ -217,5 +217,13 @@ describe('api: application', () => {
           .expect(404, done)
       })
     })
+
+    describe('When the application has already been sent', () => {
+      it('should return a 400', (done) => {
+        supertest(app)
+          .put('/api/application/58370910e221d30010165435/send')
+          .expect(400, done)
+      })
+    })
   })
 })
