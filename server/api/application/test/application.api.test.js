@@ -225,5 +225,13 @@ describe('api: application', () => {
           .expect(400, done)
       })
     })
+
+    describe('When the application has been saved', () => {
+      it('should return a 200', (done) => {
+        supertest(app)
+          .put('/api/application/9c9d6a6b832effc406059b15/send')
+          .expect(200, done)
+      })
+    })
   })
 })
