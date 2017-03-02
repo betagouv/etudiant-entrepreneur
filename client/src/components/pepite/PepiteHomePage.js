@@ -6,6 +6,7 @@ import { bindActionCreators } from 'redux'
 import FileSaver from 'file-saver'
 import * as applicationActions from '../../actions/applicationActions'
 import PepiteApplicantTable from './PepiteApplicantTable'
+import PepiteAcceptedApplicantTable from './PepiteAcceptedApplicantTable'
 
 export class PepiteHomePage extends React.Component {
   constructor(props, context) {
@@ -52,7 +53,7 @@ export class PepiteHomePage extends React.Component {
             <PepiteApplicantTable applicants={this.state.applications} />
           </Tab>
           <Tab eventKey={2} title={<div>Acceptées <span className="badge">{this.state.accepted.length}</span></div>}>
-            <PepiteApplicantTable applicants={this.state.accepted} />
+            <PepiteAcceptedApplicantTable applicants={this.state.accepted} userToken={this.props.user.token} />
           </Tab>
           <Tab eventKey={3} title={<div>Réfusées <span className="badge">{this.state.refused.length}</span></div>}>
             <PepiteApplicantTable applicants={this.state.refused} />
@@ -64,7 +65,9 @@ export class PepiteHomePage extends React.Component {
 }
 
 function mapStateToProps(state, ownProps) {
-  return {}
+  return {
+    user: state.user
+  }
 }
 
 function mapDispatchToProps(dispatch) {
@@ -74,7 +77,8 @@ function mapDispatchToProps(dispatch) {
 }
 
 PepiteHomePage.propTypes = {
-  actions: PropTypes.object.isRequired
+  actions: PropTypes.object.isRequired,
+  user: PropTypes.object.isRequired,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(PepiteHomePage)

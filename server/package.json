@@ -40,6 +40,7 @@
     "nconf": "0.8.4",
     "passport": "0.3.2",
     "passport-local": "1.0.0",
+    "pdfmake": "0.1.26",
     "sendgrid": "^1.9.2",
     "standard-error": "1.1.0",
     "string": "3.3.1"

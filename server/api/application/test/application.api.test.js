@@ -249,4 +249,46 @@ describe('api: application', () => {
       })
     })
   })
+
+  describe('When requesting /api/application/:id/certificate', () => {
+    let validToken = {}
+
+    before((done) => {
+      ApplicationModel.insertMany(applicationData, () => authHelper.getToken(app, 'peel@univ-lorraine.fr', 'test', validToken, done))
+    })
+
+    after((done) => {
+      ApplicationModel.remove(done)
+    })
+
+    describe('When an invalidtoken is provided', () => {
+      it('should return a 401 error', (done) => {
+        supertest(app)
+          .get('/api/application/someId/certificate?access_token=invalidToken')
+          .expect(401, done)
+      })
+    })
+
+    describe('When the application does not exist', () => {
+      it('should give a 404 erorr', () => {
+        supertest(app)
+          .get(`/api/application/someId/certificate?access_token=${validToken.token}`)
+          .expect(404)
+      })
+    })
+
+    describe('When the PEPITE has an application', () => {
+      it('should give the applicant attestation', (done) => {
+        supertest(app)
+          .get(`/api/application/58370910e221d30010165435/certificate?access_token=${validToken.token}`)
+          .expect(200)
+          .end((err) => {
+            if (err) {
+              return done(err)
+            }
+            done()
+          })
+      })
+    })
+  })
 })

@@ -7,6 +7,7 @@ const mongoose = require('mongoose')
 const sendMail = require('../components/mail/send-mail').sendMail
 const json2csv = require('json2csv')
 const applicationExportFields = require('./applicationExportFields')
+const certificatePdf = require('../components/pdf/certificatePdf')
 
 class ApplicationController {
   ping(req, res) {
@@ -150,6 +151,33 @@ class ApplicationController {
         var filename = 'data.csv'
         res.attachment(filename)
         return res.end(json2csv({ data: applications, fields: applicationExportFields, del: '\t' }))
+      })
+      .catch((err) => {
+        req.log.error(err)
+        return res.status(500).send(err)
+      })
+  }
+
+  getApplicationCertificate(req, res, next) {
+    if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
+      return res.sendStatus(404)
+    }
+    return Application
+      .findById(req.params.id)
+      .then((application) => {
+        if (!application) {
+          return res.sendStatus(404)
+        }
+        return Pepite.findById(application.pepite.pepite)
+          .then((pepite) => {
+            if (!pepite) {
+              return next(new StandardError(`Le PEPITE avec l\'id: ${application.pepite.pepite} n'existe pas`, { code: 500 }))
+            }
+            var filename = `SNEE_attestation_${application.contact.firstname}_${application.contact.name}.pdf`
+            res.attachment(filename)
+            certificatePdf.generate(application, pepite, res)
+            return res
+          })
       })
       .catch((err) => {
         req.log.error(err)
