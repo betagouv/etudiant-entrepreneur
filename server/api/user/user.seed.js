@@ -3,7 +3,7 @@ const users =
     {
       _id: 1,
       name: 'ETENA',
-      email: 'a.latour@unistra.fr',
+      email: 'espace-avenir-pepite-candidature-snee@unistra.fr',
       pepite: 1,
       password: 'test'
     },

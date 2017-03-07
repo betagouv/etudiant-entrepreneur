@@ -1,5 +1,5 @@
 const pepites = [
-  { _id: 1, name: 'ETENA', email: 'a.latour@unistra.fr' },
+  { _id: 1, name: 'ETENA', email: 'espace-avenir-pepite-candidature-snee@unistra.fr' },
   { _id: 2, name: 'ECA', email: 'eca@cuea.fr' },
   { _id: 3, name: 'PEEA', email: 'pepite.auvergne@sigma-clermont.fr' },
   { _id: 4, name: 'Vallée de Seine', email: 'pepite-valleedeseine@normandie-univ.fr' },
