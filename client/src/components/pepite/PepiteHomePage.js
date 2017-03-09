@@ -46,6 +46,7 @@ export class PepiteHomePage extends React.Component {
           <h1>Candidatures</h1>
         </div>
         <div className="row">
+          <a className="btn btn-info btn-xs pull-right help-block" target="_blank" href="https://github.com/sgmap/etudiant-entrepreneur/wiki/Guide-d'utilisation-des-PEPITE#extraction" title="Comment formatter?">?</a>
           <a className="btn btn-warning btn-small pull-right" target="_blank" onClick={this.getPepiteApplicationXls}>Extraire</a>
         </div>
         <Tabs defaultActiveKey={1}>
