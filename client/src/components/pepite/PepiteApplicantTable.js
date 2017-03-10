@@ -7,6 +7,7 @@ const PepiteApplicantTable = ({applicants}) => {
     <table className="table table-hover">
       <thead>
         <tr>
+          <th>Reçue depuis</th>
           <th>Nom</th>
           <th>Prénom</th>
           <th>Email</th>
