@@ -44,7 +44,7 @@ function getCertificateDocDefinition(application, pepite) {
       { text: 'Pour valoir ce que de droit', style: 'signature' },
       { image: 'stamp', width: 100, margin: [20, 0, 0, 0], style: 'signature' }
     ],
-    footer: { text: 'Le statut Etudiant Entrepreneur est un complément à la scolarité. Cette attestation n\'a de valeur que jointe à un certificat de scolarité en cours de validité.', style: 'footer' },
+    footer: { text: 'Cette attestation doit être jointe à un certificat de scolarité en cours de validité.', style: 'footer' },
     styles: {
       heading: {
         fontSize: 12
