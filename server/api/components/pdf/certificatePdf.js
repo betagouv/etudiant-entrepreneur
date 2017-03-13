@@ -30,7 +30,6 @@ function getCertificateDocDefinition(application, pepite) {
         }
       ]
     },
-    watermark: { text: 'Specimen', opacity: 0.1, bold: true },
     content: [
       getLines(5),
       { text: `Vu la labellisation du Pôle Étudiant Pour l’Innovation, le Transfert et l’Entrepreneuriat PEPITE ${pepite.name} en date du 12 mars 2014 par décision du jury de sélection de l’appel à projets en faveur de l’entrepreneuriat étudiant,`, style: 'heading' },
