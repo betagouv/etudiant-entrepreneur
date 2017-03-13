@@ -39,10 +39,12 @@ function getCertificateDocDefinition(application, pepite) {
       getLines(5),
       { text: 'Le STATUT NATIONAL ÉTUDIANT-ENTREPRENEUR est délivré pour l\'année universitaire 2016-2017 à', style: 'main' },
       { text: `${application.contact.firstname} ${application.contact.name.toUpperCase()}`, style: 'main' },
-      { text: getBirthText(application.profile), style: 'main' }
+      { text: getBirthText(application.profile), style: 'main' },
+      getLines(6),
+      { text: 'Pour valoir ce que de droit', style: 'signature' },
+      { image: 'stamp', width: 100, margin: [20, 0, 0, 0], style: 'signature' }
     ],
     footer: { text: 'Le statut Etudiant Entrepreneur est un complément à la scolarité. Cette attestation n\'a de valeur que jointe à un certificat de scolarité en cours de validité.', style: 'footer' },
-
     styles: {
       heading: {
         fontSize: 12
@@ -61,9 +63,9 @@ function getCertificateDocDefinition(application, pepite) {
         alignment: 'center'
       }
     },
-
     images: {
-      certificateBakcground: mapPath('./images/certificateBakcground.png')
+      certificateBakcground: mapPath('./images/certificateBakcground.png'),
+      stamp: mapPath('./images/stamp.png')
     }
   })
 }
