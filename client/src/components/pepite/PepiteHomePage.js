@@ -4,9 +4,11 @@ import { connect } from 'react-redux'
 import { Tabs, Tab } from 'react-bootstrap'
 import { bindActionCreators } from 'redux'
 import FileSaver from 'file-saver'
+import objectPath from 'object-path'
 import * as applicationActions from '../../actions/applicationActions'
 import PepiteApplicantTable from './PepiteApplicantTable'
 import PepiteAcceptedApplicantTable from './PepiteAcceptedApplicantTable'
+import Const from '../common/Table/Const'
 
 export class PepiteHomePage extends React.Component {
   constructor(props, context) {
@@ -17,6 +19,7 @@ export class PepiteHomePage extends React.Component {
       refused: []
     }
     this.getPepiteApplicationXls = this.getPepiteApplicationXls.bind(this)
+    this.sortApplication = this.sortApplication.bind(this)
   }
 
   componentDidMount() {
@@ -39,6 +42,20 @@ export class PepiteHomePage extends React.Component {
     })
   }
 
+  sortApplication(stateField) {
+    return ((order, field) => {
+      this.setState({
+        [stateField]: [...this.state[stateField].sort((a, b) => {
+          const aValue = objectPath.get(a, field), bValue = objectPath.get(b, field)
+          if (order === Const.SORT_ASC) {
+            return aValue < bValue
+          }
+          return aValue > bValue
+        })]
+      })
+    })
+  }
+
   render() {
     return (
       <div className="container back-content">
@@ -51,13 +68,13 @@ export class PepiteHomePage extends React.Component {
         </div>
         <Tabs defaultActiveKey={1}>
           <Tab eventKey={1} title={<div>En attente <span className="badge">{this.state.applications.length}</span></div>}>
-            <PepiteApplicantTable applicants={this.state.applications} />
+            <PepiteApplicantTable applicants={this.state.applications} sort={this.sortApplication('applications')} />
           </Tab>
           <Tab eventKey={2} title={<div>Acceptées <span className="badge">{this.state.accepted.length}</span></div>}>
-            <PepiteAcceptedApplicantTable applicants={this.state.accepted} userToken={this.props.user.token} />
+            <PepiteAcceptedApplicantTable applicants={this.state.accepted} userToken={this.props.user.token} sort={this.sortApplication('accepted')} />
           </Tab>
           <Tab eventKey={3} title={<div>Réfusées <span className="badge">{this.state.refused.length}</span></div>}>
-            <PepiteApplicantTable applicants={this.state.refused} />
+            <PepiteApplicantTable applicants={this.state.refused} sort={this.sortApplication('refused')} />
           </Tab>
         </Tabs>
       </div>

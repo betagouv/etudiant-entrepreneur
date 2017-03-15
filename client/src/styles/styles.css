@@ -54,3 +54,7 @@ footer li {
 .help-block {
   margin: 10px;
 }
+
+.clickable {
+  cursor: pointer;
+}
