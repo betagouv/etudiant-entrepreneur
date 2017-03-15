@@ -7,8 +7,8 @@ import { Link } from 'react-router'
 const PepiteAcceptedApplicantRow = ({ application, userToken }) => {
   return (
     <tr>
-      <td>{application.contact.firstname}</td>
       <td>{application.contact.name}</td>
+      <td>{application.contact.firstname}</td>
       <td>{application.contact.email}</td>
       <td>{application.career.diploma.establishment}</td>
       <td><GraduationLabel application={application} /></td>
