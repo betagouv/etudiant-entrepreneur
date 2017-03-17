@@ -9,7 +9,7 @@ export class PepiteApplicantTable extends React.Component {
     super(props, context)
     this.state = {
       activePage: 1,
-      itemsPerPage: 15,
+      itemsPerPage: 10,
       filter: {
         name: '',
         email: '',
