@@ -2,8 +2,10 @@ import React, { PropTypes } from 'react'
 import { FormGroup, ControlLabel, FormControl, Button, Panel } from 'react-bootstrap'
 
 const PepiteApplicantFilterForm = ({ clearFilter, name, email, establishment, onChange }) => {
+  const panelHeader = (<h1 className="filter-panel-header">Filtrer</h1>)
+
   return (
-    <Panel collapsible bsStyle="info" header="Filtres">
+    <Panel collapsible className="filter-panel" bsStyle="info" header={panelHeader}>
       <form>
         <FormGroup>
           <ControlLabel>Nom</ControlLabel>

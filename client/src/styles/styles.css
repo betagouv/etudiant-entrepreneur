@@ -58,3 +58,13 @@ footer li {
 .clickable {
   cursor: pointer;
 }
+
+.filter-panel > .panel-heading {
+  padding: 0;
+}
+
+.filter-panel-header a {
+  cursor: pointer;
+  display: block;
+  padding: 10px  15px;
+}
