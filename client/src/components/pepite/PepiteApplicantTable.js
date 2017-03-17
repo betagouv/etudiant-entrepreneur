@@ -75,16 +75,6 @@ export class PepiteApplicantTable extends React.Component {
     const { applicants, sort } = this.props
     return (
       <div>
-        <Pagination
-          prev
-          next
-          ellipsis
-          boundaryLinks
-          items={this.numberOfPages()}
-          maxButtons={5}
-          activePage={this.state.activePage}
-          onSelect={this.handlePageSelect} />
-
         <PepiteApplicantFilterForm
           name={this.state.filter.name}
           email={this.state.filter.email}
@@ -109,6 +99,16 @@ export class PepiteApplicantTable extends React.Component {
             {this.displayedItems().map((application, i) => { return (<PepiteApplicantRow key={i} application={application} />) })}
           </tbody>
         </table>
+
+        <Pagination
+          prev
+          next
+          ellipsis
+          boundaryLinks
+          items={this.numberOfPages()}
+          maxButtons={5}
+          activePage={this.state.activePage}
+          onSelect={this.handlePageSelect} />
       </div>
     )
   }
