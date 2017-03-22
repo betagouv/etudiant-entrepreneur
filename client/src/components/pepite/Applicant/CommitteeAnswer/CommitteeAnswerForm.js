@@ -1,8 +1,8 @@
 import React, { PropTypes } from 'react'
 import { FormGroup, ControlLabel, FormControl, Radio, HelpBlock, Button } from 'react-bootstrap'
-import RadioGroup from '../../common/RadioGroup'
-import ValidatedFormControl from '../../common/ValidatedFormControl'
-import ValidatedComponent from '../../common/ValidatedComponent'
+import RadioGroup from '../../../common/RadioGroup'
+import ValidatedFormControl from '../../../common/ValidatedFormControl'
+import ValidatedComponent from '../../../common/ValidatedComponent'
 import Textarea from 'react-textarea-autosize'
 
 const CommitteeAnswerForm = ({committeeAnswer, errors, onChange, saveAnswer}) => {

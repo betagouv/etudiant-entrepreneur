@@ -1,22 +1,22 @@
 import React, { PropTypes } from 'react'
 import toastr from 'toastr'
 
-import ProjectPage from '../../application/Project/ProjectPage'
-import TeamPage from '../../application/Team/TeamPage'
-import ContactPage from '../../application/Contact/ContactPage'
-import PepitePage from '../../application/Pepite/PepitePage'
-import SendPage from '../../application/Send/SendPage'
-import CareerPage from '../../application/Career/CareerPage'
-import ProfilePage from '../../application/Profile/ProfilePage'
+import ProjectPage from '../../../application/Project/ProjectPage'
+import TeamPage from '../../../application/Team/TeamPage'
+import ContactPage from '../../../application/Contact/ContactPage'
+import PepitePage from '../../../application/Pepite/PepitePage'
+import SendPage from '../../../application/Send/SendPage'
+import CareerPage from '../../../application/Career/CareerPage'
+import ProfilePage from '../../../application/Profile/ProfilePage'
 import CommitteeAnswerForm from './CommitteeAnswerForm'
 
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import * as applicationActions from '../../../actions/applicationActions'
-import * as committeeAnswerActions from '../../../actions/committeeAnswerActions'
-import Validation from '../../common/Validation'
+import * as applicationActions from '../../../../actions/applicationActions'
+import * as committeeAnswerActions from '../../../../actions/committeeAnswerActions'
+import Validation from '../../../common/Validation'
 import { committeeAnswerValidationConstraints } from './CommitteeAnswerValidationConstraints'
-import {isEmptyObject} from '../../common/validationHelper.js'
+import {isEmptyObject} from '../../../common/validationHelper.js'
 
 
 class CommitteeAnswerPage extends React.Component {

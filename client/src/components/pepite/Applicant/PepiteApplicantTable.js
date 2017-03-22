@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react'
 import { Glyphicon, Pagination, Panel } from 'react-bootstrap'
 import PepiteApplicantRow from './PepiteApplicantRow'
-import TableHeader from '../common/Table/TableHeader'
+import TableHeader from '../../common/Table/TableHeader'
 import PepiteApplicantFilterForm from './PepiteApplicantFilterForm'
 
 export class PepiteApplicantTable extends React.Component {

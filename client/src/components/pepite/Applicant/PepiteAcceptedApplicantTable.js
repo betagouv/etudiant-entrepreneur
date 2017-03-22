@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react'
 import { Glyphicon } from 'react-bootstrap'
 import PepiteAcceptedApplicantRow from './PepiteAcceptedApplicantRow'
-import TableHeader from '../common/Table/TableHeader'
+import TableHeader from '../../common/Table/TableHeader'
 
 const PepiteAcceptedApplicantTable = ({ applicants, userToken, sort }) => {
   return (
