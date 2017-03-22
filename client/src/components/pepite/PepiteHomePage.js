@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react'
-import ApplicantPage from './Applicant/ApplicantPage'
+import { Link } from 'react-router'
+import Card from './Card'
 
 export class PepiteHomePage extends React.Component {
   constructor(props, context) {
@@ -7,7 +8,13 @@ export class PepiteHomePage extends React.Component {
   }
   render() {
     return (
-      <ApplicantPage/>
+      <div className="container back-content">
+        <div className="row">
+          <Link to="pepite/applicant">
+            <Card title="Mes Candidats" glyphicon="glyphicon glyphicon-envelope" />
+          </Link>
+        </div>
+      </div>
     )
   }
 }
