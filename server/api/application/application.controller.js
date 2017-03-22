@@ -134,7 +134,7 @@ class ApplicationController {
 
   getPepiteApplications(req, res) {
     return Application
-      .find({ 'pepite.pepite': req.params.id }).exec()
+      .find({ 'pepite.pepite': req.params.id }).sort({ 'sentDate': 1 }).exec()
       .then((applications) => {
         return res.json(applications)
       })
