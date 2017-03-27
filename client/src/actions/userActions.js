@@ -10,7 +10,7 @@ export function loginUser(user) {
   return (dispatch) => {
     return userApi.loginUser(user).then((token) => {
       const decodedToken = jwt_decode(token)
-      dispatch(loginUserSuccess({id: decodedToken._id, username: user.email, token, isAuthenticated: true}))
+      dispatch(loginUserSuccess({id: decodedToken._id, username: decodedToken.name, token, isAuthenticated: true}))
     })
   }
 }
