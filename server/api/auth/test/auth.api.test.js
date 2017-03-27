@@ -1,5 +1,7 @@
 const supertest = require('supertest')
+const jwt = require('jsonwebtoken')
 const Server = require('../../server')
+const expect = require('expect')
 
 describe('api: auth', () => {
   let app
@@ -34,16 +36,29 @@ describe('api: auth', () => {
       })
     })
     describe('When email and password are valid', () => {
+      const validEmail = 'peel@univ-lorraine.fr'
       it('should return 200 and a token given', (done) => {
         supertest(app)
           .post('/api/auth/')
-          .send({ email: 'peel@univ-lorraine.fr', password: 'test' })
+          .send({ email: validEmail, password: 'test' })
           .expect(200)
           .expect((res) => {
             if (!('token' in res.body)) {
               throw new Error('Missing token key')
             }
             validToken = res.body.token
+            describe('Token payload', () => {
+              const tokenPayload = jwt.decode(validToken, {complete: true}).payload
+              it('should contain _id', () => {
+                expect(tokenPayload).toInclude({ '_id': 21 })
+              })
+              it('should contain name', () => {
+                expect(tokenPayload).toInclude({ 'name': validEmail })
+              })
+              it('should contain a role', () => {
+                expect(tokenPayload).toInclude({ 'role': 'pepite' })
+              })
+            })
           })
           .end(done)
       })

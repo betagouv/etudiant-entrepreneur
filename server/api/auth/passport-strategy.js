@@ -10,7 +10,7 @@ exports.setup = function (User) {
     function (email, password, done) {
       User
         .findOne({ email: email.toLowerCase() })
-        .select('salt hashedPassword')
+        .select('salt hashedPassword email role')
         .exec(function (err, user) {
           if (err) return done(err)
 
