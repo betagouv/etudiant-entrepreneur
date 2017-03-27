@@ -1,9 +1,12 @@
 import React, { PropTypes } from 'react'
+import './Card.css'
 
-const Card = ({ title, glyphicon }) => {
+const Card = ({ title, glyphicon, isDisabled }) => {
+  const panelType = isDisabled ? 'panel-disabled' : 'panel-primary'
+
   return (
-    <div className="panel panel-primary">
-      <div className="panel-heading">
+    <div className={`panel ${panelType}`}>
+      <div className="panel-heading card-background">
         <h2 className="card-title">
           {title}
         </h2>
@@ -17,7 +20,8 @@ const Card = ({ title, glyphicon }) => {
 
 Card.propTypes = {
   title: PropTypes.string.isRequired,
-  glyphicon: PropTypes.string.isRequired
+  glyphicon: PropTypes.string.isRequired,
+  isDisabled: PropTypes.bool
 }
 
 export default Card
