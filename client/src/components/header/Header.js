@@ -14,7 +14,7 @@ export class Header extends React.Component {
   render() {
     if (this.props.user.isAuthenticated) {
       return (
-        <Navbar inverse className="navbar-fixed-top">
+        <Navbar inverse className="navbar-top">
           <Navbar.Header>
             <Navbar.Brand>
               <IndexLink to="/pepite" className="navbar-brand">
