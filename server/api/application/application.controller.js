@@ -146,7 +146,7 @@ class ApplicationController {
 
   getPepiteApplicationsXls(req, res) {
     return Application
-      .find({ 'pepite.pepite': req.params.id }).exec()
+      .find({ 'pepite.pepite': req.params.id, 'status': { $in: ['sent', 'accepted', 'refused']}}).exec()
       .then((applications) => {
         var filename = 'data.csv'
         res.attachment(filename)
