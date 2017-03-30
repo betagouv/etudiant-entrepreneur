@@ -7,12 +7,12 @@
 }
 
 .panel.panel-disabled {
-  border-color: #ecf0f1;
+  border-color: #fbfcfc;
   cursor: not-allowed;
 }
 
 .panel-disabled > .panel-heading {
-  color: #798d8f;
-  background-color: #ecf0f1;
-  border-color: #ecf0f1;
+  color: #e4e8e8;
+  background-color: #fbfcfc;
+  border-color: #fbfcfc;
 }
