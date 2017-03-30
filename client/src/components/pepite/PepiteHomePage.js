@@ -11,13 +11,13 @@ export class PepiteHomePage extends React.Component {
       <div className="container back-content">
         <div className="row">
           <Link className="col-md-6" to="pepite/applicant">
-            <Card title="Mes Candidats" glyphicon="glyphicon glyphicon-envelope" />
+            <Card title="Mes candidats" glyphicon="glyphicon glyphicon-envelope" />
           </Link>
           <div className="col-md-6" title="bientôt disponible">
-            <Card title="Ma promotion" glyphicon="glyphicon glyphicon-education" isDisabled />
+            <Card title="Mes étudiants-entrepreneurs" glyphicon="glyphicon glyphicon-education" isDisabled />
           </div>
           <div className="col-md-6" title="bientôt disponible">
-            <Card title="Mon Compte" glyphicon="glyphicon glyphicon-cog" isDisabled />
+            <Card title="Mon PEPITE" glyphicon="glyphicon glyphicon-cog" isDisabled />
           </div>
           <div className="col-md-6" title="bientôt disponible">
             <Card title="Mes prochains comités" glyphicon="glyphicon glyphicon-calendar" isDisabled />
