@@ -8,7 +8,7 @@ export class EnsureIsAuthenticatedContainer extends React.Component {
     const { currentURL, isUserAuthenticated } = this.props
 
     if (!isUserAuthenticated) {
-      browserHistory.replace("/login")
+      browserHistory.replace(`/login?redirect=${currentURL}`)
     }
   }
 
