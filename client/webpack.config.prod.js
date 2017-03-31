@@ -7,10 +7,11 @@ import WebpackMd5Hash from 'webpack-md5-hash'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
 import autoprefixer from 'autoprefixer'
 
+/*global API_URI*/
 const GLOBALS = {
   'process.env.NODE_ENV': JSON.stringify('production'),
   __DEV__: false,
-  API_URI: JSON.stringify('http://vps295137.ovh.net:3004/api')
+  API_URI: process.env.API_URI ? JSON.stringify(process.env.API_URI) : JSON.stringify('https://etudiant-entrepreneur.herokuapp.com/api')
 }
 
 export default {
