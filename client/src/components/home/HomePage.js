@@ -15,7 +15,7 @@ class HomePage extends React.Component {
             <h1>Deviens Etudiant·e Entrepreneur·e</h1>
             <hr />
             <p className="header-sub-content">Tu as un projet ? Pour être aidé·e et accompagné·e, rejoins la communauté.</p>
-            <Link to="application" className="btn btn-success btn-lg">Demande le statut pour {getCurrentUniversityYear()}</Link>
+            <Link to="application" className="btn btn-success btn-lg">Demande le statut</Link>
           </div>
         </div >
         <NextSteps/>
