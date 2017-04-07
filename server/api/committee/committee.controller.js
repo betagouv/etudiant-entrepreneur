@@ -25,6 +25,13 @@ class CommitteeController {
       })
   }
 
+  getCommittee(req, res) {
+    Committee.find({ pepite: req.pepite.id }).exec()
+      .then((committees) => {
+        return res.status(200).json(committees)
+      })
+  }
+
   createCommittee(req, res) {
     Committee.create(Object.assign({}, req.body, { pepite: req.pepite.id }))
       .then((committee) => {

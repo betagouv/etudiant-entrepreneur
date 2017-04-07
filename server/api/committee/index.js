@@ -8,6 +8,7 @@ module.exports = (options) => {
   var committeeController = new Controller(options)
   router.use(committeeController.getPepite)
   router.get('/ping', committeeController.ping)
+  router.get('/', committeeController.getCommittee)
   router.post('/', auth.isAuthenticated(), committeeController.createCommittee)
   return router
 }

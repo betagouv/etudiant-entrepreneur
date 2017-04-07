@@ -1,6 +1,8 @@
 const supertest = require('supertest')
 const Server = require('../../server')
 
+const CommitteeModel = require('../committee.model')
+
 const authHelper = require('../../lib/testUtils/authHelper')
 const dateHelper = require('../../lib/testUtils/dateHelper')
 
@@ -36,6 +38,10 @@ describe('api: pepite/:pepiteId/committee', () => {
 
     before((done) => {
       authHelper.getToken(app, 'peel@univ-lorraine.fr', 'test', validToken, done)
+    })
+
+    after((done) => {
+      CommitteeModel.remove(done)
     })
 
     describe('When an invalidtoken is provided', () => {
@@ -94,6 +100,72 @@ describe('api: pepite/:pepiteId/committee', () => {
           expect(response.body).toIncludeKey('pepite')
           expect(response.body.pepite).toBe(21)
         })
+      })
+    })
+  })
+
+  describe('When retrieving committees', () => {
+    const savedCommittees = [{
+      pepite: 21,
+      date: '2017-09-29T10:00:00.000Z'
+    }, {
+      pepite: 21,
+      date: '2017-10-29T10:00:00.000Z'
+    }, {
+      pepite: 2,
+      date: '2017-10-29T10:00:00.000Z'
+    }, {
+      pepite: 3,
+      date: '2017-10-29T10:00:00.000Z'
+    }]
+
+    before((done) => {
+      CommitteeModel.insertMany(savedCommittees, done)
+    })
+
+    after((done) => {
+      CommitteeModel.remove(done)
+    })
+
+    describe('When PEPITE has several committees', () => {
+      let committees = null
+      it('should return a 200 response', (done) => {
+        supertest(app)
+          .get(`/api/pepite/${validPepiteId}/committee`)
+          .expect(200)
+          .end((err, res) => {
+            if (err) {
+              return done(err)
+            }
+            committees = res.body
+            return done()
+          })
+      })
+      it('should return all PEPITE\'s committes', () => {
+        expect(committees.length).toBe(2)
+        expect(committees[0]).toContain(savedCommittees[0])
+        expect(committees[1]).toContain(savedCommittees[1])
+      })
+    })
+
+    describe('When PEPITE does not have any committees', () => {
+      let committees = null
+      const pepiteIdWithoutCommittee = 4
+      it('should return a 200 response', (done) => {
+        supertest(app)
+          .get(`/api/pepite/${pepiteIdWithoutCommittee}/committee`)
+          .expect(200)
+          .end((err, res) => {
+            if (err) {
+              return done(err)
+            }
+            committees = res.body
+            return done()
+          })
+      })
+      it('should return an empty array', () => {
+        expect(committees.length).toBe(0)
+        expect(committees).toBeAn('array')
       })
     })
   })
