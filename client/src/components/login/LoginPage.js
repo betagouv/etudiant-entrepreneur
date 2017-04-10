@@ -42,7 +42,6 @@ export class LoginPage extends React.Component {
       this.props.actions.loginUser(this.state.user)
         .then((user) => {
           toastr.success('Authentification réussie')
-
           this.context.router.push(this.props.redirect)
         })
         .catch((err) => {
@@ -77,8 +76,9 @@ export class LoginPage extends React.Component {
 }
 
 function mapStateToProps(state, ownProps) {
+  const redirect = ownProps.location.query.redirect
   return {
-    redirect: ownProps.params.redirect ? ownProps.params.redirect : '/pepite'
+    redirect: redirect ? redirect : '/pepite'
   }
 }
 
