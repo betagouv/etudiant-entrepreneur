@@ -11,5 +11,6 @@ module.exports = (options) => {
   router.get('/', committeeController.getCommittee)
   router.post('/', auth.isAuthenticated(), committeeController.createCommittee)
   router.put('/:id', auth.isAuthenticated(), committeeController.updateCommittee)
+  router.delete('/:id', auth.isAuthenticated(), committeeController.deleteCommittee)
   return router
 }

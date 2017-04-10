@@ -67,6 +67,24 @@ class CommitteeController {
         return res.status(500).send(err)
       })
   }
+
+  deleteCommittee(req, res) {
+    if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
+      return res.sendStatus(404)
+    }
+    return Committee
+      .findOneAndRemove({ _id: req.params.id })
+      .then((committee) => {
+        if (!committee) {
+          return res.sendStatus(404)
+        }
+        return res.send(204)
+      })
+      .catch((err) => {
+        req.log.error(err)
+        return res.status(500).send(err)
+      })
+  }
 }
 
 module.exports = CommitteeController
