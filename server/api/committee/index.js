@@ -10,5 +10,6 @@ module.exports = (options) => {
   router.get('/ping', committeeController.ping)
   router.get('/', committeeController.getCommittee)
   router.post('/', auth.isAuthenticated(), committeeController.createCommittee)
+  router.put('/:id', auth.isAuthenticated(), committeeController.updateCommittee)
   return router
 }

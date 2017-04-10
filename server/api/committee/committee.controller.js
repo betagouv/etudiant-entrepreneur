@@ -1,8 +1,9 @@
 'use strict'
 
+const mongoose = require('mongoose')
+
 const Committee = require('./committee.model')
 const Pepite = require('../pepite/pepite.model')
-
 
 class CommitteeController {
   ping(req, res) {
@@ -40,6 +41,27 @@ class CommitteeController {
       .catch((err) => {
         req.log.error(err)
         if (err.name == 'ValidationError') {
+          return res.sendStatus(400)
+        }
+        return res.status(500).send(err)
+      })
+  }
+
+  updateCommittee(req, res) {
+    if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
+      return res.sendStatus(404)
+    }
+    return Committee
+      .findByIdAndUpdate(req.params.id, req.body, { new: true, runValidators: true })
+      .then((committee) => {
+        if (!committee) {
+          return res.sendStatus(404)
+        }
+        return res.json(committee)
+      })
+      .catch((err) => {
+        req.log.error(err)
+        if ((err.name == 'ValidationError') || (err.name == 'CastError')) {
           return res.sendStatus(400)
         }
         return res.status(500).send(err)
