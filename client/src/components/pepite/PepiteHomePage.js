@@ -13,14 +13,14 @@ export class PepiteHomePage extends React.Component {
           <Link className="col-md-6" to="pepite/applicant">
             <Card title="Mes candidats" glyphicon="glyphicon glyphicon-envelope" />
           </Link>
+          <Link className="col-md-6" to="pepite/committee">
+            <Card title="Mes prochains comités" glyphicon="glyphicon glyphicon-calendar" />
+          </Link>
           <div className="col-md-6" title="bientôt disponible">
             <Card title="Mes étudiants-entrepreneurs" glyphicon="glyphicon glyphicon-education" isDisabled />
           </div>
           <div className="col-md-6" title="bientôt disponible">
             <Card title="Mon PEPITE" glyphicon="glyphicon glyphicon-cog" isDisabled />
-          </div>
-          <div className="col-md-6" title="bientôt disponible">
-            <Card title="Mes prochains comités" glyphicon="glyphicon glyphicon-calendar" isDisabled />
           </div>
           <div className="col-md-6" title="bientôt disponible">
             <Card title="Stats" glyphicon="glyphicon glyphicon-stats" isDisabled />

@@ -102,5 +102,6 @@ export default {
     profile: {},
     pepite: {},
     project: {}
-  }
+  },
+  committees: []
 }
