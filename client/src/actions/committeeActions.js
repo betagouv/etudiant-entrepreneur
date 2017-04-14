@@ -1,3 +1,5 @@
+import Moment from 'moment'
+
 import committeeApi from '../api/committeeApi'
 import * as types from './actionTypes'
 
@@ -65,3 +67,18 @@ export function updateCommittee(committee) {
   }
 }
 
+export function getNextCommittee(pepiteId) {
+  return () => {
+    return committeeApi.getCommittees(pepiteId).then((committees) => {
+      return committees.sort(compareCommitte).find(isNextCommittee)
+    })
+  }
+}
+
+function compareCommitte(a, b) {
+  return new Date(a.date) - new Date(b.date)
+}
+
+function isNextCommittee(committee) {
+  return new Moment(Date.now()).isBefore(committee.date)
+}

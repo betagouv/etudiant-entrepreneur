@@ -5,6 +5,7 @@ import ValidatedFormControl from '../../common/ValidatedFormControl'
 import RegionSelect from './RegionSelect'
 import EstablishmentSelect from './EstablishmentSelect'
 import PepiteSelect from './PepiteSelect'
+import NextCommittee from './NextCommittee'
 
 const PepiteForm = ({pepite, contact, errors, onChange, onEstablishmentChange, regions}) => {
   return (
@@ -24,6 +25,7 @@ const PepiteForm = ({pepite, contact, errors, onChange, onEstablishmentChange, r
         selectedPepite={pepite.pepite}
         onChange={onChange}
         errors={errors} />
+      <NextCommittee />
       <FormGroup className="required">
         <ControlLabel>Je demande un accès à l'espace de coworking PEPITE (selon disponibilité)</ControlLabel>
         <RadioGroup name="askCoworking" onChange={onChange} selectedValue={pepite.askCoworking} error={errors.askCoworking}>
