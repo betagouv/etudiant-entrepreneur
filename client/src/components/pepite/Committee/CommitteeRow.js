@@ -17,6 +17,7 @@ const CommitteeRow = ({committe, removeCommittee, editCommittee}) => {
   return (
     <tr>
       <td>{new Moment(committe.date).format('DD/MM/YYYY')}</td>
+      <td>{new Moment(committe.lastApplicationDate).format('DD/MM/YYYY')}</td>
       <td>{new Moment(committe.createdAt).format('DD/MM/YYYY à hh:mm')}</td>
       <td>{new Moment(committe.updatedAt).format('DD/MM/YYYY à hh:mm')}</td>
       <td><a className="btn btn-info btn-xs" target="_blank" onClick={onEdit}><Glyphicon glyph="edit" /></a></td>

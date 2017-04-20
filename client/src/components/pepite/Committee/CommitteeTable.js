@@ -7,6 +7,7 @@ const CommitteeTable = ({committees, removeCommittee, editCommittee}) => {
       <thead>
         <tr>
           <th>Date du comité</th>
+          <th>Date de fin de candidature</th>
           <th>Ajouté le</th>
           <th>Modifié le</th>
           <th>Editer</th>

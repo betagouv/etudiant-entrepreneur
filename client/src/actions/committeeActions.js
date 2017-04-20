@@ -61,7 +61,7 @@ export function createCommittee(committee) {
 export function updateCommittee(committee) {
   return (dispatch, getState) => {
     const { user } = getState()
-    return committeeApi.updateCommittee({ date: committee.date, _id: committee._id }, user.id, user.token).then((committee) => {
+    return committeeApi.updateCommittee(committee, user.id, user.token).then((committee) => {
       dispatch(updateCommitteeSuccess(committee))
     })
   }
