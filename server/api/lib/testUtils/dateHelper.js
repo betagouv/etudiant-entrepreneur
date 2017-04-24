@@ -3,6 +3,13 @@ function isValidDate(jsonDate) {
   return (jsonDate != null && !isNaN(date))
 }
 
+function yesterday() {
+  const yesterday = new Date()
+  yesterday.setDate(yesterday.getDate() - 1)
+  return yesterday
+}
+
 module.exports = {
-  isValidDate
+  isValidDate,
+  yesterday
 }

@@ -31,4 +31,9 @@ describe('dateHelper.js', () => {
       })
     })
   })
+  describe('yesterday', () => {
+    it('Should be a date true', () => {
+      expect(dateHelper.yesterday()).toBeA(Date)
+    })
+  })
 })
