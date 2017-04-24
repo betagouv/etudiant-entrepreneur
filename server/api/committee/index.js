@@ -9,6 +9,7 @@ module.exports = (options) => {
   router.use(committeeController.getPepite)
   router.get('/ping', committeeController.ping)
   router.get('/', committeeController.getCommittee)
+  router.get('/next', committeeController.getNextCommittee)
   router.post('/', auth.isAuthenticated(), committeeController.createCommittee)
   router.put('/:id', auth.isAuthenticated(), committeeController.updateCommittee)
   router.delete('/:id', auth.isAuthenticated(), committeeController.deleteCommittee)

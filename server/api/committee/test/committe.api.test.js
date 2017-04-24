@@ -175,6 +175,117 @@ describe('api: pepite/:pepiteId/committee', () => {
     })
   })
 
+  describe('When retrieving the next committee', () => {
+    const today = new Date()
+    today.setUTCHours(0, 0, 0, 0)
+    const tomorrow = new Date()
+    tomorrow.setUTCHours(0, 0, 0, 0)
+    tomorrow.setDate(today.getDate() + 1)
+    const yesterday = new Date()
+    yesterday.setUTCHours(0, 0, 0, 0)
+    yesterday.setDate(today.getDate() - 1)
+
+    describe('When PEPITE has several committees', () => {
+      const savedCommittees = [{
+        pepite: 21,
+        date: tomorrow,
+        lastApplicationDate: tomorrow,
+      }, {
+        pepite: 21,
+        date: today,
+        lastApplicationDate: today,
+      }, {
+        pepite: 21,
+        date: yesterday,
+        lastApplicationDate: yesterday,
+      }]
+
+      before((done) => {
+        CommitteeModel.insertMany(savedCommittees, done)
+      })
+
+      after((done) => {
+        CommitteeModel.remove(done)
+      })
+
+      let committee = null
+      it('should return a 200 response with the next committee', (done) => {
+        supertest(app)
+          .get(`/api/pepite/${validPepiteId}/committee/next`)
+          .expect(200)
+          .end((err, res) => {
+            if (err) {
+              return done(err)
+            }
+            committee = res.body
+            return done()
+          })
+      })
+      it('should return the next occuring committee by lastApplicationDate', () => {
+        expect(new Date(committee.lastApplicationDate)).toEqual(savedCommittees[1].lastApplicationDate)
+      })
+    })
+
+    describe('When PEPITE has no future committees', () => {
+      const savedCommittees = [{
+        pepite: 21,
+        date: yesterday,
+        lastApplicationDate: yesterday,
+      }, {
+        pepite: 10,
+        date: tomorrow,
+        lastApplicationDate: tomorrow,
+      }]
+
+      before((done) => {
+        CommitteeModel.insertMany(savedCommittees, done)
+      })
+
+      after((done) => {
+        CommitteeModel.remove(done)
+      })
+
+      it('should return a 404 response', (done) => {
+        supertest(app)
+          .get(`/api/pepite/${validPepiteId}/committee/next`)
+          .expect(404, done)
+      })
+    })
+
+    describe('When PEPITE has a future committee', () => {
+      const savedCommittees = [{
+        pepite: 21,
+        date: tomorrow,
+        lastApplicationDate: tomorrow,
+      }]
+
+      before((done) => {
+        CommitteeModel.insertMany(savedCommittees, done)
+      })
+
+      after((done) => {
+        CommitteeModel.remove(done)
+      })
+
+      let committee = null
+      it('should return a 200 response with the futur committee', (done) => {
+        supertest(app)
+          .get(`/api/pepite/${validPepiteId}/committee/next`)
+          .expect(200)
+          .end((err, res) => {
+            if (err) {
+              return done(err)
+            }
+            committee = res.body
+            return done()
+          })
+      })
+      it('should return the next occuring committee by lastApplicationDate', () => {
+        expect(new Date(committee.lastApplicationDate)).toEqual(savedCommittees[0].lastApplicationDate)
+      })
+    })
+  })
+
   describe('When updating a committee', () => {
     let validToken = {}
     const existingId = '9b754413ed0ba56803929a9b'

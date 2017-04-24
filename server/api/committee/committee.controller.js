@@ -33,6 +33,16 @@ class CommitteeController {
       })
   }
 
+  getNextCommittee(req, res) {
+    Committee.getNextCommittee(req.pepite.id)
+      .then((nextCommittee) => {
+        if (!nextCommittee) {
+          return res.sendStatus(404)
+        }
+        return res.status(200).json(nextCommittee)
+      })
+  }
+
   createCommittee(req, res) {
     Committee.create(Object.assign({}, req.body, { pepite: req.pepite.id }))
       .then((committee) => {
