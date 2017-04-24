@@ -69,9 +69,7 @@ export function updateCommittee(committee) {
 
 export function getNextCommittee(pepiteId) {
   return () => {
-    return committeeApi.getCommittees(pepiteId).then((committees) => {
-      return committees.sort(compareCommitte).find(isNextCommittee)
-    })
+    return committeeApi.getNextCommittee(pepiteId)
   }
 }
 

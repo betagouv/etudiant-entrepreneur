@@ -8,6 +8,13 @@ class committeeApi {
       })
   }
 
+  static getNextCommittee(pepiteId) {
+    return axios.get(`/pepite/${pepiteId}/committee/next`)
+      .then((res) => {
+        return res.data
+      })
+  }
+
   static deleteCommittee(committeeId, pepiteId, userToken) {
     return axios.delete(`pepite/${pepiteId}/committee/${committeeId}`,
       {
