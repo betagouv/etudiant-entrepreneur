@@ -15,8 +15,8 @@ class NextCommittee extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (this.isComponentDisplayed(nextProps.pepite.pepite) && this.props.pepite.pepite != nextProps.pepite.pepite) {
-      this.props.actions.getNextCommittee(nextProps.pepite.pepite).then((nextCommittee) => {
+    if (this.isComponentDisplayed(nextProps.pepiteId) && this.props.pepiteId != nextProps.pepiteId) {
+      this.props.actions.getNextCommittee(nextProps.pepiteId).then((nextCommittee) => {
         this.setState({ nextCommittee })
       })
     }
@@ -39,7 +39,7 @@ class NextCommittee extends React.Component {
   }
 
   render() {
-    if (this.isComponentDisplayed(this.props.pepite.pepite)) {
+    if (this.isComponentDisplayed(this.props.pepiteId)) {
       return (
         <Panel header="Prochain comité d'engagement" bsStyle={this.state.nextCommittee ? 'info' : 'warning'}>
           {this.displayMessage()}
@@ -52,7 +52,6 @@ class NextCommittee extends React.Component {
 
 function mapStateToProps(state, ownProps) {
   return {
-    pepite: state.pepite
   }
 }
 
@@ -63,7 +62,7 @@ function mapDispatchToProps(dispatch) {
 }
 
 NextCommittee.propTypes = {
-  pepite: PropTypes.object.isRequired,
+  pepiteId: PropTypes.string.isRequired,
   actions: PropTypes.object.isRequired,
 }
 

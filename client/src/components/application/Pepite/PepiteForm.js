@@ -25,7 +25,7 @@ const PepiteForm = ({pepite, contact, errors, onChange, onEstablishmentChange, r
         selectedPepite={pepite.pepite}
         onChange={onChange}
         errors={errors} />
-      <NextCommittee />
+      <NextCommittee pepiteId={pepite.pepite} />
       <FormGroup className="required">
         <ControlLabel>Je demande un accès à l'espace de coworking PEPITE (selon disponibilité)</ControlLabel>
         <RadioGroup name="askCoworking" onChange={onChange} selectedValue={pepite.askCoworking} error={errors.askCoworking}>
