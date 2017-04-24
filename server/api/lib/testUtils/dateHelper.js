@@ -1,6 +1,6 @@
 function isValidDate(jsonDate) {
   const date = new Date(jsonDate)
-  return (!isNaN(date))
+  return (jsonDate != null && !isNaN(date))
 }
 
 module.exports = {
