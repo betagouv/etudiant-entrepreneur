@@ -25,7 +25,7 @@ class NextCommittee extends React.Component {
   displayMessage() {
     if (!this.state.nextCommittee) {
       return (
-        <div>Ce PEPITE n'a pas de comité d'engagement de prévu.</div>
+        <div>Ce PEPITE n'a pas prévu son prochain comité d'engagement de prévu.</div>
       )
     } else {
       return (
