@@ -13,6 +13,12 @@ class committeeApi {
       .then((res) => {
         return res.data
       })
+      .catch((err) => {
+        if (err.response.status === 404) {
+          return null
+        }
+        throw err
+      })
   }
 
   static deleteCommittee(committeeId, pepiteId, userToken) {
