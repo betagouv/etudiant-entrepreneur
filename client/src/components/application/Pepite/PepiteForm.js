@@ -5,7 +5,7 @@ import ValidatedFormControl from '../../common/ValidatedFormControl'
 import RegionSelect from './RegionSelect'
 import EstablishmentSelect from './EstablishmentSelect'
 import PepiteSelect from './PepiteSelect'
-import NextCommittee from './NextCommittee'
+import NextCommittee from '../../pepite/Committee/NextCommittee'
 
 const PepiteForm = ({pepite, contact, errors, onChange, onEstablishmentChange, regions}) => {
   return (
