@@ -14,9 +14,17 @@ class NextCommittee extends React.Component {
     }
   }
 
+  componentDidMount() {
+    this.loadNextCommittee(this.props.pepiteId)
+  }
+
   componentWillReceiveProps(nextProps) {
-    if (this.isComponentDisplayed(nextProps.pepiteId) && this.props.pepiteId != nextProps.pepiteId) {
-      this.props.actions.getNextCommittee(nextProps.pepiteId).then((nextCommittee) => {
+    this.loadNextCommittee(nextProps.pepiteId)
+  }
+
+  loadNextCommittee(pepiteId) {
+    if (this.isComponentDisplayed(pepiteId)) {
+      this.props.actions.getNextCommittee(pepiteId).then((nextCommittee) => {
         this.setState({ nextCommittee })
       })
     }
@@ -62,7 +70,7 @@ function mapDispatchToProps(dispatch) {
 }
 
 NextCommittee.propTypes = {
-  pepiteId: PropTypes.string.isRequired,
+  pepiteId: PropTypes.number.isRequired,
   actions: PropTypes.object.isRequired,
 }
 
