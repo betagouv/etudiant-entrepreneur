@@ -106,5 +106,6 @@ export default {
     pepite: {},
     project: {}
   },
-  committees: []
+  committees: [],
+  nextCommittee: {}
 }

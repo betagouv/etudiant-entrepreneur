@@ -1,7 +1,6 @@
-import Moment from 'moment'
-
 import committeeApi from '../api/committeeApi'
 import * as types from './actionTypes'
+import { loadNextCommittee } from './nextCommitteeActions'
 
 export function loadCommittesSuccess(committees) {
   return {
@@ -36,6 +35,7 @@ export function loadPepiteCommittees() {
     const { user } = getState()
     return committeeApi.getCommittees(user.id).then((committees) => {
       dispatch(loadCommittesSuccess(committees))
+      dispatch(loadNextCommittee())
     })
   }
 }
@@ -45,6 +45,7 @@ export function deleteCommittee(committee) {
     const { user } = getState()
     return committeeApi.deleteCommittee(committee._id, user.id, user.token).then(() => {
       dispatch(deleteCommitteeSuccess(committee))
+      dispatch(loadNextCommittee())
     })
   }
 }
@@ -54,6 +55,7 @@ export function createCommittee(committee) {
     const { user } = getState()
     return committeeApi.addCommittee(committee, user.id, user.token).then((committee) => {
       dispatch(createCommitteeSuccess(committee))
+      dispatch(loadNextCommittee())
     })
   }
 }
@@ -63,20 +65,7 @@ export function updateCommittee(committee) {
     const { user } = getState()
     return committeeApi.updateCommittee(committee, user.id, user.token).then((committee) => {
       dispatch(updateCommitteeSuccess(committee))
+      dispatch(loadNextCommittee())
     })
   }
-}
-
-export function getNextCommittee(pepiteId) {
-  return () => {
-    return committeeApi.getNextCommittee(pepiteId)
-  }
-}
-
-function compareCommitte(a, b) {
-  return new Date(a.date) - new Date(b.date)
-}
-
-function isNextCommittee(committee) {
-  return new Moment(Date.now()).isBefore(committee.date)
 }

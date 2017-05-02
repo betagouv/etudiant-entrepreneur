@@ -2,10 +2,12 @@ import React, { PropTypes } from 'react'
 import toastr from 'toastr'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
+import { Panel } from 'react-bootstrap'
 
 import * as committeeActions from '../../../actions/committeeActions'
 import CommitteeDetailModal from './CommitteeDetailModal'
 import CommitteeTable from './CommitteeTable'
+import NextCommittee from './NextCommittee'
 
 class CommitteePage extends React.Component {
   constructor(props, context) {
@@ -80,9 +82,12 @@ class CommitteePage extends React.Component {
             Ajouter
           </button>
         </div>
-        <CommitteeTable committees={this.props.committees} removeCommittee={this.removeCommittee} editCommittee={this.openEditModal}/>
+        <CommitteeTable committees={this.props.committees} removeCommittee={this.removeCommittee} editCommittee={this.openEditModal} />
+        <Panel header="Message actuellement affiché aux candidats" bsStyle="primary">
+          <NextCommittee />
+        </Panel>
         <CommitteeDetailModal submitCommittee={this.addCommittee} isShown={this.state.isAddModalShown} close={this.closeAddModal} />
-        <CommitteeDetailModal submitCommittee={this.editCommittee} isShown={this.state.isEditModalShown} close={this.closeEditModal} committee={this.state.editedCommittee}/>
+        <CommitteeDetailModal submitCommittee={this.editCommittee} isShown={this.state.isEditModalShown} close={this.closeEditModal} committee={this.state.editedCommittee} />
       </div>
     )
   }
@@ -91,7 +96,8 @@ class CommitteePage extends React.Component {
 
 function mapStateToProps(state, ownProps) {
   return {
-    committees: state.committees
+    committees: state.committees,
+    pepiteId: state.user.id
   }
 }
 
@@ -103,7 +109,8 @@ function mapDispatchToProps(dispatch) {
 
 CommitteePage.propTypes = {
   actions: PropTypes.object.isRequired,
-  committees: PropTypes.array.isRequired
+  committees: PropTypes.array.isRequired,
+  pepiteId: PropTypes.number.isRequired,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(CommitteePage)
