@@ -92,6 +92,9 @@ export default {
     viadeo: '',
   },
   user: {
+    id: 0,
+    token: null,
+    username: null,
     isAuthenticated: false
   },
   errors: {
