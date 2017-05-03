@@ -1,8 +1,11 @@
 import React, { PropTypes } from 'react'
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
 import { FormGroup, ControlLabel } from 'react-bootstrap'
 import ValidatedFormControl from '../../common/ValidatedFormControl'
 import { getCurrentYear } from '../../common/yearHelper'
 import pepiteApi from '../../../api/pepiteApi'
+import * as nextCommitteeActions from '../../../actions/nextCommitteeActions'
 
 class PepiteSelect extends React.Component {
   constructor(props, context) {
@@ -26,6 +29,7 @@ class PepiteSelect extends React.Component {
     if (pepiteId && pepiteId != '0') {
       pepiteApi.getPepite(pepiteId).then(pepite => {
         this.setState({ pepites: [pepite] })
+        this.props.nextCommitteeActions.loadNextCommittee(Number(pepiteId))
       })
     } else {
       pepiteApi.getPepites(regionId).then(pepites => {
@@ -55,11 +59,26 @@ class PepiteSelect extends React.Component {
   }
 }
 
+function mapStateToProps(state, ownProps) {
+  return {
+    pepite: state.pepite,
+    contact: state.contact,
+    errors: state.errors.pepite
+  }
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    nextCommitteeActions: bindActionCreators(nextCommitteeActions, dispatch)
+  }
+}
+
 PepiteSelect.propTypes = {
   selectedRegion: PropTypes.string.isRequired,
   selectedPepite: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
+  nextCommitteeActions: PropTypes.object.isRequired,
   errors: PropTypes.object,
 }
 
-export default PepiteSelect
+export default connect(mapStateToProps, mapDispatchToProps)(PepiteSelect)
