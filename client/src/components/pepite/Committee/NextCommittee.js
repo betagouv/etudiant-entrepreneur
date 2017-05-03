@@ -14,11 +14,14 @@ class NextCommittee extends React.Component {
   displayMessage() {
     if (!this.hasNextCommittee()) {
       return (
-        <div>Ce PEPITE n'a pas prévu son prochain comité d'engagement de prévu.</div>
+        <div>Ce PEPITE n'a pas prévu son prochain comité d'engagement.</div>
       )
     } else {
       return (
-        <div>Le prochain comité d'engagement de ce PEPITE aura lieu le {new Moment(this.props.nextCommittee.date).format('DD/MM/YYYY')}.</div>
+        <div>
+          <p>Le prochain comité d'engagement de ce PEPITE aura lieu le {new Moment(this.props.nextCommittee.date).format('DD/MM/YYYY')}.</p>
+          <pre>{this.props.nextCommittee.message}</pre>
+        </div>
       )
     }
   }
