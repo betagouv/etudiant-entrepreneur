@@ -27,7 +27,7 @@ class NextCommittee extends React.Component {
   }
 
   hasNextCommittee() {
-    return (this.props.nextCommittee)
+    return (this.props.nextCommittee && this.props.nextCommittee._id)
   }
 
   render() {

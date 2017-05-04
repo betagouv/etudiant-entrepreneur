@@ -7,7 +7,11 @@ import EstablishmentSelect from './EstablishmentSelect'
 import PepiteSelect from './PepiteSelect'
 import NextCommittee from '../../pepite/Committee/NextCommittee'
 
-const PepiteForm = ({pepite, contact, errors, onChange, onEstablishmentChange, regions}) => {
+function isNextCommitteeShown(pepiteId) {
+  return (pepiteId && pepiteId != '0')
+}
+
+const PepiteForm = ({ pepite, contact, errors, onChange, onEstablishmentChange, regions }) => {
   return (
     <form>
       <RegionSelect
@@ -25,7 +29,7 @@ const PepiteForm = ({pepite, contact, errors, onChange, onEstablishmentChange, r
         selectedPepite={pepite.pepite}
         onChange={onChange}
         errors={errors} />
-      <NextCommittee pepiteId={pepite.pepite} />
+        {isNextCommitteeShown(pepite.pepite) ? <NextCommittee /> : null}
       <FormGroup className="required">
         <ControlLabel>Je demande un accès à l'espace de coworking PEPITE (selon disponibilité)</ControlLabel>
         <RadioGroup name="askCoworking" onChange={onChange} selectedValue={pepite.askCoworking} error={errors.askCoworking}>
