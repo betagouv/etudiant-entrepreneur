@@ -36,7 +36,7 @@ const CommitteeForm = ({ committee, onDateChange, onDateInit, onlastApplicationD
             onInit={onlastApplicationDateInit} />
         </ValidatedComponent>
       </FormGroup>
-      <FormGroup className="required">
+      <FormGroup>
         <ControlLabel>Message affiché aux candidats</ControlLabel>
         <ValidatedComponent error={errors.message}>
           <Textarea className="form-control" name="message" rows={3} placeholder="Message peronnalisé aux candidats sélectionnant votre PEPITE" onChange={onChange} value={committee.message} />
