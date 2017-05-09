@@ -1,17 +1,23 @@
-'use strict'
-
 const config = require('../../config').sendGrid
-const sendgrid  = require('sendgrid')(config.apiKey)
+const nodemailer = require('nodemailer')
+const sgTransport = require('nodemailer-sendgrid-transport')
 
 exports.sendMail = function(to, subject, body, done) {
+  const options = {
+    auth: {
+      api_key: config.apiKey
+    }
+  }
 
-  const email = new sendgrid.Email({
+  const mailer = nodemailer.createTransport(sgTransport(options))
+
+  const email = {
     from: 'contact@etudiant-entrepreneur.beta.gouv.fr',
     to: to,
     replyto: 'contact@etudiant-entrepreneur.beta.gouv.fr',
     subject: subject,
     html: body
-  })
+  }
 
-  sendgrid.send(email, done)
+  mailer.sendMail(email, done)
 }
