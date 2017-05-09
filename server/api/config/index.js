@@ -10,8 +10,9 @@ const all = {
       }
     }
   },
-  sendGrid: {
-    apiKey: process.env.SENDGRID_API_KEY || 'sendgrid_api_key'
+  mail: {
+    apiKey: process.env.SENDGRID_API_KEY || 'sendgrid_api_key',
+    senderMail: 'contact@etudiant-entrepreneur.beta.gouv.fr'
   },
 
   // Secret for session

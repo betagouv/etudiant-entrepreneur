@@ -29,4 +29,22 @@ ApplicationSchema.methods = {
   }
 }
 
+ApplicationSchema.statics = {
+  getUnregisteredTeamMembers: function (teamMembers) {
+    return this.find({
+      'contact.email': {
+        $in: teamMembers.map((member) => { member.email })
+      }
+    })
+      .exec()
+      .then((registeredTeamMembers) => {
+        return teamMembers.filter((teamMember) => {
+          return !registeredTeamMembers.some((registeredTeamMember) => {
+            return registeredTeamMember.contact.email != teamMember.email
+          })
+        })
+      })
+  }
+}
+
 module.exports = mongoose.model('Application', ApplicationSchema, 'applications')
