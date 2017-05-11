@@ -6,6 +6,7 @@ import { bindActionCreators } from 'redux'
 import toastr from 'toastr'
 import * as applicationActions from '../../../actions/applicationActions'
 import * as errorsActions from '../../../actions/errorsActions'
+import NextCommittee from '../../pepite/Committee/NextCommittee'
 
 class SendPage extends React.Component {
   constructor(props, context) {
@@ -60,6 +61,7 @@ class SendPage extends React.Component {
   render() {
     return (
       <div>
+        <NextCommittee />
         {this.props.canBeSent ?
           <SendForm sendForm={this.sendForm} isSending={this.state.isSending} /> :
           <SentFrom editForm={this.editForm} />
