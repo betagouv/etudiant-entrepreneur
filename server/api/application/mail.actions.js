@@ -21,8 +21,8 @@ function saveApplication(application, logCallback) {
   sendMail(applicationMail.saveApplication(senderMail, application), logCallback)
 }
 
-function sendApplication(application, pepite, logCallback) {
-  sendMail(applicationMail.sendApplication(senderMail, application, pepite), logCallback)
+function sendApplication(application, pepite, nextCommittee, logCallback) {
+  sendMail(applicationMail.sendApplication(senderMail, application, pepite, nextCommittee), logCallback)
 }
 
 module.exports = {

@@ -36,6 +36,7 @@
     "json2csv": "3.7.3",
     "jsonwebtoken": "7.1.9",
     "mocha": "2.5.3",
+    "moment": "2.18.1",
     "mongoose": "4.6.0",
     "nconf": "0.8.4",
     "nodemailer": "4.0.1",

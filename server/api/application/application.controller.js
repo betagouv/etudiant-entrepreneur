@@ -5,6 +5,7 @@ const mongoose = require('mongoose')
 const json2csv = require('json2csv')
 
 const Application = require('./application.model')
+const Committee = require('../committee/committee.model')
 const Pepite = require('../pepite/pepite.model')
 const mailActions = require('./mail.actions')
 const applicationExportFields = require('./applicationExportFields')
@@ -93,32 +94,36 @@ class ApplicationController {
                   return next(new StandardError(`Le PEPITE avec l\'id: ${application.pepite.pepite} n'existe pas`, { code: 500 }))
                 }
                 //notify applicant
-                mailActions.sendApplication(
-                  application,
-                  pepite,
-                  (error, info) => { logMail(req.log, error, info) })
-                //notify tutuor
-                if (application.contact.situation == 'student') {
-                  mailActions.notifyTutor(
-                    application,
-                    pepite,
-                    (error, info) => { logMail(req.log, error, info) })
-                }
-                //notify pepite
-                mailActions.notifyPepite(
-                  application,
-                  pepite,
-                  (error, info) => { logMail(req.log, error, info) }
-                )
-                //notify partners
-                Application.getUnregisteredTeamMembers(application.project.team).then((unregisteredTeamMembers) => {
-                  mailActions.invitePartners(
-                    unregisteredTeamMembers,
-                    application,
-                    pepite,
-                    (error, info) => { logMail(req.log, error, info) })
-                })
-                return res.json(application)
+                return Committee.getNextCommittee(pepite._id)
+                  .then((nextCommittee) => {
+                    mailActions.sendApplication(
+                      application,
+                      pepite,
+                      nextCommittee,
+                      (error, info) => { logMail(req.log, error, info) })
+                    //notify tutuor
+                    if (application.contact.situation == 'student') {
+                      mailActions.notifyTutor(
+                        application,
+                        pepite,
+                        (error, info) => { logMail(req.log, error, info) })
+                    }
+                    //notify pepite
+                    mailActions.notifyPepite(
+                      application,
+                      pepite,
+                      (error, info) => { logMail(req.log, error, info) }
+                    )
+                    //notify partners
+                    Application.getUnregisteredTeamMembers(application.project.team).then((unregisteredTeamMembers) => {
+                      mailActions.invitePartners(
+                        unregisteredTeamMembers,
+                        application,
+                        pepite,
+                        (error, info) => { logMail(req.log, error, info) })
+                    })
+                    return res.json(application)
+                  })
               })
               .catch((err) => {
                 req.log.error(err)
@@ -150,7 +155,7 @@ class ApplicationController {
 
   getPepiteApplicationsXls(req, res) {
     return Application
-      .find({ 'pepite.pepite': req.params.id, 'status': { $in: ['sent', 'accepted', 'refused']}}).exec()
+      .find({ 'pepite.pepite': req.params.id, 'status': { $in: ['sent', 'accepted', 'refused'] } }).exec()
       .then((applications) => {
         var filename = 'data.csv'
         res.attachment(filename)
