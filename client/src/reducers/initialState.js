@@ -1,3 +1,5 @@
+import { getCurrentYear } from '../components/common/yearHelper'
+
 export default {
   application: {
     status: ''
@@ -31,7 +33,8 @@ export default {
     email: '',
     phone: '',
     situation: '',
-    isRenew: ''
+    isRenew: '',
+    schoolYear: getCurrentYear()
   },
   pepite: {
     region: 0,

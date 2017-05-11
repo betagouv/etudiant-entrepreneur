@@ -80,6 +80,7 @@ const applications = [
     'sentDate': '2016-11-24T11:12:12.329Z',
     'status': 'sent',
     'contact': {
+      'schoolYear': 2016,
       'isRenew': 'true',
       'situation': 'student',
       'phone': '0643333333',
@@ -171,6 +172,7 @@ const applications = [
     'sentDate': '2016-11-24T11:12:12.329Z',
     'status': 'sent',
     'contact': {
+      'schoolYear': 2016,
       'isRenew': 'true',
       'situation': 'student',
       'phone': '0643333333',
@@ -262,6 +264,7 @@ const applications = [
     'sentDate': '2016-11-24T11:12:12.329Z',
     'status': 'saved',
     'contact': {
+      'schoolYear': 2016,
       'isRenew': 'true',
       'situation': 'student',
       'phone': '0643333333',
@@ -353,6 +356,7 @@ const applications = [
     'sentDate': '2016-11-24T11:12:12.329Z',
     'status': 'saved',
     'contact': {
+      'schoolYear': 2016,
       'isRenew': 'true',
       'situation': 'student',
       'phone': '0643333333',

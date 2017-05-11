@@ -49,6 +49,7 @@ describe('api: application', () => {
     const savedApplication = {
       '_id': '88e155dd6decfe105d313b63',
       'contact': {
+        'schoolYear': 2016,
         'isRenew': 'true',
         'situation': 'student',
         'phone': '0643423333',
@@ -93,6 +94,7 @@ describe('api: application', () => {
   describe('When saving an application', () => {
     const validApplication = {
       contact: {
+        schoolYear: 2016,
         isRenew: 'true',
         situation: 'student',
         phone: '0643423333',
@@ -104,6 +106,7 @@ describe('api: application', () => {
 
     const missingMailApplication = {
       contact: {
+        schoolYear: 2016,
         isRenew: 'true',
         situation: 'student',
         phone: '0643423333',

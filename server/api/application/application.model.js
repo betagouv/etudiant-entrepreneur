@@ -13,7 +13,8 @@ var ApplicationSchema = new Schema({
     email: { type: String, required: true },
     phone: { type: String, required: true },
     situation: { type: String, required: true },
-    isRenew: { type: String, required: true }
+    isRenew: { type: String, required: true },
+    schoolYear: { type: Number, required: true }
   },
   project: {},
   career: {},
