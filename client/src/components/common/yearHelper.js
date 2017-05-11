@@ -2,8 +2,8 @@ import moment from 'moment'
 
 const applicationChangeDate = new Date(getCurrentYear(), 5, 15)
 
-export function isBeforeYearStartMonth() {
-  return moment().isBetween(applicationChangeDate, new Date(getCurrentYear(), 9, 1), null, '[)')
+export function isBeforeYearStartMonth(year) {
+  return moment().isBetween(applicationChangeDate, new Date(year, 9, 1), null, '[)')
 }
 
 export function getCurrentYear() {

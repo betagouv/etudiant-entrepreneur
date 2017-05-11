@@ -22,6 +22,7 @@ const PepiteForm = ({ pepite, contact, errors, onChange, onEstablishmentChange, 
         selectedRegion={pepite.region}
         selectedEstablishment={pepite.establishment}
         isStudent={contact.situation == 'student'}
+        schoolYear={contact.schoolYear}
         onEstablishementChange={onEstablishmentChange}
         errors={errors} />
       <PepiteSelect

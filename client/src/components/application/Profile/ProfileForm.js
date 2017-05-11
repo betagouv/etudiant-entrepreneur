@@ -6,7 +6,7 @@ import ValidatedComponent from '../../common/ValidatedComponent'
 import ValidatedFormControl from '../../common/ValidatedFormControl'
 import Textarea from 'react-textarea-autosize'
 import { calendarProps } from '../../common/calendarHelper'
-import { getCurrentYear, getCurrentUniversityYear } from '../../common/yearHelper'
+import { getUniversityYear } from '../../common/yearHelper'
 import { countries } from '../../common/ressources/countries'
 
 const ProfileForm = ({profile, contact, errors, onChange, onDateChange, onDateInit}) => {
@@ -20,17 +20,17 @@ const ProfileForm = ({profile, contact, errors, onChange, onDateChange, onDateIn
         </RadioGroup>
       </FormGroup>
       <FormGroup className={(contact.situation == 'student') ? 'required' : 'required hidden'}>
-        <ControlLabel>Étudiant en {getCurrentYear()} :</ControlLabel>
+        <ControlLabel>Étudiant en {contact.schoolYear} :</ControlLabel>
         <RadioGroup name="situation" onChange={onChange} selectedValue={profile.situation} error={errors.situation}>
-          <Radio value="graduate">Je finis mes études avant fin décembre {getCurrentYear()}</Radio>
-          <Radio value="student">Je serai étudiant·e toute l'année universitaire {getCurrentUniversityYear()}</Radio>
+          <Radio value="graduate">Je finis mes études avant fin décembre {contact.schoolYear}</Radio>
+          <Radio value="student">Je serai étudiant·e toute l'année universitaire {getUniversityYear(contact.schoolYear)}</Radio>
         </RadioGroup>
       </FormGroup>
       <Panel bsStyle="info" className={(profile.situation == 'graduate') ? 'required' : 'required hidden'}>
-        <div>Finnissant tes études avant fin {getCurrentYear()}, si tu obtiens le statut étudiant·e-entrepreneur·e, tu devras t'inscrire  au <a target="_blank" href="http://www.pepite-france.fr/b-diplome-etudiant-entrepreneur-2">diplôme d’établissement étudiant-entrepreneur (D2E)</a> via ton Pepite.</div>
+        <div>Finnissant tes études avant fin {contact.schoolYear}, si tu obtiens le statut étudiant·e-entrepreneur·e, tu devras t'inscrire  au <a target="_blank" href="http://www.pepite-france.fr/b-diplome-etudiant-entrepreneur-2">diplôme d’établissement étudiant-entrepreneur (D2E)</a> via ton Pepite.</div>
       </Panel>
       <FormGroup className={(profile.situation == 'student') ? 'required' : 'required hidden'}>
-        <ControlLabel>Étudiant toute l'année {getCurrentYear()}, tu peux demander l'inscription au <a target="_blank" href="http://www.pepite-france.fr/b-diplome-etudiant-entrepreneur-2">diplôme d’établissement étudiant-entrepreneur (D2E)</a>:</ControlLabel>
+        <ControlLabel>Étudiant toute l'année {contact.schoolYear}, tu peux demander l'inscription au <a target="_blank" href="http://www.pepite-france.fr/b-diplome-etudiant-entrepreneur-2">diplôme d’établissement étudiant-entrepreneur (D2E)</a>:</ControlLabel>
         <RadioGroup name="askD2E" onChange={onChange} selectedValue={profile.askD2E} error={errors.situation}>
           <Radio value="true">Je souhaite m'inscrire au <abbr title="Diplôme d’Établissement Étudiant-entrepreneur">D2E</abbr> pour bénéficier d'un meilleur suivi dans mon projet</Radio>
           <Radio value="false">Je souhaite obtenir le statut étudiant-entrepreneur seul (sans le <abbr title="Diplôme d’Établissement Étudiant-entrepreneur">D2E</abbr>)</Radio>

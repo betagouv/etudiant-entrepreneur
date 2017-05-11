@@ -2,11 +2,11 @@ import React, { PropTypes } from 'react'
 import { FormGroup, ControlLabel, FormControl, Radio, HelpBlock, Panel } from 'react-bootstrap'
 import RadioGroup from '../../common/RadioGroup'
 import ValidatedFormControl from '../../common/ValidatedFormControl'
-import { isBeforeYearStartMonth, getCurrentYear } from '../../common/yearHelper'
+import { isBeforeYearStartMonth } from '../../common/yearHelper'
 
-function getGraduationQuestionAnswerText() {
+function getGraduationQuestionAnswerText(schoolYear) {
   let graduateText, studentText
-  if (isBeforeYearStartMonth()) {
+  if (isBeforeYearStartMonth(schoolYear)) {
     graduateText = "J'aurai fini ou arrêté mes études"
     studentText = "Je serai étudiant·e"
   }
@@ -18,7 +18,7 @@ function getGraduationQuestionAnswerText() {
 }
 
 const ContactForm = ({contact, errors, onChange}) => {
-  let { graduateText, studentText } = getGraduationQuestionAnswerText()
+  let { graduateText, studentText } = getGraduationQuestionAnswerText(contact.schoolYear)
   return (
     <form>
       <FormGroup className="required">
@@ -38,14 +38,14 @@ const ContactForm = ({contact, errors, onChange}) => {
         <ValidatedFormControl name="phone" type="text" placeholder="" onChange={onChange} value={contact.phone} error={errors.phone} />
       </FormGroup>
       <FormGroup className="required">
-        <ControlLabel>En septembre {getCurrentYear()} :</ControlLabel>
+        <ControlLabel>En septembre {contact.schoolYear} :</ControlLabel>
         <RadioGroup name="situation" onChange={onChange} selectedValue={contact.situation} error={errors.situation}>
           <Radio value="graduate">{graduateText}</Radio>
           <Radio value="student">{studentText}</Radio>
         </RadioGroup>
       </FormGroup>
       <Panel bsStyle="info" className={(contact.situation == 'graduate') ? 'required' : 'required hidden'}>
-        <div>Diplômé·e en 2016, si tu obtiens le statut étudiant·e-entrepreneur·e, tu devras t'inscrire  au <a target="_blank" href="http://www.pepite-france.fr/b-diplome-etudiant-entrepreneur-2">diplôme d’établissement étudiant-entrepreneur (D2E)</a> via ton Pepite.</div>
+        <div>Diplômé·e en {contact.schoolYear}, si tu obtiens le statut étudiant·e-entrepreneur·e, tu devras t'inscrire  au <a target="_blank" href="http://www.pepite-france.fr/b-diplome-etudiant-entrepreneur-2">diplôme d’établissement étudiant-entrepreneur (D2E)</a> via ton Pepite.</div>
       </Panel>
       <FormGroup className="required">
         <ControlLabel>J'ai déjà obtenu le statut l'année dernière</ControlLabel>

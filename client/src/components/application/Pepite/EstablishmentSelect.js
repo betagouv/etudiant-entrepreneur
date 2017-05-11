@@ -1,7 +1,6 @@
 import React, { PropTypes } from 'react'
 import { FormGroup, ControlLabel } from 'react-bootstrap'
 import ValidatedFormControl from '../../common/ValidatedFormControl'
-import { getCurrentYear } from '../../common/yearHelper'
 import pepiteApi from '../../../api/pepiteApi'
 
 class EstablishmentSelect extends React.Component {
@@ -37,7 +36,7 @@ class EstablishmentSelect extends React.Component {
     if (this.props.isStudent && this.props.selectedRegion) {
       return (
         <FormGroup>
-          <ControlLabel>Mon établissement pour l'année {getCurrentYear()}</ControlLabel>
+          <ControlLabel>Mon établissement pour l'année {this.props.schoolYear}</ControlLabel>
           <ValidatedFormControl name="establishment" componentClass="select" onChange={this.onEstablishementSelect} value={this.props.selectedEstablishment}>
             <option value={0} disabled>Sélectionner</option>
             {this.state.establishments.map((establishment) => {
@@ -56,6 +55,7 @@ EstablishmentSelect.propTypes = {
   selectedRegion: PropTypes.string.isRequired,
   selectedEstablishment: PropTypes.string.isRequired,
   isStudent: PropTypes.bool.isRequired,
+  schoolYear: PropTypes.number.isRequired,
   onEstablishementChange: PropTypes.func.isRequired,
   errors: PropTypes.object,
 }

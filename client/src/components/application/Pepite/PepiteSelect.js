@@ -3,7 +3,6 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { FormGroup, ControlLabel } from 'react-bootstrap'
 import ValidatedFormControl from '../../common/ValidatedFormControl'
-import { getCurrentYear } from '../../common/yearHelper'
 import pepiteApi from '../../../api/pepiteApi'
 import * as nextCommitteeActions from '../../../actions/nextCommitteeActions'
 
