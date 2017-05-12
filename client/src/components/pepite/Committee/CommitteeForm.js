@@ -1,7 +1,6 @@
 import React, { PropTypes } from 'react'
 import Cleave from 'cleave.js/dist/cleave-react.min'
-import { FormGroup, ControlLabel } from 'react-bootstrap'
-import Textarea from 'react-textarea-autosize'
+import { FormGroup, ControlLabel, FormControl } from 'react-bootstrap'
 
 import ValidatedComponent from '../../common/ValidatedComponent'
 
@@ -39,7 +38,7 @@ const CommitteeForm = ({ committee, onDateChange, onDateInit, onlastApplicationD
       <FormGroup>
         <ControlLabel>Message affiché aux candidats</ControlLabel>
         <ValidatedComponent error={errors.message}>
-          <Textarea className="form-control" name="message" rows={3} placeholder="Message peronnalisé aux candidats sélectionnant votre PEPITE" onChange={onChange} value={committee.message} />
+          <FormControl componentClass="textarea" className="form-control" name="message" rows={3} placeholder="Message peronnalisé aux candidats sélectionnant votre PEPITE" onChange={onChange} value={committee.message} />
         </ValidatedComponent>
       </FormGroup>
     </form>
