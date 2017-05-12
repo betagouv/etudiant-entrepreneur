@@ -86,6 +86,7 @@ export class PepiteApplicantTable extends React.Component {
           <thead>
             <tr>
               <TableHeader onSort={sort} field="sentDate">Reçue depuis</TableHeader>
+              <TableHeader onSort={sort} field="contact.schoolYear">Promotion</TableHeader>
               <TableHeader onSort={sort} field="contact.name">Nom</TableHeader>
               <TableHeader onSort={sort} field="contact.firstname">Prénom</TableHeader>
               <TableHeader onSort={sort} field="contact.email">Email</TableHeader>

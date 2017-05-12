@@ -8,6 +8,7 @@ const PepiteApplicantRow = ({ application }) => {
   return (
     <tr>
       <td><TimeSinceControl textDate={application.sentDate} /></td>
+      <td>{application.contact.schoolYear}</td>
       <td>{application.contact.name}</td>
       <td>{application.contact.firstname}</td>
       <td>{application.contact.email}</td>
