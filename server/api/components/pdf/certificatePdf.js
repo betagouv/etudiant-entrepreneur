@@ -36,7 +36,7 @@ function getCertificateDocDefinition(application, pepite) {
       getLines(1),
       { text: 'Vu les textes sur les PEPITE, notamment la circulaire en date du 21 mai 2014 relative à la création du statut national d’étudiant entrepreneur et du diplôme d’étudiant entrepreneur (D2E),', style: 'heading' },
       getLines(5),
-      { text: 'Le STATUT NATIONAL ÉTUDIANT-ENTREPRENEUR est délivré pour l\'année universitaire 2016-2017 à', style: 'main' },
+      { text: `Le STATUT NATIONAL ÉTUDIANT-ENTREPRENEUR est délivré pour l\'année universitaire ${getSchoolYear(application.contact.schoolYear)} à`, style: 'main' },
       { text: `${application.contact.firstname} ${application.contact.name.toUpperCase()}`, style: 'main' },
       { text: getBirthText(application.profile), style: 'main' },
       getLines(6),
@@ -74,6 +74,10 @@ function getBirthText(profile) {
   const birthDate = new Date(profile.birthDate)
   const gender = (profile.gender == 'male') ? '' : 'e'
   return `né${gender} le ${birthDate.getDate()} ${months[birthDate.getMonth()]} ${birthDate.getFullYear()}`
+}
+
+function getSchoolYear(year) {
+  return `${year}-${year + 1}`
 }
 
 function getLines(lines) {
