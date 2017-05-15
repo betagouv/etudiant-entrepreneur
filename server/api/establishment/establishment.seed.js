@@ -137,6 +137,8 @@ const establishments = [{ _id: 1, name: 'établissements de l\'académie de Stra
 { _id: 137, name: 'Télécom Sud-Paris', region: 4, pepite: 16 },
 { _id: 138, name: 'Télécom Ecole de Mangement', region: 4, pepite: 16 },
 { _id: 139, name: 'ESTACA', region: 4, pepite: 16 },
-{ _id: 140, name: 'Sup Career', region: 4, pepite: 15 }]
+{ _id: 140, name: 'Sup Career', region: 4, pepite: 15 },
+{ _id: 141, name: 'Université de la Rochelle', region: 6, pepite: 2 },
+]
 
 module.exports = establishments

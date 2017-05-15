@@ -23,7 +23,7 @@ describe('api: establishment', () => {
         .get('/api/establishment')
         .expect(200)
         .end((err, res) => {
-          const expectedEstablishmentNumber = 139
+          const expectedEstablishmentNumber = 141
           if (err) {
             return done(err)
           }
