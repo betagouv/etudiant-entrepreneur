@@ -1,3 +1,5 @@
+const removeExcelReservedValues = require('../lib/helpers/csvExportHelper').removeExcelReservedValues
+
 module.exports = [
   '_id',
   'contact.firstname',
@@ -17,11 +19,36 @@ module.exports = [
   'project.step',
   'project.type',
   'project.name',
-  'project.summary',
-  'project.stepSummary',
-  'project.nextStepSummary',
-  'project.activitySummary',
-  'project.motiviation',
+  {
+    label: 'project.summary',
+    value: (row) => {
+      return removeExcelReservedValues(row.project.summary)
+    }
+  },
+  {
+    label: 'project.stepSummary',
+    value: (row) => {
+      return removeExcelReservedValues(row.project.stepSummary)
+    }
+  },
+  {
+    label: 'project.nextStepSummary',
+    value: (row) => {
+      return removeExcelReservedValues(row.project.nextStepSummary)
+    }
+  },
+  {
+    label: 'project.activitySummary',
+    value: (row) => {
+      return removeExcelReservedValues(row.project.activitySummary)
+    }
+  },
+  {
+    label: 'project.motiviation',
+    value: (row) => {
+      return removeExcelReservedValues(row.project.motiviation)
+    }
+  },
   'project.status',
   'project.site',
   'project.status',
@@ -64,8 +91,12 @@ module.exports = [
   'profile.birthDate',
   'profile.birthPlace',
   'profile.nationality',
-  'profile.ine',
-  'profile.motivation',
+  'profile.ine', {
+    label: 'profile.motiviation',
+    value: (row) => {
+      return removeExcelReservedValues(row.profile.motiviation)
+    }
+  },
   'profile.address',
   'profile.cp',
   'profile.city',
