@@ -2,6 +2,7 @@ const removeExcelReservedValues = require('../lib/helpers/csvExportHelper').remo
 
 module.exports = [
   '_id',
+  'contact.schoolYear',
   'contact.firstname',
   'contact.name',
   'contact.email',
