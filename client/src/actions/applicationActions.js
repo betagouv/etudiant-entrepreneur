@@ -1,8 +1,8 @@
 import applicationApi from '../api/applicationApi'
-import { loadContactSuccess, } from './contactActions'
+import { loadContactSuccess, copyContactSuccess } from './contactActions'
 import { loadProjectSuccess } from './projectActions'
 import { loadPepiteSuccess } from './pepiteActions'
-import { loadProfileSuccess } from './profileActions'
+import { loadProfileSuccess, copyProfileSuccess } from './profileActions'
 import { loadCareerSuccess } from './careerActions'
 import { loadCommitteeAnswerSuccess, applicationToCommitteeAnswer } from './committeeAnswerActions'
 import * as types from './actionTypes'
@@ -45,6 +45,31 @@ export function loadApplication(id) {
       if (application.career) {
         dispatch(loadCareerSuccess(application.career))
       }
+      return application
+    }).catch(error => {
+      throw (error)
+    })
+  }
+}
+
+export function copyApplication(id) {
+  return dispatch => {
+    return applicationApi.getApplication(id).then(application => {
+      dispatch(copyContactSuccess(application.contact))
+      dispatch(loadCommitteeAnswerSuccess(applicationToCommitteeAnswer(application)))
+      if (application.project) {
+        dispatch(loadProjectSuccess(application.project))
+      }
+      if (application.pepite) {
+        dispatch(loadPepiteSuccess(application.pepite))
+      }
+      if (application.profile) {
+        dispatch(copyProfileSuccess(application.profile))
+      }
+      if (application.career) {
+        dispatch(loadCareerSuccess(application.career))
+      }
+      return application
     }).catch(error => {
       throw (error)
     })

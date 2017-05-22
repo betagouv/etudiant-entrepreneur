@@ -1,12 +1,14 @@
-import React, {PropTypes} from 'react'
+import React, { PropTypes } from 'react'
 import ContactForm from './ContactForm'
-import {connect} from 'react-redux'
-import {bindActionCreators} from 'redux'
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
 import * as contactActions from '../../../actions/contactActions'
+import * as applicationActions from '../../../actions/applicationActions'
 import * as errorsActions from '../../../actions/errorsActions'
-import {contactValidationConstraints} from './ContactValidationConstraints'
+import { contactValidationConstraints } from './ContactValidationConstraints'
 import Validation from '../../common/Validation'
-import {isEmptyObject} from '../../common/validationHelper.js'
+import { isEmptyObject } from '../../common/validationHelper.js'
+import RenewContainer from './RenewContainer'
 
 export class ContactPage extends React.Component {
   constructor(props, context) {
@@ -48,18 +50,26 @@ export class ContactPage extends React.Component {
     return this.setState({ errors })
   }
 
+  isRenewIdDisplayed() {
+    return (this.props.contact.isRenew == 'true')
+  }
+
   render() {
     return (
-      <ContactForm
-        contact={this.state.contact}
-        onChange={this.updateContactState}
-        errors={this.state.errors}/>
+      <div>
+        <ContactForm
+          contact={this.state.contact}
+          onChange={this.updateContactState}
+          errors={this.state.errors} />
+        {this.isRenewIdDisplayed() && <RenewContainer
+          copyApplication={this.props.applicationActions.copyApplication}
+          isRenew={this.props.contact.isRenew} />}
+      </div>
     )
   }
 }
 
 function mapStateToProps(state, ownProps) {
-
   return {
     errors: state.errors.contact,
     contact: state.contact
@@ -69,6 +79,7 @@ function mapStateToProps(state, ownProps) {
 function mapDispatchToProps(dispatch) {
   return {
     actions: bindActionCreators(contactActions, dispatch),
+    applicationActions: bindActionCreators(applicationActions, dispatch),
     errorsActions: bindActionCreators(errorsActions, dispatch)
   }
 }
@@ -76,6 +87,7 @@ function mapDispatchToProps(dispatch) {
 ContactPage.propTypes = {
   contact: PropTypes.object.isRequired,
   actions: PropTypes.object.isRequired,
+  applicationActions: PropTypes.object.isRequired,
   errorsActions: PropTypes.object.isRequired,
   errors: PropTypes.object.isRequired
 }
