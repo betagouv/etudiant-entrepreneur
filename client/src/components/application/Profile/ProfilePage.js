@@ -13,7 +13,6 @@ export class ProfilePage extends React.Component {
     super(props, context)
     this.updateProfileState = this.updateProfileState.bind(this)
     this.updateProfileDate = this.updateProfileDate.bind(this)
-    this.onProfileDateInit = this.onProfileDateInit.bind(this)
     this.profileValidation = new Validation(profileValidationConstraints)
   }
 
@@ -44,11 +43,6 @@ export class ProfilePage extends React.Component {
     }
   }
 
-  onProfileDateInit(dateField) {
-    const rawBirthdate = new Moment.utc(this.props.profile.birthDate).format('DDMMYYYY')
-    dateField.setRawValue(rawBirthdate)
-  }
-
   render() {
     return (
       <ProfileForm
@@ -56,8 +50,7 @@ export class ProfilePage extends React.Component {
         contact={this.props.contact}
         onChange={this.updateProfileState}
         errors={this.props.errors}
-        onDateChange={this.updateProfileDate}
-        onDateInit={this.onProfileDateInit} />
+        onDateChange={this.updateProfileDate} />
     )
   }
 }

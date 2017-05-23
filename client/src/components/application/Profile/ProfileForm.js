@@ -8,8 +8,9 @@ import Textarea from 'react-textarea-autosize'
 import { calendarProps } from '../../common/calendarHelper'
 import { getUniversityYear } from '../../common/yearHelper'
 import { countries } from '../../common/ressources/countries'
+import Moment from 'moment'
 
-const ProfileForm = ({profile, contact, errors, onChange, onDateChange, onDateInit}) => {
+const ProfileForm = ({profile, contact, errors, onChange, onDateChange}) => {
   return (
     <form>
       <FormGroup className="required">
@@ -47,7 +48,7 @@ const ProfileForm = ({profile, contact, errors, onChange, onDateChange, onDateIn
             datePattern: ['d', 'm', 'Y']
           }}
           onChange={onDateChange}
-          onInit={onDateInit} />
+          value={new Moment.utc(profile.birthDate).format('DDMMYYYY')} />
         </ValidatedComponent>
       </FormGroup>
       <FormGroup className="required">
@@ -156,7 +157,6 @@ ProfileForm.propTypes = {
   contact: PropTypes.object.isRequired,
   onChange: PropTypes.func.isRequired,
   onDateChange: PropTypes.func.isRequired,
-  onDateInit: PropTypes.func.isRequired,
   errors: PropTypes.object
 }
 
