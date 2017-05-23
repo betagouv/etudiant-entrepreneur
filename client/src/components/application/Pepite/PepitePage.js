@@ -1,11 +1,11 @@
-import React, {PropTypes} from 'react'
+import React, { PropTypes } from 'react'
 import PepiteForm from './PepiteForm'
-import {connect} from 'react-redux'
-import {bindActionCreators} from 'redux'
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
 import * as pepiteActions from '../../../actions/pepiteActions'
 import * as errorsActions from '../../../actions/errorsActions'
 import Validation from '../../common/Validation'
-import {pepiteValidationConstraints} from './PepiteValidationConstraints'
+import { pepiteValidationConstraints } from './PepiteValidationConstraints'
 
 class PepitePage extends React.Component {
   constructor(props, context) {
@@ -14,8 +14,12 @@ class PepitePage extends React.Component {
       pepite: Object.assign({}, props.pepite),
       contact: Object.assign({}, props.contact),
       errors: Object.assign({}, props.errors),
+      regions: [],
+      establishments: [],
+      pepites: []
     }
     this.updatePepiteState = this.updatePepiteState.bind(this)
+    this.updateEstablishment = this.updateEstablishment.bind(this)
     this.pepiteValidation = new Validation(pepiteValidationConstraints)
   }
 
@@ -27,12 +31,22 @@ class PepitePage extends React.Component {
 
   updatePepiteState(event) {
     const field = event.target.name
-    let pepite = this.state.pepite
+    const pepite = this.state.pepite
     pepite[field] = event.target.value
     if (field == 'region') {
-      pepite.establishment = 0
+      pepite.establishment = '0'
+      pepite.pepite = '0'
     }
     this.validatePepiteField(field, event.target.value)
+    this.props.actions.updatePepite(pepite)
+    return this.setState({ pepite })
+  }
+
+  updateEstablishment(establishment) {
+    const pepite = this.state.pepite
+    pepite.establishment = establishment._id.toString()
+    pepite.pepite = establishment.pepite.toString()
+    this.validatePepiteField('pepite', pepite.pepite)
     this.props.actions.updatePepite(pepite)
     return this.setState({ pepite })
   }
@@ -53,7 +67,12 @@ class PepitePage extends React.Component {
         pepite={this.state.pepite}
         contact={this.state.contact}
         onChange={this.updatePepiteState}
-        errors={this.state.errors}/>
+        onEstablishmentChange={this.updateEstablishment}
+        errors={this.state.errors}
+        regions={this.state.regions}
+        establishments={this.state.establishments}
+        pepites={this.state.pepites}
+      />
     )
   }
 }

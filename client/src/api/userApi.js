@@ -1,6 +1,4 @@
 import axios from 'axios'
-// eslint-disable-next-line no-undef
-axios.defaults.baseURL = API_URI
 
 class userApi {
   static loginUser(user) {

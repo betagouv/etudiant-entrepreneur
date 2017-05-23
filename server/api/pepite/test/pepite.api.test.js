@@ -26,7 +26,7 @@ describe('api: pepite', () => {
           if (err) {
             return done(err)
           }
-          expect(res.body.length).toEqual(28, 'Invalid number of PEPITE')
+          expect(res.body.length).toEqual(29, 'Invalid number of PEPITE')
           done()
         })
     })

@@ -1,0 +1,18 @@
+.card-background {
+  text-align: center;
+}
+
+.card-icon {
+  font-size: 3em;
+}
+
+.panel.panel-disabled {
+  border-color: #fbfcfc;
+  cursor: not-allowed;
+}
+
+.panel-disabled > .panel-heading {
+  color: #e4e8e8;
+  background-color: #fbfcfc;
+  border-color: #fbfcfc;
+}

@@ -1,12 +1,12 @@
-import React, {PropTypes} from 'react'
+import React, { PropTypes } from 'react'
 import Header from './header/Header.js'
 
 class App extends React.Component {
-  componentDidMount() {}
+  componentDidMount() { }
   render() {
     return (
-      <div className="container fill">
-        <Header/>
+      <div>
+        <Header />
         {this.props.children}
       </div>
     )

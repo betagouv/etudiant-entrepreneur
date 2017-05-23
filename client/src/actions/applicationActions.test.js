@@ -9,7 +9,7 @@ import configureMockStore from 'redux-mock-store'
 describe('Application Actions', () => {
   describe('loadApplicationSuccess', () => {
     it('should create a LOAD_APPLICATION_SUCCESS action', () => {
-      const application = { applicationId: 'test' }
+      const application = { id: 'test' }
       const expectedAction = {
         type: types.LOAD_APPLICATION_SUCCESS,
         application: application
@@ -17,13 +17,13 @@ describe('Application Actions', () => {
 
       const action = applicationActions.loadApplicationSuccess(application)
 
-      expect(action).toEqual(expectedAction)
+      expect(action).toContain(expectedAction)
     })
   })
 
   describe('updateApplicationSuccess', () => {
     it('should create a UPDATE_APPLICATION_SUCCESS action', () => {
-      const application = { applicationId: 'test' }
+      const application = { id: 'test' }
       const expectedAction = {
         type: types.UPDATE_APPLICATION_SUCCESS,
         application: application
@@ -31,7 +31,7 @@ describe('Application Actions', () => {
 
       const action = applicationActions.updateApplicationSuccess(application)
 
-      expect(action).toEqual(expectedAction)
+      expect(action).toContain(expectedAction)
     })
   })
 

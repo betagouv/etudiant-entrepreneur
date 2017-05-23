@@ -1,0 +1,43 @@
+
+.steps-row {
+  min-height: 40vh;
+}
+
+.step-icon {
+  font-size: 4em;
+}
+
+.step-text {
+  font-size: 30px;
+  min-height: 90px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0px;
+}
+
+.next-step-arrow {
+  font-size: 2em;
+}
+
+.next-steps-title {
+  min-height: 20vh;
+}
+
+#next-steps {
+  background-color: #ecf0f1;
+}
+
+@media(min-width:992px){
+  .steps-row {
+    display: flex;
+  }
+
+  .steps-row > * {
+   align-self: center;
+  }
+
+  .step-icon {
+    margin-top: 15px;
+  }
+}

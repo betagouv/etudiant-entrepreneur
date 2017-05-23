@@ -42,7 +42,7 @@ export class LoginPage extends React.Component {
       this.props.actions.loginUser(this.state.user)
         .then((user) => {
           toastr.success('Authentification réussie')
-          this.context.router.push('/pepite')
+          this.context.router.push(this.props.redirect)
         })
         .catch((err) => {
           toastr.error(err)
@@ -76,7 +76,10 @@ export class LoginPage extends React.Component {
 }
 
 function mapStateToProps(state, ownProps) {
-  return {}
+  const redirect = ownProps.location.query.redirect
+  return {
+    redirect: redirect ? redirect : '/pepite'
+  }
 }
 
 function mapDispatchToProps(dispatch) {
@@ -86,7 +89,8 @@ function mapDispatchToProps(dispatch) {
 }
 
 LoginPage.propTypes = {
-  actions: PropTypes.object.isRequired
+  actions: PropTypes.object.isRequired,
+  redirect: PropTypes.string.isRequired
 }
 LoginPage.contextTypes = {
   router: React.PropTypes.object.isRequired

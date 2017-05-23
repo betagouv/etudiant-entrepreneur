@@ -1,6 +1,5 @@
 import axios from 'axios'
-// eslint-disable-next-line no-undef
-axios.defaults.baseURL = API_URI
+import { getFilename } from './requestUtils'
 
 class applicationApi {
 
@@ -31,6 +30,19 @@ class applicationApi {
       })
   }
 
+  static updateCommitteeAnswer(id, committeAnswer, userToken) {
+    return axios.put('/committeeAnswer/' + id, committeAnswer,
+      {
+        'headers': {
+          'Authorization': `Bearer ${userToken}`
+        }
+      })
+      .then((res) => {
+        const applicationResponse = res.data
+        return (Object.assign({}, applicationResponse, { id: applicationResponse._id }))
+      })
+  }
+
   static sendApplication(id, application) {
     return axios.put('/application/' + id + '/send', application)
       .then((res) => {
@@ -48,6 +60,25 @@ class applicationApi {
       })
       .then((res) => {
         return res.data
+      })
+      .catch((err) => {
+        throw new Error(err)
+      })
+  }
+
+  static getAllPepiteApplicationsXls(pepiteId, userToken) {
+    return axios.get(`/pepite/${pepiteId}/application/xls`,
+      {
+        'headers': {
+          'Authorization': `Bearer ${userToken}`
+        }
+      })
+      .then((res) => {
+        return {
+          data: res.data,
+          type: res.headers['content-type'],
+          filename: getFilename(res.headers['content-disposition'])
+        }
       })
       .catch((err) => {
         throw new Error(err)

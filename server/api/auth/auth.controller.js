@@ -14,7 +14,7 @@ class AuthController {
       if (error) return res.status(401).json(error)
       if (!user) return res.status(404).json({ message: 'Something went wrong, please try again.' })
 
-      var token = auth.signToken(user._id, user.role)
+      var token = auth.signToken(user._id, user.role, user.email)
       res.json({ token: token })
     })(req, res, next)
   }

@@ -1,0 +1,27 @@
+.header-content {
+  text-align:center;
+  min-height: 80vh;
+  margin-bottom: 10px;
+}
+
+.header-content hr {
+  border-color: #337ab7;
+  border-width: 3px;
+  width: 15%;
+}
+
+.header-content a {
+  white-space: normal;
+  word-wrap: break-word;
+}
+
+.header-content p.header-sub-content {
+  font-size: 30px;
+}
+
+.vertical-align {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}

@@ -15,9 +15,13 @@
   <!-- Piwik -->
   <script type="text/javascript">
     var _paq = _paq || [];
-    var rewriteFilter = 'https://etudiant-entrepreneur.beta.gouv.fr/application/';
-    if (window.location.href.substring(0, rewriteFilter.length) === rewriteFilter) {
-      _paq.push(['setCustomUrl', rewriteFilter + 'secret']);
+    var applicationRewriteFilter = 'https://etudiant-entrepreneur.beta.gouv.fr/application/';
+    var committeeRewriteFilter = 'https://etudiant-entrepreneur.beta.gouv.fr/pepite/committeeAnswer/';
+    if (window.location.href.substring(0, applicationRewriteFilter.length) === applicationRewriteFilter) {
+      _paq.push(['setCustomUrl', applicationRewriteFilter + 'secret']);
+    }
+    if (window.location.href.substring(0, committeeRewriteFilter.length) === committeeRewriteFilter) {
+      _paq.push(['setCustomUrl', committeeRewriteFilter + 'secret']);
     }
     _paq.push(["setDomains", ["*.etudiant-entrepreneur.beta.gouv.fr"]]);
     _paq.push(['trackPageView']);

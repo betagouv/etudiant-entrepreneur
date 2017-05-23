@@ -1,4 +1,4 @@
-import React, {PropTypes} from 'react'
+import React, { PropTypes } from 'react'
 import toastr from 'toastr'
 import Multistep from '../common/MultiStep'
 import SavePage from './Save/SavePage'
@@ -11,10 +11,10 @@ import CareerPage from './Career/CareerPage'
 import ProfilePage from './Profile/ProfilePage'
 import { Modal } from 'react-bootstrap'
 import '../../styles/apply-form.css'
-import {isEmptyObject} from '../common/validationHelper'
+import { isEmptyObject } from '../common/validationHelper'
 
-import {connect} from 'react-redux'
-import {bindActionCreators} from 'redux'
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
 import * as errorsActions from '../../actions/errorsActions'
 import * as applicationActions from '../../actions/applicationActions'
 
@@ -57,16 +57,14 @@ class ApplicationPage extends React.Component {
   }
 
   getSteps() {
-    return (
-      [
-        { name: 'Mes Infos', title: 'Mes Informations', component: <ContactPage />, hasError: this.hasError('contact') },
-        { name: 'Mon Équipe', title: 'Mon Équipe', component: <TeamPage />, hasError: this.hasError('team') },
-        { name: 'Mon Projet', title: 'Mon Projet', component: <ProjectPage />, hasError: this.hasError('project') },
-        { name: 'Mon PEPITE', title: 'Mon PEPITE', component: <PepitePage />, hasError: this.hasError('pepite') },
-        { name: 'Mon Parcours', title: 'Mon Parcours', component: <CareerPage />, hasError: this.hasError('bac') || this.hasError('diploma') || this.hasError('tutor') },
-        { name: 'Mon Profil', title: 'Mon Profil', component: <ProfilePage />, hasError: this.hasError('profile') },
-        { name: 'Envoi', title: 'Envoi', component: <SendPage /> }
-      ]
+    return ([
+      { name: 'Mes Infos', title: 'Mes Informations', component: <ContactPage />, hasError: this.hasError('contact') },
+      { name: 'Mon Équipe', title: 'Mon Équipe', component: <TeamPage />, hasError: this.hasError('team') },
+      { name: 'Mon Projet', title: 'Mon Projet', component: <ProjectPage />, hasError: this.hasError('project') },
+      { name: 'Mon PEPITE', title: 'Mon PEPITE', component: <PepitePage />, hasError: this.hasError('pepite') },
+      { name: 'Mon Parcours', title: 'Mon Parcours', component: <CareerPage />, hasError: this.hasError('bac') || this.hasError('diploma') || this.hasError('tutor') },
+      { name: 'Mon Profil', title: 'Mon Profil', component: <ProfilePage />, hasError: this.hasError('profile') },
+      { name: 'Envoi', title: 'Envoi', component: <SendPage /> }]
     )
   }
 
@@ -84,7 +82,7 @@ class ApplicationPage extends React.Component {
   render() {
     return (
       <div>
-        <Multistep steps={this.getSteps()} save={this.openSave} canNavigate={this.canNavigate}/>
+        <Multistep steps={this.getSteps()} save={this.openSave} canNavigate={this.canNavigate} />
         <Modal show={this.state.isSaveShown} onHide={this.closeSave}>
           <Modal.Header>
             <Modal.Title>Sauvegarder mon formulaire</Modal.Title>

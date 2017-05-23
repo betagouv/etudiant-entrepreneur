@@ -1,5 +1,10 @@
 export default {
   application: {
+    status: ''
+  },
+  committeeAnswer: {
+    opinion: '',
+    status: ''
   },
   project: {
     name: '',
@@ -26,7 +31,8 @@ export default {
     email: '',
     phone: '',
     situation: '',
-    isRenew: ''
+    isRenew: '',
+    schoolYear: 2017
   },
   pepite: {
     region: 0,
@@ -66,6 +72,7 @@ export default {
   profile: {
     gender: '',
     situation: '',
+    askD2E: '',
     nationality: '',
     motivation: '',
     isPartTime: '',
@@ -86,6 +93,9 @@ export default {
     viadeo: '',
   },
   user: {
+    id: 0,
+    token: null,
+    username: null,
     isAuthenticated: false
   },
   errors: {
@@ -96,5 +106,7 @@ export default {
     profile: {},
     pepite: {},
     project: {}
-  }
+  },
+  committees: [],
+  nextCommittee: {}
 }

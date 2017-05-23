@@ -4,12 +4,8 @@ import RadioGroup from '../../common/RadioGroup'
 import ValidatedFormControl from '../../common/ValidatedFormControl'
 import {diplomas} from './diplomas'
 import {countries} from '../../common/ressources/countries'
-import {getDescYearList, getUniversityYear} from '../../common/yearHelper'
+import {getDescYearList, getCurrentUniversityYear, getCurrentYear, getUniversityYear} from '../../common/yearHelper'
 import EntrepreneurshipPanel from './EntrepreneurshipPanel'
-
-function getCurrentUniversityYear() {
-  return (getUniversityYear(new Date().getFullYear()))
-}
 
 function getLastDiplomaHeader(situation) {
   if (situation == 'student') {
@@ -18,7 +14,7 @@ function getLastDiplomaHeader(situation) {
   return ("Mon dernier diplôme")
 }
 
-const last70YearsList = getDescYearList(new Date().getFullYear(), 70)
+const last70YearsList = getDescYearList(getCurrentYear(), 70)
 
 const CareerForm = ({career, contact, tutorErrors, bacErrors, diplomaErrors, onTutorChange, onDiplomaChange, onBacChange, onEntrepreneurshipChange}) => {
   return (
@@ -132,7 +128,7 @@ const CareerForm = ({career, contact, tutorErrors, bacErrors, diplomaErrors, onT
         </FormGroup>
         <FormGroup className="required">
           <ControlLabel>Libellé de la formation / diplôme</ControlLabel>
-          <ValidatedFormControl name="name" type="text" placeholder="nom" onChange={onDiplomaChange} value={career.diploma.name} error={diplomaErrors.name}/>
+          <ValidatedFormControl name="name" type="text" placeholder="formation" onChange={onDiplomaChange} value={career.diploma.name} error={diplomaErrors.name}/>
         </FormGroup>
         <FormGroup>
           <ControlLabel>Dominante disciplinaire</ControlLabel>

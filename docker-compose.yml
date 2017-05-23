@@ -4,7 +4,7 @@ services:
   mongo:
     image: mongo
     ports:
-      - 27017
+      - 27018:27017
     networks:
       - back
   api:
@@ -19,6 +19,8 @@ services:
     environment:
       - SENDGRID_API_KEY=${SENDGRID_API_KEY}
       - CORS_ORIGIN=${CORS_ORIGIN}
+      - DEV_MAIL_USER=${DEV_MAIL_USER}
+      - DEV_MAIL_PASS=${DEV_MAIL_PASS}
     depends_on:
       - mongo
   seed:

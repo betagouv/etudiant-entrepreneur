@@ -1,6 +1,7 @@
 const express = require('express')
 const Controller = require('./application.controller')
 
+const auth = require('../auth/auth.service.js')
 var router = express.Router()
 
 module.exports = (options) => {
@@ -10,5 +11,6 @@ module.exports = (options) => {
   router.post('/', applicationController.createApplication)
   router.put('/:id', applicationController.updateApplication)
   router.put('/:id/send', applicationController.sendApplication)
+  router.get('/:id/certificate', auth.isAuthenticated(), applicationController.getApplicationCertificate)
   return router
 }

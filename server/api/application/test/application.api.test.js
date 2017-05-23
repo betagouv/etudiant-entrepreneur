@@ -1,7 +1,7 @@
 const supertest = require('supertest')
 const Server = require('../../server')
 const ApplicationModel = require('../application.model')
-const applicationData = require('../application.seed')
+const applicationData = require('./application.seed')
 const expect = require('expect')
 
 const authHelper = require('../../lib/testUtils/authHelper')
@@ -49,6 +49,7 @@ describe('api: application', () => {
     const savedApplication = {
       '_id': '88e155dd6decfe105d313b63',
       'contact': {
+        'schoolYear': 2016,
         'isRenew': 'true',
         'situation': 'student',
         'phone': '0643423333',
@@ -93,6 +94,7 @@ describe('api: application', () => {
   describe('When saving an application', () => {
     const validApplication = {
       contact: {
+        schoolYear: 2016,
         isRenew: 'true',
         situation: 'student',
         phone: '0643423333',
@@ -104,6 +106,7 @@ describe('api: application', () => {
 
     const missingMailApplication = {
       contact: {
+        schoolYear: 2016,
         isRenew: 'true',
         situation: 'student',
         phone: '0643423333',
@@ -195,6 +198,97 @@ describe('api: application', () => {
               return done(err)
             }
             expect(res.body.length).toBe(2)
+            done()
+          })
+      })
+    })
+  })
+
+  describe('When requesting /api/:id/application/send', () => {
+    before((done) => {
+      ApplicationModel.insertMany(applicationData, done)
+    })
+
+    after((done) => {
+      ApplicationModel.remove(done)
+    })
+
+    describe('When the application does not exist', () => {
+      it('should return a 404', (done) => {
+        supertest(app)
+          .put('/api/application/0edaaf484d50ad693d5abee4/send')
+          .expect(404, done)
+      })
+    })
+
+    describe('When the application has already been sent', () => {
+      it('should return a 400', (done) => {
+        supertest(app)
+          .put('/api/application/58370910e221d30010165435/send')
+          .expect(400, done)
+      })
+    })
+
+    describe('When the application has been saved', () => {
+      it('should return a 200', (done) => {
+        supertest(app)
+          .put('/api/application/9c9d6a6b832effc406059b15/send')
+          .expect(200, done)
+      })
+    })
+
+    describe('When the application has an invalid pepite number', () => {
+      it('should return a 500', (done) => {
+        supertest(app)
+          .put('/api/application/74cb70adcf551b6ed54460bc/send')
+          .expect(500)
+          .end((err, res) => {
+            if (err) {
+              return done(err)
+            }
+            expect(res.body).toEqual({ error: 'internal_server_error', reason: 'Le PEPITE avec l\'id: 42 n\'existe pas' })
+            return done()
+          })
+      })
+    })
+  })
+
+  describe('When requesting /api/application/:id/certificate', () => {
+    let validToken = {}
+
+    before((done) => {
+      ApplicationModel.insertMany(applicationData, () => authHelper.getToken(app, 'peel@univ-lorraine.fr', 'test', validToken, done))
+    })
+
+    after((done) => {
+      ApplicationModel.remove(done)
+    })
+
+    describe('When an invalidtoken is provided', () => {
+      it('should return a 401 error', (done) => {
+        supertest(app)
+          .get('/api/application/someId/certificate?access_token=invalidToken')
+          .expect(401, done)
+      })
+    })
+
+    describe('When the application does not exist', () => {
+      it('should give a 404 erorr', () => {
+        supertest(app)
+          .get(`/api/application/someId/certificate?access_token=${validToken.token}`)
+          .expect(404)
+      })
+    })
+
+    describe('When the PEPITE has an application', () => {
+      it('should give the applicant attestation', (done) => {
+        supertest(app)
+          .get(`/api/application/58370910e221d30010165435/certificate?access_token=${validToken.token}`)
+          .expect(200)
+          .end((err) => {
+            if (err) {
+              return done(err)
+            }
             done()
           })
       })

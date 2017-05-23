@@ -12,5 +12,6 @@ module.exports = (options) => {
   router.get('/', pepiteController.getAll)
   router.get('/:id(\\d+)', pepiteController.getPepite)
   router.get('/:id(\\d+)/application', auth.isAuthenticated(), applicationController.getPepiteApplications)
+  router.get('/:id(\\d+)/application/xls', auth.isAuthenticated(), applicationController.getPepiteApplicationsXls)
   return router
 }

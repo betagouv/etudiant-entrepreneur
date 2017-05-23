@@ -3,6 +3,7 @@ import path from 'path'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
 import autoprefixer from 'autoprefixer'
 
+/*global API_URI:true*/
 const GLOBALS = {
   'process.env.NODE_ENV': JSON.stringify('development'), // Tells React to build in either dev or prod modes. https://facebook.github.io/react/downloads.html (See bottom)
   __DEV__: true,
