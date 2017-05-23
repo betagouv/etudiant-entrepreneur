@@ -1,11 +1,11 @@
-import React, {PropTypes} from 'react'
+import React, { PropTypes } from 'react'
 import { Panel } from 'react-bootstrap'
 import EntrepreneurshipList from './EntrepreneurshipList'
 import EntrepreneurshipAddForm from './EntrepreneurshipAddForm'
-import {entrepreneurshipValidationConstraints} from './EntrepreneurshipValidationConstraints'
+import { entrepreneurshipValidationConstraints } from './EntrepreneurshipValidationConstraints'
 import ButtonWrapperComponent from '../../common/ButtonWrapperComponent'
 import Validation from '../../common/Validation'
-import {isEmptyObject} from '../../common/validationHelper.js'
+import { isEmptyObject } from '../../common/validationHelper.js'
 
 class EntrepreneurshipPanel extends React.Component {
   constructor(props, context) {
@@ -23,6 +23,12 @@ class EntrepreneurshipPanel extends React.Component {
     this.onEntrepreneurshipAdded = this.onEntrepreneurshipAdded.bind(this)
     this.updateNewEntrepreneurshipState = this.updateNewEntrepreneurshipState.bind(this)
     this.newEntrepreneurshipValidation = new Validation(entrepreneurshipValidationConstraints)
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.entrepreneurship) {
+      this.setState({ entrepreneurship: [...nextProps.entrepreneurship] })
+    }
   }
 
   onEntrepreneurshipDelete(deletedEntrepreneurship) {
@@ -72,13 +78,13 @@ class EntrepreneurshipPanel extends React.Component {
   render() {
     return (
       <Panel bsStyle="info" header="Mes expériences entrepreneuriales">
-        <EntrepreneurshipList entrepreneurship={this.state.entrepreneurship} onEntrepreneurshipDelete={this.onEntrepreneurshipDelete}/>
+        <EntrepreneurshipList entrepreneurship={this.state.entrepreneurship} onEntrepreneurshipDelete={this.onEntrepreneurshipDelete} />
         <ButtonWrapperComponent showButtonText="J'ajoute mes expériences en entrepreunariat" isChildrenShown={this.state.entrepreneurship.length != 0} glyph="plus">
           <EntrepreneurshipAddForm
-          onChange={this.updateNewEntrepreneurshipState}
-          newEntrepreneurship={this.state.newEntrepreneurship}
-          onEntrepreneurshipAdded={this.onEntrepreneurshipAdded}
-          errors={this.state.errors}/>
+            onChange={this.updateNewEntrepreneurshipState}
+            newEntrepreneurship={this.state.newEntrepreneurship}
+            onEntrepreneurshipAdded={this.onEntrepreneurshipAdded}
+            errors={this.state.errors} />
         </ButtonWrapperComponent>
       </Panel>
     )
