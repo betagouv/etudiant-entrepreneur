@@ -10,6 +10,7 @@ const bodyParser = require('body-parser')
 const formatError = require('./lib/middlewares/formatError')
 const mongoose = require('mongoose')
 var passport = require('passport')
+const Raven = require('raven')
 
 const config = require('./config')
 
@@ -37,12 +38,16 @@ function Server(options) {
     })
   }
 
+  Raven.config(config.sentry.dsn).install()
+
   var logger = options.logger
   var app = express()
   app.set('port', options.port)
   app.set('json spaces', 2)
   app.set('logger', logger)
   app.disable('x-powered-by')
+
+  app.use(Raven.requestHandler())
 
   app.use(passport.initialize())
 
@@ -73,6 +78,9 @@ function Server(options) {
   app.use((req, res, next) => {
     next(new StandardError('no route for URL ' + req.url, { code: 404 }))
   })
+
+  app.use(Raven.errorHandler())
+
   app.use(formatError)
 
   this.getApp = () => app

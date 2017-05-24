@@ -44,6 +44,7 @@
     "passport": "0.3.2",
     "passport-local": "1.0.0",
     "pdfmake": "0.1.26",
+    "raven": "2.0.1",
     "standard-error": "1.1.0",
     "string": "3.3.1"
   },

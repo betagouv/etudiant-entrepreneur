@@ -19,6 +19,7 @@ services:
     environment:
       - SENDGRID_API_KEY=${SENDGRID_API_KEY}
       - CORS_ORIGIN=${CORS_ORIGIN}
+      - SENTRY_DSN=${SENTRY_DSN}
       - DEV_MAIL_USER=${DEV_MAIL_USER}
       - DEV_MAIL_PASS=${DEV_MAIL_PASS}
     depends_on:

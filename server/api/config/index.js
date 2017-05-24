@@ -20,6 +20,10 @@ const all = {
     session: process.env.SESSION_SECRET || 'ssshhhhh'
   },
 
+  sentry: {
+    dsn: process.env.SENTRY_DSN || ''
+  },
+
   cors: {
     origin: process.env.CORS_ORIGIN || '*'
   }
