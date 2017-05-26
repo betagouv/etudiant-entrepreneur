@@ -8,3 +8,7 @@ export function updateCareer(career) {
   return { type: types.UPDATE_CAREER, career }
 }
 
+export function updateStudentCareer(schoolYear) {
+  return { type: types.UPDATE_STUDENT_CAREER, schoolYear }
+}
+

@@ -5,6 +5,7 @@ import { bindActionCreators } from 'redux'
 import * as contactActions from '../../../actions/contactActions'
 import * as applicationActions from '../../../actions/applicationActions'
 import * as errorsActions from '../../../actions/errorsActions'
+import * as careerActions from '../../../actions/careerActions'
 import { contactValidationConstraints } from './ContactValidationConstraints'
 import Validation from '../../common/Validation'
 import { isEmptyObject } from '../../common/validationHelper.js'
@@ -37,6 +38,9 @@ export class ContactPage extends React.Component {
     const contact = this.state.contact
     contact[field] = event.target.value
     this.validateContactField(field, event.target.value)
+    if (field === 'situation' && event.target.value === 'student') {
+      this.props.careerActions.updateStudentCareer(contact.schoolYear)
+    }
     this.props.actions.updateContact(contact)
   }
 
@@ -80,6 +84,7 @@ function mapDispatchToProps(dispatch) {
   return {
     actions: bindActionCreators(contactActions, dispatch),
     applicationActions: bindActionCreators(applicationActions, dispatch),
+    careerActions: bindActionCreators(careerActions, dispatch),
     errorsActions: bindActionCreators(errorsActions, dispatch)
   }
 }
@@ -88,6 +93,7 @@ ContactPage.propTypes = {
   contact: PropTypes.object.isRequired,
   actions: PropTypes.object.isRequired,
   applicationActions: PropTypes.object.isRequired,
+  careerActions: PropTypes.object.isRequired,
   errorsActions: PropTypes.object.isRequired,
   errors: PropTypes.object.isRequired
 }

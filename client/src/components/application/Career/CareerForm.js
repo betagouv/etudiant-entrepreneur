@@ -111,7 +111,7 @@ const CareerForm = ({career, contact, tutorErrors, bacErrors, diplomaErrors, onT
         </FormGroup>
       </Panel>
       <Panel bsStyle="primary" header={getLastDiplomaHeader(contact.situation)}>
-        <FormGroup className="required">
+        <FormGroup className={(contact.situation == 'student') ? 'hidden' : 'required'}>
           <ControlLabel>Année universitaire</ControlLabel>
           <ValidatedFormControl name="year" componentClass="select" onChange={onDiplomaChange} value={career.diploma.year} error={diplomaErrors.year}>
             <option value="" disabled>Sélectionner</option>
