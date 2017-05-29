@@ -1,7 +1,7 @@
 import * as types from '../actions/actionTypes'
 import initialState from './initialState'
 
-export default function committeeAnswerReducer(state = initialState.committees, action) {
+export default function committeeReducer(state = initialState.committees, action) {
   switch (action.type) {
     case types.LOAD_COMMITTEES_SUCCESS:
       return action.committees
