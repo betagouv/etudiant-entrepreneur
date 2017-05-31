@@ -11,7 +11,7 @@ import autoprefixer from 'autoprefixer'
 const GLOBALS = {
   'process.env.NODE_ENV': JSON.stringify('production'),
   __DEV__: false,
-  API_URI: process.env.API_URI ? JSON.stringify(process.env.API_URI) : JSON.stringify('https://etudiant-entrepreneur.herokuapp.com/api')
+  API_URI: process.env.API_URI ? JSON.stringify(process.env.API_URI) : JSON.stringify('https://etudiant-entrepreneur.scalingo.io/api')
 }
 
 export default {

@@ -135,7 +135,10 @@ const CguPage = () => {
 
         <p>
           <a href="https://beta.gouv.fr" target="_blank">Incubateur de services numériques</a> du <a href="http://www.modernisation.gouv.fr" target="_blank">Secrétariat général pour la modernisation de l'action publique</a> (SGMAP).
-          <small>39–43 quai André-Citroën, 75015&nbsp;Paris. Téléphone&nbsp;: +33&nbsp;1&nbsp;42&nbsp;75&nbsp;80&nbsp;00.</small>
+          <small>39–43 quai André-Citroën</small>
+          <small>75015&nbsp;Paris</small>
+          <small>France</small>
+          <small>Téléphone&nbsp;: +33&nbsp;1&nbsp;42&nbsp;75&nbsp;80&nbsp;00</small>
         </p>
         <p>
           Directeur de la publication&nbsp;: directeur interministériel du numérique et du système d’information et de communication de l’État, adjoint à la secrétaire générale pour la modernisation de l’action publique.
@@ -145,9 +148,11 @@ const CguPage = () => {
         <h3>Hébergeur</h3>
 
         <p>
-          Le site est hébergé par la société <a href="https://www.heroku.com/" target="_blank">Heroku</a> Europe
-          <small>650 7th St, San Francisco, CA, 94103, United States</small>
-          <small>Téléphone&nbsp;: +44&nbsp;800&nbsp;808-5158</small>
+          Le site est hébergé par la société <a href="https://scalingo.com/" target="_blank">Scalingo SAS </a>
+          <small>15 avenue du Rhin</small>
+          <small>67100&nbsp;Strasbourg</small>
+          <small>France</small>
+          <small>Téléphone&nbsp;: +33&nbsp;6&nbsp;75&nbsp;20&nbsp;41&nbsp;30</small>
         </p>
       </article>
       <Footer />
