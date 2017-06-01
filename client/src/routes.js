@@ -9,6 +9,7 @@ import PepiteHomePage from './components/pepite/PepiteHomePage'
 import CommitteeAnswerPage from './components/pepite/Applicant/CommitteeAnswer/CommitteeAnswerPage'
 import ApplicantPage from './components/pepite/Applicant/ApplicantPage'
 import CommitteePage from './components/pepite/Committee/CommitteePage'
+import StudentPage from './components/pepite/Student/StudentPage'
 import CguPage from './components/cgu/CguPage'
 import StatPage from './components/stat/StatPage'
 import NotFound from './components/error/NotFound'
@@ -26,6 +27,7 @@ export default (
       <Route path="pepite" component={PepiteHomePage} />
       <Route path="pepite/applicant" component={ApplicantPage} />
       <Route path="pepite/committee" component={CommitteePage} />
+      <Route path="pepite/student" component={StudentPage} />
       <Route path="pepite/committeeAnswer/:id" component={CommitteeAnswerPage} />
     </Route>
     <Route path="*" component={NotFound} />

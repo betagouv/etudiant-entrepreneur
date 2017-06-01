@@ -9,6 +9,7 @@ import profile from './profileReducer'
 import user from './userReducer'
 import committeeAnswer from './committeeAnswerReducer'
 import committees from './committeeReducer'
+import students from './studentReducer'
 import nextCommittee from './nextCommitteeReducer'
 
 const rootReducer = combineReducers({
@@ -22,7 +23,8 @@ const rootReducer = combineReducers({
   errors,
   committeeAnswer,
   committees,
-  nextCommittee
+  nextCommittee,
+  students
 })
 
 export default rootReducer

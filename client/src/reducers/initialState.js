@@ -108,5 +108,6 @@ export default {
     project: {}
   },
   committees: [],
-  nextCommittee: {}
+  nextCommittee: {},
+  students: []
 }
