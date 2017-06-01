@@ -65,8 +65,9 @@ const CguPage = () => {
           <small>Le numéro de déclaration est 2010920v0.</small>
         </p>
         <p>
-          Nous conservons ces données pendant 1 an à compter de l’envoi de la candidature pour analyser les usages, mesurer l'impact et la diffusion territoriale du service Étudiant Entrepreneur, et améliorer le service.
+          Nous conservons ces données pendant 2 an à compter de l’envoi de la candidature pour analyser les usages, mesurer l'impact et la diffusion territoriale du service Étudiant Entrepreneur, et améliorer le service.
           <small>Ces données nous permettent par exemple de déterminer les options les plus pertinentes à vous proposer en fonction des usages les plus fréquents.</small>
+          <small>Elles vous permettent également de renouveler votre candidature en copiant des informations de votre candidature précédente.</small>
         </p>
         <p>
           Vous avez un droit d'accès, de rectification et de suppression de vos données. Pour l'exercer, <a href="mailto:contact@etudiant-entrepreneur.beta.gouv.fr">envoyez-nous un courriel</a> en précisant vos noms et prénoms ainsi que l’adresse courriel renseigné lors du dépôt de votre candidature.
