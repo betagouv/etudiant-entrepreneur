@@ -22,7 +22,7 @@ const CguPage = () => {
           Ce service vous permet également de rester en lien avec des parties prenantes (tuteurs praticiens, pédagogiques et structures d’accompagnement) chargées d’appuyer l’étudiant dans son projet.
         </p>
         <p>
-          Le <a href="https://github.com/sgmap/etudiant-entrepreneur" target="_blank">code du logiciel</a> est libre, sous lience AGPL, et peut donc être vérifié et amélioré par tout·e·s.
+          Le <a href="https://github.com/sgmap/etudiant-entrepreneur" target="_blank">code du logiciel</a> est libre, sous licence AGPL, et peut donc être vérifié et amélioré par tout·e·s.
         </p>
 
 
@@ -70,7 +70,7 @@ const CguPage = () => {
           <small>Elles vous permettent également de renouveler votre candidature en copiant des informations de votre candidature précédente.</small>
         </p>
         <p>
-          Vous avez un droit d'accès, de rectification et de suppression de vos données. Pour l'exercer, <a href="mailto:contact@etudiant-entrepreneur.beta.gouv.fr">envoyez-nous un courriel</a> en précisant vos noms et prénoms ainsi que l’adresse courriel renseigné lors du dépôt de votre candidature.
+          Vous avez un droit d'accès, de rectification et de suppression de vos données. Pour l'exercer, <a href="mailto:contact@etudiant-entrepreneur.beta.gouv.fr">envoyez-nous un courriel</a> en précisant vos noms et prénoms ainsi que l’adresse courriel renseignée lors du dépôt de votre candidature.
           <small>Comme nous ne demandons pas la création de compte, seuls ces éléments peuvent nous permettre de retrouver vos candidatures.</small>
         </p>
         <p>
