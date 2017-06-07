@@ -12,10 +12,12 @@ export class RenewContainer extends React.Component {
     this.state = {
       oldLink: '',
       error: '',
-      renewId: ''
+      renewId: '',
+      isVisible: false
     }
     this.onOldLinkChange = this.onOldLinkChange.bind(this)
     this.onCopyApplicationClick = this.onCopyApplicationClick.bind(this)
+    this.toggleVisibility = this.toggleVisibility.bind(this)
   }
 
   onOldLinkChange(event) {
@@ -28,7 +30,7 @@ export class RenewContainer extends React.Component {
     const regex = /^(.*\/application\/)?([a-f\d]{24})$/i
     const match = regex.exec(oldLink)
     if (match && match[2]) {
-      this.setState({ error: '', renewId: match[2]  })
+      this.setState({ error: '', renewId: match[2] })
     } else {
       this.setState({ error: 'Ton lien n\'est pas valide', renewId: '' })
     }
@@ -48,11 +50,18 @@ export class RenewContainer extends React.Component {
       })
   }
 
+  toggleVisibility(event) {
+    event.preventDefault()
+    this.setState({ isVisible: !this.state.isVisible })
+  }
+
   render() {
     return (
       <RenewForm
+        isVisible={this.state.isVisible}
         onOldLinkChange={this.onOldLinkChange}
         onCopyApplicationClick={this.onCopyApplicationClick}
+        toggleVisibility={this.toggleVisibility}
         oldLink={this.state.oldLink}
         error={this.state.error} />
     )
