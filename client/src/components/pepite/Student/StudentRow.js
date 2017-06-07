@@ -7,14 +7,12 @@ import { Link } from 'react-router'
 const StudentRow = ({ student, userToken }) => {
   return (
     <tr>
-      <td>{student.contact.schoolYear}</td>
       <td>{student.contact.name}</td>
       <td>{student.contact.firstname}</td>
       <td>{student.contact.email}</td>
       <td>{student.career.diploma.establishment}</td>
       <td><GraduationLabel application={student} /></td>
       <td><a className="btn btn-info btn-xs" target="_blank" href={`/application/${student._id}/print`}><Glyphicon glyph="print" /></a></td>
-      <td><Link to={`/pepite/committeeAnswer/${student._id}`} className="btn btn-info btn-xs"><Glyphicon glyph="edit" /></Link></td>
       <td>
         <a
           className="btn btn-primary btn-xs"

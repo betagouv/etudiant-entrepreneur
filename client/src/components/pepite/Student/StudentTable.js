@@ -8,14 +8,12 @@ const StudentTable = ({ students, userToken, sort }) => {
     <table className="table table-hover">
       <thead>
         <tr>
-          <TableHeader onSort={sort} field="contact.schoolYear">Promotion</TableHeader>
           <TableHeader onSort={sort} field="contact.name">Nom</TableHeader>
           <TableHeader onSort={sort} field="contact.firstname">Prénom</TableHeader>
           <TableHeader onSort={sort} field="contact.email">Email</TableHeader>
           <TableHeader onSort={sort} field="career.diploma.establishment">Établissement</TableHeader>
           <th>Statut</th>
           <th>Version imprimable</th>
-          <th>Comité d'engagement</th>
           <th>Attestation</th>
         </tr>
       </thead>
