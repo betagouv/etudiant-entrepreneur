@@ -62,7 +62,7 @@ const CguPage = () => {
         </p>
         <p>
           Ces données à caractère personnel ont fait l’objet d’une déclaration auprès de la CNIL.
-          <small>Le numéro de déclaration est 2010920v0.</small>
+          <small>Le numéro de déclaration est 2010920v1.</small>
         </p>
         <p>
           Nous conservons ces données pendant 2 an à compter de l’envoi de la candidature pour analyser les usages, mesurer l'impact et la diffusion territoriale du service Étudiant Entrepreneur, et améliorer le service.
