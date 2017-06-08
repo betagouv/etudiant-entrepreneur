@@ -12,7 +12,7 @@ const StudentRow = ({ student, userToken }) => {
       <td>{student.contact.email}</td>
       <td>{student.career.diploma.establishment}</td>
       <td><GraduationLabel application={student} /></td>
-      <td><a className="btn btn-info btn-xs" target="_blank" href={`/application/${student._id}/print`}><Glyphicon glyph="print" /></a></td>
+      <td><a className="btn btn-info btn-xs" target="_blank" href={`/application/${student._id}`}><Glyphicon glyph="file" /></a></td>
       <td>
         <a
           className="btn btn-primary btn-xs"

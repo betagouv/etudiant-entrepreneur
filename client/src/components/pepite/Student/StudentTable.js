@@ -13,7 +13,7 @@ const StudentTable = ({ students, userToken, sort }) => {
           <TableHeader onSort={sort} field="contact.email">Email</TableHeader>
           <TableHeader onSort={sort} field="career.diploma.establishment">Établissement</TableHeader>
           <th>Statut</th>
-          <th>Version imprimable</th>
+          <th>Candidature</th>
           <th>Attestation</th>
         </tr>
       </thead>
