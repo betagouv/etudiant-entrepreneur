@@ -24,7 +24,7 @@ const RenewForm = ({ isVisible, oldLink, error, onOldLinkChange, onCopyApplicati
             <HelpBlock>Retrouve ce lien dans le mail de ta candidature de l'année passée</HelpBlock>
           </FormGroup>
           <ButtonToolbar>
-            <button type="button" className="btn btn-success" disabled={!oldLink && !!error} onClick={onCopyApplicationClick}>Copier ma candidature</button>
+            <button type="button" className="btn btn-success" disabled={!oldLink || !!error} onClick={onCopyApplicationClick}>Copier ma candidature</button>
             <button type="button" className="btn btn-warning" onClick={toggleVisibility}>Je n'ai pas le lien</button>
           </ButtonToolbar>
         </form>
