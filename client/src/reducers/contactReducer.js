@@ -9,6 +9,7 @@ export default function contactReducer(state = initialState.contact, action) {
     case types.COPY_CONTACT_SUCCESS:
       delete action.contact.schoolYear
       delete action.contact.situation
+      delete action.contact.isRenew
       return Object.assign({}, state, action.contact)
     default:
       return state
