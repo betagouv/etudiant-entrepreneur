@@ -1,16 +1,14 @@
-import validator from 'validator'
-
-function isNotEmpty(value) {
-  return (value && value.length && value.trim())
+function isSet(value) {
+  return (value && Number(value))
 }
 
 export const pepiteValidationConstraints = {
   pepite: {
-    isValid: isNotEmpty,
+    isValid: isSet,
     errorMessage: "obligatoire"
   },
   region: {
-    isValid: isNotEmpty,
+    isValid: isSet,
     errorMessage: "obligatoire"
   }
 }
