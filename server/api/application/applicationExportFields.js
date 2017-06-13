@@ -77,8 +77,12 @@ module.exports = [
   'career.bac.city',
   'career.diploma.city',
   'career.diploma.establishment',
-  'career.diploma.sector',
-  'career.diploma.name',
+  'career.diploma.sector', {
+    label: 'career.diploma.name',
+    value: (row) => {
+      return removeExcelReservedValues(row.career.diploma.name)
+    }
+  },
   'career.diploma.type',
   'career.diploma.year',
   'profile.gender',
