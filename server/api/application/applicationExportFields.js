@@ -83,6 +83,7 @@ module.exports = [
   'career.diploma.year',
   'profile.gender',
   'profile.situation',
+  'profile.askD2E',
   'profile.birthDate',
   'profile.birthPlace',
   'profile.nationality',
