@@ -51,8 +51,6 @@ module.exports = [
     }
   },
   'project.status',
-  'project.site',
-  'project.status',
   'project.siret',
   'project.sector',
   'project.otherSector',
