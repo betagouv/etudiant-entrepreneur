@@ -90,9 +90,9 @@ module.exports = [
   'profile.birthPlace',
   'profile.nationality',
   'profile.ine', {
-    label: 'profile.motiviation',
+    label: 'profile.motivation',
     value: (row) => {
-      return removeExcelReservedValues(row.profile.motiviation)
+      return removeExcelReservedValues(row.profile.motivation)
     }
   },
   'profile.address',
