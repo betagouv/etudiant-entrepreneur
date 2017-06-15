@@ -20,6 +20,7 @@ class NextCommittee extends React.Component {
       return (
         <div>
           <p>Le prochain comité d'engagement de ce PEPITE aura lieu le {new Moment(this.props.nextCommittee.date).format('DD/MM/YYYY')}.</p>
+          <p>La date limite de dépôt pour ce comité est le {new Moment(this.props.nextCommittee.lastApplicationDate).format('DD/MM/YYYY')}.</p>
           { this.props.nextCommittee.message ? <pre>{this.props.nextCommittee.message}</pre> : null }
         </div>
       )
