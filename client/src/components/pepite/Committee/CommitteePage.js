@@ -2,8 +2,9 @@ import React, { PropTypes } from 'react'
 import toastr from 'toastr'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { Panel } from 'react-bootstrap'
+import { Panel, FormControl, ControlLabel, FormGroup } from 'react-bootstrap'
 
+import pepiteApi from '../../../api/pepiteApi'
 import * as committeeActions from '../../../actions/committeeActions'
 import CommitteeDetailModal from './CommitteeDetailModal'
 import CommitteeTable from './CommitteeTable'
@@ -15,7 +16,8 @@ class CommitteePage extends React.Component {
     this.state = {
       isAddModalShown: false,
       isEditModalShown: false,
-      editedCommittee: {}
+      editedCommittee: {},
+      pepiteName: ''
     }
     this.removeCommittee = this.removeCommittee.bind(this)
     this.addCommittee = this.addCommittee.bind(this)
@@ -29,6 +31,9 @@ class CommitteePage extends React.Component {
   componentDidMount() {
     this.props.actions.loadPepiteCommittees().catch((err) => {
       toastr.error(err)
+    })
+    pepiteApi.getPepite(this.props.pepiteId).then((pepite) => {
+      this.setState({ pepiteName: pepite.name })
     })
   }
 
@@ -84,6 +89,12 @@ class CommitteePage extends React.Component {
         </div>
         <CommitteeTable committees={this.props.committees} removeCommittee={this.removeCommittee} editCommittee={this.openEditModal} />
         <Panel header="Message actuellement affiché aux candidats" bsStyle="primary">
+          <FormGroup className="required">
+            <ControlLabel>Mon PEPITE</ControlLabel>
+            <FormControl name="pepite" componentClass="select" disabled>
+              <option value={0}>{this.state.pepiteName}</option>
+            </FormControl>
+          </FormGroup>
           <NextCommittee />
         </Panel>
         <CommitteeDetailModal submitCommittee={this.addCommittee} isShown={this.state.isAddModalShown} close={this.closeAddModal} />
