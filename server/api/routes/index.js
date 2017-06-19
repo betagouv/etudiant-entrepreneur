@@ -5,6 +5,7 @@ const pepite = require('./../pepite')
 const committee = require('./../committee')
 const region = require('./../region')
 const establishment = require('./../establishment')
+const stat = require('./../stat')
 const user = require('./../user')
 const auth = require('./../auth')
 
@@ -16,6 +17,7 @@ exports.configure = (app, options) => {
   app.use('/api/pepite/:pepiteId(\\d+)/committee', committee(options))
   app.use('/api/region', region(options))
   app.use('/api/establishment', establishment(options))
+  app.use('/api/stat', stat(options))
   app.use('/api/user', user(options))
   app.use('/api/auth', auth(options))
 }
