@@ -17,6 +17,22 @@ class StatController {
         return res.status(500).send(err)
       })
   }
+
+  applicationGenderSummary(req, res) {
+    return statQuery.applicationGenderSummary()
+      .then((applicationGenderSummary) => {
+        if (applicationGenderSummary.length) {
+          return res.json(applicationGenderSummary[0])
+        }
+        else {
+          return res.json({})
+        }
+      })
+      .catch((err) => {
+        req.log.error(err)
+        return res.status(500).send(err)
+      })
+  }
 }
 
 module.exports = StatController

@@ -7,5 +7,6 @@ module.exports = (options) => {
   var stat = new Controller(options)
   router.get('/ping', stat.ping)
   router.get('/applicationSummary', stat.applicationSummary)
+  router.get('/applicationGenderSummary', stat.applicationGenderSummary)
   return router
 }

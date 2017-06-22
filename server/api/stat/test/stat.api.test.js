@@ -68,4 +68,47 @@ describe('api: stat', () => {
       })
     })
   })
+
+  describe('When requesting /api/stat/applicationGenderSummary', () => {
+    describe('When there is no application registered', () => {
+      it('should return empty object', (done) => {
+        supertest(app)
+          .get('/api/stat/applicationGenderSummary')
+          .end((err, res) => {
+            if (err) {
+              return done(err)
+            }
+            expect(res.body).toEqual({})
+            return done()
+          })
+      })
+    })
+
+    describe('When there is both a male and a female', () => {
+      before((done) => {
+        ApplicationModel.insertMany(applicationData, done)
+      })
+
+      after((done) => {
+        ApplicationModel.remove(done)
+      })
+
+      it('should return a summary with both male and female', (done) => {
+        const expectedGenderSummary = {
+          total: 2,
+          female: 1,
+          male: 1
+        }
+        supertest(app)
+          .get('/api/stat/applicationGenderSummary')
+          .end((err, res) => {
+            if (err) {
+              return done(err)
+            }
+            expect(res.body).toEqual(expectedGenderSummary)
+            return done()
+          })
+      })
+    })
+  })
 })

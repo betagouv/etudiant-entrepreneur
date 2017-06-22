@@ -21,6 +21,35 @@ function applicationSummary() {
     })
 }
 
+function applicationGenderSummary() {
+  return Application.aggregate([
+    { $match: { status: { $ne: 'saved' }, 'contact.schoolYear': 2017 } },
+    {
+      $project: {
+        male: { $cond: [{ $eq: ['$profile.gender', 'male'] }, 1, 0] },
+        female: { $cond: [{ $eq: ['$profile.gender', 'female'] }, 1, 0] },
+      }
+    },
+    {
+      $group: {
+        _id: null,
+        total: { $sum: 1 },
+        male: { $sum: '$male' },
+        female: { $sum: '$female' },
+      }
+    },
+    {
+      $project: {
+        _id: 0,
+        total: 1,
+        female: 1,
+        male: 1
+      }
+    }
+  ])
+}
+
 module.exports = {
-  applicationSummary
+  applicationSummary,
+  applicationGenderSummary
 }
