@@ -8,5 +8,6 @@ module.exports = (options) => {
   router.get('/ping', stat.ping)
   router.get('/applicationSummary', stat.applicationSummary)
   router.get('/applicationGenderSummary', stat.applicationGenderSummary)
+  router.get('/applicationStudentSummary', stat.applicationStudentSummary)
   return router
 }

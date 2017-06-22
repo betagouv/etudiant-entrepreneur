@@ -49,7 +49,36 @@ function applicationGenderSummary() {
   ])
 }
 
+function applicationStudentSummary() {
+  return Application.aggregate([
+    { $match: { status: { $ne: 'saved' }, 'contact.schoolYear': 2017 } },
+    {
+      $project: {
+        student: { $cond: [{$eq: ['$contact.situation', 'student']}, 1, 0]},
+        graduate: { $cond: [{$eq: ['$contact.situation', 'graduate']}, 1, 0]}
+      }
+    },
+    {
+      $group: {
+        _id: null,
+        total: { $sum: 1 },
+        student: { $sum: '$student' },
+        graduate: { $sum: '$graduate' }
+      }
+    },
+    {
+      $project: {
+        _id: 0,
+        total: 1,
+        student: 1,
+        graduate: 1
+      }
+    }
+  ])
+}
+
 module.exports = {
   applicationSummary,
-  applicationGenderSummary
+  applicationGenderSummary,
+  applicationStudentSummary
 }

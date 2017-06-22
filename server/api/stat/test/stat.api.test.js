@@ -111,4 +111,47 @@ describe('api: stat', () => {
       })
     })
   })
+
+  describe('When requesting /api/stat/applicationStudentSummary', () => {
+    describe('When there is no application registered', () => {
+      it('should return empty object', (done) => {
+        supertest(app)
+          .get('/api/stat/applicationStudentSummary')
+          .end((err, res) => {
+            if (err) {
+              return done(err)
+            }
+            expect(res.body).toEqual({})
+            return done()
+          })
+      })
+    })
+
+    describe('When there is both a student and a graduate', () => {
+      before((done) => {
+        ApplicationModel.insertMany(applicationData, done)
+      })
+
+      after((done) => {
+        ApplicationModel.remove(done)
+      })
+
+      it('should return a summary with both student and graduate count', (done) => {
+        const expectedStudentSummary = {
+          total: 2,
+          student: 1,
+          graduate: 1
+        }
+        supertest(app)
+          .get('/api/stat/applicationStudentSummary')
+          .end((err, res) => {
+            if (err) {
+              return done(err)
+            }
+            expect(res.body).toEqual(expectedStudentSummary)
+            return done()
+          })
+      })
+    })
+  })
 })

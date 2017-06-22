@@ -82,7 +82,7 @@ const applications = [
     'contact': {
       'schoolYear': 2017,
       'isRenew': 'true',
-      'situation': 'student',
+      'situation': 'graduate',
       'phone': '0643333333',
       'email': 'test@test.com',
       'firstname': 'Luc',
