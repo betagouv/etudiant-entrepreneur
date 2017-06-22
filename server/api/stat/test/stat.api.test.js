@@ -4,6 +4,7 @@ const expect = require('expect')
 const Server = require('../../server')
 const ApplicationModel = require('../../application/application.model')
 const applicationData = require('./application.seed')
+const applicationDiplomaData = require('./application.diploma.seed')
 const pepiteData = require('../../pepite/pepite.seed')
 
 describe('api: stat', () => {
@@ -106,6 +107,52 @@ describe('api: stat', () => {
               return done(err)
             }
             expect(res.body).toEqual(expectedGenderSummary)
+            return done()
+          })
+      })
+    })
+  })
+
+  describe('When requesting /api/stat/applicationDiplomaSummary', () => {
+    describe('When there is no application registered', () => {
+      it('should return empty object', (done) => {
+        supertest(app)
+          .get('/api/stat/applicationDiplomaSummary')
+          .end((err, res) => {
+            if (err) {
+              return done(err)
+            }
+            expect(res.body).toEqual({})
+            return done()
+          })
+      })
+    })
+
+    describe('When there is both an application from each diploma sector', () => {
+      before((done) => {
+        ApplicationModel.insertMany(applicationDiplomaData, done)
+      })
+
+      after((done) => {
+        ApplicationModel.remove(done)
+      })
+
+      it('should return a summary with all diplomas', (done) => {
+        const expectedDiplomaSummary = {
+          total: 5,
+          law: 1,
+          letter: 1,
+          sport: 1,
+          health: 1,
+          science: 1
+        }
+        supertest(app)
+          .get('/api/stat/applicationDiplomaSummary')
+          .end((err, res) => {
+            if (err) {
+              return done(err)
+            }
+            expect(res.body).toEqual(expectedDiplomaSummary)
             return done()
           })
       })

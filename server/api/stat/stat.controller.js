@@ -49,6 +49,22 @@ class StatController {
         return res.status(500).send(err)
       })
   }
+
+  applicationDiplomaSummary(req, res) {
+    return statQuery.applicationDiplomaSummary()
+      .then((applicationDiplomaSummary) => {
+        if (applicationDiplomaSummary.length) {
+          return res.json(applicationDiplomaSummary[0])
+        }
+        else {
+          return res.json({})
+        }
+      })
+      .catch((err) => {
+        req.log.error(err)
+        return res.status(500).send(err)
+      })
+  }
 }
 
 module.exports = StatController

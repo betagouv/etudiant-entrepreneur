@@ -77,8 +77,46 @@ function applicationStudentSummary() {
   ])
 }
 
+function applicationDiplomaSummary() {
+  return Application.aggregate([
+    { $match: { status: { $ne: 'saved' }, 'contact.schoolYear': 2017 } },
+    {
+      $project: {
+        law: { $cond: [{$eq: ['$career.diploma.sector', 'law']}, 1, 0]},
+        letter: { $cond: [{$eq: ['$career.diploma.sector', 'letter']}, 1, 0]},
+        science: { $cond: [{$eq: ['$career.diploma.sector', 'science']}, 1, 0]},
+        sport: { $cond: [{$eq: ['$career.diploma.sector', 'sport']}, 1, 0]},
+        health: { $cond: [{$eq: ['$career.diploma.sector', 'health']}, 1, 0]}
+      }
+    },
+    {
+      $group: {
+        _id: null,
+        total: { $sum: 1 },
+        law: { $sum: '$law' },
+        letter: { $sum: '$letter' },
+        science: { $sum: '$science' },
+        sport: { $sum: '$sport' },
+        health: { $sum: '$health' }
+      }
+    },
+    {
+      $project: {
+        _id: 0,
+        total: 1,
+        law: 1,
+        letter: 1,
+        science: 1,
+        sport: 1,
+        health: 1
+      }
+    }
+  ])
+}
+
 module.exports = {
   applicationSummary,
   applicationGenderSummary,
-  applicationStudentSummary
+  applicationStudentSummary,
+  applicationDiplomaSummary
 }
