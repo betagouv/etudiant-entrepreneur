@@ -10,6 +10,7 @@ class StatPage extends React.Component {
     super(props, context)
     this.state = {
       applicationSummary: [],
+      totalApplicationCount: 0,
       genderData: {
         datasets: [{
           data: [0, 0],
@@ -54,6 +55,23 @@ class StatPage extends React.Component {
           'sport',
           'santé'
         ]
+      },
+      statusData: {
+        datasets: [{
+          data: [0, 0, 0, 0],
+          backgroundColor: [
+            'rgba(44,62,80,1)',
+            'rgba(52,152,219,1)',
+            'rgba(24,188,156,1)',
+            'rgba(243,156,18,1)',
+          ],
+        }],
+        labels: [
+          'sauvegardée',
+          'en attente',
+          'acceptée',
+          'refusée',
+        ]
       }
     }
   }
@@ -77,14 +95,33 @@ class StatPage extends React.Component {
       majorData.datasets[0].data = [majorSummary.law, majorSummary.letter, majorSummary.science, majorSummary.sport, majorSummary.health]
       this.setState({ majorData })
     }))
+    statApi.getApplicationStatuSummary().then(((statusSummary) => {
+      const { statusData } = this.state
+      statusData.datasets[0].data = [statusSummary.saved, statusSummary.sent, statusSummary.accepted, statusSummary.refused]
+      this.setState({ statusData, totalApplicationCount: statusSummary.total })
+    }))
   }
 
   render() {
     return (
       <div className="container stats-container">
         <div className="page-header">
-          <h1>Métriques du service</h1>
+          <h1>Métriques du service en 2017-2018</h1>
           <div className="row">
+            <div className="col-lg-4 text-center">
+              <Panel className="number-panel">
+                <h3>Nombre de candidatures</h3>
+                <hr />
+                <h1>{this.state.totalApplicationCount}</h1>
+              </Panel>
+            </div>
+            <div className="col-lg-4 text-center">
+              <Panel>
+                <h3>État des candidatures</h3>
+                <hr />
+                <Doughnut data={this.state.statusData} />
+              </Panel>
+            </div>
             <div className="col-lg-4 text-center">
               <Panel>
                 <h3>Candidats - Scolarité</h3>

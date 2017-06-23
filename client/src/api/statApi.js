@@ -25,6 +25,12 @@ class statApi {
         return response.data
       })
   }
+  static getApplicationStatuSummary() {
+    return axios.get('/stat/applicationStatusSummary')
+      .then((response) => {
+        return response.data
+      })
+  }
 }
 
 export default statApi
