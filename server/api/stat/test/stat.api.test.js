@@ -5,6 +5,7 @@ const Server = require('../../server')
 const ApplicationModel = require('../../application/application.model')
 const applicationData = require('./application.seed')
 const applicationDiplomaData = require('./application.diploma.seed')
+const applicationStatusData = require('./application.status.seed')
 const pepiteData = require('../../pepite/pepite.seed')
 
 describe('api: stat', () => {
@@ -196,6 +197,51 @@ describe('api: stat', () => {
               return done(err)
             }
             expect(res.body).toEqual(expectedStudentSummary)
+            return done()
+          })
+      })
+    })
+  })
+
+  describe('When requesting /api/stat/applicationStatusSummary', () => {
+    describe('When there is no application registered', () => {
+      it('should return empty object', (done) => {
+        supertest(app)
+          .get('/api/stat/applicationStatusSummary')
+          .end((err, res) => {
+            if (err) {
+              return done(err)
+            }
+            expect(res.body).toEqual({})
+            return done()
+          })
+      })
+    })
+
+    describe('When there is an application in each status', () => {
+      before((done) => {
+        ApplicationModel.insertMany(applicationStatusData, done)
+      })
+
+      after((done) => {
+        ApplicationModel.remove(done)
+      })
+
+      it('should return a summary with both Status and graduate count', (done) => {
+        const expectedStatusSummary = {
+          total: 4,
+          sent: 1,
+          accepted: 1,
+          refused: 1,
+          saved: 1
+        }
+        supertest(app)
+          .get('/api/stat/applicationStatusSummary')
+          .end((err, res) => {
+            if (err) {
+              return done(err)
+            }
+            expect(res.body).toEqual(expectedStatusSummary)
             return done()
           })
       })

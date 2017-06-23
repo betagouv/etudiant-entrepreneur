@@ -65,6 +65,22 @@ class StatController {
         return res.status(500).send(err)
       })
   }
+
+  applicationStatusSummary(req, res) {
+    return statQuery.applicationStatusSummary()
+      .then((applicationStatusSummary) => {
+        if (applicationStatusSummary.length) {
+          return res.json(applicationStatusSummary[0])
+        }
+        else {
+          return res.json({})
+        }
+      })
+      .catch((err) => {
+        req.log.error(err)
+        return res.status(500).send(err)
+      })
+  }
 }
 
 module.exports = StatController

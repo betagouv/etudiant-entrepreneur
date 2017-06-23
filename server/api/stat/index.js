@@ -10,5 +10,6 @@ module.exports = (options) => {
   router.get('/applicationGenderSummary', stat.applicationGenderSummary)
   router.get('/applicationStudentSummary', stat.applicationStudentSummary)
   router.get('/applicationDiplomaSummary', stat.applicationDiplomaSummary)
+  router.get('/applicationStatusSummary', stat.applicationStatusSummary)
   return router
 }
