@@ -67,7 +67,7 @@ class CommitteeAnswerPage extends React.Component {
     this.props.committeeAnswerActions.saveCommitteeAnswer(this.props.applicationId, this.state.committeeAnswer)
       .then((application) => {
         toastr.success("Avis sauvegardé")
-        this.context.router.push('/pepite')
+        this.context.router.push('/pepite/applicant')
       })
       .catch((err) => {
         toastr.error(err)
