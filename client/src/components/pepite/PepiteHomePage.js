@@ -19,11 +19,11 @@ export class PepiteHomePage extends React.Component {
           <Link className="col-md-6" to="pepite/student">
             <Card title="Mes étudiants-entrepreneurs" glyphicon="glyphicon glyphicon-education" />
           </Link>
+          <Link className="col-md-6" to="stats">
+            <Card title="Stats" glyphicon="glyphicon glyphicon-stats" />
+          </Link>
           <div className="col-md-6" title="bientôt disponible">
             <Card title="Mon PEPITE" glyphicon="glyphicon glyphicon-cog" isDisabled />
-          </div>
-          <div className="col-md-6" title="bientôt disponible">
-            <Card title="Stats" glyphicon="glyphicon glyphicon-stats" isDisabled />
           </div>
         </div>
       </div>
