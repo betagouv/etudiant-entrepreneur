@@ -71,7 +71,7 @@ export class ApplicantPage extends React.Component {
             <PepiteApplicantTable applicants={this.state.applications} sort={this.sortApplication('applications')} />
           </Tab>
           <Tab eventKey={2} title={<div>Acceptées <span className="badge">{this.state.accepted.length}</span></div>}>
-            <PepiteAcceptedApplicantTable applicants={this.state.accepted} userToken={this.props.user.token} sort={this.sortApplication('accepted')} />
+            <PepiteAcceptedApplicantTable applicants={this.state.accepted} sort={this.sortApplication('accepted')} />
           </Tab>
           <Tab eventKey={3} title={<div>Réfusées <span className="badge">{this.state.refused.length}</span></div>}>
             <PepiteApplicantTable applicants={this.state.refused} sort={this.sortApplication('refused')} />
@@ -84,7 +84,6 @@ export class ApplicantPage extends React.Component {
 
 function mapStateToProps(state, ownProps) {
   return {
-    user: state.user
   }
 }
 
@@ -95,8 +94,7 @@ function mapDispatchToProps(dispatch) {
 }
 
 ApplicantPage.propTypes = {
-  actions: PropTypes.object.isRequired,
-  user: PropTypes.object.isRequired,
+  actions: PropTypes.object.isRequired
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(ApplicantPage)

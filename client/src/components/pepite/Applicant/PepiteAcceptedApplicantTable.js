@@ -3,7 +3,7 @@ import { Glyphicon } from 'react-bootstrap'
 import PepiteAcceptedApplicantRow from './PepiteAcceptedApplicantRow'
 import TableHeader from '../../common/Table/TableHeader'
 
-const PepiteAcceptedApplicantTable = ({ applicants, userToken, sort }) => {
+const PepiteAcceptedApplicantTable = ({ applicants, sort }) => {
   return (
     <table className="table table-hover">
       <thead>
@@ -16,11 +16,10 @@ const PepiteAcceptedApplicantTable = ({ applicants, userToken, sort }) => {
           <th>Statut</th>
           <th>Version imprimable</th>
           <th>Comité d'engagement</th>
-          <th>Attestation</th>
         </tr>
       </thead>
       <tbody>
-        {applicants.map((application, i) => { return (<PepiteAcceptedApplicantRow key={i} application={application} userToken={userToken} />) })}
+        {applicants.map((application, i) => { return (<PepiteAcceptedApplicantRow key={i} application={application} />) })}
       </tbody>
     </table>
   )
@@ -28,8 +27,7 @@ const PepiteAcceptedApplicantTable = ({ applicants, userToken, sort }) => {
 
 PepiteAcceptedApplicantTable.propTypes = {
   applicants: PropTypes.array.isRequired,
-  userToken: PropTypes.string.isRequired,
-  sort: PropTypes.func.isRequired,
+  sort: PropTypes.func.isRequired
 }
 
 export default PepiteAcceptedApplicantTable

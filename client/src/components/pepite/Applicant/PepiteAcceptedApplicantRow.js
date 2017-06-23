@@ -4,7 +4,7 @@ import { Glyphicon } from 'react-bootstrap'
 import GraduationLabel from './GraduationLabel'
 import { Link } from 'react-router'
 
-const PepiteAcceptedApplicantRow = ({ application, userToken }) => {
+const PepiteAcceptedApplicantRow = ({ application }) => {
   return (
     <tr>
       <td>{application.contact.schoolYear}</td>
@@ -15,21 +15,12 @@ const PepiteAcceptedApplicantRow = ({ application, userToken }) => {
       <td><GraduationLabel application={application} /></td>
       <td><a className="btn btn-info btn-xs" target="_blank" href={`/application/${application._id}/print`}><Glyphicon glyph="print" /></a></td>
       <td><Link to={`/pepite/committeeAnswer/${application._id}`} className="btn btn-info btn-xs"><Glyphicon glyph="edit" /></Link></td>
-      <td>
-        <a
-          className="btn btn-primary btn-xs"
-          target="_blank"
-          href={`${API_URI}/application/${application._id}/certificate?access_token=${userToken}`}>
-          <Glyphicon glyph="save-file" />
-        </a>
-      </td>
     </tr>
   )
 }
 
 PepiteAcceptedApplicantRow.propTypes = {
-  application: PropTypes.object.isRequired,
-  userToken: PropTypes.string.isRequired
+  application: PropTypes.object.isRequired
 }
 
 export default PepiteAcceptedApplicantRow
