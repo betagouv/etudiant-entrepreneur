@@ -10,7 +10,7 @@ Le site: https://etudiant-entrepreneur.beta.gouv.fr/
 
 * [npm](https://www.npmjs.com/)
 * [Node.js](http://nodejs.org) (6.0+)
-* [Docker](https://www.docker.com/)
+* [Docker](https://www.docker.com/) (with [docker-compose](https://docs.docker.com/compose/install/))
 
 ## Getting Started
 
