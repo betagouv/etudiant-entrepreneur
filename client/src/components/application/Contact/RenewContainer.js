@@ -13,7 +13,8 @@ export class RenewContainer extends React.Component {
       oldLink: '',
       error: '',
       renewId: '',
-      isVisible: false
+      isVisible: false,
+      hasBeenSkipped: false
     }
     this.onOldLinkChange = this.onOldLinkChange.bind(this)
     this.onCopyApplicationClick = this.onCopyApplicationClick.bind(this)
@@ -52,6 +53,9 @@ export class RenewContainer extends React.Component {
 
   toggleVisibility(event) {
     event.preventDefault()
+    if (this.state.isVisible) {
+      this.setState({ hasBeenSkipped: true })
+    }
     this.setState({ isVisible: !this.state.isVisible })
   }
 
@@ -59,6 +63,7 @@ export class RenewContainer extends React.Component {
     return (
       <RenewForm
         isVisible={this.state.isVisible}
+        hasBeenSkipped={this.state.hasBeenSkipped}
         onOldLinkChange={this.onOldLinkChange}
         onCopyApplicationClick={this.onCopyApplicationClick}
         toggleVisibility={this.toggleVisibility}

@@ -5,13 +5,15 @@ import ButtonWrapperComponent from '../../common/ButtonWrapperComponent'
 
 const renewFromHeader = "Repartir de ma candidature de l'année passée (facultatif)"
 
-const RenewForm = ({ isVisible, oldLink, error, onOldLinkChange, onCopyApplicationClick, toggleVisibility }) => {
+const RenewForm = ({ isVisible, hasBeenSkipped, oldLink, error, onOldLinkChange, onCopyApplicationClick, toggleVisibility }) => {
+  const bsStyle = hasBeenSkipped ? 'default' : 'primary'
+
   if (!isVisible) {
-    return <Button bsStyle="primary" onClick={toggleVisibility}><Glyphicon glyph="plus" /> {renewFromHeader}</Button>
+    return <Button bsStyle={bsStyle} onClick={toggleVisibility}><Glyphicon glyph="plus" /> {renewFromHeader}</Button>
   }
   else {
     return (
-      <Panel bsStyle="primary" header={renewFromHeader}>
+      <Panel bsStyle={bsStyle} header={renewFromHeader}>
         <form>
           <FormGroup>
             <ControlLabel>Lien de ma candidature de l'année passée</ControlLabel>
@@ -25,7 +27,7 @@ const RenewForm = ({ isVisible, oldLink, error, onOldLinkChange, onCopyApplicati
           </FormGroup>
           <ButtonToolbar>
             <button type="button" className="btn btn-success" disabled={!oldLink || !!error} onClick={onCopyApplicationClick}>Copier ma candidature</button>
-            <button type="button" className="btn btn-warning" onClick={toggleVisibility}>Je n'ai pas le lien</button>
+            <button type="button" className="btn btn-warning" onClick={toggleVisibility}>Continuer sans le lien</button>
           </ButtonToolbar>
         </form>
       </Panel>
@@ -39,6 +41,7 @@ RenewForm.propTypes = {
   onCopyApplicationClick: PropTypes.func.isRequired,
   toggleVisibility: PropTypes.func.isRequired,
   isVisible: PropTypes.bool.isRequired,
+  hasBeenSkipped: PropTypes.bool.isRequired,
   error: PropTypes.string
 }
 
