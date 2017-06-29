@@ -1,0 +1,60 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: circleci/node
+      - image: circleci/mongo:3.2.12
+    working_directory: ~/ee
+    steps:
+      - checkout
+
+      - restore_cache:
+          key: ee-root-{{ checksum "package.json"}}
+
+      - restore_cache:
+          key: ee-client-{{ checksum "./client/package.json"}}
+
+      - restore_cache:
+          key: ee-server-{{ checksum "./server/package.json"}}
+
+      - run:
+          name: install
+          command: npm install
+
+      - save_cache:
+          key: ee-root-{{ checksum "package.json"}}
+          paths:
+            - ./node_modules
+
+      - save_cache:
+          key: ee-client-{{ checksum "./client/package.json"}}
+          paths:
+            - ./client/node_modules
+
+      - save_cache:
+          key: ee-server-{{ checksum "./server/package.json"}}
+          paths:
+            - ./server/node_modules
+
+      - run:
+          name: lint
+          command: npm run lint
+
+      - run:
+          name: seed
+          command: cd server && npm run seed
+
+      - run:
+          name: test
+          command: npm run test:ci
+
+      - run:
+          name: coverage
+          command: cd server && cat ./coverage/lcov.info | ./node_modules/.bin/coveralls --verbose
+
+      - deploy:
+          name: deploy dev
+          command: |
+            if [ "${CIRCLE_BRANCH}" == "development" ]; then
+              ssh -o StrictHostKeyChecking=no deploy@vps295137.ovh.net "cd etudiant-entrepreneur && bash -s" < './tools/devDeploy.sh'
+            fi
