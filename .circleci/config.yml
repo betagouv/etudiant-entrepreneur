@@ -9,30 +9,30 @@ jobs:
       - checkout
 
       - restore_cache:
-          key: ee-root-{{ checksum "package.json"}}
+          key: ee-root
 
       - restore_cache:
-          key: ee-client-{{ checksum "./client/package.json"}}
+          key: ee-client
 
       - restore_cache:
-          key: ee-server-{{ checksum "./server/package.json"}}
+          key: ee-server
 
       - run:
           name: install
           command: npm install
 
       - save_cache:
-          key: ee-root-{{ checksum "package.json"}}
+          key: ee-root
           paths:
             - ./node_modules
 
       - save_cache:
-          key: ee-client-{{ checksum "./client/package.json"}}
+          key: ee-client
           paths:
             - ./client/node_modules
 
       - save_cache:
-          key: ee-server-{{ checksum "./server/package.json"}}
+          key: ee-server
           paths:
             - ./server/node_modules
 
