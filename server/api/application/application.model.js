@@ -45,6 +45,19 @@ ApplicationSchema.statics = {
           })
         })
       })
+  },
+
+  getOtherApplication: function (id) {
+    return this.findById(id).exec().then((application) => {
+      if (!application) {
+        return null
+      }
+      return this.find({
+        _id: { $ne: application._id },
+        'contact.email': application.contact.email,
+        'contact.schoolYear': application.contact.schoolYear
+      })
+    })
   }
 }
 

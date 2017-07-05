@@ -193,6 +193,24 @@ class ApplicationController {
         return res.status(500).send(err)
       })
   }
+
+  getOtherApplication(req, res) {
+    if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
+      return res.sendStatus(400)
+    }
+    return Application
+      .getOtherApplication(req.params.id)
+      .then((otherApplications) => {
+        if (!otherApplications) {
+          return res.sendStatus(404)
+        }
+        return res.json(otherApplications)
+      })
+      .catch((err) => {
+        req.log.error(err)
+        return res.status(500).send(err)
+      })
+  }
 }
 
 function logMail(logger, error, info) {

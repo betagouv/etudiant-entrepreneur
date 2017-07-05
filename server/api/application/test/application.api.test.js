@@ -2,6 +2,7 @@ const supertest = require('supertest')
 const Server = require('../../server')
 const ApplicationModel = require('../application.model')
 const applicationData = require('./application.seed')
+const applicationOtherData = require('./application.other.seed')
 const expect = require('expect')
 
 const authHelper = require('../../lib/testUtils/authHelper')
@@ -289,6 +290,67 @@ describe('api: application', () => {
             if (err) {
               return done(err)
             }
+            done()
+          })
+      })
+    })
+  })
+
+  describe('When requesting /api/application/:id/other', () => {
+    let validToken = {}
+
+    before((done) => {
+      ApplicationModel.insertMany(applicationOtherData, () => authHelper.getToken(app, 'peel@univ-lorraine.fr', 'test', validToken, done))
+    })
+
+    after((done) => {
+      ApplicationModel.remove(done)
+    })
+
+    describe('When an invalidtoken is provided', () => {
+      it('should return a 401 error', (done) => {
+        supertest(app)
+          .get('/api/application/2/other')
+          .expect(401, done)
+      })
+    })
+
+    describe('When the application does not exist', () => {
+      it('should give a 404', (done) => {
+        supertest(app)
+          .get('/api/application/57ff4d302c0c5c0010daf043/other')
+          .set('Authorization', `Bearer ${validToken.token}`)
+          .expect(404, done)
+      })
+    })
+
+    describe('When there is no application with the same email', () => {
+      it('should give an empty array', (done) => {
+        supertest(app)
+          .get('/api/application/58370910e221d30010165435/other')
+          .set('Authorization', `Bearer ${validToken.token}`)
+          .expect(200)
+          .end((err, res) => {
+            if (err) {
+              return done(err)
+            }
+            expect(res.body).toEqual([])
+            return done()
+          })
+      })
+    })
+
+    describe('When there is several applications with the same email', () => {
+      it('should give all applications with the same email withing the same school year', (done) => {
+        supertest(app)
+          .get('/api/application/9c9d6a6b832effc406059b15/other')
+          .set('Authorization', `Bearer ${validToken.token}`)
+          .expect(200)
+          .end((err, res) => {
+            if (err) {
+              return done(err)
+            }
+            expect(res.body.length).toBe(2)
             done()
           })
       })

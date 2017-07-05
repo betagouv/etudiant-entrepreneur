@@ -12,5 +12,6 @@ module.exports = (options) => {
   router.put('/:id', applicationController.updateApplication)
   router.put('/:id/send', applicationController.sendApplication)
   router.get('/:id/certificate', auth.isAuthenticated(), applicationController.getApplicationCertificate)
+  router.get('/:id/other', auth.isAuthenticated(), applicationController.getOtherApplication)
   return router
 }
