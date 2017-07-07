@@ -342,6 +342,15 @@ describe('api: application', () => {
 
     describe('When there is several applications with the same email', () => {
       it('should give all applications with the same email withing the same school year', (done) => {
+        const acceptedStatus = {
+          status: 'accepted'
+        }
+        const sentStatus = {
+          status: 'sent'
+        }
+        const pepiteKey  = 'pepite'
+        const sentDateKey = 'sentDate'
+
         supertest(app)
           .get('/api/application/9c9d6a6b832effc406059b15/other')
           .set('Authorization', `Bearer ${validToken.token}`)
@@ -351,6 +360,12 @@ describe('api: application', () => {
               return done(err)
             }
             expect(res.body.length).toBe(2)
+            expect(res.body[0]).toIncludeKey(pepiteKey)
+            expect(res.body[0]).toIncludeKey(sentDateKey)
+            expect(res.body[0]).toInclude(acceptedStatus)
+            expect(res.body[1]).toIncludeKey(pepiteKey)
+            expect(res.body[1]).toIncludeKey(sentDateKey)
+            expect(res.body[1]).toInclude(sentStatus)
             done()
           })
       })

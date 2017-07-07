@@ -52,11 +52,30 @@ ApplicationSchema.statics = {
       if (!application) {
         return null
       }
-      return this.find({
-        _id: { $ne: application._id },
-        'contact.email': application.contact.email,
-        'contact.schoolYear': application.contact.schoolYear
-      })
+      return this.aggregate(
+        [
+          {
+            $match: {
+              _id: { $ne: application._id },
+              'contact.email': application.contact.email,
+              'contact.schoolYear': application.contact.schoolYear,
+              'status' : { $ne: 'saved' }
+            }
+          },
+          {
+            $project: {
+              pepite: '$pepite.pepite',
+              status: '$status',
+              sentDate: '$sentDate'
+            }
+          },
+          {
+            $sort: {
+              status: 1
+            }
+          }
+        ]
+      )
     })
   }
 }
