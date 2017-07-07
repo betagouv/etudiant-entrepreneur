@@ -14,6 +14,21 @@ class applicationApi {
       })
   }
 
+  static getOtherApplication(id, userToken) {
+    return axios.get(`/application/${id}/other`,
+      {
+        'headers': {
+          'Authorization': `Bearer ${userToken}`
+        }
+      })
+      .then((res) => {
+        return res.data
+      })
+      .catch((err) => {
+        throw new Error('La candidature que vous cherchez n\'existe pas')
+      })
+  }
+
   static saveApplication(application) {
     return axios.post('/application', application)
       .then((res) => {

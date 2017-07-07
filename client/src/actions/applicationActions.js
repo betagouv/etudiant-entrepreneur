@@ -116,6 +116,13 @@ export function getPepiteApplication() {
   }
 }
 
+export function getOtherApplication(id) {
+  return (dispatch, getState) => {
+    const {user} = getState()
+    return applicationApi.getOtherApplication(id, user.token)
+  }
+}
+
 export function getPepiteApplicationXls() {
   return (dispatch, getState) => {
     const {user} = getState()

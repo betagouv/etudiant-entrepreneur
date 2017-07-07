@@ -94,6 +94,7 @@ export class PepiteApplicantTable extends React.Component {
               <th>Statut</th>
               <th>Version imprimable</th>
               <th>Comité d'engagement</th>
+              <th>Autres candidatures</th>
             </tr>
           </thead>
           <tbody>

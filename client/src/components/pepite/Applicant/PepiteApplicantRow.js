@@ -3,6 +3,7 @@ import { Glyphicon } from 'react-bootstrap'
 import GraduationLabel from './GraduationLabel'
 import { Link } from 'react-router'
 import TimeSinceControl from './TimeSinceControl'
+import OtherApplicationLabel from './OtherApplicationLabel'
 
 const PepiteApplicantRow = ({ application }) => {
   return (
@@ -16,6 +17,7 @@ const PepiteApplicantRow = ({ application }) => {
       <td><GraduationLabel application={application} /></td>
       <td><a className="btn btn-info btn-xs" target="_blank" href={`/application/${application._id}/print`}><Glyphicon glyph="print" /></a></td>
       <td><Link to={`/pepite/committeeAnswer/${application._id}`} className="btn btn-info btn-xs"><Glyphicon glyph="edit" /></Link></td>
+      <td><OtherApplicationLabel applicantId={application._id} /></td>
     </tr>
   )
 }
