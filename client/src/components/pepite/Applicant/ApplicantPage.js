@@ -6,6 +6,7 @@ import { bindActionCreators } from 'redux'
 import FileSaver from 'file-saver'
 import objectPath from 'object-path'
 import * as applicationActions from '../../../actions/applicationActions'
+import * as pepiteListActions from '../../../actions/pepiteListActions'
 import PepiteApplicantTable from './PepiteApplicantTable'
 import PepiteAcceptedApplicantTable from './PepiteAcceptedApplicantTable'
 import Const from '../../common/Table/Const'
@@ -34,6 +35,7 @@ export class ApplicantPage extends React.Component {
       .catch((err) => {
         toastr.error(err)
       })
+    this.props.pepiteListActions.loadPepiteList()
   }
 
   getPepiteApplicationXls() {
@@ -90,11 +92,13 @@ function mapStateToProps(state, ownProps) {
 function mapDispatchToProps(dispatch) {
   return {
     actions: bindActionCreators(applicationActions, dispatch),
+    pepiteListActions: bindActionCreators(pepiteListActions, dispatch),
   }
 }
 
 ApplicantPage.propTypes = {
-  actions: PropTypes.object.isRequired
+  actions: PropTypes.object.isRequired,
+  pepiteListActions: PropTypes.object.isRequired,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(ApplicantPage)

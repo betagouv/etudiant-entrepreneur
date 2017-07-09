@@ -11,6 +11,7 @@ import committeeAnswer from './committeeAnswerReducer'
 import committees from './committeeReducer'
 import students from './studentReducer'
 import nextCommittee from './nextCommitteeReducer'
+import pepiteList from './pepiteListReducer'
 
 const rootReducer = combineReducers({
   application,
@@ -24,7 +25,8 @@ const rootReducer = combineReducers({
   committeeAnswer,
   committees,
   nextCommittee,
-  students
+  students,
+  pepiteList
 })
 
 export default rootReducer

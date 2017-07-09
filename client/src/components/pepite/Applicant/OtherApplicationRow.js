@@ -2,10 +2,10 @@ import React, { PropTypes } from 'react'
 import TimeSinceControl from './TimeSinceControl'
 import StatusLabel from './StatusLabel'
 
-const OtherApplicationRow = ({ application }) => {
+const OtherApplicationRow = ({ application, pepites }) => {
   return (
     <tr>
-      <td> {application.pepite}</td>
+      <td> {pepites[application.pepite - 1].name}</td>
       <td><StatusLabel status={application.status}/></td>
       <td><TimeSinceControl textDate={application.sentDate}/></td>
     </tr>
@@ -13,7 +13,8 @@ const OtherApplicationRow = ({ application }) => {
 }
 
 OtherApplicationRow.propTypes = {
-  application: PropTypes.array.isRequired
+  application: PropTypes.object.isRequired,
+  pepites: PropTypes.array.isRequired,
 }
 
 export default OtherApplicationRow

@@ -109,5 +109,6 @@ export default {
   },
   committees: [],
   nextCommittee: {},
-  students: []
+  students: [],
+  pepiteList: []
 }

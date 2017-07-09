@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react'
 import OtherApplicationRow from './OtherApplicationRow'
 
-const OtherApplicationTable = ({ applications }) => {
+const OtherApplicationTable = ({ applications, pepites }) => {
   return (
     <table className="table table-hover">
       <thead>
@@ -12,14 +12,15 @@ const OtherApplicationTable = ({ applications }) => {
         </tr>
       </thead>
       <tbody>
-        {applications.map((application, i) => { return (<OtherApplicationRow key={i} application={application} />) })}
+        {applications.map((application, i) => { return (<OtherApplicationRow key={i} application={application} pepites={pepites}/>) })}
       </tbody>
     </table>
   )
 }
 
 OtherApplicationTable.propTypes = {
-  applications: PropTypes.array.isRequired
+  applications: PropTypes.array.isRequired,
+  pepites: PropTypes.array.isRequired
 }
 
 export default OtherApplicationTable

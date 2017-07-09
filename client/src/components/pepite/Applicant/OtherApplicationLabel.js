@@ -20,7 +20,7 @@ class OtherApplicationLabel extends React.Component {
   }
 
   render() {
-    const otherAppPopover = <Popover id="tooltip"><OtherApplicationTable applications={this.state.otherApplications} /></Popover>
+    const otherAppPopover = <Popover id="tooltip"><OtherApplicationTable pepites={this.props.pepites} applications={this.state.otherApplications} /></Popover>
 
     return (
       <div>
@@ -34,6 +34,7 @@ class OtherApplicationLabel extends React.Component {
 
 function mapStateToProps(state, ownProps) {
   return {
+    pepites: state.pepiteList
   }
 }
 
@@ -45,7 +46,8 @@ function mapDispatchToProps(dispatch) {
 
 OtherApplicationLabel.propTypes = {
   actions: PropTypes.object.isRequired,
-  applicantId: PropTypes.string.isRequired
+  applicantId: PropTypes.string.isRequired,
+  pepites: PropTypes.array.isRequired
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(OtherApplicationLabel)

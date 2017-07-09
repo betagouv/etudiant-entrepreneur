@@ -28,6 +28,13 @@ class pepiteApi {
         return res.data
       })
   }
+
+  static getAllPepites() {
+    return axios.get(`/pepite`)
+      .then((res) => {
+        return res.data
+      })
+  }
 }
 
 export default pepiteApi
