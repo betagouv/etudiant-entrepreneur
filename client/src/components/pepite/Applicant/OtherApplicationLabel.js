@@ -22,13 +22,19 @@ class OtherApplicationLabel extends React.Component {
   render() {
     const otherAppPopover = <Popover id="tooltip"><OtherApplicationTable pepites={this.props.pepites} applications={this.state.otherApplications} /></Popover>
 
-    return (
-      <div>
-        <OverlayTrigger placement="bottom" overlay={otherAppPopover}>
-          <span className="badge">{this.state.otherApplications.length}</span>
+    if (this.state.otherApplications.length) {
+      return (
+        <OverlayTrigger trigger={['hover', 'focus']} placement="bottom" overlay={otherAppPopover}>
+          <button>
+            {this.state.otherApplications.length}
+          </button>
         </OverlayTrigger>
-      </div>
-    )
+      )
+    } else {
+      return (
+          <button disabled>-</button>
+      )
+    }
   }
 }
 
