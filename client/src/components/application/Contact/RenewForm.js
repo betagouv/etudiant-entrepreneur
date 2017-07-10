@@ -3,7 +3,7 @@ import { FormGroup, ControlLabel, Panel, InputGroup, FormControl, HelpBlock, But
 import ValidatedComponent from '../../common/ValidatedComponent'
 import ButtonWrapperComponent from '../../common/ButtonWrapperComponent'
 
-const renewFromHeader = "Repartir de ma candidature de l'année passée (facultatif)"
+const renewFromHeader = "Repartir de ma candidature de l'année passée"
 
 const RenewForm = ({ isVisible, hasBeenSkipped, oldLink, error, onOldLinkChange, onCopyApplicationClick, toggleVisibility }) => {
   const bsStyle = hasBeenSkipped ? 'default' : 'primary'
