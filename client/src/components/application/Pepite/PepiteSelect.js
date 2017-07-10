@@ -19,16 +19,19 @@ class PepiteSelect extends React.Component {
 
   componentWillReceiveProps(nextProps) {
     if ((this.props.selectedRegion != nextProps.selectedRegion) ||
-      (this.props.selectedPepite != nextProps.selectedPepite)) {
-      this.loadPepites(nextProps.selectedRegion, nextProps.selectedPepite)
+      (this.props.selectedPepite != nextProps.selectedPepite) ||
+      (this.props.selectedEstablishment != nextProps.selectedEstablishment)) {
+      this.loadPepites(nextProps.selectedRegion, nextProps.selectedPepite, nextProps.selectedEstablishment)
     }
   }
 
-  loadPepites(regionId, pepiteId) {
+  loadPepites(regionId, pepiteId, establishmentId) {
     if (pepiteId && pepiteId != '0') {
+      this.props.nextCommitteeActions.loadNextCommittee(Number(pepiteId))
+    }
+    if (establishmentId && establishmentId != '0') {
       pepiteApi.getPepite(pepiteId).then(pepite => {
         this.setState({ pepites: [pepite] })
-        this.props.nextCommitteeActions.loadNextCommittee(Number(pepiteId))
       })
     } else {
       pepiteApi.getPepites(regionId).then(pepites => {
@@ -75,6 +78,7 @@ function mapDispatchToProps(dispatch) {
 PepiteSelect.propTypes = {
   selectedRegion: PropTypes.string.isRequired,
   selectedPepite: PropTypes.string.isRequired,
+  selectedEstablishment: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
   nextCommitteeActions: PropTypes.object.isRequired,
   errors: PropTypes.object,

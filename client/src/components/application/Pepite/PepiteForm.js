@@ -28,6 +28,7 @@ const PepiteForm = ({ pepite, contact, errors, onChange, onEstablishmentChange, 
       <PepiteSelect
         selectedRegion={pepite.region}
         selectedPepite={pepite.pepite}
+        selectedEstablishment={pepite.establishment}
         onChange={onChange}
         errors={errors} />
         {isNextCommitteeShown(pepite.pepite) ? <NextCommittee /> : null}
