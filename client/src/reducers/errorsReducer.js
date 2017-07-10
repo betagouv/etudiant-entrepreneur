@@ -4,7 +4,7 @@ import initialState from './initialState'
 export default function errorsReducer(state = initialState.errors, action) {
   switch (action.type) {
     case types.UPDATE_ERRORS:
-      return Object.assign({}, state.errors, action.errors )
+      return Object.assign({}, state, action.errors )
     default:
       return state
   }

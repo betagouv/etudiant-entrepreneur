@@ -5,7 +5,7 @@ export default function pepiteReducer(state = initialState.pepite, action) {
   switch (action.type) {
     case types.UPDATE_PEPITE:
     case types.LOAD_PEPITE_SUCCESS:
-      return Object.assign({}, state.pepite, action.pepite )
+      return Object.assign({}, state, action.pepite )
     default:
       return state
   }

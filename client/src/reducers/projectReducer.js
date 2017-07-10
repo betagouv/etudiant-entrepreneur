@@ -5,7 +5,7 @@ export default function projectReducer(state = initialState.project, action) {
   switch (action.type) {
     case types.UPDATE_PROJECT:
     case types.LOAD_PROJECT_SUCCESS:
-      return Object.assign({}, state.project, action.project )
+      return Object.assign({}, state, action.project )
     default:
       return state
   }
