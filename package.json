@@ -2,7 +2,7 @@
   "name": "etudiant-entrepreneur",
   "version": "0.0.1",
   "engines": {
-    "node": "6.2.0"
+    "node": "6.11.1"
   },
   "description": "Faciliter l'accès au statut et à ses bénéfices",
   "scripts": {

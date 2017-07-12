@@ -2,7 +2,7 @@ version: 2
 jobs:
   build:
     docker:
-      - image: circleci/node
+      - image: circleci/node:6.11.0
       - image: circleci/mongo:3.2.12
     working_directory: ~/ee
     steps:
