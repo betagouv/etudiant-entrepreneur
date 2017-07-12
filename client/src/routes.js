@@ -11,6 +11,7 @@ import ApplicantPage from './components/pepite/Applicant/ApplicantPage'
 import CommitteePage from './components/pepite/Committee/CommitteePage'
 import StudentPage from './components/pepite/Student/StudentPage'
 import CguPage from './components/cgu/CguPage'
+import AdminPage from './components/admin/AdminPage'
 import StatPage from './components/stat/StatPage'
 import NotFound from './components/error/NotFound'
 import EnsureIsAuthenticatedContainer from './components/login/EnsureIsAuthenticatedContainer'
@@ -29,6 +30,7 @@ export default (
       <Route path="pepite/committee" component={CommitteePage} />
       <Route path="pepite/student" component={StudentPage} />
       <Route path="pepite/committeeAnswer/:id" component={CommitteeAnswerPage} />
+      <Route path="admin" component={AdminPage} />
     </Route>
     <Route path="*" component={NotFound} />
   </Route>

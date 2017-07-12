@@ -42,7 +42,11 @@ export class LoginPage extends React.Component {
       this.props.actions.loginUser(this.state.user)
         .then((user) => {
           toastr.success('Authentification réussie')
-          this.context.router.push(this.props.redirect)
+          if (user.role == 'admin') {
+            this.context.router.push('/admin')
+          } else {
+            this.context.router.push(this.props.redirect)
+          }
         })
         .catch((err) => {
           toastr.error(err)
