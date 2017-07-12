@@ -202,6 +202,13 @@ const users =
       email: 'entrepreneuriat@univ-grenoble-alpes.fr',
       pepite: 29,
       password: 'test'
+    },
+    {
+      _id: 30,
+      name: 'MESRI',
+      email: 'contact@etudiant-entrepreneur.beta.gouv.fr',
+      role: 'admin',
+      password: 'test'
     }
   ]
 

@@ -6,6 +6,7 @@ const Region = require('../api/region/region.model')
 const Establishment = require('../api/establishment/establishment.model')
 const User = require('../api/user/user.model')
 const pepitesData = require('../api/pepite/pepite.seed')
+const usersData = require('../api/user/user.seed')
 const regionData = require('../api/region/region.seed')
 const establishmentData = require('../api/establishment/establishment.seed')
 
@@ -43,9 +44,7 @@ function handlePepiteInserted() {
 
 function handleUserRemoved() {
   console.log('Seed user collection')
-  const users = pepitesData.map(p => { return (Object.assign(p, { pepite: p._id, password: 'test' })) })
-  console.log(users)
-  User.insertMany(users, handleUserInserted).catch((err) => console.log(err))
+  User.insertMany(usersData, handleUserInserted).catch((err) => console.log(err))
 }
 
 function handleUserInserted() {

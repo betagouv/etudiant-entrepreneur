@@ -49,6 +49,7 @@ describe('User Actions', function () {
           id : 1,
           username: 'test',
           token: expectedToken,
+          role: 'pepite',
           isAuthenticated: true
         }
         const expecedValidPassword = 'test'

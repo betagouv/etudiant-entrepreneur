@@ -96,6 +96,7 @@ export default {
     id: 0,
     token: null,
     username: null,
+    role: null,
     isAuthenticated: false
   },
   errors: {
