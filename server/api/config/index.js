@@ -28,7 +28,12 @@ const all = {
 
   cors: {
     origin: process.env.CORS_ORIGIN || '*'
-  }
+  },
+
+  userRoles: [
+    'pepite',
+    'admin'
+  ]
 }
 
 module.exports = all

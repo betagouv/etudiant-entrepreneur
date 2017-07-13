@@ -4,6 +4,7 @@ const ApplicationModel = require('../application.model')
 const applicationData = require('./application.seed')
 const applicationOtherData = require('./application.other.seed')
 const expect = require('expect')
+const qs = require('qs')
 
 const authHelper = require('../../lib/testUtils/authHelper')
 
@@ -348,7 +349,7 @@ describe('api: application', () => {
         const sentStatus = {
           status: 'sent'
         }
-        const pepiteKey  = 'pepite'
+        const pepiteKey = 'pepite'
         const sentDateKey = 'sentDate'
 
         supertest(app)
@@ -366,6 +367,99 @@ describe('api: application', () => {
             expect(res.body[1]).toIncludeKey(pepiteKey)
             expect(res.body[1]).toIncludeKey(sentDateKey)
             expect(res.body[1]).toInclude(sentStatus)
+            done()
+          })
+      })
+    })
+  })
+
+  describe('When requesting /api/application?filter', () => {
+    let validToken = {}
+
+    before((done) => {
+      ApplicationModel.insertMany(applicationData, () => authHelper.getToken(app, 'contact@etudiant-entrepreneur.beta.gouv.fr', 'test', validToken, done))
+    })
+
+    after((done) => {
+      ApplicationModel.remove(done)
+    })
+
+    describe('When an invalidtoken is provided', () => {
+      it('should return a 401 error', (done) => {
+        supertest(app)
+          .get('/api/application')
+          .expect(401, done)
+      })
+    })
+
+    describe('When no filter is provided', () => {
+      it('should give all applications', (done) => {
+        supertest(app)
+          .get('/api/application')
+          .set('Authorization', `Bearer ${validToken.token}`)
+          .expect(200)
+          .end((err, res) => {
+            if (err) {
+              return done(err)
+            }
+            expect(res.body.length).toEqual(4)
+            return done()
+          })
+      })
+    })
+
+    describe('When filter is on PEPITE id', () => {
+      it('should give all applications made to the PEPITE', (done) => {
+        const filter = {
+          pepite : 3
+        }
+        supertest(app)
+          .get(`/api/application?${qs.stringify({filter}, { encode: false })}`)
+          .set('Authorization', `Bearer ${validToken.token}`)
+          .expect(200)
+          .end((err, res) => {
+            if (err) {
+              return done(err)
+            }
+            expect(res.body.length).toBe(2)
+            done()
+          })
+      })
+    })
+
+    describe('When filter is on email', () => {
+      it('should give all applications containing the filter', (done) => {
+        const filter = {
+          email : 'test2'
+        }
+        supertest(app)
+          .get(`/api/application?${qs.stringify({filter}, { encode: false })}`)
+          .set('Authorization', `Bearer ${validToken.token}`)
+          .expect(200)
+          .end((err, res) => {
+            if (err) {
+              return done(err)
+            }
+            expect(res.body.length).toBe(1)
+            done()
+          })
+      })
+    })
+
+    describe('When filter is on establishment', () => {
+      it('should give all applications containing the filter', (done) => {
+        const filter = {
+          establishment : 'école'
+        }
+        supertest(app)
+          .get(`/api/application?${qs.stringify({filter}, { encode: false })}`)
+          .set('Authorization', `Bearer ${validToken.token}`)
+          .expect(200)
+          .end((err, res) => {
+            if (err) {
+              return done(err)
+            }
+            expect(res.body.length).toBe(1)
             done()
           })
       })

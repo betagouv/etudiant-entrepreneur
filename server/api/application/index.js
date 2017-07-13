@@ -8,6 +8,7 @@ module.exports = (options) => {
   var applicationController = new Controller(options)
   router.get('/ping', applicationController.ping)
   router.get('/:id', applicationController.getApplication)
+  router.get('/', auth.hasRole('admin'), applicationController.getFilteredApplication)
   router.post('/', applicationController.createApplication)
   router.put('/:id', applicationController.updateApplication)
   router.put('/:id/send', applicationController.sendApplication)

@@ -56,7 +56,7 @@ const applications = [
         'type': '5',
         'name': 'azeaze',
         'sector': '',
-        'establishment': 'azeaz',
+        'establishment': 'école',
         'city': 'azea'
       },
       'tutor': {
@@ -176,7 +176,7 @@ const applications = [
       'isRenew': 'true',
       'situation': 'student',
       'phone': '0643333333',
-      'email': 'test@test.com',
+      'email': 'test2@test.com',
       'firstname': 'Romain',
       'name': 'Villon'
     },

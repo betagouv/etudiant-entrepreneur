@@ -34,6 +34,32 @@ class ApplicationController {
       })
   }
 
+  getFilteredApplication(req, res) {
+    const filter = req.query.filter ? req.query.filter : {}
+    let findQuery = {}
+
+    if (filter.email) {
+      findQuery['contact.email'] = {
+        $regex: `${filter.email}`,
+        $options: 'i'
+      }
+    }
+    if (filter.pepite) {
+      findQuery['pepite.pepite'] = filter.pepite
+    }
+    if (filter.establishment) {
+      findQuery['career.diploma.establishment'] = {
+        $regex: `${filter.establishment}`,
+        $options: 'i'
+      }
+    }
+    return Application
+      .find(findQuery).exec()
+      .then((applications) => {
+        return res.json(applications)
+      })
+  }
+
   createApplication(req, res, next) {
     Application.create(req.body)
       .then((application) => {
