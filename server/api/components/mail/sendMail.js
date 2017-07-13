@@ -5,11 +5,18 @@ const sgTransport = require('nodemailer-sendgrid-transport')
 exports.sendMail = function (email, done) {
   let transport
   if (process.env.NODE_ENV === 'production') {
-    transport = sgTransport({
-      auth: {
-        api_key: config.apiKey
+    if (!config.host) {
+      transport = sgTransport({
+        auth: {
+          api_key: config.apiKey
+        }
+      })
+    } else {
+      transport = {
+        host: config.host,
+        port: config.port
       }
-    })
+    }
   } else {
     transport = {
       host: 'debugmail.io',

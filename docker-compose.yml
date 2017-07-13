@@ -22,6 +22,9 @@ services:
       - SENTRY_DSN=${SENTRY_DSN}
       - DEV_MAIL_USER=${DEV_MAIL_USER}
       - DEV_MAIL_PASS=${DEV_MAIL_PASS}
+      - SMTP_HOST=${SMTP_HOST}
+      - SMTP_PORT=${SMTP_PORT}
+      - SMTP_SENDER=${SMTP_SENDER}
     depends_on:
       - mongo
   seed:

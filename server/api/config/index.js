@@ -12,7 +12,9 @@ const all = {
   },
   mail: {
     apiKey: process.env.SENDGRID_API_KEY || 'sendgrid_api_key',
-    senderMail: 'contact@etudiant-entrepreneur.beta.gouv.fr'
+    senderMail: process.env.SMTP_SENDER || 'contact@etudiant-entrepreneur.beta.gouv.fr',
+    host: process.env.SMTP_HOST || '',
+    port: process.env.SMTP_PORT || ''
   },
 
   // Secret for session
