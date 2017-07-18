@@ -393,30 +393,58 @@ describe('api: application', () => {
     })
 
     describe('When no filter is provided', () => {
-      it('should give all applications', (done) => {
-        supertest(app)
-          .get('/api/application')
-          .set('Authorization', `Bearer ${validToken.token}`)
-          .expect(200)
-          .end((err, res) => {
-            if (err) {
-              return done(err)
-            }
-            expect(res.body.length).toEqual(4)
-            return done()
-          })
+      describe('When no page is given', () => {
+        it('should give all applications', (done) => {
+          supertest(app)
+            .get('/api/application')
+            .set('Authorization', `Bearer ${validToken.token}`)
+            .expect(200)
+            .end((err, res) => {
+              if (err) {
+                return done(err)
+              }
+              expect(res.body.length).toEqual(4)
+              return done()
+            })
+        })
+      })
+
+      describe('When first page is asked', () => {
+        it('should give all applications', (done) => {
+          supertest(app)
+            .get('/api/application?page=1')
+            .set('Authorization', `Bearer ${validToken.token}`)
+            .expect(200)
+            .end((err, res) => {
+              if (err) {
+                return done(err)
+              }
+              expect(res.body.length).toEqual(4)
+              return done()
+            })
+        })
+      })
+
+      describe('When page greater than maxPage is asked', () => {
+        it('should give a bad request', () => {
+          supertest(app)
+            .get('/api/application?page=2')
+            .set('Authorization', `Bearer ${validToken.token}`)
+            .expect(400)
+        })
       })
     })
 
     describe('When filter is on PEPITE id', () => {
       it('should give all applications made to the PEPITE', (done) => {
         const filter = {
-          pepite : 3
+          pepite: 3
         }
         supertest(app)
-          .get(`/api/application?${qs.stringify({filter}, { encode: false })}`)
+          .get(`/api/application?${qs.stringify({ filter }, { encode: false })}`)
           .set('Authorization', `Bearer ${validToken.token}`)
           .expect(200)
+          .expect('Content-Range', 2)
           .end((err, res) => {
             if (err) {
               return done(err)
@@ -430,12 +458,33 @@ describe('api: application', () => {
     describe('When filter is on email', () => {
       it('should give all applications containing the filter', (done) => {
         const filter = {
-          email : 'test2'
+          email: 'test2'
         }
         supertest(app)
-          .get(`/api/application?${qs.stringify({filter}, { encode: false })}`)
+          .get(`/api/application?${qs.stringify({ filter }, { encode: false })}`)
           .set('Authorization', `Bearer ${validToken.token}`)
           .expect(200)
+          .expect('Content-Range', 1)
+          .end((err, res) => {
+            if (err) {
+              return done(err)
+            }
+            expect(res.body.length).toBe(1)
+            done()
+          })
+      })
+    })
+
+    describe('When filter is on name', () => {
+      it('should give all applications containing the filter', (done) => {
+        const filter = {
+          name: 'vil'
+        }
+        supertest(app)
+          .get(`/api/application?${qs.stringify({ filter }, { encode: false })}`)
+          .set('Authorization', `Bearer ${validToken.token}`)
+          .expect(200)
+          .expect('Content-Range', 1)
           .end((err, res) => {
             if (err) {
               return done(err)
@@ -449,12 +498,13 @@ describe('api: application', () => {
     describe('When filter is on establishment', () => {
       it('should give all applications containing the filter', (done) => {
         const filter = {
-          establishment : 'école'
+          establishment: 'école'
         }
         supertest(app)
-          .get(`/api/application?${qs.stringify({filter}, { encode: false })}`)
+          .get(`/api/application?${qs.stringify({ filter }, { encode: false })}`)
           .set('Authorization', `Bearer ${validToken.token}`)
           .expect(200)
+          .expect('Content-Range', 1)
           .end((err, res) => {
             if (err) {
               return done(err)

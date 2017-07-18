@@ -34,29 +34,31 @@ class ApplicationController {
       })
   }
 
-  getFilteredApplication(req, res) {
+  getFilteredApplication(req, res, next) {
     const filter = req.query.filter ? req.query.filter : {}
-    let findQuery = {}
+    const page = Math.max(0, req.query.page - 1)
+    const findFilter = getFindQuery(filter)
 
-    if (filter.email) {
-      findQuery['contact.email'] = {
-        $regex: `${filter.email}`,
-        $options: 'i'
-      }
-    }
-    if (filter.pepite) {
-      findQuery['pepite.pepite'] = filter.pepite
-    }
-    if (filter.establishment) {
-      findQuery['career.diploma.establishment'] = {
-        $regex: `${filter.establishment}`,
-        $options: 'i'
-      }
-    }
-    return Application
-      .find(findQuery).exec()
-      .then((applications) => {
-        return res.json(applications)
+    return Promise.all([
+      Application.find(findFilter).count(),
+      Application.find(findFilter)
+        .skip(10 * page)
+        .limit(10)
+    ])
+      .then((pagination) => {
+        const count = pagination[0]
+        const applications = pagination[1]
+        if (count && !applications.length) {
+          return next(new StandardError('Request range not allowed', { code: 400 }))
+        }
+        res.set({
+          'Content-Range': pagination[0]
+        })
+        return res.json(pagination[1])
+      })
+      .catch((err) => {
+        req.log.error(err)
+        return res.status(500).send(err)
       })
   }
 
@@ -237,6 +239,34 @@ class ApplicationController {
         return res.status(500).send(err)
       })
   }
+}
+
+function getFindQuery(flatFilter) {
+  let findFilter = {}
+
+  if (flatFilter.email) {
+    findFilter['contact.email'] = {
+      $regex: `${flatFilter.email}`,
+      $options: 'i'
+    }
+  }
+  if (flatFilter.name) {
+    findFilter['contact.name'] = {
+      $regex: `${flatFilter.name}`,
+      $options: 'i'
+    }
+  }
+  if (flatFilter.pepite) {
+    findFilter['pepite.pepite'] = flatFilter.pepite
+  }
+  if (flatFilter.establishment) {
+    findFilter['career.diploma.establishment'] = {
+      $regex: `${flatFilter.establishment}`,
+      $options: 'i'
+    }
+  }
+
+  return findFilter
 }
 
 function logMail(logger, error, info) {
