@@ -18,6 +18,11 @@ function statusToLabel(status) {
         style: 'info',
         text: 'en attente'
       }
+    case 'saved':
+      return {
+        style: 'primary',
+        text: 'sauvegardé'
+      }
     default:
       return {
         style: 'warning',
