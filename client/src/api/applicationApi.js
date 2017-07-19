@@ -1,4 +1,5 @@
 import axios from 'axios'
+import qs from 'qs'
 import { getFilename } from './requestUtils'
 
 class applicationApi {
@@ -11,6 +12,21 @@ class applicationApi {
       })
       .catch((err) => {
         throw new Error('La candidature que vous cherchez n\'existe pas')
+      })
+  }
+
+  static getAllApplication(filter, page, userToken) {
+    return axios.get(`/application?${qs.stringify({ filter, page }, { encode: false })}`,
+      {
+        'headers': {
+          'Authorization': `Bearer ${userToken}`
+        }
+      })
+      .then((res) => {
+        return res.data
+      })
+      .catch((err) => {
+        throw new Error(err)
       })
   }
 

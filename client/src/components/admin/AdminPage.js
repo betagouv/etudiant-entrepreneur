@@ -4,7 +4,9 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 
 import * as pepiteListActions from '../../actions/pepiteListActions'
+import * as applicationActions from '../../actions/applicationActions'
 import ApplicationFilterForm from './ApplicationFilterForm'
+import ApplicationTable from './ApplicationTable'
 
 export class AdminPage extends React.Component {
   constructor(props, context) {
@@ -15,7 +17,8 @@ export class AdminPage extends React.Component {
         name: '',
         establishment: '',
         email: ''
-      }
+      },
+      applications: []
     }
 
     this.filterApplication = this.filterApplication.bind(this)
@@ -35,6 +38,9 @@ export class AdminPage extends React.Component {
   }
 
   filterApplication() {
+    this.props.applicationActions.getAllApplication(groomFilter(this.state.filter), 0).then((applications) => {
+      this.setState({ applications })
+    })
   }
 
   clearFilter(event) {
@@ -62,11 +68,25 @@ export class AdminPage extends React.Component {
           onClearFilter={this.clearFilter}
           pepiteList={this.props.pepiteList}
         />
+        <ApplicationTable
+          applications={this.state.applications}
+          pepites={this.props.pepiteList}
+        />
       </div>
     )
   }
 }
 
+function groomFilter(filter) {
+  const propNames = Object.getOwnPropertyNames(filter)
+  for (let i = 0; i < propNames.length; i++) {
+    let propName = propNames[i]
+    if (!filter[propName]) {
+      delete filter[propName]
+    }
+  }
+  return filter
+}
 
 function mapStateToProps(state, ownProps) {
   return {
@@ -77,11 +97,13 @@ function mapStateToProps(state, ownProps) {
 function mapDispatchToProps(dispatch) {
   return {
     pepiteListActions: bindActionCreators(pepiteListActions, dispatch),
+    applicationActions: bindActionCreators(applicationActions, dispatch)
   }
 }
 
 AdminPage.propTypes = {
   pepiteListActions: PropTypes.object.isRequired,
+  applicationActions: PropTypes.object.isRequired,
   pepiteList: PropTypes.array.isRequired
 }
 

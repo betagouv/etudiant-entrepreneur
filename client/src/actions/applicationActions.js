@@ -123,6 +123,13 @@ export function getOtherApplication(id) {
   }
 }
 
+export function getAllApplication(filter, page) {
+  return (dispatch, getState) => {
+    const {user} = getState()
+    return applicationApi.getAllApplication(filter, page, user.token)
+  }
+}
+
 export function getPepiteApplicationXls() {
   return (dispatch, getState) => {
     const {user} = getState()
