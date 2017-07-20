@@ -20,7 +20,7 @@ const ApplicationFilterForm = ({ onClearFilter, onFilter, filter, pepiteList, on
         <FormGroup>
           <ControlLabel>PEPITE</ControlLabel>
           <FormControl name="pepite" componentClass="select" onChange={onChange} value={filter.pepite}>
-            <option value={0} disabled>Sélectionner</option>
+            <option value={0}>Toutes les PEPITE</option>
             {pepiteList.map((pepite) => { return (<option key={pepite._id} value={pepite._id}>PEPITE {pepite.name}</option>) })}
           </FormControl>
         </FormGroup>
