@@ -23,7 +23,10 @@ class applicationApi {
         }
       })
       .then((res) => {
-        return res.data
+        return ({
+          applications: res.data,
+          total: res.headers['content-range']
+        })
       })
       .catch((err) => {
         throw new Error(err)

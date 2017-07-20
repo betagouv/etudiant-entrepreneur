@@ -7,6 +7,9 @@ import * as pepiteListActions from '../../actions/pepiteListActions'
 import * as applicationActions from '../../actions/applicationActions'
 import ApplicationFilterForm from './ApplicationFilterForm'
 import ApplicationTable from './ApplicationTable'
+import { Pagination } from 'react-bootstrap'
+
+const ITEMS_PER_PAGE = 10
 
 export class AdminPage extends React.Component {
   constructor(props, context) {
@@ -18,16 +21,32 @@ export class AdminPage extends React.Component {
         establishment: '',
         email: ''
       },
-      applications: []
+      applications: [],
+      activePage: 1,
+      totalApplications: 0
     }
 
     this.filterApplication = this.filterApplication.bind(this)
     this.clearFilter = this.clearFilter.bind(this)
     this.onFilterChange = this.onFilterChange.bind(this)
+    this.numberOfPages = this.numberOfPages.bind(this)
+    this.handlePageSelect = this.handlePageSelect.bind(this)
   }
 
   componentDidMount() {
     this.props.pepiteListActions.loadPepiteList()
+  }
+
+
+  handlePageSelect(selectedPage) {
+    this.setState({
+      activePage: selectedPage
+    })
+    this.loadApplication(selectedPage)
+  }
+
+  numberOfPages() {
+    return Math.ceil(this.state.totalApplications / ITEMS_PER_PAGE)
   }
 
   onFilterChange(event) {
@@ -39,11 +58,21 @@ export class AdminPage extends React.Component {
 
   filterApplication(event) {
     event.preventDefault()
+    this.setState({
+      activePage: 1
+    })
+    this.loadApplication()
+  }
+
+  loadApplication(page = 1) {
     this.props.applicationActions.getAllApplication(
       groomFilter(Object.assign({}, this.state.filter)),
-      0)
-      .then((applications) => {
-        this.setState({ applications })
+      page)
+      .then((res) => {
+        this.setState({
+          applications: res.applications,
+          totalApplications: res.total
+        })
       })
   }
 
@@ -76,6 +105,16 @@ export class AdminPage extends React.Component {
           applications={this.state.applications}
           pepites={this.props.pepiteList}
         />
+
+        <Pagination
+          prev
+          next
+          ellipsis
+          boundaryLinks
+          items={this.numberOfPages()}
+          maxButtons={5}
+          activePage={this.state.activePage}
+          onSelect={this.handlePageSelect} />
       </div>
     )
   }
