@@ -37,7 +37,8 @@ export class AdminPage extends React.Component {
     this.setState(filter)
   }
 
-  filterApplication() {
+  filterApplication(event) {
+    event.preventDefault()
     this.props.applicationActions.getAllApplication(
       groomFilter(Object.assign({}, this.state.filter)),
       0)
