@@ -38,9 +38,12 @@ export class AdminPage extends React.Component {
   }
 
   filterApplication() {
-    this.props.applicationActions.getAllApplication(groomFilter(this.state.filter), 0).then((applications) => {
-      this.setState({ applications })
-    })
+    this.props.applicationActions.getAllApplication(
+      groomFilter(Object.assign({}, this.state.filter)),
+      0)
+      .then((applications) => {
+        this.setState({ applications })
+      })
   }
 
   clearFilter(event) {
