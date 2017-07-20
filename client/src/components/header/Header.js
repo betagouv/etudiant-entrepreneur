@@ -16,11 +16,13 @@ export class Header extends React.Component {
       return (
         <Navbar inverse className="navbar-top">
           <Navbar.Header>
-            <Navbar.Brand>
-              <IndexLink to="/pepite" className="navbar-brand">
-                <span title="home" className="glyphicon glyphicon-home" />
-              </IndexLink>
-            </Navbar.Brand>
+            {this.props.user.role === 'pepite' &&
+              <Navbar.Brand>
+                <IndexLink to="/pepite" className="navbar-brand">
+                  <span title="home" className="glyphicon glyphicon-home" />
+                </IndexLink>
+              </Navbar.Brand>
+            }
             <Navbar.Toggle />
           </Navbar.Header>
           <Navbar.Collapse>
