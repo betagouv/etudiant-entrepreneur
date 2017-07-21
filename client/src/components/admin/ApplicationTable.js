@@ -14,6 +14,7 @@ const ApplicationTable = ({ applications, pepites }) => {
           <th>Établissement</th>
           <th>Pepite</th>
           <th>Statut</th>
+          <th>Candidature</th>
         </tr>
       </thead>
       <tbody>

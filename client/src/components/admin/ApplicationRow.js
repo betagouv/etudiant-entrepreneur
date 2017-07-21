@@ -23,6 +23,7 @@ const ApplicationRow = ({ application, pepites }) => {
       <td>{establishmentName}</td>
       <td>{pepiteName}</td>
       <td><StatusLabel status={application.status} /></td>
+      <td><a className="btn btn-info btn-xs" target="_blank" href={`/application/${application._id}`}><span className="glyphicon glyphicon-file"></span></a></td>
     </tr>
   )
 }
