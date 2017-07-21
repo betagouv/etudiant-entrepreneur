@@ -6,7 +6,7 @@ const ApplicationRow = ({ application, pepites }) => {
   const pepiteName = (application.pepite &&
     application.pepite.pepite &&
     application.pepite.pepite != '0' &&
-    Number(application.pepite.pepite) < pepites.length) ?
+    Number(application.pepite.pepite) <= pepites.length) ?
     pepites[Number(application.pepite.pepite) - 1].name : '-'
 
   const establishmentName = (application.career && application.career.diploma) ?
