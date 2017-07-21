@@ -19,7 +19,8 @@ export class AdminPage extends React.Component {
         pepite: 0,
         name: '',
         establishment: '',
-        email: ''
+        email: '',
+        status: ''
       },
       applications: [],
       activePage: 1,
@@ -83,7 +84,8 @@ export class AdminPage extends React.Component {
         pepite: 0,
         name: '',
         establishment: '',
-        email: ''
+        email: '',
+        status: ''
       }
     })
   }

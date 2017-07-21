@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react'
 import { FormGroup, ControlLabel, FormControl, Button, ButtonToolbar, Panel } from 'react-bootstrap'
+import applicationStatuses from './applicationStatuses'
 
 const ApplicationFilterForm = ({ onClearFilter, onFilter, filter, pepiteList, onChange }) => {
   return (
@@ -16,6 +17,13 @@ const ApplicationFilterForm = ({ onClearFilter, onFilter, filter, pepiteList, on
         <FormGroup>
           <ControlLabel>Établissement</ControlLabel>
           <FormControl name="establishment" placeholder="Établissement" onChange={onChange} value={filter.establishment} />
+        </FormGroup>
+        <FormGroup>
+          <ControlLabel>Statut</ControlLabel>
+          <FormControl name="status" componentClass="select" onChange={onChange} value={filter.status}>
+            <option value={''}>Tous les statuts</option>
+            {applicationStatuses.map((status) => { return (<option key={status.value} value={status.value}>{status.name}</option>) })}
+          </FormControl>
         </FormGroup>
         <FormGroup>
           <ControlLabel>PEPITE</ControlLabel>

@@ -260,6 +260,9 @@ function getFindQuery(flatFilter) {
   if (flatFilter.pepite) {
     findFilter['pepite.pepite'] = flatFilter.pepite
   }
+  if (flatFilter.status) {
+    findFilter['status'] = flatFilter.status
+  }
   if (flatFilter.establishment) {
     findFilter['career.diploma.establishment'] = {
       $regex: `${flatFilter.establishment}`,

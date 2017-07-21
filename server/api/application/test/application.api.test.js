@@ -495,6 +495,26 @@ describe('api: application', () => {
       })
     })
 
+    describe('When filter is on status', () => {
+      it('should give all applications containing the filter', (done) => {
+        const filter = {
+          status: 'saved'
+        }
+        supertest(app)
+          .get(`/api/application?${qs.stringify({ filter }, { encode: false })}`)
+          .set('Authorization', `Bearer ${validToken.token}`)
+          .expect(200)
+          .expect('Content-Range', 2)
+          .end((err, res) => {
+            if (err) {
+              return done(err)
+            }
+            expect(res.body.length).toBe(2)
+            done()
+          })
+      })
+    })
+
     describe('When filter is on establishment', () => {
       it('should give all applications containing the filter', (done) => {
         const filter = {
