@@ -15,7 +15,7 @@ const ApplicationRow = ({ application, pepites }) => {
 
   return (
     <tr>
-      <td><TimeSinceControl textDate={application.sentDate} /></td>
+      <td>{application.sentDate ? <TimeSinceControl textDate={application.sentDate} /> : '-'}</td>
       <td>{application.contact.schoolYear}</td>
       <td>{application.contact.email}</td>
       <td>{application.contact.name}</td>
