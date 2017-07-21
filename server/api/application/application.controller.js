@@ -42,7 +42,7 @@ class ApplicationController {
     return Promise.all([
       Application.find(findFilter).count(),
       Application.find(findFilter)
-        .sort({sentDate: 1})
+        .sort({sentDate: -1})
         .skip(10 * page)
         .limit(10)
     ])
