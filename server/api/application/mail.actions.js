@@ -3,32 +3,32 @@ const senderMail = require('../config').mail.senderMail
 
 const applicationMail = require('./applicationMail')
 
-function invitePartners(teamMembers, application, pepite, logCallback) {
-  teamMembers.forEach((teamMember) => {
-    sendMail(applicationMail.invitePartner(senderMail, application, pepite, teamMember.email), logCallback)
-  })
+class MailActions {
+  constructor(nodemailer) {
+    this.sendMail = sendMail(nodemailer)
+  }
+
+  invitePartners(teamMembers, application, pepite, logCallback) {
+    teamMembers.forEach((teamMember) => {
+      this.sendMail(applicationMail.invitePartner(senderMail, application, pepite, teamMember.email), logCallback)
+    })
+  }
+
+  notifyPepite(application, pepite, logCallback) {
+    this.sendMail(applicationMail.notifyPepite(senderMail, application, pepite), logCallback)
+  }
+
+  notifyTutor(application, pepite, logCallback) {
+    this.sendMail(applicationMail.notifyTutor(senderMail, application, pepite), logCallback)
+  }
+
+  saveApplication(application, logCallback) {
+    this.sendMail(applicationMail.saveApplication(senderMail, application), logCallback)
+  }
+
+  sendApplication(application, pepite, nextCommittee, logCallback) {
+    this.sendMail(applicationMail.sendApplication(senderMail, application, pepite, nextCommittee), logCallback)
+  }
 }
 
-function notifyPepite(application, pepite, logCallback) {
-  sendMail(applicationMail.notifyPepite(senderMail, application, pepite), logCallback)
-}
-
-function notifyTutor(application, pepite, logCallback) {
-  sendMail(applicationMail.notifyTutor(senderMail, application, pepite), logCallback)
-}
-
-function saveApplication(application, logCallback) {
-  sendMail(applicationMail.saveApplication(senderMail, application), logCallback)
-}
-
-function sendApplication(application, pepite, nextCommittee, logCallback) {
-  sendMail(applicationMail.sendApplication(senderMail, application, pepite, nextCommittee), logCallback)
-}
-
-module.exports = {
-  invitePartners,
-  notifyPepite,
-  notifyTutor,
-  saveApplication,
-  sendApplication
-}
+module.exports = MailActions

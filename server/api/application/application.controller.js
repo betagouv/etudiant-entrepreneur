@@ -7,11 +7,17 @@ const json2csv = require('json2csv')
 const Application = require('./application.model')
 const Committee = require('../committee/committee.model')
 const Pepite = require('../pepite/pepite.model')
-const mailActions = require('./mail.actions')
+const MailActions = require('./mail.actions')
 const applicationExportFields = require('./applicationExportFields')
 const certificatePdf = require('../components/pdf/certificatePdf')
 
 class ApplicationController {
+  constructor(options) {
+    this.mailActions = new MailActions(options.mailer)
+    this.createApplication = this.createApplication.bind(this)
+    this.sendApplication = this.sendApplication.bind(this)
+  }
+
   ping(req, res) {
     res.json('pong')
   }
@@ -66,7 +72,7 @@ class ApplicationController {
   createApplication(req, res, next) {
     Application.create(req.body)
       .then((application) => {
-        mailActions.saveApplication(
+        this.mailActions.saveApplication(
           application,
           (error, info) => { logMail(req.log, error, info) }
         )
@@ -125,27 +131,27 @@ class ApplicationController {
                 //notify applicant
                 return Committee.getNextCommittee(pepite._id)
                   .then((nextCommittee) => {
-                    mailActions.sendApplication(
+                    this.mailActions.sendApplication(
                       application,
                       pepite,
                       nextCommittee,
                       (error, info) => { logMail(req.log, error, info) })
                     //notify tutuor
                     if (application.contact.situation == 'student') {
-                      mailActions.notifyTutor(
+                      this.mailActions.notifyTutor(
                         application,
                         pepite,
                         (error, info) => { logMail(req.log, error, info) })
                     }
                     //notify pepite
-                    mailActions.notifyPepite(
+                    this.mailActions.notifyPepite(
                       application,
                       pepite,
                       (error, info) => { logMail(req.log, error, info) }
                     )
                     //notify partners
                     Application.getUnregisteredTeamMembers(application.project.team).then((unregisteredTeamMembers) => {
-                      mailActions.invitePartners(
+                      this.mailActions.invitePartners(
                         unregisteredTeamMembers,
                         application,
                         pepite,

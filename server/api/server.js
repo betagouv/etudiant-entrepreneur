@@ -11,6 +11,7 @@ const formatError = require('./lib/middlewares/formatError')
 const mongoose = require('mongoose')
 var passport = require('passport')
 const Raven = require('raven')
+const nodemailer = require('nodemailer')
 
 const config = require('./config')
 
@@ -21,6 +22,7 @@ function Server(options) {
   options.port = process.env.PORT || options.port || 0
   options.logger = options.logger || emptylogger()
   options.isTest = options.isTest || false
+  options.mailer = options.mailer || nodemailer
 
   mongoose.Promise = require('bluebird')
   if (!mongoose.connection.readyState) {
