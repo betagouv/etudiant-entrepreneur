@@ -5,6 +5,7 @@ const applicationData = require('./application.seed')
 const applicationOtherData = require('./application.other.seed')
 const expect = require('expect')
 const qs = require('qs')
+const nodemailerMock = require('nodemailer-mock')
 
 const authHelper = require('../../lib/testUtils/authHelper')
 
@@ -12,7 +13,11 @@ describe('api: application', () => {
   let app
 
   before(() => {
-    app = new Server({ isTest: true }).getApp()
+    app = new Server({ isTest: true, mailer: nodemailerMock }).getApp()
+  })
+
+  afterEach(() => {
+    nodemailerMock.mock.reset()
   })
 
   describe('When requesting /api/application/ping', () => {
@@ -127,6 +132,8 @@ describe('api: application', () => {
             return done(err)
           }
           expect(res.body).toContain(validApplication)
+          const sentMail = nodemailerMock.mock.sentMail()
+          expect(sentMail.length).toBe(1)
           done()
         })
     })
@@ -235,7 +242,15 @@ describe('api: application', () => {
       it('should return a 200', (done) => {
         supertest(app)
           .put('/api/application/9c9d6a6b832effc406059b15/send')
-          .expect(200, done)
+          .expect(200)
+          .end((err) => {
+            if (err) {
+              return done(err)
+            }
+            const sentMail = nodemailerMock.mock.sentMail()
+            expect(sentMail.length).toBe(3)
+            return done()
+          })
       })
     })
 
