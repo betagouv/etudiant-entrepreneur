@@ -16,6 +16,7 @@ class ApplicationController {
     this.mailActions = new MailActions(options.mailer)
     this.createApplication = this.createApplication.bind(this)
     this.sendApplication = this.sendApplication.bind(this)
+    this.updateApplication = this.updateApplication.bind(this)
   }
 
   ping(req, res) {
@@ -48,7 +49,7 @@ class ApplicationController {
     return Promise.all([
       Application.find(findFilter).count(),
       Application.find(findFilter)
-        .sort({sentDate: -1})
+        .sort({ sentDate: -1 })
         .skip(10 * page)
         .limit(10)
     ])
@@ -87,22 +88,57 @@ class ApplicationController {
       })
   }
 
-  updateApplication(req, res) {
+  updateApplication(req, res, next) {
     if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
       return res.sendStatus(404)
     }
-    return Application
-      .findByIdAndUpdate(req.params.id, req.body, { new: true })
-      .then((application) => {
-        if (!application) {
-          return res.sendStatus(404)
+    return Pepite.findById(req.body.pepite.pepite)
+      .then((pepiteNew) => {
+        if (!pepiteNew) {
+          return next(new StandardError(`Le PEPITE avec l\'id: ${req.body.pepite.pepite} n'existe pas`, { code: 400 }))
         }
-        return res.json(application)
+        return Application
+          .findByIdAndUpdate(req.params.id, req.body, { new: false })
+          .then((application) => {
+            if (!application) {
+              return res.sendStatus(404)
+            }
+            return Pepite.findById(application.pepite.pepite).then((pepiteOld) => {
+              this.notifyPepiteTransfer(application, pepiteNew, pepiteOld, req)
+              return res.json(req.body)
+            })
+          })
       })
       .catch((err) => {
         req.log.error(err)
         return res.status(500).send(err)
       })
+  }
+
+  notifyPepiteTransfer(application, pepiteNew, pepiteOld, req) {
+    return new Promise((fulfill) => {
+      if (application.status == 'sent' && pepiteNew._id != pepiteOld._id) {
+        this.mailActions.notifyPepiteNew(
+          application,
+          pepiteNew,
+          pepiteOld,
+          (error, info) => { logMail(req.log, error, info) })
+        this.mailActions.notifyPepiteOld(
+          application,
+          pepiteNew,
+          pepiteOld,
+          (error, info) => { logMail(req.log, error, info) })
+        return Committee.getNextCommittee(pepiteNew._id)
+          .then((nextCommittee) => {
+            return this.mailActions.transferApplication(
+              application,
+              pepiteNew,
+              nextCommittee,
+              (error, info) => { logMail(req.log, error, info) })
+          })
+      }
+      fulfill()
+    })
   }
 
   sendApplication(req, res, next) {

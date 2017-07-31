@@ -18,6 +18,14 @@ class MailActions {
     this.sendMail(applicationMail.notifyPepite(senderMail, application, pepite), logCallback)
   }
 
+  notifyPepiteNew(application, pepiteNew, pepiteOld, logCallback) {
+    this.sendMail(applicationMail.notifyPepiteNew(senderMail, application, pepiteNew, pepiteOld), logCallback)
+  }
+
+  notifyPepiteOld(application, pepiteNew, pepiteOld, logCallback)  {
+    this.sendMail(applicationMail.notifyPepiteOld(senderMail, application, pepiteNew, pepiteOld), logCallback)
+  }
+
   notifyTutor(application, pepite, logCallback) {
     this.sendMail(applicationMail.notifyTutor(senderMail, application, pepite), logCallback)
   }
@@ -28,6 +36,10 @@ class MailActions {
 
   sendApplication(application, pepite, nextCommittee, logCallback) {
     this.sendMail(applicationMail.sendApplication(senderMail, application, pepite, nextCommittee), logCallback)
+  }
+
+  transferApplication(application, pepite, nextCommittee, logCallback) {
+    this.sendMail(applicationMail.transferApplication(senderMail, application, pepite, nextCommittee), logCallback)
   }
 }
 

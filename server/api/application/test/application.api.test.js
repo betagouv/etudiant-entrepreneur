@@ -280,15 +280,7 @@ describe('api: application', () => {
     })
 
     describe('When the application does not exist', () => {
-      it('should return a 404', (done) => {
-        supertest(app)
-          .put('/api/application/0edaaf484d50ad693d5abee4')
-          .expect(404, done)
-      })
-    })
-
-    describe('When the application is valid', () => {
-      const newApplication = {
+      const application = {
         'project': {
           'name': '',
           'summary': 'aze',
@@ -381,18 +373,601 @@ describe('api: application', () => {
         'date': '2016-11-24T11:12:12.272Z'
       }
 
-      it('should return a 200 with the updated application', (done) => {
+      it('should return a 404', (done) => {
         supertest(app)
-          .put('/api/application/9c9d6a6b832effc406059b15')
-          .send(newApplication)
-          .expect(200)
-          .end((err, res) => {
-            if (err) {
-              return done(err)
-            }
-            expect(res.body).toContain(newApplication)
-            return done()
+          .put('/api/application/0edaaf484d50ad693d5abee4')
+          .send(application)
+          .expect(404, done)
+      })
+    })
+
+    describe('When the application is valid', () => {
+      describe('When application has saved status', () => {
+        const newApplication = {
+          'project': {
+            'name': '',
+            'summary': 'aze',
+            'type': 'retake',
+            'site': '',
+            'status': 'company',
+            'blog': '',
+            'facebook': '',
+            'twitter': '',
+            'siret': '',
+            'activitySummary': 'azeaze',
+            'stepSummary': 'azeaze',
+            'sector': '9',
+            'otherSector': '',
+            'motiviation': 'azeaze',
+            'linkedin': '',
+            'team': [],
+            'teamType': ''
+          },
+          'profile': {
+            'gender': 'male',
+            'situation': 'graduate',
+            'nationality': 'AW',
+            'motivation': 'azeaz',
+            'isPartTime': 'true',
+            'hasActivity': 'true',
+            'activity': '',
+            'isUnemployed': 'true',
+            'isFreelance': 'true',
+            'birthDate': '2016-11-08T11:00:00.000Z',
+            'birthPlace': 'azeaz',
+            'ine': '',
+            'address': 'aze',
+            'cp': 'aze',
+            'city': 'azeaz',
+            'country': 'AW',
+            'twitter': '',
+            'facebook': '',
+            'linkedin': '',
+            'viadeo': ''
+          },
+          'career': {
+            'bac': {
+              'isOriginal': 'true',
+              'type': 'general',
+              'country': 'AO',
+              'year': '2002',
+              'stream': '',
+              'establishment': '&é\'&é',
+              'city': '&é\'&é\''
+            },
+            'diploma': {
+              'year': '2004-2005',
+              'type': '5',
+              'name': 'azeaze',
+              'sector': '',
+              'establishment': 'azeaz',
+              'city': 'azea'
+            },
+            'tutor': {
+              'name': 'arzeaz',
+              'firstname': 'azeazeaz',
+              'email': 'aeaze@zaeeazaz.com',
+              'skill': 'azezaz',
+              'replaceInternship': 'true',
+              'replaceModule': 'true',
+              'askYearOff': 'true'
+            },
+            'entrepreneurship': []
+          },
+          'pepite': {
+            'region': '1',
+            'establishment': 0,
+            'pepite': '3',
+            'askCoworking': 'true'
+          },
+          '_id': '9c9d6a6b832effc406059b15',
+          '__v': 0,
+          'sentDate': '2016-11-24T11:12:12.329Z',
+          'status': 'saved',
+          'contact': {
+            'schoolYear': 2016,
+            'isRenew': 'true',
+            'situation': 'student',
+            'phone': '0643333333',
+            'email': 'test@test.com',
+            'firstname': 'William',
+            'name': 'Rimbeau'
+          },
+          'date': '2016-11-24T11:12:12.272Z'
+        }
+
+        describe('When application PEPITE does not change', () => {
+
+          it('should return a 200 with the updated application', (done) => {
+            supertest(app)
+              .put('/api/application/9c9d6a6b832effc406059b15')
+              .send(newApplication)
+              .expect(200)
+              .end((err, res) => {
+                if (err) {
+                  return done(err)
+                }
+                expect(res.body).toContain(newApplication)
+                return done()
+              })
           })
+        })
+
+        describe('When application PEPITE does change', () => {
+          newApplication.pepite.pepite = '10'
+          let sentMail
+          it('should return a 200 with the updated application', (done) => {
+            supertest(app)
+              .put('/api/application/9c9d6a6b832effc406059b15')
+              .send(newApplication)
+              .expect(200)
+              .end((err, res) => {
+                if (err) {
+                  return done(err)
+                }
+                sentMail = nodemailerMock.mock.sentMail()
+                expect(res.body).toContain(newApplication)
+                return done()
+              })
+          })
+          it('should not send any email', () => {
+            expect(sentMail.length).toBe(0)
+          })
+        })
+      })
+
+      describe('When application has a sent status', () => {
+        const newApplication = {
+          'project': {
+            'name': '',
+            'summary': 'aze',
+            'type': 'retake',
+            'site': '',
+            'status': 'company',
+            'blog': '',
+            'facebook': '',
+            'twitter': '',
+            'siret': '',
+            'activitySummary': 'azeaze',
+            'stepSummary': 'azeaze',
+            'sector': '9',
+            'otherSector': '',
+            'motiviation': 'azeaze',
+            'linkedin': '',
+            'team': [],
+            'teamType': ''
+          },
+          'profile': {
+            'gender': 'male',
+            'situation': 'graduate',
+            'nationality': 'AW',
+            'motivation': 'azeaz',
+            'isPartTime': 'true',
+            'hasActivity': 'true',
+            'activity': '',
+            'isUnemployed': 'true',
+            'isFreelance': 'true',
+            'birthDate': '2016-11-08T11:00:00.000Z',
+            'birthPlace': 'azeaz',
+            'ine': '',
+            'address': 'aze',
+            'cp': 'aze',
+            'city': 'azeaz',
+            'country': 'AW',
+            'twitter': '',
+            'facebook': '',
+            'linkedin': '',
+            'viadeo': ''
+          },
+          'career': {
+            'bac': {
+              'isOriginal': 'true',
+              'type': 'general',
+              'country': 'AO',
+              'year': '2002',
+              'stream': '',
+              'establishment': '&é\'&é',
+              'city': '&é\'&é\''
+            },
+            'diploma': {
+              'year': '2004-2005',
+              'type': '5',
+              'name': 'azeaze',
+              'sector': '',
+              'establishment': 'azeaz',
+              'city': 'azea'
+            },
+            'tutor': {
+              'name': 'arzeaz',
+              'firstname': 'azeazeaz',
+              'email': 'aeaze@zaeeazaz.com',
+              'skill': 'azezaz',
+              'replaceInternship': 'true',
+              'replaceModule': 'true',
+              'askYearOff': 'true'
+            },
+            'entrepreneurship': []
+          },
+          'pepite': {
+            'region': '1',
+            'establishment': 0,
+            'pepite': '3',
+            'askCoworking': 'true'
+          },
+          '_id': '9c9d6a6b832effc406059b15',
+          '__v': 0,
+          'sentDate': '2016-11-24T11:12:12.329Z',
+          'status': 'saved',
+          'contact': {
+            'schoolYear': 2016,
+            'isRenew': 'true',
+            'situation': 'student',
+            'phone': '0643333333',
+            'email': 'test@test.com',
+            'firstname': 'William',
+            'name': 'Rimbeau'
+          },
+          'date': '2016-11-24T11:12:12.272Z'
+        }
+        describe('When application PEPITE does not change', () => {
+          let sentMail
+          it('should return a 200 with the updated application', (done) => {
+            supertest(app)
+              .put('/api/application/9c9d6a6b832effc406059b15')
+              .send(newApplication)
+              .expect(200)
+              .end((err, res) => {
+                if (err) {
+                  return done(err)
+                }
+                sentMail = nodemailerMock.mock.sentMail()
+                expect(res.body).toContain(newApplication)
+                return done()
+              })
+          })
+          it('should not have sent any email', () => {
+            expect(sentMail.length).toBe(0)
+          })
+        })
+
+        describe('When application PEPITE does change', () => {
+          describe('When PEPITE does exist', () => {
+            describe('When application have saved status', () => {
+              const changePepiteApplication = {
+                'project': {
+                  'name': '',
+                  'summary': 'aze',
+                  'type': 'retake',
+                  'site': '',
+                  'status': 'company',
+                  'blog': '',
+                  'facebook': '',
+                  'twitter': '',
+                  'siret': '',
+                  'activitySummary': 'azeaze',
+                  'stepSummary': 'azeaze',
+                  'sector': '9',
+                  'otherSector': '',
+                  'motiviation': 'azeaze',
+                  'linkedin': '',
+                  'team': [],
+                  'teamType': ''
+                },
+                'profile': {
+                  'gender': 'male',
+                  'situation': 'graduate',
+                  'nationality': 'AW',
+                  'motivation': 'azeaz',
+                  'isPartTime': 'true',
+                  'hasActivity': 'true',
+                  'activity': '',
+                  'isUnemployed': 'true',
+                  'isFreelance': 'true',
+                  'birthDate': '2016-11-08T11:00:00.000Z',
+                  'birthPlace': 'azeaz',
+                  'ine': '',
+                  'address': 'aze',
+                  'cp': 'aze',
+                  'city': 'azeaz',
+                  'country': 'AW',
+                  'twitter': '',
+                  'facebook': '',
+                  'linkedin': '',
+                  'viadeo': ''
+                },
+                'career': {
+                  'bac': {
+                    'isOriginal': 'true',
+                    'type': 'general',
+                    'country': 'AO',
+                    'year': '2002',
+                    'stream': '',
+                    'establishment': '&é\'&é',
+                    'city': '&é\'&é\''
+                  },
+                  'diploma': {
+                    'year': '2004-2005',
+                    'type': '5',
+                    'name': 'azeaze',
+                    'sector': '',
+                    'establishment': 'azeaz',
+                    'city': 'azea'
+                  },
+                  'tutor': {
+                    'name': 'arzeaz',
+                    'firstname': 'azeazeaz',
+                    'email': 'aeaze@zaeeazaz.com',
+                    'skill': 'azezaz',
+                    'replaceInternship': 'true',
+                    'replaceModule': 'true',
+                    'askYearOff': 'true'
+                  },
+                  'entrepreneurship': []
+                },
+                'pepite': {
+                  'region': '1',
+                  'establishment': 0,
+                  'pepite': '10',
+                  'askCoworking': 'true'
+                },
+                '_id': '9c9d6a6b832effc406059b15',
+                '__v': 0,
+                'sentDate': '2016-11-24T11:12:12.329Z',
+                'status': 'saved',
+                'contact': {
+                  'schoolYear': 2016,
+                  'isRenew': 'true',
+                  'situation': 'student',
+                  'phone': '0643333333',
+                  'email': 'test@test.com',
+                  'firstname': 'William',
+                  'name': 'Rimbeau'
+                },
+                'date': '2016-11-24T11:12:12.272Z'
+              }
+              let sentMail
+              it('should return a 200 with the updated application', (done) => {
+                supertest(app)
+                  .put('/api/application/9c9d6a6b832effc406059b15')
+                  .send(changePepiteApplication)
+                  .expect(200)
+                  .end((err, res) => {
+                    if (err) {
+                      return done(err)
+                    }
+                    sentMail = nodemailerMock.mock.sentMail()
+                    expect(res.body).toContain(changePepiteApplication)
+                    return done()
+                  })
+              })
+              it('should not send any email', () => {
+                expect(sentMail.length).toBe(0)
+              })
+            })
+
+            describe('When application have sent status', () => {
+              const changePepiteApplication = {
+                'project': {
+                  'name': '',
+                  'summary': 'aze',
+                  'type': 'retake',
+                  'site': '',
+                  'status': 'company',
+                  'blog': '',
+                  'facebook': '',
+                  'twitter': '',
+                  'siret': '',
+                  'activitySummary': 'azeaze',
+                  'stepSummary': 'azeaze',
+                  'sector': '9',
+                  'otherSector': '',
+                  'motiviation': 'azeaze',
+                  'linkedin': '',
+                  'team': [],
+                  'teamType': ''
+                },
+                'profile': {
+                  'gender': 'male',
+                  'situation': 'graduate',
+                  'nationality': 'AW',
+                  'motivation': 'azeaz',
+                  'isPartTime': 'true',
+                  'hasActivity': 'true',
+                  'activity': '',
+                  'isUnemployed': 'true',
+                  'isFreelance': 'true',
+                  'birthDate': '2016-11-08T11:00:00.000Z',
+                  'birthPlace': 'azeaz',
+                  'ine': '',
+                  'address': 'aze',
+                  'cp': 'aze',
+                  'city': 'azeaz',
+                  'country': 'AW',
+                  'twitter': '',
+                  'facebook': '',
+                  'linkedin': '',
+                  'viadeo': ''
+                },
+                'career': {
+                  'bac': {
+                    'isOriginal': 'true',
+                    'type': 'general',
+                    'country': 'AO',
+                    'year': '2002',
+                    'stream': '',
+                    'establishment': '&é\'&é',
+                    'city': '&é\'&é\''
+                  },
+                  'diploma': {
+                    'year': '2004-2005',
+                    'type': '5',
+                    'name': 'azeaze',
+                    'sector': '',
+                    'establishment': 'azeaz',
+                    'city': 'azea'
+                  },
+                  'tutor': {
+                    'name': 'arzeaz',
+                    'firstname': 'azeazeaz',
+                    'email': 'aeaze@zaeeazaz.com',
+                    'skill': 'azezaz',
+                    'replaceInternship': 'true',
+                    'replaceModule': 'true',
+                    'askYearOff': 'true'
+                  },
+                  'entrepreneurship': []
+                },
+                'pepite': {
+                  'region': '1',
+                  'establishment': 0,
+                  'pepite': '10',
+                  'askCoworking': 'true'
+                },
+                '_id': '58370910e221d30010165435',
+                '__v': 0,
+                'sentDate': '2016-11-24T11:12:12.329Z',
+                'status': 'sent',
+                'contact': {
+                  'schoolYear': 2016,
+                  'isRenew': 'true',
+                  'situation': 'student',
+                  'phone': '0643333333',
+                  'email': 'test2@test.com',
+                  'firstname': 'Romain',
+                  'name': 'Villon'
+                },
+                'date': '2016-11-24T11:12:12.272Z'
+              }
+              let sentMail
+              it('should return a 200 with the updated application', (done) => {
+                supertest(app)
+                  .put('/api/application/58370910e221d30010165435')
+                  .send(changePepiteApplication)
+                  .expect(200)
+                  .end((err, res) => {
+                    if (err) {
+                      return done(err)
+                    }
+                    sentMail = nodemailerMock.mock.sentMail()
+                    expect(res.body).toContain(changePepiteApplication)
+                    return done()
+                  })
+              })
+              it('should have sent 3 emails', () => {
+                expect(sentMail.length).toBe(3)
+              })
+            })
+          })
+
+          describe('When PEPITE does not exist', () => {
+
+            it('should return an error', (done) => {
+              const invalidPepiteApplication = {
+                'project': {
+                  'name': '',
+                  'summary': 'aze',
+                  'type': 'retake',
+                  'site': '',
+                  'status': 'company',
+                  'blog': '',
+                  'facebook': '',
+                  'twitter': '',
+                  'siret': '',
+                  'activitySummary': 'azeaze',
+                  'stepSummary': 'azeaze',
+                  'sector': '9',
+                  'otherSector': '',
+                  'motiviation': 'azeaze',
+                  'linkedin': '',
+                  'team': [],
+                  'teamType': ''
+                },
+                'profile': {
+                  'gender': 'male',
+                  'situation': 'graduate',
+                  'nationality': 'AW',
+                  'motivation': 'azeaz',
+                  'isPartTime': 'true',
+                  'hasActivity': 'true',
+                  'activity': '',
+                  'isUnemployed': 'true',
+                  'isFreelance': 'true',
+                  'birthDate': '2016-11-08T11:00:00.000Z',
+                  'birthPlace': 'azeaz',
+                  'ine': '',
+                  'address': 'aze',
+                  'cp': 'aze',
+                  'city': 'azeaz',
+                  'country': 'AW',
+                  'twitter': '',
+                  'facebook': '',
+                  'linkedin': '',
+                  'viadeo': ''
+                },
+                'career': {
+                  'bac': {
+                    'isOriginal': 'true',
+                    'type': 'general',
+                    'country': 'AO',
+                    'year': '2002',
+                    'stream': '',
+                    'establishment': '&é\'&é',
+                    'city': '&é\'&é\''
+                  },
+                  'diploma': {
+                    'year': '2004-2005',
+                    'type': '5',
+                    'name': 'azeaze',
+                    'sector': '',
+                    'establishment': 'azeaz',
+                    'city': 'azea'
+                  },
+                  'tutor': {
+                    'name': 'arzeaz',
+                    'firstname': 'azeazeaz',
+                    'email': 'aeaze@zaeeazaz.com',
+                    'skill': 'azezaz',
+                    'replaceInternship': 'true',
+                    'replaceModule': 'true',
+                    'askYearOff': 'true'
+                  },
+                  'entrepreneurship': []
+                },
+                'pepite': {
+                  'region': '1',
+                  'establishment': 0,
+                  'pepite': '42',
+                  'askCoworking': 'true'
+                },
+                '_id': '9c9d6a6b832effc406059b15',
+                '__v': 0,
+                'sentDate': '2016-11-24T11:12:12.329Z',
+                'status': 'saved',
+                'contact': {
+                  'schoolYear': 2016,
+                  'isRenew': 'true',
+                  'situation': 'student',
+                  'phone': '0643333333',
+                  'email': 'test@test.com',
+                  'firstname': 'William',
+                  'name': 'Rimbeau'
+                },
+                'date': '2016-11-24T11:12:12.272Z'
+              }
+              supertest(app)
+                .put('/api/application/9c9d6a6b832effc406059b15')
+                .send(invalidPepiteApplication)
+                .expect(400)
+                .end((err, res) => {
+                  if (err) {
+                    return done(err)
+                  }
+                  expect(res.body).toEqual({ error: 'bad_request', reason: 'Le PEPITE avec l\'id: 42 n\'existe pas' })
+                  return done()
+                })
+            })
+          })
+        })
       })
     })
   })
