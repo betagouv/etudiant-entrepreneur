@@ -12,7 +12,7 @@ import ProfilePage from './Profile/ProfilePage'
 import { Modal, Button } from 'react-bootstrap'
 import '../../styles/apply-form.css'
 import { isEmptyObject } from '../common/validationHelper'
-
+import { browserHistory } from 'react-router'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import * as errorsActions from '../../actions/errorsActions'
@@ -44,6 +44,7 @@ class ApplicationPage extends React.Component {
     if (this.props.actions.validateContact()) {
       this.props.applicationActions.saveApplication()
         .then((application) => {
+          browserHistory.replace(`/application/${application.id}`)
           this.setState({ isSaveShown: true })
         })
         .catch((err) => {
