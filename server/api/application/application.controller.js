@@ -98,15 +98,19 @@ class ApplicationController {
           return next(new StandardError(`Le PEPITE avec l\'id: ${req.body.pepite.pepite} n'existe pas`, { code: 400 }))
         }
         return Application
-          .findByIdAndUpdate(req.params.id, req.body, { new: false })
-          .then((application) => {
-            if (!application) {
+          .findById(req.params.id)
+          .then((oldApplication) => {
+            if (!oldApplication) {
               return res.sendStatus(404)
             }
-            return Pepite.findById(application.pepite.pepite).then((pepiteOld) => {
-              this.notifyPepiteTransfer(application, pepiteNew, pepiteOld, req)
-              return res.json(req.body)
-            })
+            return Application
+              .findByIdAndUpdate(req.params.id, req.body, { new: true })
+              .then((application) => {
+                return Pepite.findById(oldApplication.pepite.pepite).then((pepiteOld) => {
+                  this.notifyPepiteTransfer(application, pepiteNew, pepiteOld, req)
+                  return res.json(application)
+                })
+              })
           })
       })
       .catch((err) => {
