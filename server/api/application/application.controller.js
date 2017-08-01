@@ -92,25 +92,27 @@ class ApplicationController {
     if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
       return res.sendStatus(404)
     }
-    return Pepite.findById(req.body.pepite.pepite)
-      .then((pepiteNew) => {
-        if (!pepiteNew) {
-          return next(new StandardError(`Le PEPITE avec l\'id: ${req.body.pepite.pepite} n'existe pas`, { code: 400 }))
+    return Application
+      .findById(req.params.id)
+      .then((oldApplication) => {
+        if (!oldApplication) {
+          return res.sendStatus(404)
         }
         return Application
-          .findById(req.params.id)
-          .then((oldApplication) => {
-            if (!oldApplication) {
-              return res.sendStatus(404)
-            }
-            return Application
-              .findByIdAndUpdate(req.params.id, req.body, { new: true })
-              .then((application) => {
-                return Pepite.findById(oldApplication.pepite.pepite).then((pepiteOld) => {
+          .findByIdAndUpdate(req.params.id, req.body, { new: true })
+          .then((application) => {
+            if (application.status == 'sent') {
+              return Pepite.findById(oldApplication.pepite.pepite).then((pepiteOld) => {
+                return Pepite.findById(req.body.pepite.pepite).then((pepiteNew) => {
+                  if (!pepiteNew) {
+                    return next(new StandardError(`Le PEPITE avec l\'id: ${req.body.pepite.pepite} n'existe pas`, { code: 400 }))
+                  }
                   this.notifyPepiteTransfer(application, pepiteNew, pepiteOld, req)
                   return res.json(application)
                 })
               })
+            }
+            return res.json(application)
           })
       })
       .catch((err) => {
@@ -121,7 +123,7 @@ class ApplicationController {
 
   notifyPepiteTransfer(application, pepiteNew, pepiteOld, req) {
     return new Promise((fulfill) => {
-      if (application.status == 'sent' && pepiteNew._id != pepiteOld._id) {
+      if (pepiteNew._id != pepiteOld._id) {
         this.mailActions.notifyPepiteNew(
           application,
           pepiteNew,

@@ -939,23 +939,23 @@ describe('api: application', () => {
                   'pepite': '42',
                   'askCoworking': 'true'
                 },
-                '_id': '9c9d6a6b832effc406059b15',
+                '_id': '58370910e221d30010165435',
                 '__v': 0,
                 'sentDate': '2016-11-24T11:12:12.329Z',
-                'status': 'saved',
+                'status': 'sent',
                 'contact': {
                   'schoolYear': 2016,
                   'isRenew': 'true',
                   'situation': 'student',
                   'phone': '0643333333',
-                  'email': 'test@test.com',
-                  'firstname': 'William',
-                  'name': 'Rimbeau'
+                  'email': 'test2@test.com',
+                  'firstname': 'Romain',
+                  'name': 'Villon'
                 },
                 'date': '2016-11-24T11:12:12.272Z'
               }
               supertest(app)
-                .put('/api/application/9c9d6a6b832effc406059b15')
+                .put('/api/application/58370910e221d30010165435')
                 .send(invalidPepiteApplication)
                 .expect(400)
                 .end((err, res) => {
