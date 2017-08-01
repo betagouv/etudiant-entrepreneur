@@ -9,7 +9,7 @@ import PepitePage from './Pepite/PepitePage'
 import SendPage from './Send/SendPage'
 import CareerPage from './Career/CareerPage'
 import ProfilePage from './Profile/ProfilePage'
-import { Modal } from 'react-bootstrap'
+import { Modal, Button } from 'react-bootstrap'
 import '../../styles/apply-form.css'
 import { isEmptyObject } from '../common/validationHelper'
 
@@ -42,7 +42,13 @@ class ApplicationPage extends React.Component {
   openSave(event) {
     event.preventDefault()
     if (this.props.actions.validateContact()) {
-      this.setState({ isSaveShown: true })
+      this.props.applicationActions.saveApplication()
+        .then((application) => {
+          this.setState({ isSaveShown: true })
+        })
+        .catch((err) => {
+          toastr.error(err)
+        })
     } else {
       toastr.error("Pour sauvegarder, 'Mes Informations' doit être complet et valide")
     }
@@ -85,11 +91,14 @@ class ApplicationPage extends React.Component {
         <Multistep steps={this.getSteps()} save={this.openSave} canNavigate={this.canNavigate} />
         <Modal show={this.state.isSaveShown} onHide={this.closeSave}>
           <Modal.Header>
-            <Modal.Title>Sauvegarder mon formulaire</Modal.Title>
+            <Modal.Title>Candidature sauvegardée</Modal.Title>
           </Modal.Header>
           <Modal.Body>
             <SavePage />
           </Modal.Body>
+          <Modal.Footer>
+            <Button bsStyle="info" onClick={this.closeSave}>Revenir à ma candidature</Button>
+          </Modal.Footer>
         </Modal>
       </div>
     )
