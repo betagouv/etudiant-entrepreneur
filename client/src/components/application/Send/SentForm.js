@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react'
-import { Panel, Button } from 'react-bootstrap'
+import { Panel, Button, ButtonGroup } from 'react-bootstrap'
 
-const SentForm = ({editForm}) => {
+const SentForm = ({ editForm }) => {
   return (
     <form>
       <Panel bsStyle="success" header="Candidature envoyée">
@@ -9,7 +9,9 @@ const SentForm = ({editForm}) => {
         <p>Tu peux encore modifier ta candidature ici ou ultérieurement en utilisant le lien reçu par mail.</p>
         <p>Pour toute question sur les prochaines étapes, contacte ton PEPITE à l'adresse reçue par mail.</p>
       </Panel>
-      <Button bsStyle="success" onClick={editForm}>Modifier ma candidature</Button>
+      <ButtonGroup block>
+        <Button className="pull-right" bsStyle="success" onClick={editForm}>Modifier ma candidature</Button>
+      </ButtonGroup>
     </form>
   )
 }

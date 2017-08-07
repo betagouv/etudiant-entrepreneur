@@ -1,10 +1,12 @@
-import React, {PropTypes} from 'react'
-import { Panel, Button } from 'react-bootstrap'
+import React, { PropTypes } from 'react'
+import { Panel, Button, ButtonGroup } from 'react-bootstrap'
 
-const SendForm = ({sendForm, isSending}) => {
+const SendForm = ({ sendForm, isSending }) => {
   return (
     <form>
-      <Button bsStyle="success" disabled={isSending} onClick={sendForm}>Envoyer ma candidature</Button>
+      <ButtonGroup block>
+        <Button className="pull-right" bsStyle="success" disabled={isSending} onClick={sendForm}>Envoyer ma candidature</Button>
+      </ButtonGroup>
     </form>
   )
 }
