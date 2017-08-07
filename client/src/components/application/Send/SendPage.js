@@ -64,7 +64,7 @@ class SendPage extends React.Component {
         <NextCommittee />
         {this.props.canBeSent ?
           <SendForm sendForm={this.sendForm} isSending={this.state.isSending} /> :
-          <SentFrom editForm={this.editForm} />
+          <SentFrom editForm={this.editForm} pepite={this.props.currentPepite} />
         }
       </div>
     )
@@ -72,8 +72,10 @@ class SendPage extends React.Component {
 }
 
 function mapStateToProps(state, ownProps) {
+  const selectedPepiteId = Number(state.pepite.pepite)
   return {
-    canBeSent: state.application.status === 'saved' || !state.application.status
+    canBeSent: state.application.status === 'saved' || !state.application.status,
+    currentPepite: selectedPepiteId ? state.pepiteList[selectedPepiteId] : null
   }
 }
 
@@ -87,7 +89,8 @@ function mapDispatchToProps(dispatch) {
 SendPage.propTypes = {
   actions: PropTypes.object.isRequired,
   canBeSent: PropTypes.bool.isRequired,
-  errorsActions: PropTypes.object.isRequired
+  errorsActions: PropTypes.object.isRequired,
+  currentPepite: PropTypes.object
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(SendPage)

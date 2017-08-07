@@ -17,7 +17,7 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import * as errorsActions from '../../actions/errorsActions'
 import * as applicationActions from '../../actions/applicationActions'
-
+import * as pepiteListActions from '../../actions/pepiteListActions'
 
 class ApplicationPage extends React.Component {
   constructor(props, context) {
@@ -37,6 +37,7 @@ class ApplicationPage extends React.Component {
         toastr.error(err)
       })
     }
+    this.props.pepiteListActions.loadPepiteList()
   }
 
   openSave(event) {
@@ -117,13 +118,15 @@ function mapStateToProps(state, ownProps) {
 function mapDispatchToProps(dispatch) {
   return {
     actions: bindActionCreators(errorsActions, dispatch),
-    applicationActions: bindActionCreators(applicationActions, dispatch)
+    applicationActions: bindActionCreators(applicationActions, dispatch),
+    pepiteListActions: bindActionCreators(pepiteListActions, dispatch)
   }
 }
 
 ApplicationPage.propTypes = {
   actions: PropTypes.object.isRequired,
   applicationActions: PropTypes.object.isRequired,
+  pepiteListActions: PropTypes.object.isRequired,
   errors: PropTypes.object.isRequired,
   applicationId: PropTypes.string
 }
