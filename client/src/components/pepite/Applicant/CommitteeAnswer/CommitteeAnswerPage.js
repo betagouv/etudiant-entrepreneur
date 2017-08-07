@@ -78,24 +78,13 @@ class CommitteeAnswerPage extends React.Component {
     return (
       <div className="container back-content">
         <div className="page-header">
-          <h1>Avis du comité d'engagement</h1>
+          <h1>Avis du comité d'engagement pour {this.props.applicantFirstname}</h1>
         </div>
         <CommitteeAnswerForm
           committeeAnswer={this.state.committeeAnswer}
           onChange={this.updateCommitteeAnswerState}
           errors={this.state.errors}
           saveAnswer={this.saveAnswer} />
-        <div className="panel panel-default committee-panel">
-          <div className="panel-heading">Candidature</div>
-          <div className="panel-body">
-            <ContactPage />
-            <TeamPage />
-            <ProjectPage />
-            <PepitePage />
-            <CareerPage />
-            <ProfilePage />
-          </div>
-        </div>
       </div>
     )
   }
@@ -104,7 +93,8 @@ class CommitteeAnswerPage extends React.Component {
 function mapStateToProps(state, ownProps) {
   return {
     applicationId: ownProps.params.id,
-    committeeAnswer: state.committeeAnswer
+    committeeAnswer: state.committeeAnswer,
+    applicantFirstname: `${state.contact.firstname} ${state.contact.name}`
   }
 }
 
@@ -119,6 +109,7 @@ CommitteeAnswerPage.propTypes = {
   actions: PropTypes.object.isRequired,
   committeeAnswerActions: PropTypes.object.isRequired,
   committeeAnswer: PropTypes.object.isRequired,
+  applicantFullname: PropTypes.string.isRequired,
   applicationId: PropTypes.string
 }
 
