@@ -11,10 +11,11 @@ function getMail(sender, application, pepite, nextCommittee) {
 }
 
 function getSendEmailBody(application, pepite, nextCommittee) {
+  const applicationlink = `https://etudiant-entrepreneur.beta.gouv.fr/application/${application._id}`
   return ('<html><body><p>Bonjour,</p>' +
     `<p>Ta candidature a été transférée au PEPITE ${pepite.name} qui reviendra vers toi pour les prochaines étapes.</p>` +
     `<p>Ta candidature passera en comité d'engagement, ${getCommitteeMessage(nextCommittee)}</p>` +
-    '<a href="https://etudiant-entrepreneur.beta.gouv.fr/application/' + application._id + '" target="_blank">ta candidature</a>' +
+    `<p><a href="${applicationlink}">${applicationlink}<a></p>` +
     `<p>Ton PEPITE va prendre contact avec toi dans les prochains jours, si tu as des questions sur la suite du processus tu peux le contacter à ${pepite.email}</p>` +
     '<p>Si tu as des questions sur la plateforme n\'hésites pas à nous contacter à contact@etudiant-entrepreneur.beta.gouv.fr</p>' +
     '<p>Bonne aventure entreprenariale !</p>' +

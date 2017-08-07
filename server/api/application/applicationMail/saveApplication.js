@@ -9,10 +9,11 @@ function getMail(sender, application) {
 }
 
 function getSaveEmailBody(application) {
+  const applicationlink = `https://etudiant-entrepreneur.beta.gouv.fr/application/${application._id}`
   return ('<html><body><p>Bonjour,</p>' +
     '<p>Tu as commencé ta candidature sur etudiant-entrepreneur.beta.gouv.fr</p>' +
     '<p>Tu peux finaliser ta demande quand tu veux à cette adresse :</p>' +
-    '<a href="https://etudiant-entrepreneur.beta.gouv.fr/application/' + application._id + '" target="_blank">ta candidature</a>' +
+    `<p><a href="${applicationlink}">${applicationlink}<a></p>` +
     '<p>Si tu as la moindre question, n\'hésites pas à nous contacter à contact@etudiant-entrepreneur.beta.gouv.fr</p>' +
     '</body></html>')
 }

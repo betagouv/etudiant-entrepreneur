@@ -9,10 +9,11 @@ function getMail(sender, application, pepite) {
 }
 
 function getPepiteEmailBody(application) {
+  const applicationlink = `https://etudiant-entrepreneur.beta.gouv.fr/application/${application._id}`
   return ('<html><body><p>Bonjour,</p>' +
     `<p>Vous avez reçu une nouvelle candidature de la part de ${application.contact.firstname} ${application.contact.name}.</p>` +
     '<p>Vous retrouverez le dossier complet à l\'adresse :</p>' +
-    '<a href="https://etudiant-entrepreneur.beta.gouv.fr/application/' + application._id + '" target="_blank">candidature</a>' +
+    `<p><a href="${applicationlink}">${applicationlink}<a></p>` +
     '<p>Pour rappel, la candidature est éditable à ce lien.</p>' +
     '<p>Si vous avez la moindre question, n\'hésitez pas à nous contacter à contact@etudiant-entrepreneur.beta.gouv.fr</p>' +
     '</body></html>')
