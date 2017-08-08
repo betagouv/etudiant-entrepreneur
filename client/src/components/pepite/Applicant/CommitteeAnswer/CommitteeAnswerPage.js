@@ -78,7 +78,7 @@ class CommitteeAnswerPage extends React.Component {
     return (
       <div className="container back-content">
         <div className="page-header">
-          <h1>Avis du comité d'engagement pour {this.props.applicantFirstname}</h1>
+          <h1>Avis du comité d'engagement pour {this.props.applicantFullname}</h1>
         </div>
         <CommitteeAnswerForm
           committeeAnswer={this.state.committeeAnswer}
@@ -94,7 +94,7 @@ function mapStateToProps(state, ownProps) {
   return {
     applicationId: ownProps.params.id,
     committeeAnswer: state.committeeAnswer,
-    applicantFirstname: `${state.contact.firstname} ${state.contact.name}`
+    applicantFullname: `${state.contact.firstname} ${state.contact.name}`
   }
 }
 
