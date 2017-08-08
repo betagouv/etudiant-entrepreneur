@@ -10,8 +10,8 @@ const PepiteApplicantRow = ({ application }) => {
     <tr>
       <td><TimeSinceControl textDate={application.sentDate} /></td>
       <td>{application.contact.schoolYear}</td>
-      <td>{application.contact.name}</td>
-      <td>{application.contact.firstname}</td>
+      <td><Link to={`/application/${application._id}`}>{application.contact.name}</Link></td>
+      <td><Link to={`/application/${application._id}`}>{application.contact.firstname}</Link></td>
       <td>{application.contact.email}</td>
       <td>{application.career.diploma.establishment}</td>
       <td><GraduationLabel application={application} /></td>
