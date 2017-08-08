@@ -12,6 +12,7 @@ module.exports = (options) => {
   router.post('/', applicationController.createApplication)
   router.put('/:id', applicationController.updateApplication)
   router.put('/:id/send', applicationController.sendApplication)
+  router.put('/:id/drop', auth.isAuthenticated(), applicationController.dropApplication)
   router.get('/:id/certificate', auth.isAuthenticated(), applicationController.getApplicationCertificate)
   router.get('/:id/other', auth.isAuthenticated(), applicationController.getOtherApplication)
   return router

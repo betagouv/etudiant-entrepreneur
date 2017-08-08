@@ -147,6 +147,20 @@ class ApplicationController {
     })
   }
 
+  dropApplication(req, res) {
+    if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
+      return res.sendStatus(404)
+    }
+    return Application
+      .findByIdAndUpdate(req.params.id, { $set: { status: 'dropped' } }, { new: true })
+      .then((application) => {
+        if (!application) {
+          return res.sendStatus(404)
+        }
+        return res.json(application)
+      })
+  }
+
   sendApplication(req, res, next) {
     if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
       return res.sendStatus(404)

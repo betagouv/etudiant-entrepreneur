@@ -44,6 +44,7 @@ describe('api: application', () => {
         .expect(200, '"pong"', done)
     })
   })
+
   describe('When requesting /api/application/send', () => {
     it('should give valid id', (done) => {
       supertest(app)
@@ -1247,6 +1248,52 @@ describe('api: application', () => {
               return done(err)
             }
             expect(res.body.length).toBe(1)
+            done()
+          })
+      })
+    })
+  })
+
+  describe('When requesting /api/application/drop', () => {
+    let validToken = {}
+
+    before((done) => {
+      ApplicationModel.insertMany(applicationData, () => authHelper.getToken(app, 'peel@univ-lorraine.fr', 'test', validToken, done))
+    })
+
+    after((done) => {
+      ApplicationModel.remove(done)
+    })
+
+    describe('When an invalid token is provided', () => {
+      it('should return a 401 error', (done) => {
+        supertest(app)
+          .put('/api/application/58370910e221d30010165435/drop')
+          .set('Authorization', 'Bearer invalidToken')
+          .expect(401, done)
+      })
+    })
+
+    describe('When the application does not exist', () => {
+      it('should give a 404 erorr', (done) => {
+        supertest(app)
+          .put('/api/application/someId/drop')
+          .set('Authorization', `Bearer ${validToken.token}`)
+          .expect(404, done)
+      })
+    })
+
+    describe('When the application does exist', () => {
+      it('change application status to dropped', (done) => {
+        supertest(app)
+          .put('/api/application/58370910e221d30010165435/drop')
+          .set('Authorization', `Bearer ${validToken.token}`)
+          .expect(200)
+          .end((err, res) => {
+            if (err) {
+              return done(err)
+            }
+            expect(res.body.status).toBe('dropped')
             done()
           })
       })
