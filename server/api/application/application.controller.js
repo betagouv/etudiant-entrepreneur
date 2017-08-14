@@ -147,12 +147,15 @@ class ApplicationController {
     })
   }
 
-  dropApplication(req, res) {
+  dropApplication(req, res, next) {
     if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
       return res.sendStatus(404)
     }
+    if (!req.body.dropReason) {
+      return next(new StandardError('Il faut renseigner la raison de l\'abandon', { code: 400 }))
+    }
     return Application
-      .findByIdAndUpdate(req.params.id, { $set: { status: 'dropped' } }, { new: true })
+      .findByIdAndUpdate(req.params.id, { $set: { status: 'dropped', dropReason: req.body.dropReason } }, { new: true })
       .then((application) => {
         if (!application) {
           return res.sendStatus(404)

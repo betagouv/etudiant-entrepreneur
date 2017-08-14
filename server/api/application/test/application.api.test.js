@@ -1284,18 +1284,32 @@ describe('api: application', () => {
     })
 
     describe('When the application does exist', () => {
-      it('change application status to dropped', (done) => {
-        supertest(app)
-          .put('/api/application/58370910e221d30010165435/drop')
-          .set('Authorization', `Bearer ${validToken.token}`)
-          .expect(200)
-          .end((err, res) => {
-            if (err) {
-              return done(err)
-            }
-            expect(res.body.status).toBe('dropped')
-            done()
-          })
+      describe('When drop reason is missing', () => {
+        it('should give a 400 erorr', () => {
+          supertest(app)
+            .put('/api/application/58370910e221d30010165435/drop')
+            .set('Authorization', `Bearer ${validToken.token}`)
+            .send({})
+            .expect(400)
+        })
+      })
+      describe('When drop reason is provided', () => {
+        it('change application status to dropped', (done) => {
+          const dropReason = { dropReason: 'accepted in another PEPITE' }
+          supertest(app)
+            .put('/api/application/58370910e221d30010165435/drop')
+            .set('Authorization', `Bearer ${validToken.token}`)
+            .send(dropReason)
+            .expect(200)
+            .end((err, res) => {
+              if (err) {
+                return done(err)
+              }
+              expect(res.body.status).toBe('dropped')
+              expect(res.body).toContain(dropReason)
+              done()
+            })
+        })
       })
     })
   })

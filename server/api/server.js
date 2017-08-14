@@ -9,7 +9,7 @@ const expressBunyanLogger = require('express-bunyan-logger')
 const bodyParser = require('body-parser')
 const formatError = require('./lib/middlewares/formatError')
 const mongoose = require('mongoose')
-var passport = require('passport')
+const passport = require('passport')
 const Raven = require('raven')
 const nodemailer = require('nodemailer')
 

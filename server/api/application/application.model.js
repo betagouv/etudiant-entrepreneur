@@ -21,6 +21,7 @@ var ApplicationSchema = new Schema({
   pepite: {},
   profile: {},
   status: { type: String, default: 'saved' },
+  dropReason: { type: String },
   sentDate: { type: Date }
 })
 
