@@ -17,6 +17,7 @@ const PepiteApplicantRow = ({ application }) => {
       <td><GraduationLabel application={application} /></td>
       <td><a className="btn btn-info btn-xs" target="_blank" href={`/application/${application._id}/print`}><Glyphicon glyph="print" /></a></td>
       <td><Link to={`/pepite/committeeAnswer/${application._id}`} className="btn btn-info btn-xs"><Glyphicon glyph="edit" /></Link></td>
+      <td><Link to={`/pepite/dropApplication/${application._id}`} className="btn btn-danger btn-xs"><Glyphicon glyph="remove" /></Link></td>
       <td><OtherApplicationLabel applicantId={application._id} /></td>
     </tr>
   )

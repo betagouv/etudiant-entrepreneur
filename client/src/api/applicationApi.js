@@ -85,6 +85,20 @@ class applicationApi {
       })
   }
 
+  static dropApplication(id, reason, userToken) {
+    return axios.put(`/application/${id}/drop`, { dropReason: reason },
+      {
+        'headers': {
+          'Authorization': `Bearer ${userToken}`
+        }
+      })
+      .then((res) => {
+        const applicationResponse = res.data
+        return (Object.assign({}, applicationResponse, { id: applicationResponse._id }))
+      })
+      .catch((err) => { throw new Error(err) })
+  }
+
   static getAllPepiteApplications(pepiteId, userToken) {
     return axios.get(`/pepite/${pepiteId}/application`,
       {

@@ -7,6 +7,7 @@ import PrintPage from './components/application/PrintPage'
 import LoginPage from './components/login/LoginPage'
 import PepiteHomePage from './components/pepite/PepiteHomePage'
 import CommitteeAnswerPage from './components/pepite/Applicant/CommitteeAnswer/CommitteeAnswerPage'
+import DropApplicationPage from './components/pepite/Applicant/DropApplication/DropApplicationPage'
 import ApplicantPage from './components/pepite/Applicant/ApplicantPage'
 import CommitteePage from './components/pepite/Committee/CommitteePage'
 import StudentPage from './components/pepite/Student/StudentPage'
@@ -30,6 +31,7 @@ export default (
       <Route path="pepite/committee" component={CommitteePage} />
       <Route path="pepite/student" component={StudentPage} />
       <Route path="pepite/committeeAnswer/:id" component={CommitteeAnswerPage} />
+      <Route path="pepite/dropApplication/:id" component={DropApplicationPage} />
       <Route path="admin" component={AdminPage} />
     </Route>
     <Route path="*" component={NotFound} />

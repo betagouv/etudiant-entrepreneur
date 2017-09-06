@@ -9,6 +9,7 @@ import * as applicationActions from '../../../actions/applicationActions'
 import * as pepiteListActions from '../../../actions/pepiteListActions'
 import PepiteApplicantTable from './PepiteApplicantTable'
 import PepiteAcceptedApplicantTable from './PepiteAcceptedApplicantTable'
+import PepiteRefusedTable from './PepiteRefusedTable'
 import Const from '../../common/Table/Const'
 
 export class ApplicantPage extends React.Component {
@@ -17,7 +18,8 @@ export class ApplicantPage extends React.Component {
     this.state = {
       applications: [],
       accepted: [],
-      refused: []
+      refused: [],
+      dropped: []
     }
     this.getPepiteApplicationXls = this.getPepiteApplicationXls.bind(this)
     this.sortApplication = this.sortApplication.bind(this)
@@ -30,6 +32,7 @@ export class ApplicantPage extends React.Component {
           applications: [...applications.filter((a) => a.status == 'sent')],
           accepted: [...applications.filter((a) => a.status == 'accepted')],
           refused: [...applications.filter((a) => a.status == 'refused')],
+          dropped: [...applications.filter((a) => a.status == 'dropped')]
         })
       })
       .catch((err) => {
@@ -77,6 +80,9 @@ export class ApplicantPage extends React.Component {
           </Tab>
           <Tab eventKey={3} title={<div>Réfusées <span className="badge">{this.state.refused.length}</span></div>}>
             <PepiteApplicantTable applicants={this.state.refused} sort={this.sortApplication('refused')} />
+          </Tab>
+          <Tab eventKey={4} title={<div>Abandonnées <span className="badge">{this.state.dropped.length}</span></div>}>
+            <PepiteRefusedTable applicants={this.state.refused} sort={this.sortApplication('dropped')} />
           </Tab>
         </Tabs>
       </div>

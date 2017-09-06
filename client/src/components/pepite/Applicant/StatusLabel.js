@@ -23,6 +23,11 @@ function statusToLabel(status) {
         style: 'primary',
         text: 'sauvegardé'
       }
+    case 'dropped':
+      return {
+        style: 'warning',
+        text: 'abandon'
+      }
     default:
       return {
         style: 'warning',

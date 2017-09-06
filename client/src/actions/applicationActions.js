@@ -109,6 +109,13 @@ export function sendApplication() {
   }
 }
 
+export function dropApplication(applicationId, reason) {
+  return (dispatch, getState) => {
+    const {user} = getState()
+    return applicationApi.dropApplication(applicationId, reason, user.token)
+  }
+}
+
 export function getPepiteApplication() {
   return (dispatch, getState) => {
     const {user} = getState()
