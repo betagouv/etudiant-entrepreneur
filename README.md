@@ -1,3 +1,9 @@
+# Ce projet n'est plus maintenu par la communauté beta.gouv.fr
+
+Le produit est peut-être encore actif, mais l’équipe qui l’opère n’obéit plus au [manifeste](https://beta.gouv.fr/incubateurs).
+
+---------
+
 # Etudiant-entrepreneur
 [![CircleCI](https://circleci.com/gh/sgmap/etudiant-entrepreneur.svg?style=shield)](https://circleci.com/gh/sgmap/etudiant-entrepreneur)
 [![Coverage Status](https://coveralls.io/repos/github/sgmap/etudiant-entrepreneur/badge.svg?branch=master)](https://coveralls.io/github/sgmap/etudiant-entrepreneur?branch=master)
